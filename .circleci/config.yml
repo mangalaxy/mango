@@ -5,6 +5,9 @@
 version: 2
 jobs:
   build:
+    # directory where steps will run
+    working_directory: ~/mango
+    
     docker:
       # specify the version you desire here
       - image: circleci/openjdk:8-jdk
@@ -13,8 +16,6 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
-
-    working_directory: ~/mango
 
     environment:
       # Customize the JVM maximum heap limit
@@ -26,16 +27,27 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - v1-dependencies-{{ checksum "pom.xml" }}
+            - circleci-java-spring-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
+      # gets the project dependencies
       - run: mvn dependency:go-offline
-
+      
       - save_cache:
           paths:
             - ~/.m2
-          key: v1-dependencies-{{ checksum "pom.xml" }}
-
-      # run unit tests!
-      - run: mvn test
+          key: circleci-java-spring-{{ checksum "pom.xml" }}
+          
+      # run the actual tests
+      - run: mvn package 
+      
+      # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
+      - store_test_results:  
+      # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+          path: target/surefire-reports
+          
+      # store the uberjar as an artifact
+      - store_artifacts: 
+      # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+          path: target/mango-0.0.1-SNAPSHOT.jar
+      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples    
