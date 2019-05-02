@@ -1,4 +1,8 @@
 # mango
+
+[![CircleCI](https://circleci.com/gh/mangalaxy/mango.svg?style=svg)](https://circleci.com/gh/mangalaxy/mango)
+
+
 Mango is a recruitment platform for talents and employers
 
 ## Getting Started
