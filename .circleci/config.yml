@@ -27,6 +27,17 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            - node-v1-{{ .Branch }}-
+            - node-v1-
+      - save_cache:
+          paths:
+            - ~/usr/local/lib/node_modules  # location depends on npm version
+          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
+
+      - restore_cache:
+          keys:
             - circleci-java-spring-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
@@ -37,17 +48,18 @@ jobs:
           paths:
             - ~/.m2
           key: circleci-java-spring-{{ checksum "pom.xml" }}
-          
-      # run the actual tests
+
+      # package into a jar
       - run: mvn package 
       
       # uploads the test metadata from the `target/surefire-reports` directory so that it can show up in the CircleCI dashboard.
       - store_test_results:  
       # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: target/surefire-reports
-          
-      # store the uberjar as an artifact
+
+      # store the uber jar as an artifact
       - store_artifacts: 
       # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: target/mango-0.0.1-SNAPSHOT.jar
+          path: target/classes
+          destination: mango
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples    
