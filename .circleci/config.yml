@@ -10,7 +10,7 @@ jobs:
     
     docker:
       # specify the version you desire here
-      - image: circleci/openjdk:8u171-jdk
+      - image: circleci/openjdk:8-jdk-browsers
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -27,22 +27,11 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
           keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
-            - node-v1-{{ .Branch }}-
-            - node-v1-
-      - save_cache:
-          paths:
-            - ~/usr/local/lib/node_modules  # location depends on npm version
-          key: node-v1-{{ .Branch }}-{{ checksum "package-lock.json" }}
-
-      - restore_cache:
-          keys:
             - circleci-java-spring-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       # gets the project dependencies
-      - run: mvn dependency:go-offline
+      - run: mvn --fail-never dependency:go-offline || true
       
       - save_cache:
           paths:
