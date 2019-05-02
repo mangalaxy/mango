@@ -1,4 +1,8 @@
-# Mango
+# mango
+
+[![CircleCI](https://circleci.com/gh/mangalaxy/mango.svg?style=svg)](https://circleci.com/gh/mangalaxy/mango)
+
+
 Mango is a recruitment platform for talents and employers
 
 ## Getting Started
@@ -10,8 +14,8 @@ Before running the project on the local machine, make sure that the necessary so
 * Intellij IDEA 2019.1 or above
 * PostgreSQL 10.7
 
-### Installing
-
+## Local Development
+### Running frontend locally
 In the ``frontend`` directory, you can run:
 ```
 npm start
@@ -35,6 +39,26 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.
 Your app is ready to be deployed!
 
+### Running backend locally
+To build and run Spring Boot locally
+```
+mvn spring-boot:run
+```
+You can now access the app on http://localhost:9000
+
+### Build deployable package
+To build a deployable artifact
+```
+mvn package
+```
+The self contained jar will be created in ``${project.basedir}/target``
+
+To run the jar
+```
+java -jar target/mango-1.0.0-SNAPSHOT.jar
+```
+You can now access the production-ready app on http://localhost:9000
+
 ## Build with
 * [Spring Boot](https://spring.io/projects/spring-boot) - Starter for IOC container.
 * [Maven](https://maven.apache.org/) - Dependency management.
@@ -45,7 +69,6 @@ We use [Git](https://git-scm.com/about) for versioning.
 
 ### Authors
 * **Yuri Podolsky** - Initial work - Fullstack Engineer
-
 
 ### License
 This project is licensed under the MIT License - see the ``LICENSE.md`` file for details

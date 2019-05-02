@@ -1,4 +1,5 @@
 import React from 'react'
+import './styles/index.scss'
 
 class App extends React.Component {
 
@@ -26,6 +27,7 @@ class App extends React.Component {
         <div>
           <header>
             <h3>{this.state.message}</h3>
+            <p>Paragraph example</p>
           </header>
         </div>
     )
