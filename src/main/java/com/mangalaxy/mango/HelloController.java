@@ -7,7 +7,8 @@ import java.util.Date;
 
 @RestController
 public class HelloController {
-  @GetMapping("/api/hello")
+
+  @GetMapping("/api/v1/hello")
   public String hello() {
     return "Hello, the time at the server is now " + new Date() + "\n";
   }
