@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -66,7 +67,8 @@ public class Job {
   private Set<Skill> skills = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "employer_id")
+  @JoinColumn(name = "employer_id", nullable = false,
+        foreignKey = @ForeignKey(name = "FK_job_employer_id"))
   private Employer publisher;
 
   @Column(name = "job_role")

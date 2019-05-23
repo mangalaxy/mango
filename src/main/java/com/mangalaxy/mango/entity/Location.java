@@ -21,7 +21,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "location")
-public class Location extends Essential {
+public class Location extends BaseEntity {
 
   @Column(nullable = false, length = 30)
   private String city;

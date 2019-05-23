@@ -9,17 +9,17 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 /**
- * Base entity class to derive entity classes from.
+ * Abstract base entity class to derive entity classes from.
  *
  * @author Yuri Podolsky
  */
-@EqualsAndHashCode
 @Getter
+@EqualsAndHashCode
 @MappedSuperclass
-public abstract class Essential {
+public abstract class BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
 
 }

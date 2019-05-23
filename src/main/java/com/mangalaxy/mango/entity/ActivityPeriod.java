@@ -5,13 +5,14 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Embeddable
-class Salary {
-  @Column(scale = 2, precision = 7)
-  private BigDecimal value;
-  private String currency;
+class ActivityPeriod {
+  @Column(name = "start_date")
+  private LocalDate startDate;
+  @Column(name = "finish_date")
+  private LocalDate finishDate;
 }

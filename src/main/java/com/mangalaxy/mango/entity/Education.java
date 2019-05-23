@@ -1,21 +1,28 @@
 package com.mangalaxy.mango.entity;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
-import java.time.LocalDate;
+import javax.persistence.Embedded;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 
-@Embeddable
-@Setter
 @Getter
-public class Education {
+@Setter
+@RequiredArgsConstructor
+@Embeddable
+class Education {
 
   private String institution;
-  // TODO: Change to 'Degree' enum
-  private String degree;
+
+  @Enumerated(EnumType.STRING)
+  private Degree degree;
+
   private String specialization;
-  private LocalDate startedDate;
-  private LocalDate graduationDate;
+
+  @Embedded
+  private ActivityPeriod period;
 
 }

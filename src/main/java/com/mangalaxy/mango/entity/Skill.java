@@ -11,20 +11,14 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Represents specified skill.
- */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "skill")
-public class Skill extends Essential {
+public class Skill extends BaseEntity {
 
   @Column(name = "name", nullable = false, length = 30)
   private String name;
-  // TODO: Change on JobRole enumeration
-  @Column(name = "job_role")
-  private String jobRole;
 
   @ManyToMany(mappedBy = "skills")
   private Set<Job> jobs = new HashSet<>();

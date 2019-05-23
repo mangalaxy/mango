@@ -1,20 +1,25 @@
 package com.mangalaxy.mango.entity;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import java.time.LocalDate;
+import javax.persistence.Embedded;
 
-@Embeddable
-@Setter
 @Getter
-public class Experience {
+@Setter
+@RequiredArgsConstructor
+@Embeddable
+class Experience {
 
   private String company;
   private String position;
-  private LocalDate startedDate;
-  private LocalDate finishedDate;
+  @Embedded
+  private ActivityPeriod period;
+  @Column(name = "worked_flag")
   private Boolean isWorked;
   private String description;
+
 }

@@ -18,10 +18,9 @@ import java.time.LocalDate;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "talent")
-public class Talent extends Essential {
+public class Talent extends BaseEntity {
 
   @OneToOne(fetch = FetchType.LAZY,
-        mappedBy = "talent",
         cascade = CascadeType.ALL,
         orphanRemoval = true
   )

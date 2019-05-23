@@ -26,7 +26,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "company")
-public class Company extends Essential {
+public class Company extends BaseEntity {
 
   @Column(name = "name", nullable = false, length = 60)
   private String name;
@@ -43,7 +43,7 @@ public class Company extends Essential {
   @Column(name = "size")
   private String size;
 
-  @Column(name = "industry")
+  @Column(name = "industry", length = 60)
   private String industry;
 
   @Column(name = "media_url")
@@ -60,15 +60,18 @@ public class Company extends Essential {
   private Set<Skill> techStack = new HashSet<>();
 
   @ElementCollection
+  @Column(name = "item", length = 50)
   private Set<String> perks = new HashSet<>();
 
   @ElementCollection
+  @Column(name = "item", length = 50)
   private Set<String> benefits = new HashSet<>();
 
   @ElementCollection
   private Set<String> links = new HashSet<>();
 
   @ElementCollection
+  @Column(name = "photo_url")
   private Set<String> gallery = new HashSet<>();
 
   @OneToMany(

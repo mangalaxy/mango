@@ -20,7 +20,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "employer")
-public class Employer extends Essential {
+public class Employer extends BaseEntity {
 
   @Column(name = "full_name", nullable = false, length = 60)
   private String fullName;
@@ -54,11 +54,9 @@ public class Employer extends Essential {
         cascade = CascadeType.ALL,
         orphanRemoval = true
   )
-  @JoinColumn(name = "job_id",
-        foreignKey = @ForeignKey(name = "FK_employer_job_id"))
   private Set<Job> openJobs = new HashSet<>();
 
-  @Column(name = "registration_date")
+  @Column(name = "registered_date")
   private LocalDate registeredOn;
 
   @Column(name = "last_update")
