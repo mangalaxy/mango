@@ -1,6 +1,8 @@
 package com.mangalaxy.mango.model.entity;
 
 import com.mangalaxy.mango.model.CandidateStatus;
+import com.mangalaxy.mango.model.Education;
+import com.mangalaxy.mango.model.Experience;
 import com.mangalaxy.mango.model.Language;
 import com.mangalaxy.mango.model.Salary;
 import lombok.Data;
@@ -34,7 +36,8 @@ public class Profile {
 
   @OneToOne(mappedBy = "profile")
   @MapsId
-  @JoinColumn(name = "talent_id", foreignKey = @ForeignKey(name = "FK_profile_talent_id"))
+  @JoinColumn(name = "talent_id",
+        foreignKey = @ForeignKey(name = "FK_profile_talent_id"))
   @EqualsAndHashCode.Include
   private Talent owner;
 

@@ -29,22 +29,13 @@ public class Location extends BaseEntity {
   @Column(nullable = false, length = 30)
   private String country;
 
-  @OneToMany(
-        mappedBy = "location",
-        cascade = CascadeType.ALL
-  )
+  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
   private Set<Job> jobs = new HashSet<>();
 
-  @OneToMany(
-        mappedBy = "location",
-        cascade = CascadeType.ALL
-  )
+  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
   private Set<Talent> talents = new HashSet<>();
 
-  @OneToMany(
-        mappedBy = "location",
-        cascade = CascadeType.ALL
-  )
+  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
   private Set<Employer> employers = new HashSet<>();
 
 }

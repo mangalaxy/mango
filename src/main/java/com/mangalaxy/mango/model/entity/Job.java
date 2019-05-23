@@ -9,9 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -25,28 +22,23 @@ import java.util.Set;
  * Represents the published job by the employer.
  */
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "job")
-public class Job {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @EqualsAndHashCode.Include
-  private Long id;
+public class Job extends BaseEntity {
 
   private String title;
   // TODO: Change to EmploymentType enum
   @Column(name = "employment_type")
   private String employmentType;
 
-  @Column(name = "remote")
+  @Column(name = "remote_flag")
   private Boolean isRemote;
 
-  @Column(name = "relocation")
+  @Column(name = "relocate_flag")
   private Boolean isRelocate;
 
-  @Column(name = "visa_sponsorship")
+  @Column(name = "sponsorship_flag")
   private Boolean isVisaSponsorship;
 
   private String experience;
@@ -56,10 +48,7 @@ public class Job {
   private Location location;
 
   @SortNatural
-  @ManyToMany(cascade = {
-        CascadeType.MERGE,
-        CascadeType.PERSIST
-  })
+  @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "job_skill",
         joinColumns = @JoinColumn(name = "job_id"),
         inverseJoinColumns = @JoinColumn(name = "skill_id")
@@ -67,7 +56,8 @@ public class Job {
   private Set<Skill> skills = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "employer_id", nullable = false,
+  @JoinColumn(name = "employer_id",
+        nullable = false,
         foreignKey = @ForeignKey(name = "FK_job_employer_id"))
   private Employer publisher;
 

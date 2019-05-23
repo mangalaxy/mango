@@ -1,6 +1,5 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.model;
 
-import com.mangalaxy.mango.model.ActivityPeriod;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -13,14 +12,18 @@ import javax.persistence.Embedded;
 @Setter
 @RequiredArgsConstructor
 @Embeddable
-class Experience {
+public class Experience {
 
   private String company;
+
   private String position;
+
   @Embedded
   private ActivityPeriod period;
+
   @Column(name = "worked_flag")
   private Boolean isWorked;
+
   private String description;
 
 }

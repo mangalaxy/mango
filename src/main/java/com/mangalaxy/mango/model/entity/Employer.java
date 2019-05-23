@@ -49,8 +49,7 @@ public class Employer extends BaseEntity {
         foreignKey = @ForeignKey(name = "FK_employer_location_id"))
   private Location location;
 
-  @OneToMany(
-        mappedBy = "publisher",
+  @OneToMany(mappedBy = "publisher",
         cascade = CascadeType.ALL,
         orphanRemoval = true
   )

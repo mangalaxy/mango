@@ -1,7 +1,5 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.model;
 
-import com.mangalaxy.mango.model.ActivityPeriod;
-import com.mangalaxy.mango.model.Degree;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -15,6 +13,7 @@ import javax.persistence.Enumerated;
 @Setter
 @RequiredArgsConstructor
 @Embeddable
+public
 class Education {
 
   private String institution;
