@@ -7,9 +7,9 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.LocalDate;
@@ -17,23 +17,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents full information about the company.
+ * Represents the company entity with details.
  *
  * @see Employer
  * @see Job
  */
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "company")
-public class Company {
+public class Company extends Essential {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @EqualsAndHashCode.Include
-  private Long id;
-
-  @Column(name = "name")
+  @Column(name = "name", nullable = false, length = 60)
   private String name;
 
   @Column(name = "logo_url")
@@ -57,7 +52,11 @@ public class Company {
   @Column(name = "about")
   private String aboutText;
 
-  @ElementCollection
+  @ManyToMany(cascade = CascadeType.ALL)
+  @JoinTable(name = "company_skill",
+        joinColumns = @JoinColumn(name = "company_id"),
+        inverseJoinColumns = @JoinColumn(name = "skill_id")
+  )
   private Set<Skill> techStack = new HashSet<>();
 
   @ElementCollection
@@ -74,8 +73,7 @@ public class Company {
 
   @OneToMany(
         mappedBy = "company",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
+        cascade = CascadeType.ALL
   )
   private Set<Employer> recruiters = new HashSet<>();
 
@@ -85,5 +83,5 @@ public class Company {
   @Column(name = "last_update")
   private LocalDate updatedOn;
 
-  private Employer updatedBy;
+//  private Employer updatedBy;
 }

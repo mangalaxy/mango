@@ -7,9 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -19,23 +17,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "employer")
-public class Employer {
+public class Employer extends Essential {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @EqualsAndHashCode.Include
-  private Long id;
-
-  @Column(name = "full_name")
+  @Column(name = "full_name", nullable = false, length = 60)
   private String fullName;
 
-  @Column(name = "email")
+  @Column(name = "email", nullable = false, length = 60, unique = true)
   private String workEmail;
 
-  @Column(name = "password")
+  @Column(name = "password", nullable = false, length = 100)
   private String password;
 
   @Column(name = "phone")
@@ -51,6 +44,9 @@ public class Employer {
   @Column(name = "photo_url")
   private String photoUrl;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "location_id", nullable = false,
+        foreignKey = @ForeignKey(name = "FK_employer_location_id"))
   private Location location;
 
   @OneToMany(
@@ -58,7 +54,9 @@ public class Employer {
         cascade = CascadeType.ALL,
         orphanRemoval = true
   )
-  private Set<Job> jobs = new HashSet<>();
+  @JoinColumn(name = "job_id",
+        foreignKey = @ForeignKey(name = "FK_employer_job_id"))
+  private Set<Job> openJobs = new HashSet<>();
 
   @Column(name = "registration_date")
   private LocalDate registeredOn;
@@ -67,12 +65,12 @@ public class Employer {
   private LocalDate updatedOn;
 
   public void addJob(Job job) {
-    jobs.add(job);
+    openJobs.add(job);
     job.setPublisher(this);
   }
 
   public void removeJob(Job job) {
-    jobs.remove(job);
+    openJobs.remove(job);
     job.setPublisher(null);
   }
 
