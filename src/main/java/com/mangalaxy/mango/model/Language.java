@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,7 +11,7 @@ import javax.persistence.Enumerated;
 @Embeddable
 @Getter
 @Setter
-class Language {
+public class Language {
   @Column(nullable = false, length = 60)
   private String name;
   @Enumerated(EnumType.STRING)

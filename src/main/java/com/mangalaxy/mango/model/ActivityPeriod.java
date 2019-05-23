@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Embeddable
-class ActivityPeriod {
+public class ActivityPeriod {
   @Column(name = "start_date")
   private LocalDate startDate;
   @Column(name = "finish_date")

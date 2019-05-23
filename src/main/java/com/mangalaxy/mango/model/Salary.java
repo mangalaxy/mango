@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Embeddable
-class Salary {
+public class Salary {
   @Column(scale = 2, precision = 7)
   private BigDecimal value;
   private String currency;

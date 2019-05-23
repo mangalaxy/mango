@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;

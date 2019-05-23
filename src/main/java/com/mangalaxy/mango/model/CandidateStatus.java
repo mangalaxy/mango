@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 /**
  * Determines candidate status with respect to employers.

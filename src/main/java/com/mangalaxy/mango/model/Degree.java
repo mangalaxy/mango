@@ -1,9 +1,9 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 /**
  * Defines types of different educational degree levels.
  */
-enum Degree {
+public enum Degree {
   ASSOCIATE,  // Associate degree
   BACHELOR,   // Bachelor's degree
   MASTER,     // Master's degree

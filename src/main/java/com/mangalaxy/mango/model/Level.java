@@ -1,9 +1,9 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model;
 
 /**
  * Enumerates language proficiency levels.
  */
-enum Level {
+public enum Level {
   ELEMENTARY,
   INTERMEDIATE,
   ADVANCED,

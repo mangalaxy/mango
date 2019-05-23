@@ -1,5 +1,8 @@
-package com.mangalaxy.mango.entity;
+package com.mangalaxy.mango.model.entity;
 
+import com.mangalaxy.mango.model.CandidateStatus;
+import com.mangalaxy.mango.model.Language;
+import com.mangalaxy.mango.model.Salary;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
