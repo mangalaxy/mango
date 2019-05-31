@@ -2,22 +2,20 @@ package com.mangalaxy.mango.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import java.time.LocalDate;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "talent")
+@NaturalIdCache
 public class Talent extends BaseEntity {
 
   @OneToOne(fetch = FetchType.LAZY,
@@ -26,24 +24,29 @@ public class Talent extends BaseEntity {
   )
   private Profile profile;
 
-  @Column(name = "full_name", nullable = false, length = 60)
+  @NotBlank
+  @Size(min = 6, max = 60)
+  @Column(name = "full_name")
   private String fullName;
 
-  @Column(name = "email", nullable = false, length = 60, unique = true)
+  @Email(message = "Invalid email")
+  @Size(max = 60)
+  @NaturalId
   private String email;
 
-  @Column(name = "password", nullable = false, length = 100)
+  @NotBlank
+  @Size(min = 6, max = 100)
   private String password;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id",
-        foreignKey = @ForeignKey(name = "FK_talent_location_id"))
+  @JoinColumn(name = "location_id", referencedColumnName = "id",
+          foreignKey = @ForeignKey(name = "talent_location_id_fk"))
   private Location location;
 
-  @Column(name = "registered_date")
-  private LocalDate registeredOn;
+  @Column(name = "created_on")
+  private LocalDateTime createdOn;
 
   @Column(name = "last_update")
-  private LocalDate updatedOn;
+  private LocalDateTime updatedOn;
 
 }

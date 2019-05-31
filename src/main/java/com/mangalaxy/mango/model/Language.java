@@ -3,17 +3,21 @@ package com.mangalaxy.mango.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
-@Embeddable
 @Getter
 @Setter
+@Embeddable
 public class Language {
-  @Column(nullable = false, length = 60)
+
+  @NotBlank
+  @Size(max = 30)
   private String name;
+
   @Enumerated(EnumType.STRING)
-  private Level level;
+  private LangLevel level;
 }

@@ -3,15 +3,10 @@ package com.mangalaxy.mango.model.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
@@ -22,20 +17,27 @@ import java.util.Set;
 @Table(name = "employer")
 public class Employer extends BaseEntity {
 
-  @Column(name = "full_name", nullable = false, length = 60)
+  @NotBlank
+  @Size(min = 6, max = 60)
+  @Column(name = "full_name")
   private String fullName;
 
-  @Column(name = "email", nullable = false, length = 60, unique = true)
+  @Email(message = "Invalid email")
+  @Size(max = 60)
+  @Column(name = "email")
   private String workEmail;
 
-  @Column(name = "password", nullable = false, length = 100)
+  @NotBlank
+  @Size(min = 6, max = 100)
   private String password;
 
+  @Size(max = 15)
   @Column(name = "phone")
   private String phoneNumber;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "company_id")
+  @JoinColumn(name = "company_id",
+          foreignKey = @ForeignKey(name = "employer_company_id_fkey"))
   private Company company;
 
   @Column(name = "job_title")
@@ -46,7 +48,7 @@ public class Employer extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id", nullable = false,
-        foreignKey = @ForeignKey(name = "FK_employer_location_id"))
+          foreignKey = @ForeignKey(name = "employer_location_id_fkey"))
   private Location location;
 
   @OneToMany(mappedBy = "publisher",
@@ -55,8 +57,8 @@ public class Employer extends BaseEntity {
   )
   private Set<Job> openJobs = new HashSet<>();
 
-  @Column(name = "registered_date")
-  private LocalDate registeredOn;
+  @Column(name = "created_on")
+  private LocalDate createdOn;
 
   @Column(name = "last_update")
   private LocalDate updatedOn;

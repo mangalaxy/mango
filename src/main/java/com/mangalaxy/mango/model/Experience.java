@@ -21,7 +21,7 @@ public class Experience {
   @Embedded
   private ActivityPeriod period;
 
-  @Column(name = "worked_flag")
+  @Column(name = "worked")
   private Boolean isWorked;
 
   private String description;

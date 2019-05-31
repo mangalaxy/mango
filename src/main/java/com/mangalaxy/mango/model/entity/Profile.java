@@ -1,32 +1,14 @@
 package com.mangalaxy.mango.model.entity;
 
-import com.mangalaxy.mango.model.CandidateStatus;
-import com.mangalaxy.mango.model.Education;
-import com.mangalaxy.mango.model.Experience;
-import com.mangalaxy.mango.model.Language;
-import com.mangalaxy.mango.model.Salary;
+import com.mangalaxy.mango.model.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.ForeignKey;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "profile")
 public class Profile {
@@ -36,9 +18,7 @@ public class Profile {
 
   @OneToOne(mappedBy = "profile")
   @MapsId
-  @JoinColumn(name = "talent_id",
-        foreignKey = @ForeignKey(name = "FK_profile_talent_id"))
-  @EqualsAndHashCode.Include
+  @JoinColumn(name = "talent_id", foreignKey = @ForeignKey(name = "profile_talent_id_fkey"))
   private Talent owner;
 
   @Column(name = "photo_url")
@@ -50,7 +30,7 @@ public class Profile {
   @Enumerated(EnumType.STRING)
   private CandidateStatus status;
 
-  @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id")
   private Location preferredLocation;
 
@@ -62,17 +42,17 @@ public class Profile {
 
   @ElementCollection
   @CollectionTable(name = "talent_preferences")
-  private Set<String> preferredCompanyType;
+  private List<String> preferredCompanyType;
 
   @ElementCollection
-  private Set<Experience> experiences = new HashSet<>();
+  private List<Experience> experiences;
 
   @ElementCollection
-  private Set<Education> educations = new HashSet<>();
+  private List<Education> educations;
 
   @ElementCollection
   @CollectionTable(name = "talent_languages")
-  private Set<Language> preferredLang = new HashSet<>();
+  private List<Language> preferredLang;
 
   @Column(name = "created_date")
   private LocalDate createdOn;

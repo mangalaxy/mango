@@ -11,8 +11,10 @@ import java.time.LocalDate;
 @Setter
 @Embeddable
 public class ActivityPeriod {
+
   @Column(name = "start_date")
   private LocalDate startDate;
+
   @Column(name = "finish_date")
   private LocalDate finishDate;
 }
