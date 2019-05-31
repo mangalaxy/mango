@@ -5,7 +5,13 @@ import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -18,17 +24,12 @@ import java.time.LocalDateTime;
 @NaturalIdCache
 public class Talent extends BaseEntity {
 
-  @OneToOne(fetch = FetchType.LAZY,
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
-  )
-  private Profile profile;
-
   @NotBlank
   @Size(min = 6, max = 60)
   @Column(name = "full_name")
   private String fullName;
 
+  @NotBlank
   @Email(message = "Invalid email")
   @Size(max = 60)
   @NaturalId
@@ -40,7 +41,7 @@ public class Talent extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id", referencedColumnName = "id",
-          foreignKey = @ForeignKey(name = "talent_location_id_fk"))
+        foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location location;
 
   @Column(name = "created_on")
@@ -48,5 +49,6 @@ public class Talent extends BaseEntity {
 
   @Column(name = "last_update")
   private LocalDateTime updatedOn;
+
 
 }

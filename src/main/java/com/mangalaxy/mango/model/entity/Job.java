@@ -4,7 +4,16 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.SortNatural;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
@@ -36,27 +45,27 @@ public class Job extends BaseEntity {
   @Column(name = "visa_sponsorship")
   private Boolean isVisaSponsorship;
 
-  @Column(name = "experience")
-  private String experience;
+  @Column(name = "xp_range")
+  private String xpRange;
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id", referencedColumnName = "id",
-          foreignKey = @ForeignKey(name = "job_location_id_fk"))
+        foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location location;
 
   @SortNatural
   @ManyToMany(cascade = CascadeType.ALL)
   @JoinTable(name = "job_skill",
-          joinColumns = @JoinColumn(name = "job_id", referencedColumnName = "id",
-                  foreignKey = @ForeignKey(name = "job_join_job_skill_fk")),
-          inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id",
-                  foreignKey = @ForeignKey(name = "skill_join_job_skill_fk"))
+        joinColumns = @JoinColumn(name = "job_id", referencedColumnName = "id",
+              foreignKey = @ForeignKey(name = "job_id_fk")),
+        inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id",
+              foreignKey = @ForeignKey(name = "skill_id_fk"))
   )
   private Set<Skill> skills = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employer_id", updatable = false, nullable = false,
-          foreignKey = @ForeignKey(name = "job_employer_id_fkey"))
+        foreignKey = @ForeignKey(name = "employer_id_fk"))
   private Employer publisher;
 
   @Column(name = "job_role")

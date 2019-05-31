@@ -2,8 +2,18 @@ package com.mangalaxy.mango.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -15,6 +25,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "employer")
+@NaturalIdCache
 public class Employer extends BaseEntity {
 
   @NotBlank
@@ -22,9 +33,11 @@ public class Employer extends BaseEntity {
   @Column(name = "full_name")
   private String fullName;
 
+  @NotBlank
   @Email(message = "Invalid email")
   @Size(max = 60)
   @Column(name = "email")
+  @NaturalId
   private String workEmail;
 
   @NotBlank
@@ -37,10 +50,10 @@ public class Employer extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "company_id",
-          foreignKey = @ForeignKey(name = "employer_company_id_fkey"))
+        foreignKey = @ForeignKey(name = "company_id_fk"))
   private Company company;
 
-  @Column(name = "job_title")
+  @Column(name = "job_title", length = 30)
   private String jobTitle;
 
   @Column(name = "photo_url")
@@ -48,7 +61,7 @@ public class Employer extends BaseEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id", nullable = false,
-          foreignKey = @ForeignKey(name = "employer_location_id_fkey"))
+        foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location location;
 
   @OneToMany(mappedBy = "publisher",

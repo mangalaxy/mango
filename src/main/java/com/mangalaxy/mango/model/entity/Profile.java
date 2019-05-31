@@ -1,9 +1,26 @@
 package com.mangalaxy.mango.model.entity;
 
-import com.mangalaxy.mango.model.*;
+import com.mangalaxy.mango.model.CandidateStatus;
+import com.mangalaxy.mango.model.Education;
+import com.mangalaxy.mango.model.Experience;
+import com.mangalaxy.mango.model.Language;
+import com.mangalaxy.mango.model.Salary;
 import lombok.Data;
 
-import javax.persistence.*;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -16,9 +33,9 @@ public class Profile {
   @Id
   private Long id;
 
-  @OneToOne(mappedBy = "profile")
+  @OneToOne(fetch = FetchType.LAZY)
   @MapsId
-  @JoinColumn(name = "talent_id", foreignKey = @ForeignKey(name = "profile_talent_id_fkey"))
+  @JoinColumn(name = "id", nullable = false)
   private Talent owner;
 
   @Column(name = "photo_url")
@@ -28,10 +45,12 @@ public class Profile {
   private String selectedJobRole;
 
   @Enumerated(EnumType.STRING)
+  @Column(length = 12)
   private CandidateStatus status;
 
-    @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id")
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "location_id",
+        foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location preferredLocation;
 
   @Embedded

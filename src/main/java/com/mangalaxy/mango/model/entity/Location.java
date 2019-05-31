@@ -3,11 +3,10 @@ package com.mangalaxy.mango.model.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,21 +23,21 @@ import java.util.Set;
 @Table(name = "location")
 public class Location extends BaseEntity {
 
-    @NotNull
-    @Size(max = 30)
+  @NotBlank
+  @Size(max = 30)
   private String city;
 
-    @NotNull
-    @Size(max = 30)
+  @NotBlank
+  @Size(max = 30)
   private String country;
 
-  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "location")
   private Set<Job> jobs = new HashSet<>();
 
-  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "location")
   private Set<Talent> talents = new HashSet<>();
 
-  @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+  @OneToMany(mappedBy = "location")
   private Set<Employer> employers = new HashSet<>();
 
 }
