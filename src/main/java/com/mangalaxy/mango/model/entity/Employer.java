@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,12 +68,6 @@ public class Employer extends BaseEntity {
         orphanRemoval = true
   )
   private Set<Job> openJobs = new HashSet<>();
-
-  @Column(name = "created_on")
-  private LocalDate createdOn;
-
-  @Column(name = "last_update")
-  private LocalDate updatedOn;
 
   public void addJob(Job job) {
     openJobs.add(job);

@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -31,7 +30,11 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "company",
-      uniqueConstraints = @UniqueConstraint(columnNames = "name", name = "name_unique"))
+      uniqueConstraints = @UniqueConstraint(
+            columnNames = "name",
+            name = "name_unique"
+      )
+)
 public class Company extends BaseEntity {
 
   @NotBlank
@@ -91,11 +94,5 @@ public class Company extends BaseEntity {
 
   @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
   private Set<Employer> recruiters = new HashSet<>();
-
-  @Column(name = "created_on")
-  private LocalDate createdOn;
-
-  @Column(name = "last_update")
-  private LocalDate updatedOn;
 
 }

@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -43,12 +42,5 @@ public class Talent extends BaseEntity {
   @JoinColumn(name = "location_id", referencedColumnName = "id",
         foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location location;
-
-  @Column(name = "created_on")
-  private LocalDateTime createdOn;
-
-  @Column(name = "last_update")
-  private LocalDateTime updatedOn;
-
 
 }

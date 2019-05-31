@@ -21,7 +21,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -72,11 +71,5 @@ public class Profile {
   @ElementCollection
   @CollectionTable(name = "talent_languages")
   private List<Language> preferredLang;
-
-  @Column(name = "created_date")
-  private LocalDate createdOn;
-
-  @Column(name = "last_update")
-  private LocalDate updatedOn;
 
 }

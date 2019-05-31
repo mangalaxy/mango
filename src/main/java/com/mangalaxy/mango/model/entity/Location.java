@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents a predefined geo location.
+ * Represents a predefined geo-spatial location.
  * <p>
  * It's includes only a specific country and city, it does not include
  * such geographical attributes as latitude and longitude.

@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -70,11 +69,5 @@ public class Job extends BaseEntity {
 
   @Column(name = "job_role")
   private String jobRole;
-
-  @Column(name = "published_on")
-  private LocalDate publishedOn;
-
-  @Column(name = "last_update")
-  private LocalDate updatedOn;
 
 }
