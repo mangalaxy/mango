@@ -2,6 +2,7 @@ package com.mangalaxy.mango.model.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -18,6 +19,7 @@ import java.util.Set;
  * such geographical attributes as latitude and longitude.
  */
 @Data
+@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "location")
@@ -40,4 +42,8 @@ public class Location extends BaseEntity {
   @OneToMany(mappedBy = "location")
   private Set<Employer> employers = new HashSet<>();
 
+  public Location(@NotBlank String city, @NotBlank String country) {
+    this.city = city;
+    this.country = country;
+  }
 }

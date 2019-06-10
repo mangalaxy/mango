@@ -1,6 +1,7 @@
 package com.mangalaxy.mango;
 
 import com.mangalaxy.mango.model.entity.Employer;
+import com.mangalaxy.mango.model.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,13 +26,13 @@ public class EmployerTest {
   @Before
   public void setUp() {
     // given
-    Employer employer = Employer.builder()
-          .fullName("Anna Fisher")
-          .workEmail("anna.fisher2019@gmail.com")
-          .password("123AKYGCV72rett")
-          .jobTitle("IT Executive Search Specialist")
-          .phoneNumber("+49-89-636-48018")
-          .build();
+    Employer employer = new Employer();
+    employer.setFullName("Anna Fisher");
+    employer.setWorkEmail("anna.fisher2019@gmail.com");
+    employer.setPassword("123AKYGCV72rett");
+    employer.setJobTitle("IT Executive Search Specialist");
+    employer.setPhoneNumber("+49-89-636-48018");
+    employer.setLocation(new Location("Berlin", "Germany"));
     testEntityManager.persistAndFlush(employer);
   }
 

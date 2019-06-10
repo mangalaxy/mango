@@ -1,9 +1,7 @@
 package com.mangalaxy.mango.model.entity;
 
-import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
@@ -22,9 +20,7 @@ import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
-@Builder
 @Data
-@NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "employer")
@@ -47,7 +43,7 @@ public class Employer extends BaseEntity {
   @Size(min = 6, max = 100)
   private String password;
 
-  @Size(max = 15)
+  @Size(max = 18)
   @Column(name = "phone")
   private String phoneNumber;
 
@@ -62,7 +58,7 @@ public class Employer extends BaseEntity {
   @Column(name = "photo_url")
   private String photoUrl;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
   @JoinColumn(name = "location_id", nullable = false,
         foreignKey = @ForeignKey(name = "location_id_fk"))
   private Location location;
@@ -72,6 +68,7 @@ public class Employer extends BaseEntity {
         orphanRemoval = true
   )
   private Set<Job> openJobs = new HashSet<>();
+
 
   public void addJob(Job job) {
     openJobs.add(job);
