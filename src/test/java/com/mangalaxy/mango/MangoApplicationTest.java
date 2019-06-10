@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class MangoApplicationTests {
+public class MangoApplicationTest {
 
   @Value("${local.server.port}")
   private int localServerPort;
