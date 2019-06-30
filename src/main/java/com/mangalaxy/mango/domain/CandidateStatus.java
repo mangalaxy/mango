@@ -1,4 +1,5 @@
-package com.mangalaxy.mango.model;
+package com.mangalaxy.mango.domain;
+
 
 /**
  * Determines candidate status with respect to employers.
@@ -19,4 +20,5 @@ public enum CandidateStatus {
   public String getDefinition() {
     return definition;
   }
+
 }

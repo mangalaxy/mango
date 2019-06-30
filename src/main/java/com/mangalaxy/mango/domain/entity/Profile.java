@@ -1,12 +1,16 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
-import com.mangalaxy.mango.model.CandidateStatus;
-import com.mangalaxy.mango.model.Education;
-import com.mangalaxy.mango.model.Experience;
-import com.mangalaxy.mango.model.Language;
-import com.mangalaxy.mango.model.Salary;
+import com.mangalaxy.mango.domain.CandidateStatus;
+import com.mangalaxy.mango.domain.Education;
+import com.mangalaxy.mango.domain.Experience;
+import com.mangalaxy.mango.domain.Language;
+import com.mangalaxy.mango.domain.Salary;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -15,16 +19,21 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "profile")
 public class Profile {
@@ -43,13 +52,19 @@ public class Profile {
   @Column(name = "job_role")
   private String selectedJobRole;
 
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @JoinTable(name = "profile_skill",
+        joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id")
+  )
+  private Set<Skill> skills = new HashSet<>();
+
   @Enumerated(EnumType.STRING)
   @Column(length = 12)
   private CandidateStatus status;
 
   @OneToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id",
-        foreignKey = @ForeignKey(name = "location_id_fk"))
+  @JoinColumn(name = "location_id")
   private Location preferredLocation;
 
   @Embedded

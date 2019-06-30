@@ -1,7 +1,10 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,10 +16,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "skill")
-public class Skill extends BaseEntity {
+public class Skill extends AbstractPersistable<Integer> {
 
   @NotBlank
   @Size(max = 30)
@@ -26,7 +31,10 @@ public class Skill extends BaseEntity {
   @ManyToMany(mappedBy = "skills")
   private Set<Job> jobs = new HashSet<>();
 
-  @ManyToMany(mappedBy = "techStack")
+  @ManyToMany(mappedBy = "skills")
   private Set<Company> companies = new HashSet<>();
+
+  @ManyToMany(mappedBy = "skills")
+  private Set<Profile> profiles = new HashSet<>();
 
 }

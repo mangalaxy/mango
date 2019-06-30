@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,7 +21,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "talent")
 @NaturalIdCache
-public class Talent extends BaseEntity {
+public class Talent extends AbstractEntity {
 
   @NotBlank
   @Size(min = 6, max = 60)

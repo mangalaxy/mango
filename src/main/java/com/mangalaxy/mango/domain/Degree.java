@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.model;
+package com.mangalaxy.mango.domain;
 
 /**
  * Defines types of different educational degree levels.

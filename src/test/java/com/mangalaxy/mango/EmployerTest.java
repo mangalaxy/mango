@@ -1,7 +1,7 @@
 package com.mangalaxy.mango;
 
-import com.mangalaxy.mango.model.entity.Employer;
-import com.mangalaxy.mango.model.entity.Location;
+import com.mangalaxy.mango.domain.entity.Employer;
+import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import org.junit.Before;
 import org.junit.Test;

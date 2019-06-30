@@ -1,6 +1,8 @@
-package com.mangalaxy.mango.model;
+package com.mangalaxy.mango.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -9,9 +11,14 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Embeddable
 public class Salary {
+
   @Column(scale = 2, precision = 7)
-  private BigDecimal value;
+  private BigDecimal amount;
+
   private String currency;
+
 }
