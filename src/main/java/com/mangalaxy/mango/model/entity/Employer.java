@@ -6,7 +6,9 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
@@ -18,6 +20,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -79,6 +82,11 @@ public class Employer extends BaseEntity {
     openJobs.remove(job);
     job.setPublisher(null);
   }
+
+  @ElementCollection
+  @CollectionTable(name = "employer_roles", joinColumns = @JoinColumn(name = "employer_id"))
+  @Column(name = "role_id")
+  private List<Role> roles;
 
 }
 
