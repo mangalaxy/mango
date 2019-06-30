@@ -8,10 +8,12 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
@@ -32,6 +34,7 @@ import java.util.Set;
 @Entity
 @Table(name = "employer")
 @NaturalIdCache
+@EntityListeners({AuditingEntityListener.class})
 public class Employer extends AbstractEntity {
 
   @NotBlank

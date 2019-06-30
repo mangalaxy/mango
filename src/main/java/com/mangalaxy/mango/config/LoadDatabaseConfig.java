@@ -5,9 +5,10 @@ import com.mangalaxy.mango.repository.CompanyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 @Slf4j
-//@Configuration
+@Configuration
 public class LoadDatabaseConfig {
 
   @Bean
@@ -34,7 +35,7 @@ public class LoadDatabaseConfig {
     return args -> {
       log.info("Show {} saved companies in persistence context", repository.count());
       repository.findAll().forEach(c -> log.info("Fetched company with id: {} and name: {}", c.getId(), c.getName()));
-      Company company = repository.getOne(1L);
+      Company company = repository.findById(1L).get();
       company.setAddress("Austin, Texas, 124ADC, Hudson avenue");
       Company updatedCompany = repository.save(company);
       log.info("Changed entity with id: {}, name: {}, lastModifiedDate: {}",
