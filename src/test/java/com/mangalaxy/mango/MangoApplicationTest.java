@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Integration test for the whole application.
  *
- * @author Yuri Podolsky
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
