@@ -1,5 +1,6 @@
 package com.mangalaxy.mango;
 
+import com.mangalaxy.mango.model.entity.Company;
 import com.mangalaxy.mango.model.entity.Employer;
 import com.mangalaxy.mango.model.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
@@ -34,6 +35,9 @@ public class EmployerTest {
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
     employer.setLocation(new Location("Berlin", "Germany"));
+    Company company = new Company();
+    company.setName("Company-1");
+    employer.setCompany(company);
     testEntityManager.persistAndFlush(employer);
   }
 
