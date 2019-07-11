@@ -60,7 +60,7 @@ public class PostTest {
     String topicName = "Topic1";
     Pageable pageable = PageRequest.of(0, 100);
 
-    Post post = postRepository.findAllByTopic_Name(topicName, pageable).getContent().get(0);
+    Post post = postRepository.findAllByTopic_Name(topicName, pageable).getContent().get(1);
 
     assertEquals(expectedPostTitle, post.getTitle());
 
