@@ -9,9 +9,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "topics")
-@Data
 public class Topic extends BaseEntity{
 
   @Column(name = "name")
