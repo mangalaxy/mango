@@ -17,8 +17,8 @@ import java.math.BigDecimal;
 @Embeddable
 public class Salary {
 
-  @Column(scale = 2, precision = 7)
-  private BigDecimal amount;
+  @Column(name = "salary_rate", scale = 2, precision = 7)
+  private BigDecimal annualRate;
 
   private String currency;
 

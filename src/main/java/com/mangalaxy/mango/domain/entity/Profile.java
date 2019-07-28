@@ -77,6 +77,7 @@ public class Profile {
 
   @ElementCollection
   @CollectionTable(name = "talent_preferences")
+  @Column(name = "company_type")
   private List<String> preferredCompanyType;
 
   @ElementCollection
