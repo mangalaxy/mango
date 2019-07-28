@@ -136,6 +136,9 @@
 
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>generate-resources</phase>
