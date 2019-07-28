@@ -5,6 +5,7 @@ import com.mangalaxy.mango.domain.Education;
 import com.mangalaxy.mango.domain.Experience;
 import com.mangalaxy.mango.domain.Language;
 import com.mangalaxy.mango.domain.Salary;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,7 +33,7 @@ import java.util.Set;
 
 @Data
 @Builder
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
 @Table(name = "profile")

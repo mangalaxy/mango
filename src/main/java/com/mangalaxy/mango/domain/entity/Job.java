@@ -7,9 +7,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SortNatural;
-import org.springframework.data.jpa.domain.AbstractAuditable;
 
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,14 +27,12 @@ import java.util.Set;
  */
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "job")
-@AttributeOverride(name = "lastModifiedDate",
-      column = @Column(name = "last_update"))
-public class Job extends AbstractAuditable<Employer, Long> {
+public class Job extends AbstractEntity {
 
   @NotBlank
   @Size(max = 60)
@@ -51,7 +47,7 @@ public class Job extends AbstractAuditable<Employer, Long> {
   @Column(name = "is_relocate")
   private Boolean isRelocate;
 
-  @Column(name = "is_visa_sponsorship")
+  @Column(name = "is_sponsorship")
   private Boolean isVisaSponsorship;
 
   @Column(name = "xp_range")

@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,17 +15,36 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Embeddable
 public class Language {
+
+  @Column(length = 12)
+  @Enumerated(EnumType.STRING)
+  private Level level;
 
   @NotBlank
   @Size(max = 30)
   private String name;
 
-  @Column(length = 12)
-  @Enumerated(EnumType.STRING)
-  private LangLevel level;
+  /**
+   * Convenient method for obtaining available language levels.
+   *
+   * @return array of available degrees.
+   */
+  public static Level[] levels() {
+    return Level.values();
+  }
+
+  /**
+   * Contains language proficiency levels.
+   */
+  public enum Level {
+    ELEMENTARY,
+    INTERMEDIATE,
+    ADVANCED,
+    FLUENT
+  }
 
 }

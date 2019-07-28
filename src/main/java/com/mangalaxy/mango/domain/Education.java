@@ -16,8 +16,16 @@ import javax.persistence.Enumerated;
 @NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
-public
-class Education {
+public class Education {
+
+  /**
+   * Convenient method for obtaining possible degrees.
+   *
+   * @return array of possible degrees.
+   */
+  public static Degree[] degrees() {
+    return Degree.values();
+  }
 
   private String institution;
 
@@ -29,5 +37,12 @@ class Education {
 
   @Embedded
   private ActivityPeriod period;
+
+  public enum Degree {
+    ASSOCIATE,  // Associate degree
+    BACHELOR,   // Bachelor's degree
+    MASTER,     // Master's degree
+    PHD         // Doctoral degree
+  }
 
 }

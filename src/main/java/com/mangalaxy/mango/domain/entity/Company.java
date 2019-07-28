@@ -6,16 +6,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.AbstractAuditable;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.AttributeOverride;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -34,15 +30,12 @@ import java.util.Set;
  */
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@EntityListeners({AuditingEntityListener.class})
 @Table(name = "company")
-@AttributeOverride(name = "lastModifiedDate",
-      column = @Column(name = "last_update"))
-public class Company extends AbstractAuditable<Employer, Long> {
+public class Company extends AbstractEntity {
 
   @NotBlank
   @Size(max = 60)
@@ -82,7 +75,7 @@ public class Company extends AbstractAuditable<Employer, Long> {
 
   @ElementCollection
   @CollectionTable(name = "company_links")
-  @Column(name = "href")
+  @Column(name = "url")
   private Set<String> links = new HashSet<>();
 
   @ElementCollection

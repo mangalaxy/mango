@@ -1,10 +1,10 @@
 package com.mangalaxy.mango.domain.entity;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,12 +16,12 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "skill")
-public class Skill extends AbstractPersistable<Integer> {
+public class Skill extends AbstractEntity {
 
   @NotBlank
   @Size(max = 30)

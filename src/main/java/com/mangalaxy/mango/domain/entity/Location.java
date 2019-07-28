@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.domain.entity;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -21,7 +22,7 @@ import java.util.Set;
  * such geographical attributes as latitude and longitude.
  */
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
@@ -49,4 +50,5 @@ public class Location extends AbstractPersistable<Short> {
     this.city = city;
     this.country = country;
   }
+
 }

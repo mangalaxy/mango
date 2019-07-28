@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
  */
 
 @MappedSuperclass
-@EntityListeners({AuditingEntityListener.class})
+@EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity extends AbstractPersistable<Long> {
 
   @Column(name = "created_date", nullable = false, updatable = false)
