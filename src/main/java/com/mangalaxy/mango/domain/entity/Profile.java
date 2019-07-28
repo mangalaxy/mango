@@ -72,6 +72,7 @@ public class Profile {
   private Salary preferredSalary;
 
   @ElementCollection
+  @Column(name = "point")
   private Set<String> expectations;
 
   @ElementCollection
