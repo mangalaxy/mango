@@ -1,7 +1,6 @@
 package com.mangalaxy.mango.domain.entity;
 
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,8 +18,8 @@ import java.util.List;
 import java.util.Set;
 
 @Data
-@EqualsAndHashCode
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "topic")
@@ -36,6 +35,8 @@ public class Topic extends AbstractPersistable<Short> {
         cascade = { CascadeType.PERSIST, CascadeType.MERGE },
         orphanRemoval = true
   )
+  @EqualsAndHashCode.Exclude
   private Set<Post> posts = new HashSet<>();
 
 }
+
