@@ -14,9 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Entity
@@ -38,6 +38,7 @@ public class Post extends AbstractEntity {
   @Column(name = "count_likes")
   private Integer countLikes;
 
+  @EqualsAndHashCode.Exclude
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "topic_id", nullable = false)
   private Topic topic;
