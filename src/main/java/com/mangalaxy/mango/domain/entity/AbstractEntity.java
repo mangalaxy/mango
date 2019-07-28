@@ -1,5 +1,9 @@
 package com.mangalaxy.mango.domain.entity;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -16,7 +20,10 @@ import java.time.LocalDateTime;
  *
  * @author Yuri Podolsky
  */
-
+@Setter
+@Getter
+@EqualsAndHashCode(callSuper = true)
+@ToString
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity extends AbstractPersistable<Long> {
@@ -28,9 +35,5 @@ public abstract class AbstractEntity extends AbstractPersistable<Long> {
   @Column(name = "last_update")
   @LastModifiedDate
   private LocalDateTime lastModifiedDate;
-
-  public void setCreatedDate(LocalDateTime createdDate) {
-    this.createdDate = createdDate;
-  }
 
 }

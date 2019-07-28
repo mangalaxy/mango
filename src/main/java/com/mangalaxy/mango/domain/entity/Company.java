@@ -82,7 +82,7 @@ public class Company extends AbstractEntity {
   @Column(name = "photo_url")
   private Set<String> gallery = new HashSet<>();
 
-  @OneToMany(mappedBy = "company", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @OneToMany(mappedBy = "company", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   private Set<Employer> recruiters = new HashSet<>();
 
 }

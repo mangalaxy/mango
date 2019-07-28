@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.format.DateTimeFormatter;
+
 @Slf4j
 @Configuration
 public class LoadDatabaseConfig {
@@ -41,7 +43,7 @@ public class LoadDatabaseConfig {
       log.info("Changed entity with id: {}, name: {}, lastModifiedDate: {}",
             updatedCompany.getId(),
             updatedCompany.getName(),
-            updatedCompany.getLastModifiedDate().get());
+            updatedCompany.getLastModifiedDate().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
     };
   }
 }

@@ -99,6 +99,8 @@
                 <configuration>
                     <workingDirectory>frontend</workingDirectory>
                     <installDirectory>target</installDirectory>
+                    <skip>true</skip>
+                    <skipTests>true</skipTests>
                 </configuration>
                 <executions>
                     <execution>

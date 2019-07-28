@@ -20,7 +20,17 @@ import javax.validation.constraints.Size;
 @Embeddable
 public class Language {
 
-  @Column(length = 12)
+  /**
+   * Contains language proficiency levels.
+   */
+  public enum Level {
+    ELEMENTARY,
+    INTERMEDIATE,
+    ADVANCED,
+    FLUENT
+  }
+
+  @Column(length = 15)
   @Enumerated(EnumType.STRING)
   private Level level;
 
@@ -35,16 +45,6 @@ public class Language {
    */
   public static Level[] levels() {
     return Level.values();
-  }
-
-  /**
-   * Contains language proficiency levels.
-   */
-  public enum Level {
-    ELEMENTARY,
-    INTERMEDIATE,
-    ADVANCED,
-    FLUENT
   }
 
 }
