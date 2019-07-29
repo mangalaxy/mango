@@ -26,10 +26,10 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TalentServiceTest {
+public class TalentServiceImplTest {
 
   @Autowired
-  private TalentService talentService;
+  private TalentServiceImpl talentServiceImpl;
 
   @MockBean
   private TalentRepository talentRepository;
@@ -79,7 +79,7 @@ public class TalentServiceTest {
     String expectedEmail = "test@gmai.com";
 
     Mockito.when(talentRepository.findById(expectedId)).thenReturn(Optional.of(firstMockTalent));
-    Talent talent = talentService.getByid(expectedId);
+    Talent talent = talentServiceImpl.getByid(expectedId);
 
     Assert.assertEquals(expectedEmail, talent.getEmail());
     Assert.assertEquals(expectedId, talent.getId());
@@ -99,7 +99,7 @@ public class TalentServiceTest {
 
     Mockito.when(talentRepository.findAll(pageable)).thenReturn(tallentsList);
 
-    Page<Talent> allTallents = talentService.findAll(pageable);
+    Page<Talent> allTallents = talentServiceImpl.findAll(pageable);
 
     Assert.assertEquals(expectedSize, allTallents.getContent().size());
   }
@@ -111,7 +111,7 @@ public class TalentServiceTest {
     Mockito.when(profileRepository.findByOwner(firstMockTalent)).thenReturn(mockProfile);
     Mockito.when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
 
-    Profile profile = talentService.getProfileByTalent(1L);
+    Profile profile = talentServiceImpl.getProfileByTalent(1L);
 
     Assert.assertEquals(expectedId, profile.getId());
   }
@@ -125,7 +125,7 @@ public class TalentServiceTest {
 
     Mockito.when(talentRepository.save(talent)).thenReturn(talent);
 
-    Talent createdTalent = talentService.create(talent);
+    Talent createdTalent = talentServiceImpl.create(talent);
 
     Assert.assertNotNull(createdTalent);
   }
@@ -136,7 +136,7 @@ public class TalentServiceTest {
 
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
 
-    Talent updatedTalent = talentService.update(firstMockTalent, 1L);
+    Talent updatedTalent = talentServiceImpl.update(firstMockTalent, 1L);
 
     Assert.assertEquals("new-mail@gmail.com", updatedTalent.getEmail());
   }
@@ -144,7 +144,7 @@ public class TalentServiceTest {
   @Test
   public void deleteTalentTest() {
     when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
-    talentService.delete(1L);
+    talentServiceImpl.delete(1L);
     verify(talentRepository, times(1)).delete(firstMockTalent);
   }
 }

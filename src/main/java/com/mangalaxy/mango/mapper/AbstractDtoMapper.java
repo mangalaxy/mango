@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.facade;
+package com.mangalaxy.mango.mapper;
 
 import com.mangalaxy.mango.model.entity.BaseEntity;
 import com.mangalaxy.mango.service.CrudService;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 @Transactional
 @SuppressWarnings("unchecked")
-public abstract class AbstractDtoFacade <E extends BaseEntity, I, O> {
+public abstract class AbstractDtoMapper<E extends BaseEntity, I, O> {
 
   @Autowired
   @SuppressWarnings("ALL")

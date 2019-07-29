@@ -1,9 +1,9 @@
-package com.mangalaxy.mango.dto.response;
+package com.mangalaxy.mango.model.dto.request;
 
 import lombok.Data;
 
 @Data
-public class LocationResponse {
+public class LocationRequest {
   private Long id;
   private String city;
   private String country;

@@ -2,18 +2,16 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.dto.response.ProfileResponse;
-import com.mangalaxy.mango.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Profile;
+import com.mangalaxy.mango.mapper.TalentMapper;
+import com.mangalaxy.mango.model.dto.response.ProfileResponse;
+import com.mangalaxy.mango.model.dto.response.TalentResponse;
 import com.mangalaxy.mango.model.entity.Talent;
-import com.mangalaxy.mango.service.TalentService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,8 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -38,7 +35,7 @@ public class TallentControllerTest {
   private ObjectMapper objectMapper;
 
   @Autowired
-  private TalentService talentService;
+  private TalentMapper talentMapper;
 
   @Test
   public void getTalentById() throws Exception {
@@ -92,5 +89,29 @@ public class TallentControllerTest {
     TalentResponse response = objectMapper.readValue(responseBody, TalentResponse.class);
 
     Assert.assertEquals(expectedMail, response.getEmail());
+  }
+
+  @Test
+  public void updateTalent() throws Exception {
+    String updatedEmail = "updated@gmail.com";
+    Long talentId = 1L;
+    TalentResponse talent = talentMapper.getById(1L);
+    talent.setEmail(updatedEmail);
+
+    String talentJson = objectMapper.writeValueAsString(talent);
+    MvcResult result = mockMvc.perform(put("/api/talents/1").content(talentJson).contentType(MediaType.APPLICATION_JSON)).andReturn();
+
+    String response = result.getResponse().getContentAsString();
+
+    TalentResponse updatedTalent = objectMapper.readValue(response, TalentResponse.class);
+
+    Assert.assertEquals(updatedEmail, updatedTalent.getEmail());
+
+  }
+
+  @Test
+  public void deleteTalent() throws Exception {
+    mockMvc.perform(delete("/api/talents/1")).andReturn();
+    Assert.assertNull(talentMapper.getById(1L));
   }
 }
