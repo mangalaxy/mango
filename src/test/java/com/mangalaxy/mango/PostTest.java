@@ -30,26 +30,26 @@ public class PostTest {
 
   @Before
   public void serUpData() {
-    Post post = new Post();
-    Post post1 = new Post();
     Topic topic = new Topic();
 
     topic.setName("Topic1");
-    topic.setTags("tag1, tag2");
     testEntityManager.persistAndFlush(topic);
 
-    post.setTitle("TestTitle");
-    post.setDescription("TestDescription");
-    post.setBody("TestBody");
-    post.setCountLikes(10);
-    post.setCountViews(20);
-    post.setTopic(topic);
-    post1.setTitle("Topic-1");
-    post1.setDescription("Desc");
-    post1.setBody("Body");
-    post1.setCountViews(5);
-    post1.setCountLikes(3);
-    post1.setTopic(topic);
+    Post post = Post.builder()
+        .title("TestTitle")
+        .description("TestDescription")
+        .body("TestBody")
+        .countLikes(10)
+        .countViews(10)
+        .topic(topic).build();
+
+    Post post1 = Post.builder().title("Topic-1")
+        .description("Desc")
+        .body("Body")
+        .countViews(5)
+        .countLikes(3)
+        .topic(topic).build();
+
     testEntityManager.persistAndFlush(post1);
     testEntityManager.persistAndFlush(post);
   }

@@ -1,25 +1,26 @@
 package com.mangalaxy.mango.model.entity;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "posts")
+@Table(name = "post")
+@Builder
 public class Post extends BaseEntity {
 
-  @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
   private String description;
 
-  @Column(name = "body")
   private String body;
 
   @Column(name = "image_url")
@@ -31,8 +32,8 @@ public class Post extends BaseEntity {
   @Column(name = "count_likes")
   private Integer countLikes;
 
-  @ManyToOne
-  @JoinColumn(name = "topic")
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "topic_id")
   private Topic topic;
 
   @Column(name = "created_by")
