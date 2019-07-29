@@ -1,25 +1,32 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Entity
-@Table(name = "posts")
-public class Post extends BaseEntity {
+@Table(name = "post")
+public class Post extends AbstractEntity {
 
-  @Column(name = "title")
   private String title;
 
-  @Column(name = "description")
   private String description;
 
-  @Column(name = "body")
   private String body;
 
   @Column(name = "image_url")
@@ -31,10 +38,12 @@ public class Post extends BaseEntity {
   @Column(name = "count_likes")
   private Integer countLikes;
 
-  @ManyToOne
-  @JoinColumn(name = "topic")
+  @EqualsAndHashCode.Exclude
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "topic_id", nullable = false)
   private Topic topic;
 
   @Column(name = "created_by")
   private String createdBy;
+
 }

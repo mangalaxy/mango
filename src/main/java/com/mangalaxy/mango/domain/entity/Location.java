@@ -1,8 +1,11 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -19,11 +22,12 @@ import java.util.Set;
  * such geographical attributes as latitude and longitude.
  */
 @Data
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "location")
-public class Location extends BaseEntity {
+public class Location extends AbstractPersistable<Short> {
 
   @NotBlank
   @Size(max = 30)
@@ -46,4 +50,5 @@ public class Location extends BaseEntity {
     this.city = city;
     this.country = country;
   }
+
 }

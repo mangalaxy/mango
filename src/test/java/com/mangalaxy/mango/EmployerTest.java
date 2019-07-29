@@ -1,7 +1,7 @@
 package com.mangalaxy.mango;
 
-import com.mangalaxy.mango.model.entity.Employer;
-import com.mangalaxy.mango.model.entity.Location;
+import com.mangalaxy.mango.domain.entity.Employer;
+import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -33,6 +35,7 @@ public class EmployerTest {
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
     employer.setLocation(new Location("Berlin", "Germany"));
+    employer.setCreatedDate(LocalDateTime.now());
     testEntityManager.persistAndFlush(employer);
   }
 

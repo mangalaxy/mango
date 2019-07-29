@@ -1,16 +1,16 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
@@ -20,16 +20,13 @@ import java.time.LocalDateTime;
  *
  * @author Yuri Podolsky
  */
+@Setter
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
+@ToString
 @MappedSuperclass
-@EntityListeners({AuditingEntityListener.class})
-public abstract class BaseEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "id", updatable = false, nullable = false)
-  private Long id;
+@EntityListeners(AuditingEntityListener.class)
+public abstract class AbstractEntity extends AbstractPersistable<Long> {
 
   @Column(name = "created_date", nullable = false, updatable = false)
   @CreatedDate

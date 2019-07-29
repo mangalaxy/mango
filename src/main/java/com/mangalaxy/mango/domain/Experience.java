@@ -1,7 +1,9 @@
-package com.mangalaxy.mango.model;
+package com.mangalaxy.mango.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -10,19 +12,21 @@ import javax.persistence.Embedded;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Embeddable
 public class Experience {
 
   private String company;
 
+  @Column(length = 60)
   private String position;
 
   @Embedded
   private ActivityPeriod period;
 
-  @Column(name = "worked")
-  private Boolean isWorked;
+  @Column(name = "is_working")
+  private Boolean isWorking;
 
   private String description;
 

@@ -1,14 +1,17 @@
-package com.mangalaxy.mango.model.entity;
+package com.mangalaxy.mango.domain.entity;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -23,10 +26,13 @@ import java.util.Set;
  * Represents the published job by the employer in a company department.
  */
 @Data
+@Builder
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "job")
-public class Job extends BaseEntity {
+public class Job extends AbstractEntity {
 
   @NotBlank
   @Size(max = 60)
@@ -35,36 +41,32 @@ public class Job extends BaseEntity {
   @Column(name = "employment_type")
   private String employmentType;
 
-  @Column(name = "remote")
+  @Column(name = "is_remote")
   private Boolean isRemote;
 
-  @Column(name = "relocation")
+  @Column(name = "is_relocate")
   private Boolean isRelocate;
 
-  @Column(name = "visa_sponsorship")
+  @Column(name = "is_sponsorship")
   private Boolean isVisaSponsorship;
 
   @Column(name = "xp_range")
   private String xpRange;
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id", referencedColumnName = "id",
-        foreignKey = @ForeignKey(name = "location_id_fk"))
+  @JoinColumn(name = "location_id")
   private Location location;
 
   @SortNatural
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "job_skill",
-        joinColumns = @JoinColumn(name = "job_id", referencedColumnName = "id",
-              foreignKey = @ForeignKey(name = "job_id_fk")),
-        inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id",
-              foreignKey = @ForeignKey(name = "skill_id_fk"))
+        joinColumns = @JoinColumn(name = "job_id"),
+        inverseJoinColumns = @JoinColumn(name = "skill_id")
   )
   private Set<Skill> skills = new HashSet<>();
 
   @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "employer_id", updatable = false, nullable = false,
-        foreignKey = @ForeignKey(name = "employer_id_fk"))
+  @JoinColumn(name = "employer_id", updatable = false, nullable = false)
   private Employer publisher;
 
   @Column(name = "job_role")

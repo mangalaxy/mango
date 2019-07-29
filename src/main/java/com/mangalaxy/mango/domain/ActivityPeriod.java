@@ -1,6 +1,9 @@
-package com.mangalaxy.mango.model;
+package com.mangalaxy.mango.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Column;
@@ -9,6 +12,8 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Embeddable
 public class ActivityPeriod {
 
@@ -17,4 +22,5 @@ public class ActivityPeriod {
 
   @Column(name = "finish_date")
   private LocalDate finishDate;
+
 }

@@ -1,80 +1,97 @@
 package com.mangalaxy.mango;
 
-import com.mangalaxy.mango.model.entity.Post;
-import com.mangalaxy.mango.model.entity.Topic;
+import com.mangalaxy.mango.domain.entity.Post;
+import com.mangalaxy.mango.domain.entity.Topic;
 import com.mangalaxy.mango.repository.PostRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
+
+@Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class PostTest {
 
   @Autowired
-  private TestEntityManager testEntityManager;
+  private TestEntityManager manager;
 
   @Autowired
   private PostRepository postRepository;
 
   @Before
-  public void serUpData() {
-    Post post = new Post();
-    Post post1 = new Post();
+  public void setUp() {
+    // given
     Topic topic = new Topic();
+    topic.setName("Career");
+    topic.setTags(Arrays.asList("negotation", "business"));
+    log.info("Persisted topic with id: {}", manager.persistAndGetId(topic));
 
-    topic.setName("Topic1");
-    topic.setTags("tag1, tag2");
-    testEntityManager.persistAndFlush(topic);
+    Post post1 = Post.builder()
+          .title("10 Tips for the best talent interviewing")
+          .countLikes(1832)
+          .countViews(48302)
+          .topic(topic)
+          .build();
+    post1.setCreatedDate(LocalDateTime.parse("2019-07-29T02:50:19.787"));
 
-    post.setTitle("TestTitle");
-    post.setDescription("TestDescription");
-    post.setBody("TestBody");
-    post.setCountLikes(10);
-    post.setCountViews(20);
-    post.setTopic(topic);
-    post1.setTitle("Topic-1");
-    post1.setDescription("Desc");
-    post1.setBody("Body");
-    post1.setCountViews(5);
-    post1.setCountLikes(3);
-    post1.setTopic(topic);
-    testEntityManager.persistAndFlush(post1);
-    testEntityManager.persistAndFlush(post);
+    Post post2 = Post.builder()
+          .title("Are Product Managers the New Software Engineers?")
+          .countLikes(3)
+          .countViews(57)
+          .topic(topic)
+          .build();
+    post2.setCreatedDate(LocalDateTime.parse("2019-07-29T02:50:20.787"));
+
+    Set<Post> posts = new HashSet<>();
+    posts.add(post1);
+    posts.add(post2);
+    topic.setPosts(posts);
+
+    log.info("Persisted post with id: {}", manager.persistAndGetId(post1));
+    log.info("Persisted post with id: {}", manager.persistAndGetId(post2));
+    manager.flush();
   }
 
   @Test
-  public void findPostByTopicNameTest() {
-    String expectedPostTitle = "TestTitle";
-    String topicName = "Topic1";
-    Pageable pageable = PageRequest.of(0, 100);
-
-    Post post = postRepository.findAllByTopic_Name(topicName, pageable).getContent().get(1);
-
-    assertEquals(expectedPostTitle, post.getTitle());
-
+  public void shouldFindPostByTopicName_thenSuccess() {
+    String expectedTitle = "Are Product Managers the New Software Engineers?";
+    String topicName = "Career";
+    Pageable pageable = PageRequest.of(0, 20);
+    // when
+    Page<Post> page = postRepository.findAllByTopic_Name(topicName, pageable);
+    Post post = page.getContent().get(1);
+    // then
+    assertThat(page).isNotEmpty();
+    assertEquals(expectedTitle, post.getTitle());
   }
 
   @Test
-  public void findByTopicNameAndSortTest() {
-    String expectedPostTitle = "TestTitle";
-    String topicName = "Topic1";
-    Pageable pageable = PageRequest.of(0, 100);
+  public void shouldFindByTopicNameAndSortedByCreatedDate_thenSuccess() {
+    String expectedTitle = "Are Product Managers the New Software Engineers?";
+    String topicName = "Career";
 
-    List<Post> posts = postRepository.findAllByTopic_Name(topicName, Sort.by("countLikes").descending().and(Sort.by("countViews").descending()));
-
-    assertEquals(expectedPostTitle, posts.get(0).getTitle());
+    Sort sortingCondition = Sort.by(Sort.Direction.DESC, "createdDate");
+    List<Post> posts = postRepository.findAllByTopic_Name(topicName, sortingCondition);
+    assertEquals(expectedTitle, posts.get(0).getTitle());
   }
 
 }

@@ -1,6 +1,6 @@
 package com.mangalaxy.mango.repository;
 
-import com.mangalaxy.mango.model.entity.Employer;
+import com.mangalaxy.mango.domain.entity.Employer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import javax.validation.constraints.NotNull;
