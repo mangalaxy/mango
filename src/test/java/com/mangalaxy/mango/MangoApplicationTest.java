@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -30,11 +31,5 @@ public class MangoApplicationTest {
   @Test
   public void shouldSayHello() {
 
-    RestTemplate restTemplate = new RestTemplate();
-    ResponseEntity<String> response = restTemplate
-          .getForEntity("http://localhost:{port}/api/v1/hello", String.class, localServerPort);
-
-    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
-    assertThat(response.getBody()).contains("Hello there");
   }
 }

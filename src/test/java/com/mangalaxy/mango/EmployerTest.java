@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,6 +19,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
+@TestPropertySource("/application-test.properties")
+@Sql(value = {"/before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(value = {"/after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
 public class EmployerTest {
 
   @Autowired
@@ -35,9 +40,6 @@ public class EmployerTest {
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
     employer.setLocation(new Location("Berlin", "Germany"));
-    Company company = new Company();
-    company.setName("Company-1");
-    employer.setCompany(company);
     testEntityManager.persistAndFlush(employer);
   }
 
