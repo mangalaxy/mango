@@ -42,7 +42,7 @@ public class TallentControllerTest {
     Long expectedId = 1L;
     String expectedEmail = "test@gmail.com";
 
-    MvcResult result = mockMvc.perform(get("/api/talents/1")).andReturn();
+    MvcResult result = mockMvc.perform(get("/api/v1/talents/1")).andReturn();
     String responseBody = result.getResponse().getContentAsString();
     TalentResponse response = objectMapper.readValue(responseBody, TalentResponse.class);
 
@@ -54,7 +54,7 @@ public class TallentControllerTest {
   public void getAllTalents() throws Exception {
     int expectedSize = 2;
 
-    MvcResult result = mockMvc.perform(get("/api/talents?page=0&limit=20")).andReturn();
+    MvcResult result = mockMvc.perform(get("/api/v1/talents?page=0&limit=20")).andReturn();
     String responceBody = result.getResponse().getContentAsString();
 
     HashMap<String, Object> talents = objectMapper.readValue(responceBody, new TypeReference<HashMap<String, Object>>(){});
@@ -66,7 +66,7 @@ public class TallentControllerTest {
   public void getProfileByTalent() throws Exception {
     Long expectedId = 1L;
 
-    MvcResult result = mockMvc.perform(get("/api/talents/1/profile")).andReturn();
+    MvcResult result = mockMvc.perform(get("/api/v1/talents/1/profile")).andReturn();
     String responseBody = result.getResponse().getContentAsString();
 
     ProfileResponse profile = objectMapper.readValue(responseBody, ProfileResponse.class);
@@ -84,7 +84,7 @@ public class TallentControllerTest {
 
     String talentJson = objectMapper.writeValueAsString(talent);
 
-    MvcResult result = mockMvc.perform(post("/api/talents").content(talentJson).contentType(MediaType.APPLICATION_JSON)).andReturn();
+    MvcResult result = mockMvc.perform(post("/api/v1/talents").content(talentJson).contentType(MediaType.APPLICATION_JSON)).andReturn();
     String responseBody = result.getResponse().getContentAsString();
     TalentResponse response = objectMapper.readValue(responseBody, TalentResponse.class);
 
@@ -99,7 +99,7 @@ public class TallentControllerTest {
     talent.setEmail(updatedEmail);
 
     String talentJson = objectMapper.writeValueAsString(talent);
-    MvcResult result = mockMvc.perform(put("/api/talents/1").content(talentJson).contentType(MediaType.APPLICATION_JSON)).andReturn();
+    MvcResult result = mockMvc.perform(put("/api/v1/talents/1").content(talentJson).contentType(MediaType.APPLICATION_JSON)).andReturn();
 
     String response = result.getResponse().getContentAsString();
 
@@ -111,7 +111,7 @@ public class TallentControllerTest {
 
   @Test
   public void deleteTalent() throws Exception {
-    mockMvc.perform(delete("/api/talents/1")).andReturn();
+    mockMvc.perform(delete("/api/v1/talents/1")).andReturn();
     Assert.assertNull(talentMapper.getById(1L));
   }
 }
