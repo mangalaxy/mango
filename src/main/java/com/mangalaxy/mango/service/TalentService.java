@@ -4,9 +4,7 @@ import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface TalentService {
 
   Page<TalentResponse> findAll(Pageable pageable);
@@ -18,4 +16,5 @@ public interface TalentService {
   TalentResponse updateTalent(TalentRequest talent, Long id);
 
   void deleteTalent(Long id);
+
 }

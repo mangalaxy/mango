@@ -9,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Component
+@Service
 @RequiredArgsConstructor
 @Transactional
 public class TalentServiceImpl implements TalentService{
@@ -53,4 +53,5 @@ public class TalentServiceImpl implements TalentService{
     Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
     talentRepository.delete(talent);
   }
+
 }

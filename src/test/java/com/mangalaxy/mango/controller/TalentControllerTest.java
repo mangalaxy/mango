@@ -2,8 +2,8 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.model.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Talent;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.TalentService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,14 +20,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @Transactional
-public class TallentControllerTest {
+public class TalentControllerTest {
   @Autowired
   private MockMvc mockMvc;
 
@@ -55,9 +58,9 @@ public class TallentControllerTest {
     int expectedSize = 2;
 
     MvcResult result = mockMvc.perform(get("/api/v1/talents?page=0&limit=20")).andReturn();
-    String responceBody = result.getResponse().getContentAsString();
+    String responseBody = result.getResponse().getContentAsString();
 
-    HashMap<String, Object> talents = objectMapper.readValue(responceBody, new TypeReference<HashMap<String, Object>>(){});
+    HashMap<String, Object> talents = objectMapper.readValue(responseBody, new TypeReference<HashMap<String, Object>>(){});
 
     Assert.assertEquals(expectedSize, ((List)talents.get("content")).size());
   }
@@ -65,10 +68,11 @@ public class TallentControllerTest {
   @Test
   public void createNewTalent() throws Exception {
     String expectedMail = "createdTalent@gmail.com";
-    String exprctedPassword = "12345";
-    Talent talent = new Talent();
-    talent.setEmail(expectedMail);
-    talent.setPassword(exprctedPassword);
+    String expectedPassword = "12345";
+    Talent talent = Talent.builder()
+          .email(expectedMail)
+          .password(expectedPassword)
+          .build();
 
     String talentJson = objectMapper.writeValueAsString(talent);
 
@@ -99,6 +103,6 @@ public class TallentControllerTest {
 
   @Test
   public void deleteTalent() throws Exception {
-    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is4xxClientError());
+    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is(204));
   }
 }

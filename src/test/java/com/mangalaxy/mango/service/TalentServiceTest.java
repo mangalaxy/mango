@@ -1,11 +1,10 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.model.dto.request.TalentRequest;
-import com.mangalaxy.mango.model.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Location;
-import com.mangalaxy.mango.model.entity.Profile;
-import com.mangalaxy.mango.model.entity.Talent;
-import com.mangalaxy.mango.repository.ProfileRepository;
+import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Profile;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -25,7 +24,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -47,24 +49,26 @@ public class TalentServiceTest {
   public void setUp() {
 
     Location location = new Location();
-    location.setId(1L);
+    location.setId(1);
     location.setCity("Kyiv");
     location.setCountry("UA");
 
-    Profile profile = new Profile();
 
+    firstMockTalent = new Talent();
     firstMockTalent.setId(1L);
     firstMockTalent.setEmail("test@gmai.com");
     firstMockTalent.setPassword("123456");
     firstMockTalent.setFullName("Ilon Mask");
     firstMockTalent.setLocation(location);
 
+    secondMockTalent = new Talent();
     secondMockTalent.setId(2L);
     secondMockTalent.setEmail("test2@gmai.com");
     secondMockTalent.setPassword("123456");
     secondMockTalent.setFullName("Leo Messi");
     secondMockTalent.setLocation(location);
 
+    Profile profile = new Profile();
     profile.setId(1L);
     profile.setOwner(firstMockTalent);
 
@@ -92,15 +96,15 @@ public class TalentServiceTest {
 
     Pageable pageable = mock(Pageable.class);
 
-    Page<Talent> tallentsList = new  PageImpl(talents);
+    Page<Talent> talentList = new PageImpl(talents);
 
-    Mockito.when(talentRepository.findAll(pageable)).thenReturn(tallentsList);
+    Mockito.when(talentRepository.findAll(pageable)).thenReturn(talentList);
 
-    Page<TalentResponse> allTallents = talentService.findAll(pageable);
+    Page<TalentResponse> allTalents = talentService.findAll(pageable);
     verify(talentRepository).findAll(pageable);
 
-    Assert.assertEquals(expectedSize, allTallents.getContent().size());
-    Assert.assertEquals(firstMockTalent.getEmail(), allTallents.getContent().get(0).getEmail());
+    Assert.assertEquals(expectedSize, allTalents.getContent().size());
+    Assert.assertEquals(firstMockTalent.getEmail(), allTalents.getContent().get(0).getEmail());
   }
 
   @Test
