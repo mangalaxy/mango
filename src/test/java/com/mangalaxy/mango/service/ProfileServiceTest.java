@@ -1,9 +1,9 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.model.dto.response.ProfileResponse;
-import com.mangalaxy.mango.model.entity.Location;
-import com.mangalaxy.mango.model.entity.Profile;
-import com.mangalaxy.mango.model.entity.Talent;
+import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
+import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Profile;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.ProfileRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -34,7 +34,7 @@ public class ProfileServiceTest {
   public void setUp() {
 
     Location location = new Location();
-    location.setId(1L);
+    location.setId(1);
     location.setCity("Kyiv");
     location.setCountry("UA");
 
