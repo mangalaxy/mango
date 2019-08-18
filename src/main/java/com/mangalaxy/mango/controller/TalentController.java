@@ -1,7 +1,7 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.model.dto.request.TalentRequest;
-import com.mangalaxy.mango.model.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.TalentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

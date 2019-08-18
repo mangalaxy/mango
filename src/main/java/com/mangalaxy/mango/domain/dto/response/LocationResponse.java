@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.model.dto.response;
+package com.mangalaxy.mango.domain.dto.response;
 
 import lombok.Data;
 

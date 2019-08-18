@@ -1,9 +1,7 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.model.dto.request.TalentRequest;
-import com.mangalaxy.mango.model.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Profile;
-import com.mangalaxy.mango.model.entity.Talent;
+import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.model.dto.response.ProfileResponse;
+import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
 import com.mangalaxy.mango.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

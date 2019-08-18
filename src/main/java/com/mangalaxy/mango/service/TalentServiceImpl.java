@@ -1,8 +1,8 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.model.dto.request.TalentRequest;
-import com.mangalaxy.mango.model.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Talent;
+import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
 import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
