@@ -2,7 +2,6 @@ package com.mangalaxy.mango.controller;
 
 import com.mangalaxy.mango.model.dto.request.TalentRequest;
 import com.mangalaxy.mango.model.dto.response.TalentResponse;
-import com.mangalaxy.mango.model.entity.Talent;
 import com.mangalaxy.mango.service.TalentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -52,6 +51,6 @@ public class TalentController {
   @DeleteMapping("{talentId}")
   public ResponseEntity<Void> deleteTalent(@PathVariable Long talentId) {
     talentService.deleteTalent(talentId);
-    return ResponseEntity.notFound().build();
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }
