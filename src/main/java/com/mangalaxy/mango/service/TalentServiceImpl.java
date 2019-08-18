@@ -1,67 +1,56 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.model.entity.Profile;
+import com.mangalaxy.mango.model.dto.request.TalentRequest;
+import com.mangalaxy.mango.model.dto.response.TalentResponse;
 import com.mangalaxy.mango.model.entity.Talent;
-import com.mangalaxy.mango.repository.ProfileRepository;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class TalentServiceImpl implements CrudService<Talent>, TalentService{
+@Transactional
+public class TalentServiceImpl implements TalentService{
 
   private final TalentRepository talentRepository;
-  private final ProfileRepository profileRepository;
+  private final ModelMapper modelMapper;
 
   @Override
-  public Talent getByid(Long id) {
-    return talentRepository.findById(id).orElse(null);
+  public Page<TalentResponse> findAll(Pageable pageable) {
+    Page<Talent> talents = talentRepository.findAll(pageable);
+    Page<TalentResponse> response = talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
+    return response;
   }
 
   @Override
-  public List<Talent> getAll() {
-    return talentRepository.findAll();
+  public TalentResponse getTalentById(Long id) {
+    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+    return modelMapper.map(talent, TalentResponse.class);
   }
 
   @Override
-  public Page<Talent> findAll(Pageable pageable) {
-    return talentRepository.findAll(pageable);
+  public TalentResponse createNewTalent(TalentRequest talentRequest) {
+    Talent talent = modelMapper.map(talentRequest, Talent.class);
+    Talent createdTalent = talentRepository.save(talent);
+    return modelMapper.map(createdTalent, TalentResponse.class);
   }
 
   @Override
-  public Profile getProfileByTalent(Long id) {
-    Talent talent = talentRepository.findById(id).orElse(null);
-    if (talent != null) {
-      return profileRepository.findByOwner(talent);
-    }
-
-    return null;
+  public TalentResponse updateTalent(TalentRequest talentRequest, Long id) {
+    talentRequest.setId(id);
+    Talent talent = modelMapper.map(talentRequest, Talent.class);
+    Talent updatedTalent = talentRepository.save(talent);
+    return modelMapper.map(updatedTalent, TalentResponse.class);
   }
 
   @Override
-  public Talent create(Talent talent) {
-    return talentRepository.save(talent);
+  public void deleteTalent(Long id) {
+    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+    talentRepository.delete(talent);
   }
-
-  @Override
-  public Talent update(Talent talent, Long id) {
-    talent.setId(id);
-    return talentRepository.save(talent);
-  }
-
-  @Override
-  public Talent delete(Long id) {
-    Talent talent = talentRepository.findById(id).orElse(null);
-    if (talent != null) {
-      talentRepository.delete(talent);
-      return talent;
-    }
-    return null;
-  }
-
 }

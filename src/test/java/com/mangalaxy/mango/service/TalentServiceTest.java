@@ -1,5 +1,7 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.model.dto.request.TalentRequest;
+import com.mangalaxy.mango.model.dto.response.TalentResponse;
 import com.mangalaxy.mango.model.entity.Location;
 import com.mangalaxy.mango.model.entity.Profile;
 import com.mangalaxy.mango.model.entity.Talent;
@@ -10,6 +12,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,25 +29,22 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TalentServiceImplTest {
+public class TalentServiceTest {
 
   @Autowired
-  private TalentServiceImpl talentServiceImpl;
+  private TalentService talentService;
+
+  @Autowired
+  private ModelMapper modelMapper;
 
   @MockBean
   private TalentRepository talentRepository;
 
-  @MockBean
-  private ProfileRepository profileRepository;
-
-  private static Talent firstMockTalent;
-  private static Talent secondMockTalent;
-  private static Profile mockProfile;
+  private static Talent firstMockTalent = new Talent();
+  private static Talent secondMockTalent = new Talent();
 
   @Before
-  public void initialization() {
-    Talent firstTalent = new Talent();
-    Talent secondTalent = new Talent();
+  public void setUp() {
 
     Location location = new Location();
     location.setId(1L);
@@ -53,24 +53,21 @@ public class TalentServiceImplTest {
 
     Profile profile = new Profile();
 
-    firstTalent.setId(1L);
-    firstTalent.setEmail("test@gmai.com");
-    firstTalent.setPassword("123456");
-    firstTalent.setFullName("Ilon Mask");
-    firstTalent.setLocation(location);
+    firstMockTalent.setId(1L);
+    firstMockTalent.setEmail("test@gmai.com");
+    firstMockTalent.setPassword("123456");
+    firstMockTalent.setFullName("Ilon Mask");
+    firstMockTalent.setLocation(location);
 
-    secondTalent.setId(2L);
-    secondTalent.setEmail("test2@gmai.com");
-    secondTalent.setPassword("123456");
-    secondTalent.setFullName("Leo Messi");
-    secondTalent.setLocation(location);
+    secondMockTalent.setId(2L);
+    secondMockTalent.setEmail("test2@gmai.com");
+    secondMockTalent.setPassword("123456");
+    secondMockTalent.setFullName("Leo Messi");
+    secondMockTalent.setLocation(location);
 
     profile.setId(1L);
-    profile.setOwner(firstTalent);
+    profile.setOwner(firstMockTalent);
 
-    firstMockTalent = firstTalent;
-    secondMockTalent = secondTalent;
-    mockProfile = profile;
   }
 
   @Test
@@ -79,10 +76,10 @@ public class TalentServiceImplTest {
     String expectedEmail = "test@gmai.com";
 
     Mockito.when(talentRepository.findById(expectedId)).thenReturn(Optional.of(firstMockTalent));
-    Talent talent = talentServiceImpl.getByid(expectedId);
+    TalentResponse talent = talentService.getTalentById(expectedId);
+    verify(talentRepository).findById(expectedId);
 
     Assert.assertEquals(expectedEmail, talent.getEmail());
-    Assert.assertEquals(expectedId, talent.getId());
   }
 
   @Test
@@ -99,52 +96,37 @@ public class TalentServiceImplTest {
 
     Mockito.when(talentRepository.findAll(pageable)).thenReturn(tallentsList);
 
-    Page<Talent> allTallents = talentServiceImpl.findAll(pageable);
+    Page<TalentResponse> allTallents = talentService.findAll(pageable);
+    verify(talentRepository).findAll(pageable);
 
     Assert.assertEquals(expectedSize, allTallents.getContent().size());
-  }
-
-  @Test
-  public void getProfileTest() {
-    Long expectedId = 1L;
-
-    Mockito.when(profileRepository.findByOwner(firstMockTalent)).thenReturn(mockProfile);
-    Mockito.when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
-
-    Profile profile = talentServiceImpl.getProfileByTalent(1L);
-
-    Assert.assertEquals(expectedId, profile.getId());
+    Assert.assertEquals(firstMockTalent.getEmail(), allTallents.getContent().get(0).getEmail());
   }
 
   @Test
   public void createTalentTest() {
-    Talent talent = new Talent();
-
-    talent.setId(3L);
-    talent.setEmail("my@gmail.com");
-
-    Mockito.when(talentRepository.save(talent)).thenReturn(talent);
-
-    Talent createdTalent = talentServiceImpl.create(talent);
-
-    Assert.assertNotNull(createdTalent);
+    Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
+    TalentRequest talentRequest = modelMapper.map(firstMockTalent, TalentRequest.class);
+    talentService.createNewTalent(talentRequest);
+    verify(talentRepository).save(firstMockTalent);
   }
 
   @Test
   public void updateTalentTest() {
     firstMockTalent.setEmail("new-mail@gmail.com");
-
+    TalentRequest talentRequest = modelMapper.map(firstMockTalent, TalentRequest.class);
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
 
-    Talent updatedTalent = talentServiceImpl.update(firstMockTalent, 1L);
+    TalentResponse updatedTalent = talentService.updateTalent(talentRequest, 1L);
 
+    verify(talentRepository).save(firstMockTalent);
     Assert.assertEquals("new-mail@gmail.com", updatedTalent.getEmail());
   }
 
   @Test
   public void deleteTalentTest() {
     when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
-    talentServiceImpl.delete(1L);
+    talentService.deleteTalent(1L);
     verify(talentRepository, times(1)).delete(firstMockTalent);
   }
 }

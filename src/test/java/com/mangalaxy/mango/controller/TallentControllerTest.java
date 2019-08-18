@@ -2,10 +2,9 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.mapper.TalentMapper;
-import com.mangalaxy.mango.model.dto.response.ProfileResponse;
 import com.mangalaxy.mango.model.dto.response.TalentResponse;
 import com.mangalaxy.mango.model.entity.Talent;
+import com.mangalaxy.mango.service.TalentService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -35,7 +35,7 @@ public class TallentControllerTest {
   private ObjectMapper objectMapper;
 
   @Autowired
-  private TalentMapper talentMapper;
+  private TalentService talentService;
 
   @Test
   public void getTalentById() throws Exception {
@@ -63,18 +63,6 @@ public class TallentControllerTest {
   }
 
   @Test
-  public void getProfileByTalent() throws Exception {
-    Long expectedId = 1L;
-
-    MvcResult result = mockMvc.perform(get("/api/v1/talents/1/profile")).andReturn();
-    String responseBody = result.getResponse().getContentAsString();
-
-    ProfileResponse profile = objectMapper.readValue(responseBody, ProfileResponse.class);
-
-    Assert.assertEquals(expectedId, profile.getId());
-  }
-
-  @Test
   public void createNewTalent() throws Exception {
     String expectedMail = "createdTalent@gmail.com";
     String exprctedPassword = "12345";
@@ -95,7 +83,7 @@ public class TallentControllerTest {
   public void updateTalent() throws Exception {
     String updatedEmail = "updated@gmail.com";
     Long talentId = 1L;
-    TalentResponse talent = talentMapper.getById(1L);
+    TalentResponse talent = talentService.getTalentById(1L);
     talent.setEmail(updatedEmail);
 
     String talentJson = objectMapper.writeValueAsString(talent);
@@ -111,7 +99,6 @@ public class TallentControllerTest {
 
   @Test
   public void deleteTalent() throws Exception {
-    mockMvc.perform(delete("/api/v1/talents/1")).andReturn();
-    Assert.assertNull(talentMapper.getById(1L));
+    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is4xxClientError());
   }
 }
