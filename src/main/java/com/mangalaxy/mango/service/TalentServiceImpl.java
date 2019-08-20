@@ -21,6 +21,12 @@ public class TalentServiceImpl implements TalentService{
   private final ModelMapper modelMapper;
 
   @Override
+  public Talent getPrincipalTalent() {
+    Talent currentTalent = talentRepository.findAll().get(0);
+    return currentTalent;
+  }
+
+  @Override
   public Page<TalentResponse> findAll(Pageable pageable) {
     Page<Talent> talents = talentRepository.findAll(pageable);
     Page<TalentResponse> response = talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
@@ -54,4 +60,23 @@ public class TalentServiceImpl implements TalentService{
     talentRepository.delete(talent);
   }
 
+  @Override
+  public TalentResponse getCurrentTalent() {
+    Talent curentTalent = getPrincipalTalent();
+    return modelMapper.map(curentTalent, TalentResponse.class);
+  }
+
+
+  @Override
+  public TalentResponse updateCurrentTalent(TalentRequest talentRequest) {
+    Talent talent = modelMapper.map(talentRequest, Talent.class);
+    talent.setId(getPrincipalTalent().getId());
+    Talent updatedTalent = talentRepository.save(talent);
+    return modelMapper.map(updatedTalent, TalentResponse.class);
+  }
+
+  @Override
+  public void deleteCurrentTalent() {
+    talentRepository.delete(getPrincipalTalent());
+  }
 }
