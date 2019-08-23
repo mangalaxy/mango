@@ -56,6 +56,7 @@ public class Job extends AbstractEntity {
 
   @ManyToOne
   @JoinColumn(name = "location_id")
+  @EqualsAndHashCode.Exclude
   private Location location;
 
   @SortNatural
@@ -68,6 +69,7 @@ public class Job extends AbstractEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employer_id", updatable = false, nullable = false)
+  @EqualsAndHashCode.Exclude
   private Employer publisher;
 
   @Column(name = "job_role")

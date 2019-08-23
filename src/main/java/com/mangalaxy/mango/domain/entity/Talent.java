@@ -45,6 +45,7 @@ public class Talent extends AbstractEntity {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id", referencedColumnName = "id")
+  @EqualsAndHashCode.Exclude
   private Location location;
 
 }

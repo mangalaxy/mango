@@ -43,12 +43,15 @@ public class Location {
   private String country;
 
   @OneToMany(mappedBy = "location")
+  @EqualsAndHashCode.Exclude
   private Set<Job> jobs = new HashSet<>();
 
   @OneToMany(mappedBy = "location")
+  @EqualsAndHashCode.Exclude
   private Set<Talent> talents = new HashSet<>();
 
   @OneToMany(mappedBy = "location")
+  @EqualsAndHashCode.Exclude
   private Set<Employer> employers = new HashSet<>();
 
   public Location(@NotBlank String city, @NotBlank String country) {

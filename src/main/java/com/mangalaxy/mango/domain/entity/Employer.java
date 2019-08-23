@@ -63,15 +63,17 @@ public class Employer extends AbstractEntity {
   @Column(name = "photo_url")
   private String photoUrl;
 
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToOne(cascade = CascadeType.PERSIST)
   @JoinColumn(name = "location_id", nullable = false,
         foreignKey = @ForeignKey(name = "location_id_fk"))
+  @EqualsAndHashCode.Exclude
   private Location location;
 
   @OneToMany(mappedBy = "publisher",
         cascade = CascadeType.ALL,
         orphanRemoval = true
   )
+  @EqualsAndHashCode.Exclude
   private Set<Job> openJobs = new HashSet<>();
 
   public void addJob(Job job) {
