@@ -54,7 +54,7 @@ public class Job extends AbstractEntity {
   @Column(name = "xp_range")
   private String xpRange;
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "location_id")
   private Location location;
 

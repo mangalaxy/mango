@@ -23,11 +23,11 @@ public class JobServiceImpl implements JobService {
   @Override
   public Page<JobResponse> getJobsByParameters(String jobRole, String city, Pageable pageable) {
     Page<Job> allJobs = jobRepository.findAll(pageable);
-    List<JobResponse> jobsByParems = allJobs.getContent().stream()
-        .filter(job -> jobRole != null ? job.getJobRole().toLowerCase().equals(jobRole.toLowerCase()) : true)
-        .filter(job -> city != null ? job.getLocation().getCity().toLowerCase().equals(city.toLowerCase()) : true)
+    List<JobResponse> jobsByParams = allJobs.getContent().stream()
+        .filter(job -> jobRole != null ? job.getJobRole().equalsIgnoreCase(jobRole.toLowerCase()) : true)
+        .filter(job -> city != null ? job.getLocation().getCity().equalsIgnoreCase(city.toLowerCase()) : true)
         .map(job -> modelMapper.map(job, JobResponse.class))
         .collect(Collectors.toList());
-    return new PageImpl<>(jobsByParems, pageable, jobsByParems.size());
+    return new PageImpl<>(jobsByParams, pageable, jobsByParams.size());
   }
 }

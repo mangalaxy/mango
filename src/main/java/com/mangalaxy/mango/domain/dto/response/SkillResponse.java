@@ -11,7 +11,4 @@ import java.util.Set;
 public class SkillResponse {
   private Long id;
   private String name;
-  private Set<Job> jobs;
-  private Set<Company> companies;
-  private Set<Profile> profiles;
 }
