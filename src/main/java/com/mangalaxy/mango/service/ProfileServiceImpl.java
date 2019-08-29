@@ -36,8 +36,8 @@ public class ProfileServiceImpl implements ProfileService {
   @Override
   public ProfileResponse updateCurrentProfile(ProfileRequest profileRequest) {
     Talent currentTalent = talentService.getPrincipalTalent();
-    profileRequest.setId(currentTalent.getId());
     Profile profile = modelMapper.map(profileRequest, Profile.class);
+    profile.setId(currentTalent.getId());
     Profile updatedProfile = profileRepository.save(profile);
     return modelMapper.map(updatedProfile, ProfileResponse.class);
   }
