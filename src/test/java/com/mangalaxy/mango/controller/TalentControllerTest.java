@@ -2,6 +2,7 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.TalentService;
@@ -67,11 +68,13 @@ public class TalentControllerTest {
 
   @Test
   public void createNewTalent() throws Exception {
+    String fullName = "Test Name";
     String expectedMail = "createdTalent@gmail.com";
     String expectedPassword = "12345";
-    Talent talent = Talent.builder()
+    TalentRequest talent = TalentRequest.builder()
           .email(expectedMail)
           .password(expectedPassword)
+          .fullName(fullName)
           .build();
 
     String talentJson = objectMapper.writeValueAsString(talent);
@@ -86,7 +89,6 @@ public class TalentControllerTest {
   @Test
   public void updateTalent() throws Exception {
     String updatedEmail = "updated@gmail.com";
-    Long talentId = 1L;
     TalentResponse talent = talentService.getTalentById(1L);
     talent.setEmail(updatedEmail);
 

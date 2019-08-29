@@ -18,39 +18,57 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/talents")
+@RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class TalentController {
 
   private final TalentService talentService;
 
-  @GetMapping("{talentId}")
+  @GetMapping("talents/{talentId}")
   public ResponseEntity<TalentResponse> getTalentById(@PathVariable Long talentId) {
     TalentResponse talent = talentService.getTalentById(talentId);
     return ResponseEntity.ok(talent);
   }
 
-  @GetMapping
+  @GetMapping("talents")
   public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable) {
     Page<TalentResponse> talents = talentService.findAll(pageable);
     return ResponseEntity.ok(talents);
   }
 
-  @PostMapping
+  @PostMapping("talents")
   public ResponseEntity<TalentResponse> createTalent(@RequestBody TalentRequest talentRequest) {
     TalentResponse talent = talentService.createNewTalent(talentRequest);
     return new ResponseEntity<>(talent, HttpStatus.CREATED);
   }
 
-  @PutMapping("{talentId}")
+  @PutMapping("talents/{talentId}")
   public ResponseEntity<TalentResponse> updateTalent(@RequestBody TalentRequest talentRequest, @PathVariable Long talentId) {
     TalentResponse response = talentService.updateTalent(talentRequest, talentId);
     return ResponseEntity.ok(response);
   }
 
-  @DeleteMapping("{talentId}")
+  @DeleteMapping("talents/{talentId}")
   public ResponseEntity<Void> deleteTalent(@PathVariable Long talentId) {
     talentService.deleteTalent(talentId);
+    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
+  @GetMapping("me")
+  public ResponseEntity<TalentResponse> getCurrentTalent() {
+    TalentResponse talentResponse = talentService.getCurrentTalent();
+    return ResponseEntity.ok(talentResponse);
+  }
+
+  @PutMapping("me")
+  public ResponseEntity<TalentResponse> updateCurrentTalent(@RequestBody TalentRequest talentRequest) {
+    TalentResponse talentResponse = talentService.updateCurrentTalent(talentRequest);
+    return ResponseEntity.ok(talentResponse);
+  }
+
+  @DeleteMapping("me")
+  public ResponseEntity<Void> deleteCurrentTalent() {
+    talentService.deleteCurrentTalent();
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }
