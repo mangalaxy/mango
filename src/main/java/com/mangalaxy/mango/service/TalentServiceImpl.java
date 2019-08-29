@@ -48,8 +48,8 @@ public class TalentServiceImpl implements TalentService{
 
   @Override
   public TalentResponse updateTalent(TalentRequest talentRequest, Long id) {
-    talentRequest.setId(id);
     Talent talent = modelMapper.map(talentRequest, Talent.class);
+    talent.setId(id);
     Talent updatedTalent = talentRepository.save(talent);
     return modelMapper.map(updatedTalent, TalentResponse.class);
   }
