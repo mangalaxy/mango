@@ -22,14 +22,14 @@ public class EmployerRequest {
   private final Company company;
   private final String jobTitle;
   private final String photoUrl;
-  private final Location location;
+  private final LocationRequest location;
 
   @JsonCreator
   public EmployerRequest(@JsonProperty("id") Long id, @JsonProperty("password") String password,
                          @JsonProperty("fullName") String fullName,  @JsonProperty("workEmail") String workEmail,
                          @JsonProperty("phoneNumber") String phoneNumber, @JsonProperty("company") Company company,
                          @JsonProperty("jobTitle") String jobTitle, @JsonProperty("photoUrl") String photoUrl,
-                         @JsonProperty("location") Location location) {
+                         @JsonProperty("location") LocationRequest location) {
     this.id = id;
     this.password = password;
     this.fullName = fullName;

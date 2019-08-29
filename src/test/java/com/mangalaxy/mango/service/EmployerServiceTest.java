@@ -1,6 +1,7 @@
 package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
+import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
@@ -107,11 +108,24 @@ public class EmployerServiceTest {
   public void shouldCreateEmployer() {
     Long expectedId = 1L;
     String expectedMail = "elon@gmail.com";
-    EmployerRequest request = modelMapper.map(firstMockEmployer, EmployerRequest.class);
+
+    LocationRequest locationRequest = LocationRequest.builder()
+        .id(1L)
+        .country("UA")
+        .city("Kyiv")
+        .build();
+    EmployerRequest employerRequest = EmployerRequest.builder()
+        .id(expectedId)
+        .workEmail(expectedMail)
+        .password("123456")
+        .fullName("Elon Mask")
+        .location(locationRequest)
+        .build();
 
     Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
-    EmployerResponse response = employerService.createNewEmployer(request);
+    EmployerResponse response = employerService.createNewEmployer(employerRequest);
 
+    verify(employerRepository).save(firstMockEmployer);
     Assert.assertEquals(expectedId, response.getId());
     Assert.assertEquals(expectedMail, response.getWorkEmail());
   }
@@ -122,11 +136,23 @@ public class EmployerServiceTest {
     String expectedMail = "changed@gmail.com";
     firstMockEmployer.setWorkEmail(expectedMail);
 
-    EmployerRequest request = modelMapper.map(firstMockEmployer, EmployerRequest.class);
+    LocationRequest locationRequest = LocationRequest.builder()
+        .id(1L)
+        .country("UA")
+        .city("Kyiv")
+        .build();
+    EmployerRequest employerRequest = EmployerRequest.builder()
+        .id(expectedId)
+        .workEmail(expectedMail)
+        .password("123456")
+        .fullName("Elon Mask")
+        .location(locationRequest)
+        .build();
 
     Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
-    EmployerResponse response = employerService.updateEmployer(request, expectedId);
+    EmployerResponse response = employerService.updateEmployer(employerRequest, expectedId);
 
+    verify(employerRepository).save(firstMockEmployer);
     Assert.assertEquals(expectedId, response.getId());
     Assert.assertEquals(expectedMail, response.getWorkEmail());
   }

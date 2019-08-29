@@ -43,8 +43,8 @@ public class EmployerServiceImpl implements EmployerService {
 
   @Override
   public EmployerResponse updateEmployer(EmployerRequest employerRequest, Long id) {
-    employerRequest.setId(id);
     Employer employer = modelMapper.map(employerRequest, Employer.class);
+    employer.setId(id);
     Employer updatedEmployer = employerRepository.save(employer);
     return modelMapper.map(updatedEmployer, EmployerResponse.class);
   }
