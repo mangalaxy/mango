@@ -8,5 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface JobRepository extends JpaRepository<Job, Long> {
+  Page<Job> findAllByPublisher_Id(Long id, Pageable pageable);
 
+  Job findByIdAndPublisher_Id(Long jobId, Long employerId);
 }
