@@ -2,6 +2,7 @@ package com.mangalaxy.mango.domain.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -19,4 +20,5 @@ public class ProfileRequest {
     this.photoUrl = photoUrl;
     this.selectedJobRole = selectedJobRole;
   }
+  
 }
