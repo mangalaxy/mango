@@ -29,8 +29,8 @@ public class JobServiceImpl implements JobService {
   public Page<JobResponse> getJobsByParameters(String jobRole, String city, Pageable pageable) {
     Page<Job> allJobs = jobRepository.findAll(pageable);
     List<JobResponse> jobsByParams = allJobs.getContent().stream()
-        .filter(job -> jobRole != null ? job.getJobRole().equalsIgnoreCase(jobRole.toLowerCase()) : true)
-        .filter(job -> city != null ? job.getLocation().getCity().equalsIgnoreCase(city.toLowerCase()) : true)
+        .filter(job -> jobRole != null ? job.getJobRole().equalsIgnoreCase(jobRole) : true)
+        .filter(job -> city != null ? job.getLocation().getCity().equalsIgnoreCase(city) : true)
         .map(job -> modelMapper.map(job, JobResponse.class))
         .collect(Collectors.toList());
     return new PageImpl<>(jobsByParams, pageable, jobsByParams.size());
