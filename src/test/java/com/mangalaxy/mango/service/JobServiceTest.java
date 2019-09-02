@@ -1,8 +1,5 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
-import com.mangalaxy.mango.domain.dto.request.JobRequest;
-import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
@@ -25,7 +22,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -70,6 +66,12 @@ public class JobServiceTest {
     secondLocation.setCountry("Ukraine");
 
     firstMockJob = new Job();
+
+    Employer employer = new Employer();
+    employer.setId(1L);
+    employer.setFullName("Elon Mask");
+    employer.setLocation(firstLocation);
+
     firstMockJob.setId(1L);
     firstMockJob.setTitle("Java Developer");
     firstMockJob.setLocation(firstLocation);
@@ -77,6 +79,8 @@ public class JobServiceTest {
     firstMockJob.setPublisher(mockEmployer);
 
     secondMockJob = new Job();
+    firstMockJob.setPublisher(employer);
+
     secondMockJob.setId(2L);
     secondMockJob.setTitle("JS Developer");
     secondMockJob.setLocation(secondLocation);
@@ -84,11 +88,14 @@ public class JobServiceTest {
     secondMockJob.setPublisher(mockEmployer);
 
     thirdMockJob = new Job();
+    secondMockJob.setPublisher(employer);
+
     thirdMockJob.setId(3L);
     thirdMockJob.setTitle("Front End");
     thirdMockJob.setLocation(firstLocation);
     thirdMockJob.setJobRole("role2");
     thirdMockJob.setPublisher(mockEmployer);
+    thirdMockJob.setPublisher(employer);
   }
 
   @Test

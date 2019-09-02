@@ -19,4 +19,9 @@ public class EmployerResponse {
   private Company company;
   private String jobTitle;
   private String photoUrl;
+<<<<<<< HEAD
+=======
+  private Location location;
+  private Set<Job> openJobs;
+>>>>>>> develop
 }
