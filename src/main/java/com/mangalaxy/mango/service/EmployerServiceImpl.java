@@ -12,12 +12,15 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
 
-@Service
 @RequiredArgsConstructor
+@Service
+@Transactional
 public class EmployerServiceImpl implements EmployerService {
+
   private final EmployerRepository employerRepository;
   private final ModelMapper modelMapper;
   private final LocationRepository locationRepository;
@@ -43,8 +46,9 @@ public class EmployerServiceImpl implements EmployerService {
 
   @Override
   public EmployerResponse updateEmployer(EmployerRequest employerRequest, Long id) {
+    Employer employerFromDataBase = employerRepository.findById(id).orElseThrow(EmployerNotFoundExeption::new);
     Employer employer = modelMapper.map(employerRequest, Employer.class);
-    employer.setId(id);
+    employer.setId(employerFromDataBase.getId());
     Employer updatedEmployer = employerRepository.save(employer);
     return modelMapper.map(updatedEmployer, EmployerResponse.class);
   }
