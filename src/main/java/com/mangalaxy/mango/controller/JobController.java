@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 @Api(value = "Job Data API", description = "List of methods that manage jobs")
 public class JobController {
+
   private final JobService jobService;
 
   @GetMapping("jobs")
