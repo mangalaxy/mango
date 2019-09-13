@@ -3,13 +3,8 @@ package com.mangalaxy.mango.domain.dto.request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mangalaxy.mango.domain.entity.Company;
-import com.mangalaxy.mango.domain.entity.Job;
-import com.mangalaxy.mango.domain.entity.Location;
 import lombok.Builder;
 import lombok.Data;
-
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @Builder
