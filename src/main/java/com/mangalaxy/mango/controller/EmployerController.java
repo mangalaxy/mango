@@ -2,6 +2,7 @@ package com.mangalaxy.mango.controller;
 
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.EmployerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -76,5 +78,31 @@ public class EmployerController {
       @PathVariable Long id) {
     employerService.deleteEmployer(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
+  @PutMapping("{employerId}/bookmarked/{talentId}")
+  @ApiOperation(value = "Math employer with talent")
+  @ApiResponses(value = {
+      @ApiResponse(code = 404, message = "Employer with given id not found"),
+      @ApiResponse(code = 404, message = "Talent with given id not found")})
+  public ResponseEntity<EmployerResponse> matchTalentToEmployer(
+      @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
+      @PathVariable Long employerId,
+      @ApiParam(value = "Talent id from which employer object will retrieve", required = true)
+      @PathVariable Long talentId,
+      @ApiParam(value = "Flag defined to set association or delete the relationship")
+      @RequestParam(name = "set") boolean set) {
+    EmployerResponse response = employerService.matchTalentToEmployer(employerId, talentId, set);
+    return ResponseEntity.ok(response);
+  }
+
+  @PutMapping("{employerId}/jobs/{jobId}/matched")
+  @ApiOperation(value = "Get list of matched talents for job")
+  public ResponseEntity<Page<TalentResponse>> getMatchedTalentsForJob(
+      @PathVariable Long employerId,
+      @PathVariable Long jobId,
+      Pageable pageable) {
+    Page<TalentResponse> response = employerService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
+    return ResponseEntity.ok(response);
   }
 }

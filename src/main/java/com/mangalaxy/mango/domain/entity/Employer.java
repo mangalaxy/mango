@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
@@ -16,6 +17,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -87,6 +90,13 @@ public class Employer extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   @ApiModelProperty(notes = "List of employer open jobs")
   private Set<Job> openJobs = new HashSet<>();
+
+  @ManyToMany
+  @JoinTable(name = "matched_talents",
+        joinColumns = {@JoinColumn(name = "employer_id")},
+        inverseJoinColumns = {@JoinColumn(name = "talent_id")})
+  @ToString.Exclude
+  private Set<Talent> matchedTalents = new HashSet<>();
 
   public void addJob(Job job) {
     openJobs.add(job);
