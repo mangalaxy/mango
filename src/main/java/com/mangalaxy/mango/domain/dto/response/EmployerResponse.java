@@ -19,6 +19,4 @@ public class EmployerResponse {
   private Company company;
   private String jobTitle;
   private String photoUrl;
-  private Location location;
-  private Set<Job> openJobs;
 }
