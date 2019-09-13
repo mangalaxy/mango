@@ -73,7 +73,7 @@ public class EmployerControllerTest {
     String employerRequest = objectMapper.writeValueAsString(employer);
     MvcResult result = mockMvc.perform(post("/api/v1/employers")
         .contentType(MediaType.APPLICATION_JSON)
-        .content(employerRequest)).andReturn();
+        .content(employerRequest)).andExpect(status().is(201)).andReturn();
 
     String response = result.getResponse().getContentAsString();
     EmployerResponse createdEmployer = objectMapper.readValue(response, EmployerResponse.class);
