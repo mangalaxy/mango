@@ -1,8 +1,6 @@
 package com.mangalaxy.mango.domain.dto.response;
 
 import com.mangalaxy.mango.domain.entity.Company;
-import com.mangalaxy.mango.domain.entity.Job;
-import com.mangalaxy.mango.domain.entity.Location;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -19,4 +17,5 @@ public class EmployerResponse {
   private Company company;
   private String jobTitle;
   private String photoUrl;
+  private Set<TalentResponse> talents;
 }
