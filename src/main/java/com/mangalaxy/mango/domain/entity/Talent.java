@@ -14,11 +14,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Data
 @Builder
@@ -54,5 +57,8 @@ public class Talent extends AbstractEntity {
   @EqualsAndHashCode.Exclude
   @ApiModelProperty(notes = "The talent location")
   private Location location;
+
+  @ManyToMany(mappedBy = "matchedTalents")
+  private Set<Employer> matchedEmployers;
 
 }

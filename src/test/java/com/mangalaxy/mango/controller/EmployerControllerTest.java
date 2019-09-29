@@ -3,8 +3,10 @@ package com.mangalaxy.mango.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
+import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.EmployerService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -20,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -105,5 +108,18 @@ public class EmployerControllerTest {
   @Test
   public void shouldDeleteEmployer() throws Exception {
     mockMvc.perform(delete("/api/v1/employers/1")).andExpect(status().is(204));
+  }
+
+  @Test
+  public void shouldMatchTalent() throws Exception {
+    int expectedSize = 1;
+
+    MvcResult result = mockMvc.perform(put("/api/v1/employers/1/bookmarked/1?set=true")).andReturn();
+
+    String response = result.getResponse().getContentAsString();
+
+    EmployerResponse employerResponse = objectMapper.readValue(response, EmployerResponse.class);
+
+    Assert.assertEquals(expectedSize, employerResponse.getTalents().size());
   }
 }

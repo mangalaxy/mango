@@ -5,7 +5,9 @@ import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.EmployerRepository;
+import com.mangalaxy.mango.repository.TalentRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -32,6 +35,9 @@ public class EmployerServiceTest {
   @MockBean
   private EmployerRepository employerRepository;
 
+  @MockBean
+  private TalentRepository talentRepository;
+
   @Autowired
   private EmployerService employerService;
 
@@ -41,6 +47,7 @@ public class EmployerServiceTest {
   private Employer firstMockEmployer = new Employer();
   private Employer secondMockEmployer = new Employer();
   private Employer thirdMockEmployer = new Employer();
+  private Talent mockTalent = new Talent();
 
   @Before
   public void setUp() {
@@ -48,6 +55,12 @@ public class EmployerServiceTest {
     firstLocation.setId(1);
     firstLocation.setCity("Kyiv");
     firstLocation.setCountry("UA");
+
+    mockTalent.setId(1L);
+    mockTalent.setEmail("test@gmai.com");
+    mockTalent.setPassword("123456");
+    mockTalent.setFullName("Ilon Mask");
+    mockTalent.setLocation(firstLocation);
 
     Location secondLocation = new Location();
     secondLocation.setId(2);
@@ -162,5 +175,22 @@ public class EmployerServiceTest {
     Mockito.when(employerRepository.findById(1L)).thenReturn(java.util.Optional.of(firstMockEmployer));
     employerService.deleteEmployer(1L);
     verify(employerRepository).delete(firstMockEmployer);
+  }
+
+  @Test
+  public void shouldMathTalentToEmployer() {
+    int expectedSize = 1;
+
+    Set<Talent> talents = firstMockEmployer.getMatchedTalents();
+    talents.add(mockTalent);
+    firstMockEmployer.setMatchedTalents(talents);
+    Mockito.when(employerRepository.findById(1L)).thenReturn(java.util.Optional.of(firstMockEmployer));
+    Mockito.when(talentRepository.findById(1L)).thenReturn(java.util.Optional.of(mockTalent));
+    Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
+
+    EmployerResponse response = employerService.matchTalentToEmployer(1L, 1L, true);
+
+    Assert.assertEquals(expectedSize, response.getTalents().size());
+
   }
 }
