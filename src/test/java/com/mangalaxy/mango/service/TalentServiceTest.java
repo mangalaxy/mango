@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Location;
@@ -110,7 +111,18 @@ public class TalentServiceTest {
   @Test
   public void createTalentTest() {
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
-    TalentRequest talentRequest = modelMapper.map(firstMockTalent, TalentRequest.class);
+    LocationRequest locationRequest = LocationRequest.builder()
+        .id(1L)
+        .country("UA")
+        .city("Kyiv")
+        .build();
+    TalentRequest talentRequest = TalentRequest.builder()
+        .id(1L)
+        .password("123456")
+        .email("test@gmai.com")
+        .fullName("Ilon Mask")
+        .location(locationRequest)
+        .build();
     talentService.createNewTalent(talentRequest);
     verify(talentRepository).save(firstMockTalent);
   }
@@ -118,7 +130,18 @@ public class TalentServiceTest {
   @Test
   public void updateTalentTest() {
     firstMockTalent.setEmail("new-mail@gmail.com");
-    TalentRequest talentRequest = modelMapper.map(firstMockTalent, TalentRequest.class);
+    LocationRequest locationRequest = LocationRequest.builder()
+        .id(1L)
+        .country("UA")
+        .city("Kyiv")
+        .build();
+    TalentRequest talentRequest = TalentRequest.builder()
+        .id(1L)
+        .password("123456")
+        .email("new-mail@gmail.com")
+        .fullName("Ilon Mask")
+        .location(locationRequest)
+        .build();
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
 
     TalentResponse updatedTalent = talentService.updateTalent(talentRequest, 1L);
