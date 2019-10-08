@@ -35,7 +35,10 @@ public class TalentServiceImpl implements TalentService{
 
   @Override
   public TalentResponse getTalentById(Long id) {
-    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+    Talent talent = talentRepository.findById(id).orElse(null);
+    if (talent == null) {
+      return null;
+    }
     return modelMapper.map(talent, TalentResponse.class);
   }
 
@@ -49,14 +52,18 @@ public class TalentServiceImpl implements TalentService{
   @Override
   public TalentResponse updateTalent(TalentRequest talentRequest, Long id) {
     Talent talent = modelMapper.map(talentRequest, Talent.class);
-    talent.setId(id);
+    Talent talentFromDb = talentRepository.findById(id).orElse(null);
+    if (talentFromDb == null) {
+      return null;
+    }
+    talent.setId(talentFromDb.getId());
     Talent updatedTalent = talentRepository.save(talent);
     return modelMapper.map(updatedTalent, TalentResponse.class);
   }
 
   @Override
   public void deleteTalent(Long id) {
-    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+    Talent talent = talentRepository.findById(id).orElse(null);
     talentRepository.delete(talent);
   }
 
