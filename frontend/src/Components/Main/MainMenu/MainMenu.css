@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 .menuContainer {
+  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -12,7 +14,10 @@
   font-size: 48px;
   letter-spacing: .1em;
   font-family: "Carter One", cursive;
-  color: #FF8080; }
+  color: #FF8080;
+  text-decoration: none; }
+  .logo:active, .logo:focus {
+    outline: none; }
 
 .menuItemsContainer {
   display: flex;
@@ -21,13 +26,62 @@
   align-items: center; }
 
 .menuItem {
+  display: inline-block;
   text-decoration: none;
   text-transform: uppercase;
-  color: #000;
-  padding: 0 10px;
-  margin: 0 15px; }
+  color: #f2f2f2;
+  font-family: "Monserrat", sans-serif;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 18px; }
+  .menuItem.active {
+    color: #FF8080; }
   .menuItem:active, .menuItem:focus {
     outline: none; }
   .menuItem:hover {
-    transform: scaleX(1.02) scaleY(1.02);
-    text-shadow: rgba(0, 0, 0, 0.2) 2px 2px 3px; }
+    transform: scaleX(1.02) scaleY(1.04); }
+
+.authBlock {
+  padding: 5px 9px;
+  margin: 0;
+  position: relative;
+  cursor: pointer; }
+  .authBlock:hover, .authBlock:active {
+    transform: none;
+    color: #FF8080; }
+    .authBlock:hover .down path, .authBlock:active .down path {
+      fill: #FF8080; }
+  .authBlock .down {
+    position: absolute;
+    top: 50%;
+    right: -17px;
+    transform: translateY(-50%);
+    transition: all 0.5s; }
+    .authBlock .down.active {
+      transform: translateY(-50%) rotateZ(180deg); }
+  .authBlock .dropdownMenu {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+    background-color: #FFFFFF;
+    opacity: .8;
+    padding: 0;
+    color: #4f4f4f;
+    text-transform: capitalize;
+    transition: all .4s; }
+    .authBlock .dropdownMenu li {
+      padding: 5px 5px;
+      margin: 7px 0;
+      border-left: 2px solid transparent;
+      transition: all .5s; }
+      .authBlock .dropdownMenu li:hover {
+        border-left: 2px solid #FF8080;
+        color: black; }
+    .authBlock .dropdownMenu.hidden {
+      transform: rotateX(90deg) translateY(100%);
+      bottom: -50px;
+      opacity: 0; }
+  .authBlock.left {
+    border-right: solid 1px #f2f2f2; }

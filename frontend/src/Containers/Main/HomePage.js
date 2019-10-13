@@ -7,6 +7,7 @@ import ForEmployers from '../../Components/Main/ForEmployers/ForEmployers';
 import JobsPage from './Jobs/JobsPage';
 import BlogPage from './Blog/BlogPage';
 import Home from '../../Components/Main/Home/Home';
+import Footer from '../../Components/Main/Footer/Footer';
 
 class HomePage extends Component {
   render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
@@ -19,8 +20,8 @@ class HomePage extends Component {
             <Route path={routes.FOR_EMPLOYERS} component={ForEmployers}/>
             <Route path={routes.FIND_JOB} component={JobsPage}/>
             <Route path={routes.BLOG} component={BlogPage}/>
-
           </Switch>
+          <Footer/>
         </Fragment>
     );
   }

@@ -1,0 +1,14 @@
+@import '../../../styles/_variables.scss';
+
+.footer{
+  display: flex;
+  align-items: flex-start;
+  background-color: black;
+
+  .logo{
+    text-decoration: none;
+    color: $COLOR_CORAL;
+    font-family: $FONT_LOGO;
+    font-size: 48px;
+  }
+}

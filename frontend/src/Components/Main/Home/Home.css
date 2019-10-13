@@ -1,39 +1,29 @@
-@import '../../../styles/_variables.scss';
-
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 .bannerContainer {
   min-height: 100px;
   overflow: hidden;
-  background-color: #4f4f4f;
-}
+  background-color: #4f4f4f; }
 
 #home-banner {
   background-image: url("../../../assets/homeBG.png");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center;
-
-  .bannerContent {
+  background-position: center; }
+  #home-banner .bannerContent {
     color: #FDFDFD;
-    padding: 300px 100px 200px;
-    h1 {
-      font-family: $FONT_COMMON;
+    padding: 300px 100px 200px; }
+    #home-banner .bannerContent h1 {
+      font-family: Montserrat;
       font-style: normal;
       font-weight: 600;
       font-size: 64px;
       line-height: 78px;
       text-align: center;
-      text-transform: uppercase;
-    }
-
-    h4 {
-      font-family: $FONT_COMMON;
+      text-transform: uppercase; }
+    #home-banner .bannerContent h4 {
+      font-family: Montserrat;
       font-style: normal;
       font-weight: 600;
       font-size: 32px;
       line-height: 39px;
-      text-align: center;
-      width: 50%;
-      margin: 40px auto;
-    }
-  }
-}
+      text-align: center; }
