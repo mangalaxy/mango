@@ -7,7 +7,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import reducer from './Reducers';
-import HomePage from './Containers/Main/HomePage';
+import MainPage from './Containers/Main/MainPage';
 import routes from './constants/routes';
 import Talent from './Containers/Talent/TalentHome';
 import Employer from './Containers/Employer/EmployerHome';
@@ -31,7 +31,7 @@ class App extends React.Component {
             <Switch>
               <Route path={routes.TALENT_HOME} component={Talent}/>
               <Route path={routes.EMPLOYERS_HOME} component={Employer}/>
-              <Route path={routes.HOME} component={HomePage}/>
+              <Route path={routes.HOME} component={MainPage}/>
             </Switch>
           </Router>
         </Provider>

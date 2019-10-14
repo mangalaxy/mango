@@ -9,21 +9,47 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; }
-  #home-banner .bannerContent {
-    color: #FDFDFD;
-    padding: 300px 100px 200px; }
-    #home-banner .bannerContent h1 {
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 64px;
-      line-height: 78px;
-      text-align: center;
-      text-transform: uppercase; }
-    #home-banner .bannerContent h4 {
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 39px;
-      text-align: center; }
+
+#home-banner .bannerContent {
+  color: #FDFDFD;
+  padding: 300px 100px 200px; }
+
+#home-banner .bannerContent h1 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 64px;
+  line-height: 78px;
+  text-align: center;
+  text-transform: uppercase; }
+
+#home-banner .bannerContent h4 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  width: 50%;
+  margin: 40px auto; }
+
+.mission .container {
+  margin: 0 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between; }
+
+.mission .container .contentRow {
+  width: 30%; }
+
+.mission .container .contentRow h3 {
+  text-align: center;
+  font-weight: 600;
+  font-size: 28px; }
+
+.mission .container .contentRow p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 1em;
+  color: #4f4f4f; }
