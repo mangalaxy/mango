@@ -1,0 +1,41 @@
+@import '../../../styles/_variables.scss';
+
+.footer {
+  display: flex;
+  align-items: flex-start;
+  background-color: black;
+  padding: 40px 60px 100px;
+
+  .logo {
+    text-decoration: none;
+    color: $COLOR_CORAL;
+    font-family: $FONT_LOGO;
+    font-size: 40px;
+    line-height: 20px;
+    width: 25%;
+  }
+
+  .itemsGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+  }
+
+  .menuItem {
+    font-family: $FONT_MENU;
+    font-size: 18px;
+    color: $COLOR_MENU_LIGHT;
+    text-transform: uppercase;
+    margin-right: 60px;
+    text-decoration: none;
+    line-height: 20px;
+  }
+
+  .copyright {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FFFFFF;
+    opacity: .4;
+  }
+}
