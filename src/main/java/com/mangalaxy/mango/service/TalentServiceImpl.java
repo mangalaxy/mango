@@ -4,6 +4,7 @@ import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.util.ResourceNotFoundException;
 import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.nio.file.ReadOnlyFileSystemException;
 
 @RequiredArgsConstructor
 @Service
@@ -27,15 +30,18 @@ public class TalentServiceImpl implements TalentService{
   }
 
   @Override
-  public Page<TalentResponse> findAll(Pageable pageable) {
+  public Page<TalentResponse> findAll(Pageable pageable) throws ResourceNotFoundException {
     Page<Talent> talents = talentRepository.findAll(pageable);
+    if (talents.isEmpty()) {
+      throw new ResourceNotFoundException();
+    }
     Page<TalentResponse> response = talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
     return response;
   }
 
   @Override
-  public TalentResponse getTalentById(Long id) {
-    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+  public TalentResponse getTalentById(Long id) throws ResourceNotFoundException {
+    Talent talent = talentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     return modelMapper.map(talent, TalentResponse.class);
   }
 
@@ -47,16 +53,17 @@ public class TalentServiceImpl implements TalentService{
   }
 
   @Override
-  public TalentResponse updateTalent(TalentRequest talentRequest, Long id) {
+  public TalentResponse updateTalent(TalentRequest talentRequest, Long id) throws ResourceNotFoundException {
     Talent talent = modelMapper.map(talentRequest, Talent.class);
-    talent.setId(id);
+    Talent talentFromDb = talentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    talent.setId(talentFromDb.getId());
     Talent updatedTalent = talentRepository.save(talent);
     return modelMapper.map(updatedTalent, TalentResponse.class);
   }
 
   @Override
-  public void deleteTalent(Long id) {
-    Talent talent = talentRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+  public void deleteTalent(Long id) throws ResourceNotFoundException {
+    Talent talent = talentRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
     talentRepository.delete(talent);
   }
 
