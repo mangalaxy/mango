@@ -12,7 +12,7 @@ type State = {
   dropdownVisible: boolean
 }
 
-export default class EmployerMenu extends PureComponent <Props, State>{
+export default class EmployerMenu extends PureComponent <Props, State> {
   render(): Node {
     const {currentPage} = this.props;
     return (
@@ -25,13 +25,13 @@ export default class EmployerMenu extends PureComponent <Props, State>{
           <ul className='menuItemsContainer'>
             <li>
               <Link to={routes.EMPLOYERS_OPEN_POSITIONS}
-                    className={currentPage === routes.FOR_TALENTS ?
+                    className={currentPage === routes.EMPLOYERS_OPEN_POSITIONS ?
                         'menuItem active' :
                         'menuItem'}>Positions</Link>
             </li>
             <li>
               <Link to={routes.EMPLOYERS_HOME}
-                    className={currentPage === routes.FOR_TALENTS ?
+                    className={currentPage === routes.EMPLOYERS_HOME ?
                         'menuItem active' :
                         'menuItem'}>
                 Find talent
@@ -59,7 +59,7 @@ export default class EmployerMenu extends PureComponent <Props, State>{
               <span className='menuItem authBlock left'>Username</span>
             </div>
             <div>
-              <span className='menuItem authBlock' >Sign out</span>
+              <span className='menuItem authBlock '>Sign out </span>
             </div>
           </div>
         </div>
