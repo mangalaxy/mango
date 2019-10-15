@@ -1,7 +1,7 @@
 package com.mangalaxy.mango.controller;
 
 import com.mangalaxy.mango.util.ApiError;
-import com.mangalaxy.mango.util.EntityNotFoundException;
+import com.mangalaxy.mango.util.ResourceNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,8 +35,8 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     return new ResponseEntity<Object>(apiError, HttpStatus.BAD_REQUEST);
   }
 
-  @ExceptionHandler(EntityNotFoundException.class)
-  protected ResponseEntity<Object> handleEntityNotFoundEx(EntityNotFoundException ex, WebRequest request) {
+  @ExceptionHandler(ResourceNotFoundException.class)
+  protected ResponseEntity<Object> handleEntityNotFoundEx(ResourceNotFoundException ex, WebRequest request) {
     ApiError apiError = new ApiError();
     apiError.setHttpStatus(HttpStatus.NOT_FOUND);
     apiError.setMessage("Entity not found");

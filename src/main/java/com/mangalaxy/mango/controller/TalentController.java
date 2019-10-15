@@ -3,7 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.TalentService;
-import com.mangalaxy.mango.util.EntityNotFoundException;
+import com.mangalaxy.mango.util.ResourceNotFoundException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -36,21 +36,15 @@ public class TalentController {
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Talent with given id not found")})
   public ResponseEntity<TalentResponse> getTalentById(
       @ApiParam(value = "Talent id from which talent object will retrieve", required = true)
-      @PathVariable Long talentId) throws EntityNotFoundException {
+      @PathVariable Long talentId) throws ResourceNotFoundException {
     TalentResponse talent = talentService.getTalentById(talentId);
-    if (talent == null) {
-      throw new EntityNotFoundException();
-    }
     return ResponseEntity.ok(talent);
   }
 
   @GetMapping("talents")
   @ApiOperation(value = "Get list of Talents")
-  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable) throws EntityNotFoundException {
+  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable) throws ResourceNotFoundException {
     Page<TalentResponse> talents = talentService.findAll(pageable);
-    if (talents.isEmpty()) {
-      throw new EntityNotFoundException();
-    }
     return ResponseEntity.ok(talents);
   }
 
@@ -70,11 +64,8 @@ public class TalentController {
       @ApiParam(value = "Update talent object", required = true)
       @RequestBody TalentRequest talentRequest,
       @ApiParam(value = "Talent Id to update talent object", required = true)
-      @PathVariable Long talentId) throws EntityNotFoundException {
+      @PathVariable Long talentId) throws ResourceNotFoundException {
     TalentResponse response = talentService.updateTalent(talentRequest, talentId);
-    if (response == null) {
-      throw new EntityNotFoundException();
-    }
     return ResponseEntity.ok(response);
   }
 
@@ -83,7 +74,7 @@ public class TalentController {
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Talent with given id not found")})
   public ResponseEntity<Void> deleteTalent(
       @ApiParam(value = "Talent Id from which talent object will delete from database table", required = true)
-      @PathVariable Long talentId) {
+      @PathVariable Long talentId) throws ResourceNotFoundException {
     talentService.deleteTalent(talentId);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
