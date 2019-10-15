@@ -1,3 +1,4 @@
+// @flow
 import React, {Component, Fragment} from 'react';
 import MainMenu from '../../Components/Main/MainMenu/MainMenu';
 import {Switch, Route} from 'react-router-dom';
@@ -8,10 +9,15 @@ import JobsPage from './Jobs/JobsPage';
 import BlogPage from './Blog/BlogPage';
 import Home from '../../Components/Main/Home/Home';
 import Footer from '../../Components/Main/Footer/Footer';
+import type {Node} from 'react'
 import './Main.scss'
 
-class MainPage extends Component {
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+type Props = {
+  history: Object
+}
+
+class MainPage extends Component<Props> {
+  render(): Node {
     return (
         <Fragment>
           <MainMenu currentPage={this.props.history.location.pathname}/>

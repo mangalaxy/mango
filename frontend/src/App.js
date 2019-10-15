@@ -1,3 +1,4 @@
+//@flow
 import React from 'react';
 import './styles/reset.css';
 import './styles/index.scss';
@@ -10,13 +11,16 @@ import reducer from './Reducers';
 import MainPage from './Containers/Main/MainPage';
 import routes from './constants/routes';
 import Talent from './Containers/Talent/TalentHome';
-import Employer from './Containers/Employer/EmployerHome';
+import Employer from './Containers/Employer/EmployerPage';
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-class App extends React.Component {
+type Props = {};
+type State = {};
 
-  state = {};
+class App extends React.Component <Props, State> {
+  props: Props;
+  state: State = {};
 
   componentDidMount() {
   }

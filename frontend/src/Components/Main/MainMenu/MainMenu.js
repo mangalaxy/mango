@@ -1,19 +1,21 @@
 //@flow
 import React, {PureComponent} from 'react';
+import type{Node} from 'react';
 import {Link} from 'react-router-dom';
 import routes from '../../../constants/routes';
 import './MainMenu.scss';
-// import down from '../../../assets/icons/down.svg'
 
 type Props = {
-  currentPage: string
+  currentPage: string,
 };
+type State = {
+  dropdownVisible: boolean
+}
 
-export default class MainMenu extends PureComponent<Props> {
+export default class MainMenu extends PureComponent<Props, State> {
   props: Props;
-
   state = {
-    dropdownVisible: false,
+    dropdownVisible: false
   };
 
   showMenu = () => {
@@ -23,7 +25,7 @@ export default class MainMenu extends PureComponent<Props> {
     this.setState({dropdownVisible: false});
   };
 
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(): Node {
 
     const {currentPage} = this.props;
     const {dropdownVisible} = this.state;

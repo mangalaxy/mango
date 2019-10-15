@@ -1,43 +1,65 @@
+//@flow
 import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
 import routes from '../../../constants/routes';
+import './EmloyerMenu.scss';
+import type{Node} from 'react';
 
-export default class EmployerMenu extends PureComponent {
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+type Props = {
+  currentPage: string,
+};
+type State = {
+  dropdownVisible: boolean
+}
+
+export default class EmployerMenu extends PureComponent <Props, State>{
+  render(): Node {
+    const {currentPage} = this.props;
     return (
-        <div>
+        <div className='employerMenuContainer'>
           <div>
-            <span>
+            <Link to={routes.EMPLOYERS_HOME} className='logo'>
               Mango
-            </span>
+            </Link>
           </div>
-          <ul>
+          <ul className='menuItemsContainer'>
             <li>
-              <Link to={routes.FOR_TALENTS}>Positions</Link>
+              <Link to={routes.EMPLOYERS_OPEN_POSITIONS}
+                    className={currentPage === routes.FOR_TALENTS ?
+                        'menuItem active' :
+                        'menuItem'}>Positions</Link>
             </li>
             <li>
-              <Link to={routes.FOR_EMPLOYERS}>
+              <Link to={routes.EMPLOYERS_HOME}
+                    className={currentPage === routes.FOR_TALENTS ?
+                        'menuItem active' :
+                        'menuItem'}>
                 Find talent
               </Link>
             </li>
             <li>
-              <Link to={routes.FIND_JOB}>
+              <Link to={routes.EMPLOYERS_HOME}
+                    className={currentPage === routes.FOR_TALENTS ?
+                        'menuItem active' :
+                        'menuItem'}>
                 Bookmarked
               </Link>
             </li>
             <li>
-              <Link to={routes.BLOG}>
+              <Link to={routes.EMPLOYERS_HOME}
+                    className={currentPage === routes.FOR_TALENTS ?
+                        'menuItem active' :
+                        'menuItem'}>
                 Interviews
               </Link>
             </li>
           </ul>
-          <div>
+          <div className='menuItemsContainer'>
             <div>
-              <span>Username</span>
-              <div></div>
+              <span className='menuItem authBlock left'>Username</span>
             </div>
             <div>
-              <span>Sign out</span>
+              <span className='menuItem authBlock' >Sign out</span>
             </div>
           </div>
         </div>
