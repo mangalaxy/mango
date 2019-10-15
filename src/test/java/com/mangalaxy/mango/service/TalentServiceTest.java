@@ -7,6 +7,7 @@ import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.domain.entity.Profile;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.util.ResourceNotFoundException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -76,7 +77,7 @@ public class TalentServiceTest {
   }
 
   @Test
-  public void getTalentByIdTest() {
+  public void getTalentByIdTest() throws ResourceNotFoundException {
     Long expectedId = 1L;
     String expectedEmail = "test@gmai.com";
 
@@ -88,7 +89,7 @@ public class TalentServiceTest {
   }
 
   @Test
-  public void getAllTalentsTest() {
+  public void getAllTalentsTest() throws ResourceNotFoundException {
     int expectedSize = 2;
 
     List<Talent> talents = new ArrayList<>();
@@ -128,7 +129,7 @@ public class TalentServiceTest {
   }
 
   @Test
-  public void updateTalentTest() {
+  public void updateTalentTest() throws ResourceNotFoundException {
     firstMockTalent.setEmail("new-mail@gmail.com");
     LocationRequest locationRequest = LocationRequest.builder()
         .id(1L)
@@ -151,7 +152,7 @@ public class TalentServiceTest {
   }
 
   @Test
-  public void deleteTalentTest() {
+  public void deleteTalentTest() throws ResourceNotFoundException {
     when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
     talentService.deleteTalent(1L);
     verify(talentRepository, times(1)).delete(firstMockTalent);
