@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import EmployerMenu from '../../Components/Employer/EmployerMenu/EmployerMenu';
+import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
 
 class Employer extends Component {
   render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {

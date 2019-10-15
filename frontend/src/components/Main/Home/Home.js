@@ -20,25 +20,25 @@ class Home extends Component {
             </div>
           </section>
 
-          <section className='mission'>
+          <section id='mission'>
             <div className="container">
               <div className="contentRow">
                 <h3>Why choose us</h3>
-                <img src="" alt=""/>
+                {greenDash}
                 <p>The ultimate platform that connects the best talents in IT
                   with topnotch companies in the industry and provides a smooth
                   way for the ideal candidate to join the best organization </p>
               </div>
               <div className="contentRow">
                 <h3>Our mission</h3>
-                <img src="" alt=""/>
+                {greenDash}
                 <p>Making our platform the final place for prompt acquisition of
                   talents by companies according to talent’s tech stack and
                   experience, considering location and market expectations </p>
               </div>
               <div className="contentRow">
                 <h3>What we do</h3>
-                <img src="" alt=""/>
+                {greenDash}
                 <p>For companies: We find the best candidates for your open
                   positions and provide convenient tools from talents’
                   application to taking them onboard
@@ -51,9 +51,23 @@ class Home extends Component {
             </div>
           </section>
 
+          <section id='steps'>
+            <div className="container">
+              <h2>
+                Five easy steps
+              </h2>
+            </div>
+          </section>
+
         </Fragment>
     );
   }
 }
 
 export default Home;
+
+const greenDash = <div className='greenDash'>
+  <svg width="127" height="4" viewBox="0 0 127 4" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0.925293 0.388916H126.103V3.39725H0.925293V0.388916Z" fill="#36B3A8" fillOpacity="0.9"/>
+  </svg>
+</div>;

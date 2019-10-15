@@ -1,14 +1,14 @@
 // @flow
 import React, {Component, Fragment} from 'react';
-import MainMenu from '../../Components/Main/MainMenu/MainMenu';
+import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import {Switch, Route} from 'react-router-dom';
 import routes from '../../constants/routes';
-import ForTalents from '../../Components/Main/ForTalents/ForTalents';
-import ForEmployers from '../../Components/Main/ForEmployers/ForEmployers';
+import ForTalents from '../../components/Main/ForTalents/ForTalents';
+import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
 import JobsPage from './Jobs/JobsPage';
 import BlogPage from './Blog/BlogPage';
-import Home from '../../Components/Main/Home/Home';
-import Footer from '../../Components/Main/Footer/Footer';
+import Home from '../../components/Main/Home/Home';
+import Footer from '../../components/Main/Footer/Footer';
 import type {Node} from 'react'
 import './Main.scss'
 

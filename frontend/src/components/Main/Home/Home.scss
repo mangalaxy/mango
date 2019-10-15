@@ -40,7 +40,9 @@
 
 }
 
-.mission {
+#mission {
+  background-color: #fafafa;
+
   .container {
     margin: 0 20%;
     display: flex;
@@ -50,17 +52,45 @@
 
     .contentRow {
       width: 30%;
-      h3{
-        text-align: center;
+
+      h3 {
+        font-family: $FONT_COMMON;
         font-weight: 600;
+        text-align: center;
         font-size: 28px;
+        margin-top: 1em;
       }
-      p{
+
+      p {
+        font-family: $FONT_COMMON;
         font-size: 16px;
         line-height: 1.5;
-        margin-bottom: 1em;
+        margin: 1em 0;
         color: #4f4f4f;
+        text-align: justify;
       }
+
+      .greenDash {
+        margin-top: 1em;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+#steps {
+  .container {
+    margin-top: 100px;
+
+    h2 {
+      font-family: $FONT_COMMON;
+      font-weight: 600;
+      font-size: 48px;
+      text-align: center;
+      text-transform: uppercase;
+
     }
   }
 }
