@@ -56,6 +56,8 @@ class Home extends Component {
               <h2>
                 Five easy steps
               </h2>
+              {greenDash}
+              {renderStepsDiagram()}
             </div>
           </section>
 
@@ -71,3 +73,38 @@ const greenDash = <div className='greenDash'>
     <path d="M0.925293 0.388916H126.103V3.39725H0.925293V0.388916Z" fill="#36B3A8" fillOpacity="0.9"/>
   </svg>
 </div>;
+
+const renderStepsDiagram = () => {
+  const steps = [
+    {
+      header: 'Registration',
+      text: 'Talents fill up key information about technology stack, desired location and salary expectations',
+    }, {
+      header: 'Application',
+      text: 'After successful registration a candidate expects invitation from multiple companies',
+    }, {
+      header: 'Invitation',
+      text: 'A few vacancies are offered and a candidate is able to choose a proper company for him',
+    }, {
+      header: 'Negotiation',
+      text: 'A candidate has an interview in a chosen company',
+    }, {
+      header: 'Presentation',
+      text: 'Cheers, you nailed it, the job is yours',
+    },
+  ];
+  return (
+      <div className='stepsDiagram'>
+        <div className="flowLine"/>
+        {steps.map((step, index)=>(
+            <div className='outerCircle'>
+              <div className='innerCircle'>
+                <span className="index">
+                {index+1}
+              </span>
+              </div>
+            </div>
+        ))}
+      </div>
+  );
+};

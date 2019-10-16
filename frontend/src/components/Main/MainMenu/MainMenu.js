@@ -1,7 +1,7 @@
 //@flow
 import React, {PureComponent} from 'react';
 import type{Node} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
@@ -15,7 +15,7 @@ type State = {
 export default class MainMenu extends PureComponent<Props, State> {
   props: Props;
   state = {
-    dropdownVisible: false
+    dropdownVisible: false,
   };
 
   showMenu = () => {
@@ -38,35 +38,32 @@ export default class MainMenu extends PureComponent<Props, State> {
           </div>
           <ul className='menuItemsContainer'>
             <li>
-              <Link to={routes.FOR_TALENTS}
-                    className={currentPage === routes.FOR_TALENTS ?
-                        'menuItem active' :
-                        'menuItem'}>
+              <NavLink to={routes.FOR_TALENTS}
+                       activeClassName={'menuItem active'}
+                       className={'menuItem'}>
                 Talents
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={routes.FOR_EMPLOYERS}
-                    className={currentPage === routes.FOR_EMPLOYERS ?
-                        'menuItem active' :
-                        'menuItem'}>
+              <NavLink to={routes.FOR_EMPLOYERS}
+                       activeClassName={'menuItem active'}
+                       className={'menuItem'}>
                 Employers
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={routes.FIND_JOB}
-                    className={currentPage === routes.FIND_JOB ?
-                        'menuItem active' :
-                        'menuItem'}>
+              <NavLink to={routes.FIND_JOB}
+                       activeClassName={'menuItem active'}
+                       className={'menuItem'}>
                 Jobs
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to={routes.BLOG} className={currentPage === routes.BLOG ?
-                  'menuItem active' :
-                  'menuItem'}>
+              <NavLink to={routes.BLOG}
+                       activeClassName={'menuItem active'}
+                       className={'menuItem'}>
                 Blog
-              </Link>
+              </NavLink>
             </li>
           </ul>
           <div className='menuItemsContainer'>
