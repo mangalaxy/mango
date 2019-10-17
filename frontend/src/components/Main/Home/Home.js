@@ -79,32 +79,48 @@ const renderStepsDiagram = () => {
     {
       header: 'Registration',
       text: 'Talents fill up key information about technology stack, desired location and salary expectations',
+      picture: require('../../../assets/images/step1.png'),
     }, {
       header: 'Application',
       text: 'After successful registration a candidate expects invitation from multiple companies',
+      picture: require('../../../assets/images/step2.png'),
     }, {
       header: 'Invitation',
       text: 'A few vacancies are offered and a candidate is able to choose a proper company for him',
+      picture: require('../../../assets/images/step3.png'),
     }, {
       header: 'Negotiation',
       text: 'A candidate has an interview in a chosen company',
+      picture: require('../../../assets/images/step4.png'),
     }, {
       header: 'Presentation',
       text: 'Cheers, you nailed it, the job is yours',
+      picture: require('../../../assets/images/step5.png'),
     },
   ];
   return (
       <div className='stepsDiagram'>
-        <div className="flowLine"/>
-        {steps.map((step, index)=>(
-            <div className='outerCircle'>
-              <div className='innerCircle'>
-                <span className="index">
-                {index+1}
-              </span>
-              </div>
-            </div>
-        ))}
+
+        {steps.map((step, index) => {
+          const right = !(index % 2);
+          return (
+              <Fragment>
+                <div className='outerCircle'>
+                  <div className='innerCircle'>
+                    <span className="index">{index + 1}</span>
+                  </div>
+
+                  <div className={right ? 'horizonLine' : 'horizonLine left'}>
+                    <div className="lineEnd"/>
+                    <h3 className="stepHeader">{step.header}</h3>
+                    <p className={right ? 'stepText' : 'stepText left'}>{step.text}</p>
+                    <img src={step.picture} alt="" className='stepImg'/>
+                  </div>
+                </div>
+                {index !== steps.length - 1 && <div className="flowLine"/>}
+              </Fragment>
+          );
+        })}
       </div>
   );
 };

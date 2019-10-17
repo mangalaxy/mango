@@ -99,13 +99,18 @@
 }
 
 .stepsDiagram {
-  margin: 20px auto;
+  margin: 50px auto;
   max-width: 1260px;
-  height: 550px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
+
+  .flowLine {
+    width: 0;
+    height: 54px;
+    border-right: $COLOR_GREEN dotted 4px;
+  }
 
   .outerCircle {
     background-color: white;
@@ -118,7 +123,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    .innerCircle{
+
+    .innerCircle {
       width: 54px;
       height: 54px;
       box-sizing: border-box;
@@ -127,10 +133,85 @@
       align-items: center;
       background-color: $COLOR_GREEN;
       border-radius: 50%;
-      .index{
+
+      .index {
         font-size: 24px;
         color: white;
       }
+    }
+
+    .horizonLine {
+      height: 0;
+      width: 300px;
+      position: absolute;
+      border: solid 1px $COLOR_GREEN;
+      right: 0;
+      transform: translateX(100%);
+
+      .lineEnd {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: $COLOR_GREEN 2px solid;
+        box-sizing: border-box;
+        position: absolute;
+        right: 0;
+        transform: translateX(100%) translateY(-50%);
+      }
+
+      .stepHeader {
+        position: absolute;
+        top: -8px;
+        right: 5px;
+        transform: translateY(-100%);
+        text-align: right;
+        width: 100%;
+        font-size: 36px;
+        font-weight: 300;
+      }
+
+      .stepText {
+        font-size: 14px;
+        line-height: 1.5em;
+        width: 80%;
+        position: absolute;
+        top: .5em;
+        right: 5px;
+        color: #828282;
+        text-align: right;
+      }
+      .stepImg{
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%) translateX(100%);
+        right: -50px;
+        border-radius: 20px;
+      }
+
+      &.left {
+        left: 0;
+        transform: translateX(-100%);
+
+        .lineEnd {
+          left: 0;
+          transform: translateX(-100%) translateY(-50%);
+        }
+
+        .stepHeader {
+          text-align: left;
+          left: 5px;
+        }
+        .stepText{
+          left: 5px;
+          text-align: left;
+        }
+        .stepImg{
+          transform: translateY(-50%) translateX(-100%);
+          left: -50px;
+        }
+      }
+
+
     }
   }
 }
