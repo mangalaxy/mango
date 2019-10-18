@@ -98,6 +98,7 @@ const renderStepsDiagram = () => {
       picture: require('../../../assets/images/step5.png'),
     },
   ];
+
   return (
       <div className='stepsDiagram'>
 
