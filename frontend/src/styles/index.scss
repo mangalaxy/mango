@@ -14,3 +14,22 @@ h3 {
 p {
   color: $primaryColor;
 }
+
+.actionButton {
+  background-color: $COLOR_CORAL;
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 18px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

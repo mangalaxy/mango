@@ -6,7 +6,6 @@ import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {
-  currentPage: string,
 };
 type State = {
   dropdownVisible: boolean
@@ -27,7 +26,6 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
-    const {currentPage} = this.props;
     const {dropdownVisible} = this.state;
     return (
         <div className={'menuContainer'}>

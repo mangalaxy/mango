@@ -7,7 +7,7 @@
 }
 
 #home-banner {
-  background-image: url("../../../assets/images/homeBG.png");
+  background-image: url("../../../assets/images/MainPage/homeBG.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -82,10 +82,31 @@
     h2 {
       font-family: $FONT_COMMON;
       font-weight: 600;
-      font-size: 48px;
+      font-size: 42px;
       text-align: center;
       text-transform: uppercase;
 
+    }
+  }
+}
+
+#section4 {
+  background-color: $COLOR_BG_LIGHT;
+  display: flex;
+  .image{
+    width: 50%;
+    background-image: url("../../../assets/images/MainPage/section_4_bg.png");
+background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .content{
+    width: 50%;
+    padding: 3em 2em;
+    p{
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 1em;
     }
   }
 }
@@ -166,7 +187,7 @@
         transform: translateY(-100%);
         text-align: right;
         width: 100%;
-        font-size: 36px;
+        font-size: 32px;
         font-weight: 300;
       }
 
@@ -180,7 +201,8 @@
         color: #828282;
         text-align: right;
       }
-      .stepImg{
+
+      .stepImg {
         position: absolute;
         top: 0;
         transform: translateY(-50%) translateX(100%);
@@ -201,11 +223,13 @@
           text-align: left;
           left: 5px;
         }
-        .stepText{
+
+        .stepText {
           left: 5px;
           text-align: left;
         }
-        .stepImg{
+
+        .stepImg {
           transform: translateY(-50%) translateX(-100%);
           left: -50px;
         }

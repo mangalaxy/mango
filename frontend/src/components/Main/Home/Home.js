@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import './Home.scss';
 
 class Home extends Component {
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render() {
     return (
         <Fragment>
           <section className='bannerContainer' id={'home-banner'}>
@@ -24,21 +24,21 @@ class Home extends Component {
             <div className="container">
               <div className="contentRow">
                 <h3>Why choose us</h3>
-                {greenDash}
+                <GreenDash/>
                 <p>The ultimate platform that connects the best talents in IT
                   with topnotch companies in the industry and provides a smooth
                   way for the ideal candidate to join the best organization </p>
               </div>
               <div className="contentRow">
                 <h3>Our mission</h3>
-                {greenDash}
+                <GreenDash/>
                 <p>Making our platform the final place for prompt acquisition of
                   talents by companies according to talent’s tech stack and
                   experience, considering location and market expectations </p>
               </div>
               <div className="contentRow">
                 <h3>What we do</h3>
-                {greenDash}
+                <GreenDash/>
                 <p>For companies: We find the best candidates for your open
                   positions and provide convenient tools from talents’
                   application to taking them onboard
@@ -56,8 +56,19 @@ class Home extends Component {
               <h2>
                 Five easy steps
               </h2>
-              {greenDash}
-              {renderStepsDiagram()}
+              <GreenDash/>
+              <RenderStepsDiagram/>
+            </div>
+          </section>
+
+          <section id='section4'>
+            <div className='image'/>
+            <div className='content'>
+              <p>
+                New interesting projects and teams <br/>
+                are waiting for you!
+              </p>
+              <button className='actionButton'>Apply now</button>
             </div>
           </section>
 
@@ -68,34 +79,34 @@ class Home extends Component {
 
 export default Home;
 
-const greenDash = <div className='greenDash'>
+const GreenDash =()=>( <div className='greenDash'>
   <svg width="127" height="4" viewBox="0 0 127 4" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0.925293 0.388916H126.103V3.39725H0.925293V0.388916Z" fill="#36B3A8" fillOpacity="0.9"/>
   </svg>
-</div>;
+</div>);
 
-const renderStepsDiagram = () => {
+const RenderStepsDiagram =()=> {
   const steps = [
     {
       header: 'Registration',
       text: 'Talents fill up key information about technology stack, desired location and salary expectations',
-      picture: require('../../../assets/images/step1.png'),
+      picture: require('../../../assets/images/MainPage/step1.png'),
     }, {
       header: 'Application',
       text: 'After successful registration a candidate expects invitation from multiple companies',
-      picture: require('../../../assets/images/step2.png'),
+      picture: require('../../../assets/images/MainPage/step2.png'),
     }, {
       header: 'Invitation',
       text: 'A few vacancies are offered and a candidate is able to choose a proper company for him',
-      picture: require('../../../assets/images/step3.png'),
+      picture: require('../../../assets/images/MainPage/step3.png'),
     }, {
       header: 'Negotiation',
       text: 'A candidate has an interview in a chosen company',
-      picture: require('../../../assets/images/step4.png'),
+      picture: require('../../../assets/images/MainPage/step4.png'),
     }, {
       header: 'Presentation',
       text: 'Cheers, you nailed it, the job is yours',
-      picture: require('../../../assets/images/step5.png'),
+      picture: require('../../../assets/images/MainPage/step5.png'),
     },
   ];
 

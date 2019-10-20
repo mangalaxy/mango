@@ -20,7 +20,7 @@ class MainPage extends Component<Props> {
   render(): Node {
     return (
         <Fragment>
-          <MainMenu currentPage={this.props.history.location.pathname}/>
+          <MainMenu />
           <div className="mainPageContent">
             <Switch>
               <Route exact path={routes.HOME} component={Home}/>

@@ -9,3 +9,18 @@ h3 {
 
 p {
   color: #333333; }
+
+.actionButton {
+  background-color: #FF8080;
+  border: none;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 18px;
+  padding: 15px 30px;
+  text-transform: uppercase; }
+
+.actionButton:active, .actionButton:focus {
+  outline: none; }
+
+.actionButton:active {
+  transform: translateY(1px); }
