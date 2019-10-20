@@ -21,7 +21,7 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "skill")
-public class Skill extends AbstractEntity {
+public class Skill extends AuditEntity {
 
   @NotBlank
   @Size(max = 30)

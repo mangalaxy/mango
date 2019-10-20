@@ -1,6 +1,5 @@
-package com.mangalaxy.mango.domain;
+package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +11,15 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
 public class Salary {
 
-  @Column(name = "salary_rate", scale = 2, precision = 7)
-  private BigDecimal annualRate;
+  @Column(name = "amount", scale = 2, precision = 7)
+  private BigDecimal amount;
 
+  @Column(name = "currency")
   private String currency;
 
 }

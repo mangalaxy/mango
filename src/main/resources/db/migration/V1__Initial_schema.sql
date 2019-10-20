@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS company_perks (
 );
 
 CREATE TABLE IF NOT EXISTS location (
-  id          SERIAL       NOT NULL PRIMARY KEY,
+  id          SMALLSERIAL  NOT NULL PRIMARY KEY,
   city        VARCHAR(45)  NOT NULL,
   country     VARCHAR(45)  NOT NULL
 );
@@ -148,8 +148,8 @@ CREATE TABLE IF NOT EXISTS profile_experiences (
 
 CREATE TABLE IF NOT EXISTS talent_languages (
   profile_id    BIGINT       NOT NULL,
-  name          VARCHAR(45)  NOT NULL,
-  level         VARCHAR(45)  NOT NULL,
+  name          VARCHAR(30)  NOT NULL,
+  level         VARCHAR(15)  NOT NULL,
   CONSTRAINT talent_language_fk FOREIGN KEY (profile_id) REFERENCES profile (id)
 );
 
@@ -157,4 +157,30 @@ CREATE TABLE IF NOT EXISTS talent_preferences (
   profile_id    BIGINT       NOT NULL,
   company_type  VARCHAR (60) NOT NULL,
   CONSTRAINT talent_preference_fk FOREIGN KEY (profile_id) REFERENCES profile (id)
+);
+
+CREATE TABLE IF NOT EXISTS topic (
+  id        SERIAL      NOT NULL PRIMARY KEY,
+  title     VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS post (
+  id           SERIAL       NOT NULL PRIMARY KEY,
+  title        VARCHAR(45)  NOT NULL,
+  description  VARCHAR(255) NOT NULL,
+  body         TEXT(5000)   NOT NULL,
+  image_url    VARCHAR(255) NOT NULL,
+  count_views  INT,
+  count_likes  INT,
+  topic_id     INT          NOT NULL,
+  created_by   VARCHAR(60)  NOT NULL,
+  created_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+  last_update  TIMESTAMP WITHOUT TIME ZONE,
+  CONSTRAINT post_topic_fk FOREIGN KEY (topic_id) REFERENCES topic (id)
+);
+
+CREATE TABLE IF NOT EXISTS post_tags (
+  post_id    INT            NOT NULL,
+  tag        VARCHAR (60)   NOT NULL,
+  CONSTRAINT post_tag_fk FOREIGN KEY (post_id) REFERENCES post (id)
 );

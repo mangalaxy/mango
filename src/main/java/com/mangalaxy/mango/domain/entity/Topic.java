@@ -2,40 +2,48 @@ package com.mangalaxy.mango.domain.entity;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import lombok.Setter;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+/**
+ * Represents a blog topic.
+ */
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "topic")
-public class Topic extends AbstractPersistable<Short> {
+public class Topic {
 
-  private String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "topicSeqGenerator")
+  @SequenceGenerator(name = "topicSeqGenerator", sequenceName = "topic_seq", allocationSize = 10)
+  @Column(name = "id", nullable = false, updatable = false)
+  private Integer id;
 
-  @ElementCollection
-  @Column(name = "tag")
-  private List<String> tags;
+  @Column(name = "title", nullable = false)
+  private String title;
 
+  @EqualsAndHashCode.Exclude
   @OneToMany(mappedBy = "topic",
         cascade = { CascadeType.PERSIST, CascadeType.MERGE },
         orphanRemoval = true
   )
-  @EqualsAndHashCode.Exclude
   private Set<Post> posts = new HashSet<>();
 
 }

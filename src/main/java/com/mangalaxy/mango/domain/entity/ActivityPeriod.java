@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.domain;
+package com.mangalaxy.mango.domain.entity;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
