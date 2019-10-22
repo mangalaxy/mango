@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Entity
 @Table(name = "question")
-public class QuestionMessage extends AbstractEntity {
+public class Question extends AbstractEntity {
 
   @NotBlank
   private String message;
@@ -32,5 +32,5 @@ public class QuestionMessage extends AbstractEntity {
 
   @NotBlank
   @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
-  private AnswerMessage answer;
+  private Answer answer;
 }

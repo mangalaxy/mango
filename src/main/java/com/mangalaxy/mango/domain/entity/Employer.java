@@ -100,7 +100,7 @@ public class Employer extends AbstractEntity {
   private Set<Talent> matchedTalents = new HashSet<>();
 
   @OneToMany(mappedBy = "employer", orphanRemoval = true)
-  private List<QuestionMessage> questions;
+  private List<Question> questions;
 
   public void addJob(Job job) {
     openJobs.add(job);

@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @Entity
 @Table(name = "answer")
-public class AnswerMessage extends AbstractEntity {
+public class Answer extends AbstractEntity {
 
   @NotBlank
   private String message;
@@ -22,6 +22,6 @@ public class AnswerMessage extends AbstractEntity {
   @OneToOne
   @MapsId
   @JoinColumn(name = "question_id", nullable = false)
-  private QuestionMessage question;
+  private Question question;
 
 }

@@ -63,6 +63,6 @@ public class Talent extends AbstractEntity {
   private Set<Employer> matchedEmployers;
 
   @OneToMany(mappedBy = "talent")
-  private List<QuestionMessage> questions;
+  private List<Question> questions;
 
 }
