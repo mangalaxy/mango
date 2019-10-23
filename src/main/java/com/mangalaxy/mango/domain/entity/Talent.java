@@ -7,6 +7,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
@@ -63,6 +64,8 @@ public class Talent extends AbstractEntity {
   private Set<Employer> matchedEmployers;
 
   @OneToMany(mappedBy = "talent")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Question> questions;
 
 }

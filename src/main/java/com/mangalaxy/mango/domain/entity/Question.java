@@ -1,7 +1,9 @@
 package com.mangalaxy.mango.domain.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -20,17 +22,21 @@ public class Question extends AbstractEntity {
   @NotBlank
   private String message;
 
-  @NotBlank
   @ManyToOne
   @JoinColumn(name = "employer_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Employer employer;
 
   @NotBlank
   @ManyToOne
   @JoinColumn(name = "talent_id")
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Talent talent;
 
-  @NotBlank
   @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Answer answer;
 }

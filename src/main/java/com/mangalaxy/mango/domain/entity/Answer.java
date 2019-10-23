@@ -1,7 +1,9 @@
 package com.mangalaxy.mango.domain.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -22,6 +24,8 @@ public class Answer extends AbstractEntity {
   @OneToOne
   @MapsId
   @JoinColumn(name = "question_id", nullable = false)
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private Question question;
 
 }

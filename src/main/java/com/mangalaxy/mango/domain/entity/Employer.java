@@ -100,6 +100,8 @@ public class Employer extends AbstractEntity {
   private Set<Talent> matchedTalents = new HashSet<>();
 
   @OneToMany(mappedBy = "employer", orphanRemoval = true)
+  @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   private List<Question> questions;
 
   public void addJob(Job job) {

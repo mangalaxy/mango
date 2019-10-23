@@ -1,19 +1,23 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.dto.request.AnswerRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.AnswerResponse;
+import com.mangalaxy.mango.domain.dto.response.QuestionResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.entity.Answer;
+import com.mangalaxy.mango.domain.entity.Question;
 import com.mangalaxy.mango.domain.entity.Talent;
+import com.mangalaxy.mango.repository.AnswerRepository;
+import com.mangalaxy.mango.repository.QuestionRepository;
 import com.mangalaxy.mango.repository.TalentRepository;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
-import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.nio.file.ReadOnlyFileSystemException;
 
 @RequiredArgsConstructor
 @Service
@@ -22,11 +26,43 @@ public class TalentServiceImpl implements TalentService{
 
   private final TalentRepository talentRepository;
   private final ModelMapper modelMapper;
+  private final QuestionRepository questionRepository;
+  private final AnswerRepository answerRepository;
 
   @Override
   public Talent getPrincipalTalent() {
     Talent currentTalent = talentRepository.findAll().get(0);
     return currentTalent;
+  }
+
+  @Override
+  public Page<QuestionResponse> getTalentQuestions(Long talentId, Pageable pageable) throws ResourceNotFoundException {
+    Talent talentFromDb = talentRepository.findById(talentId).orElseThrow(ResourceNotFoundException::new);
+    Page<Question> questions = questionRepository.findAllByTalent(talentFromDb, pageable);
+    Page<QuestionResponse> chat = questions.map(question -> modelMapper.map(question, QuestionResponse.class));
+    return chat;
+  }
+
+  @Override
+  public QuestionResponse createQuestionForTalent(Long talentId, String text) throws ResourceNotFoundException {
+    Talent talent = talentRepository.findById(talentId).orElseThrow(ResourceNotFoundException::new);
+    Question question = new Question();
+    question.setTalent(talent);
+    question.setMessage(text);
+    Question savedQuestion = questionRepository.save(question);
+    return modelMapper.map(savedQuestion, QuestionResponse.class);
+  }
+
+  @Override
+  public AnswerResponse createAnswerForQuestion(Long questionId, String message) throws ResourceNotFoundException {
+    Question question = questionRepository.findById(questionId).orElseThrow(ResourceNotFoundException::new);
+    Answer answer = new Answer();
+    answer.setMessage(message);
+    answer.setQuestion(question);
+    Answer savedAnswer = answerRepository.save(answer);
+    question.setAnswer(savedAnswer);
+    questionRepository.save(question);
+    return modelMapper.map(savedAnswer, AnswerResponse.class);
   }
 
   @Override

@@ -1,6 +1,9 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.dto.request.AnswerRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.AnswerResponse;
+import com.mangalaxy.mango.domain.dto.response.QuestionResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
@@ -26,6 +29,11 @@ public interface TalentService {
 
   void deleteCurrentTalent();
 
-  public Talent getPrincipalTalent();
+  Talent getPrincipalTalent();
 
+  Page<QuestionResponse> getTalentQuestions(Long talentId, Pageable pageable) throws ResourceNotFoundException;
+
+  QuestionResponse createQuestionForTalent(Long talentId, String text) throws ResourceNotFoundException;
+
+  AnswerResponse createAnswerForQuestion(Long questionId, String message) throws ResourceNotFoundException;
 }

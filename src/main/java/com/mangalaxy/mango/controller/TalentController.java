@@ -1,6 +1,9 @@
 package com.mangalaxy.mango.controller;
 
+import com.mangalaxy.mango.domain.dto.request.AnswerRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.response.AnswerResponse;
+import com.mangalaxy.mango.domain.dto.response.QuestionResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.TalentService;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
@@ -98,5 +101,23 @@ public class TalentController {
   public ResponseEntity<Void> deleteCurrentTalent() {
     talentService.deleteCurrentTalent();
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+  }
+
+  @GetMapping("talents/{id}/chat")
+  public ResponseEntity<Page<QuestionResponse>> getTalentQuestions(@PathVariable Long id, Pageable pageable) throws ResourceNotFoundException {
+    Page<QuestionResponse> chat = talentService.getTalentQuestions(id, pageable);
+    return ResponseEntity.ok(chat);
+  }
+
+  @PostMapping("talents/{id}/chat")
+  public ResponseEntity<QuestionResponse> createQuestionForTalent(@PathVariable Long id, @RequestBody String text) throws ResourceNotFoundException {
+    QuestionResponse response = talentService.createQuestionForTalent(id, text);
+    return new ResponseEntity<>(response, HttpStatus.CREATED);
+  }
+
+  @PostMapping("talents/{id}/chat/questions/{questionId}/answers")
+  public ResponseEntity<AnswerResponse> createAnswerForQuestion(@PathVariable Long questionId, @RequestBody String message) throws ResourceNotFoundException {
+    AnswerResponse response = talentService.createAnswerForQuestion(questionId, message);
+    return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 }

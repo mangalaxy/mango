@@ -13,3 +13,6 @@ INSERT INTO employer (id, created_date, last_update, full_name, email, password,
 INSERT INTO job (id, created_date, last_update, title, location_id, job_role, employer_id) VALUES (1, '2019-08-21 14:00:00', '2019-08-21 14:01:00', 'Java Developer', 1, 'role1', 1);
 INSERT INTO job (id, created_date, last_update, title, location_id, job_role, employer_id) VALUES (2, '2019-08-21 14:00:00', '2019-08-21 14:01:00', 'JS Developer', 2, 'role2', 1);
 INSERT INTO job (id, created_date, last_update, title, location_id, job_role, employer_id) VALUES (3, '2019-08-21 14:00:00', '2019-08-21 14:01:00', 'Front End', 1, 'role2', 2);
+
+INSERT INTO question (id, created_date, last_update, message, talent_id) VALUES (1, '2019-03-12 14:00:00', '2019-03-13 14:01:00', 'Some question 1', 1);
+INSERT INTO question (id, created_date, last_update, message, talent_id) VALUES (2, '2019-03-12 14:00:00', '2019-03-13 14:01:00', 'Some question 2', 1);
