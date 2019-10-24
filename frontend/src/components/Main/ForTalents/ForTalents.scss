@@ -1,0 +1,15 @@
+@import '../../../styles/_variables.scss';
+
+#for-talent-banner {
+  background-image: url("../../../assets/images/main_talent_bg.png");
+.bannerContent{
+  margin-left: 40%;
+}
+  h1 {
+    text-align: left;
+  }
+
+  li {
+    color: #FFFFFF;
+  }
+}

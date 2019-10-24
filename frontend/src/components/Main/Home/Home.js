@@ -44,6 +44,7 @@ class Home extends Component {
       autoplay: true,
       autoplaySpeed: 4000,
     };
+    
     return (
         <Fragment>
           <section className='bannerContainer' id={'home-banner'}>
@@ -141,7 +142,7 @@ class Home extends Component {
             <h2 className="mainHeaderH2">Our partners</h2>
             <GreenDash/>
             <div className="partnersContainer">
-              {partnersImages.map(path=> <img src={path} alt=""/>)}
+              {partnersImages.map(path => <img src={path} alt=""/>)}
             </div>
           </section>
 
@@ -252,10 +253,10 @@ const cities = [
 ];
 
 const partnersImages = [
-    "/images/partners/aurea.png",
-    "/images/partners/bcl.jpg",
-    "/images/partners/upl.png",
-    "/images/partners/webelect.png",
+  '/images/partners/aurea.png',
+  '/images/partners/bcl.jpg',
+  '/images/partners/upl.png',
+  '/images/partners/webelect.png',
 ];
 
 const CityCard = (props) => {

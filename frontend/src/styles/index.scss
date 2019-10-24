@@ -15,12 +15,48 @@ p {
   color: $primaryColor;
 }
 
-.mainHeaderH2{
+.mainHeaderH2 {
   font-family: $FONT_COMMON;
   font-weight: 600;
   font-size: 40px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.bannerContainer {
+  min-height: 100px;
+  overflow: hidden;
+  background-color: #4f4f4f;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
+  .bannerContent {
+    color: #FDFDFD;
+    padding: 200px 100px 200px;
+
+    h1 {
+      font-family: $FONT_COMMON;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 52px;
+      line-height: 78px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-family: $FONT_COMMON;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 39px;
+      text-align: center;
+      width: 50%;
+      margin: 40px auto;
+    }
+  }
 }
 
 .actionButton {

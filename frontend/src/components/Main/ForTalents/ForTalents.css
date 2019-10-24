@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+#for-talent-banner {
+  background-image: url("../../../assets/images/main_talent_bg.png"); }
+
+#for-talent-banner .bannerContent {
+  margin-left: 40%; }
+
+#for-talent-banner h1 {
+  text-align: left; }
+
+#for-talent-banner li {
+  color: #FFFFFF; }

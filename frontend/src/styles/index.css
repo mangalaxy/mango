@@ -17,6 +17,37 @@ p {
   text-align: center;
   text-transform: uppercase; }
 
+.bannerContainer {
+  min-height: 100px;
+  overflow: hidden;
+  background-color: #4f4f4f;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; }
+
+.bannerContainer .bannerContent {
+  color: #FDFDFD;
+  padding: 200px 100px 200px; }
+
+.bannerContainer .bannerContent h1 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 78px;
+  text-align: center;
+  text-transform: uppercase; }
+
+.bannerContainer .bannerContent h4 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  width: 50%;
+  margin: 40px auto; }
+
 .actionButton {
   background-color: #FF8080;
   border: #FF8080 2px solid;

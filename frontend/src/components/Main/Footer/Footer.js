@@ -4,7 +4,7 @@ import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
 
 export default class Footer extends PureComponent {
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+  render(){
     return (
         <div className='footer'>
           <Link to={routes.HOME} className='logo'>Mango</Link>
