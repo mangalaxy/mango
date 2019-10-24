@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   background-color: black;
-  padding: 40px 60px 100px; }
+  padding: 40px 60px 40px; }
 
 .footer .logo {
   text-decoration: none;
@@ -13,12 +13,6 @@
   line-height: 20px;
   width: 25%; }
 
-.footer .itemsGroup {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  margin-bottom: 40px; }
-
 .footer .menuItem {
   font-family: "Monserrat", sans-serif;
   font-size: 18px;
@@ -27,6 +21,24 @@
   margin-right: 60px;
   text-decoration: none;
   line-height: 20px; }
+
+.footer .menuItemsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.footer .itemsGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 50px;
+  margin-bottom: 20px; }
+
+.footer .itemsGroup .menuItem {
+  font-size: 12px;
+  font-weight: 300;
+  opacity: .8; }
 
 .footer .copyright {
   font-size: 12px;

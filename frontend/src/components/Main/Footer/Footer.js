@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import './Footer.scss';
-import {Link} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
 
 export default class Footer extends PureComponent {
@@ -9,6 +9,37 @@ export default class Footer extends PureComponent {
         <div className='footer'>
           <Link to={routes.HOME} className='logo'>Mango</Link>
           <div>
+            <ul className='menuItemsContainer'>
+              <li>
+                <NavLink to={routes.FOR_TALENTS}
+                         activeClassName={'menuItem active'}
+                         className={'menuItem'}>
+                  Talents
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={routes.FOR_EMPLOYERS}
+                         activeClassName={'menuItem active'}
+                         className={'menuItem'}>
+                  Employers
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={routes.FIND_JOB}
+                         activeClassName={'menuItem active'}
+                         className={'menuItem'}>
+                  Jobs
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to={routes.BLOG}
+                         activeClassName={'menuItem active'}
+                         className={'menuItem'}>
+                  Blog
+                </NavLink>
+              </li>
+            </ul>
+
             <ul className='itemsGroup'>
               <li>
                 <Link to={routes.ABOUT_AS} className='menuItem'>

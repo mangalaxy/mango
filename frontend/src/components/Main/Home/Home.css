@@ -33,6 +33,11 @@
   width: 50%;
   margin: 40px auto; }
 
+#home-banner .bannerContent .buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
 #mission {
   background-color: #fafafa; }
 
@@ -64,13 +69,6 @@
 #steps .container {
   margin-top: 100px; }
 
-#steps .container h2 {
-  font-family: "Monserrat", sans-serif;
-  font-weight: 600;
-  font-size: 42px;
-  text-align: center;
-  text-transform: uppercase; }
-
 #section4 {
   background-color: #fafafa;
   display: flex; }
@@ -90,6 +88,50 @@
   font-size: 20px;
   line-height: 30px;
   margin-bottom: 1em; }
+
+#jobRoles {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+#jobRoles .cardContainer {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#techCenters {
+  background-color: #fafafa;
+  padding: 40px; }
+
+#techCenters .citiesCarouselContainer {
+  width: 904px;
+  margin: 40px auto; }
+
+#partners {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+#partners .partnersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#partners .partnersContainer img {
+  width: 120px;
+  margin: 20px 30px;
+  filter: grayscale(1);
+  opacity: .8;
+  transition: all 400ms; }
+
+#partners .partnersContainer img:hover {
+  filter: grayscale(0);
+  opacity: 1; }
 
 .greenDash {
   margin-top: 1em;
@@ -201,3 +243,61 @@
 .stepsDiagram .outerCircle .horizonLine.left .stepImg {
   transform: translateY(-50%) translateX(-100%);
   left: -50px; }
+
+.jobCardMain {
+  min-height: 300px;
+  width: 310px;
+  border: 1px solid #DCE4E2;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+  margin: 0 32px; }
+
+.jobCardMain h3 {
+  font-size: 24px;
+  padding: .5em 20px;
+  white-space: nowrap; }
+
+.jobCardMain span {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding: 0 20px; }
+
+.jobCardMain .imageContainer {
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  margin: 1em 0 2em; }
+
+.jobCardMain .imageContainer img {
+  width: 100%;
+  position: center; }
+
+.cityContainer {
+  height: 300px;
+  width: 300px;
+  border: none;
+  margin: 2px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; }
+
+.cityContainer h3 {
+  color: white;
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 10; }
+
+.cityContainer img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 500ms; }
+
+.cityContainer img:hover {
+  filter: brightness(1.2); }
