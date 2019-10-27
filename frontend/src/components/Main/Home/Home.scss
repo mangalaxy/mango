@@ -109,27 +109,26 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
 
-  .partnersContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.partnersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    img {
-      width: 120px;
-      margin: 20px 30px;
-      filter: grayscale(1);
-      opacity: .8;
-      transition: all 400ms;
+  img {
+    width: 120px;
+    margin: 20px 30px;
+    filter: grayscale(1);
+    opacity: .8;
+    transition: all 400ms;
 
-      &:hover {
-        filter: grayscale(0);
-        opacity: 1;
-      }
+    &:hover {
+      filter: grayscale(0);
+      opacity: 1;
     }
   }
 }
-
 .greenDash {
   margin-top: 1em;
   width: 100%;

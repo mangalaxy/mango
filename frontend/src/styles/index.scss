@@ -17,10 +17,20 @@ p {
 
 .mainHeaderH2 {
   font-family: $FONT_COMMON;
+  color: $primaryColor;
   font-weight: 600;
   font-size: 40px;
   text-align: center;
   text-transform: uppercase;
+}
+
+.mainHeaderH3{
+  font-family: $FONT_COMMON;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $primaryColor;
+  text-align: center;
+  font-size: 26px;
 }
 
 .bannerContainer {

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .menuContainer {
   position: absolute;
   top: 0;
@@ -8,7 +9,8 @@
   width: 100%;
   align-items: center;
   padding: 10px 30px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  z-index: 100; }
   .menuContainer .logo {
     text-transform: uppercase;
     font-size: 48px;

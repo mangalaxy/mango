@@ -141,9 +141,7 @@ class Home extends Component {
           <section id='partners'>
             <h2 className="mainHeaderH2">Our partners</h2>
             <GreenDash/>
-            <div className="partnersContainer">
-              {partnersImages.map(path => <img src={path} alt=""/>)}
-            </div>
+            <Partners/>
           </section>
 
         </Fragment>
@@ -153,7 +151,7 @@ class Home extends Component {
 
 export default Home;
 
-const GreenDash = () => (<div className='greenDash'>
+export const GreenDash = () => (<div className='greenDash'>
   <svg width="127" height="4" viewBox="0 0 127 4" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0.925293 0.388916H126.103V3.39725H0.925293V0.388916Z" fill="#36B3A8" fillOpacity="0.9"/>
   </svg>
@@ -258,6 +256,12 @@ const partnersImages = [
   '/images/partners/upl.png',
   '/images/partners/webelect.png',
 ];
+
+export const Partners = () =>(
+    <div className="partnersContainer">
+      {partnersImages.map(path => <img src={path} alt=""/>)}
+    </div>
+);
 
 const CityCard = (props) => {
   const {city} = props;

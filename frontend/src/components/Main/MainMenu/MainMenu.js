@@ -1,12 +1,11 @@
 //@flow
 import React, {PureComponent} from 'react';
-import type{Node} from 'react';
+import type {Node} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
-type Props = {
-};
+type Props = {};
 type State = {
   dropdownVisible: boolean
 }
