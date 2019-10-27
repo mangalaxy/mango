@@ -1,0 +1,47 @@
+@import '../../../styles/_variables.scss';
+
+#for-employers-banner {
+  background-image: url("../../../assets/images/main_employers_bg.png");
+  position: relative;
+
+  .bannerContent {
+    margin-left: 40%;
+  }
+}
+
+#market {
+  padding: 3em 0 2em;
+  display: block;
+
+  .mapContainer {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .markers {
+      position: absolute;
+      width: 74%;
+      left: 12.26%;
+      top: 30%;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f;
+  }
+  .actionButton{
+    margin: 1em auto;
+    display: block;
+  }
+}
+
+#how-works{
+  padding: 3em;
+  background-color: $COLOR_BG_LIGHT;
+}

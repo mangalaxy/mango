@@ -20,24 +20,6 @@
   color: #f2f2f2;
   transform: translateZ(0); }
 
-#for-talent-banner li {
-  color: #f2f2f2;
-  margin: 1em 0 1em 1em;
-  position: relative;
-  font-size: 20px;
-  line-height: 1.1em; }
-
-#for-talent-banner li:before {
-  content: ' ';
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  display: inline-block;
-  background-color: #f2f2f2;
-  left: -1em;
-  top: 0.5em;
-  transform: translateY(-50%); }
-
 #our-help {
   padding: 0;
   display: flex;
