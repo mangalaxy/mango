@@ -26,6 +26,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -97,6 +98,9 @@ public class Employer extends AbstractEntity {
         inverseJoinColumns = {@JoinColumn(name = "talent_id")})
   @ToString.Exclude
   private Set<Talent> matchedTalents = new HashSet<>();
+
+  @OneToMany(mappedBy = "employer", orphanRemoval = true)
+  private List<Question> questions;
 
   public void addJob(Job job) {
     openJobs.add(job);

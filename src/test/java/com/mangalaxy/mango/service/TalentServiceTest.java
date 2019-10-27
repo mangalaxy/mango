@@ -143,6 +143,8 @@ public class TalentServiceTest {
         .fullName("Ilon Mask")
         .location(locationRequest)
         .build();
+
+    Mockito.when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
 
     TalentResponse updatedTalent = talentService.updateTalent(talentRequest, 1L);
