@@ -22,26 +22,6 @@
     color: $COLOR_MENU_LIGHT;
     transform: translateZ(0);
   }
-
-  li {
-    color: $COLOR_MENU_LIGHT;
-    margin: 1em 0 1em 1em;
-    position: relative;
-    font-size: 20px;
-    line-height: 1.1em;
-
-    &:before {
-      content: ' ';
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      display: inline-block;
-      background-color: $COLOR_MENU_LIGHT;
-      left: -1em;
-      top: 0.5em;
-      transform: translateY(-50%);
-    }
-  }
 }
 
 #our-help {
@@ -53,29 +33,6 @@
   .contentBox {
     width: 560px;
     padding: 3em 0;
-
-    //ul {
-    //  margin: 1em;
-    //
-    //  li {
-    //    line-height: 1.5em;
-    //    margin: 2em 1em 1em 2em;
-    //    color: #828282;
-    //    font-size: 14px;
-    //    position: relative;
-    //
-    //    &:before {
-    //      content: ' ';
-    //      position: absolute;
-    //      width: 19px;
-    //      height: 14px;
-    //      background: url("../../../assets/icons/check.svg");
-    //      background-size: contain;
-    //      left: -2em;
-    //      top: 3px;
-    //    }
-    //  }
-    //}
   }
 
   .imageContainer {
@@ -119,30 +76,33 @@
   .contentContainer {
     width: 400px;
     padding: 3em 0;
-    p{
+
+    p {
       margin: 2em 0;
       line-height: 1.5em;
       color: #828282;
     }
   }
-  .imageContainer{
-    img{
+
+  .imageContainer {
+    img {
       height: 450px;
     }
   }
 }
 
-#why-trusted{
+#why-trusted {
   display: flex;
   flex-direction: column;
   align-items: center;
-  ul{
+
+  ul {
     width: 400px;
   }
 }
 
 #our-help,
-#why-trusted{
+#why-trusted {
   ul {
     margin: 1em;
 
@@ -167,6 +127,6 @@
   }
 }
 
-#global{
+#global {
   padding-top: 3em;
 }

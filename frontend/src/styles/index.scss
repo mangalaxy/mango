@@ -3,7 +3,6 @@
 body {
   margin: 0;
   padding: 0;
-
   font-family: $FONT_COMMON;
 }
 
@@ -24,7 +23,7 @@ p {
   text-transform: uppercase;
 }
 
-.mainHeaderH3{
+.mainHeaderH3 {
   font-family: $FONT_COMMON;
   font-weight: 600;
   text-transform: uppercase;
@@ -65,6 +64,26 @@ p {
       text-align: center;
       width: 50%;
       margin: 40px auto;
+    }
+
+    li {
+      color: $COLOR_MENU_LIGHT;
+      margin: 1em 0 1em 1em;
+      position: relative;
+      font-size: 20px;
+      line-height: 1.1em;
+
+      &:before {
+        content: ' ';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        background-color: $COLOR_MENU_LIGHT;
+        left: -1em;
+        top: 0.5em;
+        transform: translateY(-50%);
+      }
     }
   }
 }
