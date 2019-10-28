@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+.footer {
+  display: flex;
+  align-items: flex-start;
+  background-color: black;
+  padding: 40px 60px 40px; }
+  .footer .logo {
+    text-decoration: none;
+    color: #FF8080;
+    font-family: "Carter One", cursive;
+    font-size: 40px;
+    line-height: 20px;
+    width: 25%; }
+  .footer .menuItem {
+    font-family: "Monserrat", sans-serif;
+    font-size: 18px;
+    color: #f2f2f2;
+    text-transform: uppercase;
+    margin-right: 60px;
+    text-decoration: none;
+    line-height: 20px; }
+  .footer .menuItemsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; }
+  .footer .itemsGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 50px;
+    margin-bottom: 20px; }
+    .footer .itemsGroup .menuItem {
+      font-size: 12px;
+      font-weight: 300;
+      opacity: .8; }
+  .footer .copyright {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FFFFFF;
+    opacity: .4; }
