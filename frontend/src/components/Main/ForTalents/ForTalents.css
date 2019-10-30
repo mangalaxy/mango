@@ -13,7 +13,8 @@
   box-sizing: border-box; }
 
 #for-talent-banner .bannerContent {
-  margin-left: 40%; }
+  margin-left: 40%;
+  max-width: 30%; }
 
 #for-talent-banner h1 {
   text-align: left;

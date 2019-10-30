@@ -4,7 +4,11 @@ import type {Node} from 'react';
 import './ForTalents.scss';
 import {GreenDash, Partners} from '../Home/Home';
 
-class ForTalents extends Component {
+type Props = {}
+
+class ForTalents extends Component <Props>{
+  props:Props;
+
   render(): Node {
     return (
         <Fragment>
