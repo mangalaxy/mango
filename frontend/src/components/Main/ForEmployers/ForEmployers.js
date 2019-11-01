@@ -61,6 +61,7 @@ const WorksDiagram = () => {
   ];
   return (<div className='worksDiagramContainer'>
     {data.map((item, index) => (
+        <Fragment>
         <div className="outerCircle" style={{top: `${item.y}%`, left: `${item.x}%`}}>
           <div className="innerCircle">
             <span className='order'>
@@ -71,12 +72,19 @@ const WorksDiagram = () => {
                           index % 2 ? 'calc(-50% - 40px)' : 'calc(50% + 40px)'
                       })`,
                     }}
+
               >
                 {item.text}
               </span>
           </span>
           </div>
         </div>
+          {index<data.length - 1 &&
+          <svg height="100%" width="100%"
+               style={{position:'absolute', left:`0`, top:`0`}}>
+            <line x1={`${item.x}%`} y1={`${item.y}%`} x2={`${data[index + 1].x}%`} y2={`${data[index + 1].y}%`} stroke='#000aaa'/>
+          </svg>}
+        </Fragment>
     ))}
   </div>);
 };
