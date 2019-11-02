@@ -1,0 +1,117 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+#about-banner {
+  background-image: url("../../../assets/images/main_about_bg.png");
+  position: relative; }
+
+#about-banner .imageFilter {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  box-sizing: border-box; }
+
+#about-banner .bannerContent {
+  margin-left: 20%;
+  padding: 100px; }
+
+#about-banner h1 {
+  text-align: left;
+  color: #f2f2f2;
+  transform: translateZ(0); }
+
+#what-we-do .contentContainer,
+#mission .contentContainer {
+  width: 50%; }
+
+#what-we-do .contentContainer .greenDash,
+#mission .contentContainer .greenDash {
+  margin-bottom: 2em; }
+
+#what-we-do .contentContainer .row,
+#mission .contentContainer .row {
+  display: flex;
+  width: 100%; }
+
+#what-we-do .contentContainer .row .iconContainer,
+#mission .contentContainer .row .iconContainer {
+  width: 60px;
+  min-width: 60px; }
+
+#what-we-do .contentContainer .row .iconContainer img,
+#mission .contentContainer .row .iconContainer img {
+  max-height: 40px; }
+
+#what-we-do .contentContainer .row .rowContent h4,
+#mission .contentContainer .row .rowContent h4 {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Monserrat", sans-serif; }
+
+#what-we-do .contentContainer .row .rowContent p,
+#mission .contentContainer .row .rowContent p {
+  padding: 1em 0 2em;
+  font-size: 16px;
+  font-family: "Monserrat", sans-serif; }
+
+#what-we-do .imageContainer,
+#mission .imageContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end; }
+
+#what-we-do .imageContainer img,
+#mission .imageContainer img {
+  height: auto;
+  max-width: 500px;
+  width: 100%; }
+
+#numbers .container,
+#what-we-do .container,
+#mission .container {
+  display: flex;
+  max-width: 1200px;
+  margin: 3em auto 0;
+  padding: 0 20px;
+  justify-content: space-between; }
+
+#numbers {
+  background-color: #f2f2f2;
+  padding-top: 1em;
+  padding-bottom: 4em; }
+
+#numbers .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(54, 179, 168, 0.9); }
+
+#numbers .column .iconContainer {
+  height: 60px; }
+
+#numbers .column .iconContainer img {
+  max-height: 40px; }
+
+#numbers .column h3 {
+  font-weight: bold;
+  font-size: 58px;
+  line-height: 72px;
+  color: rgba(54, 179, 168, 0.9); }
+
+#numbers .column span {
+  font-size: 22px;
+  text-align: center; }
+
+#mission {
+  background-color: #fff; }
+
+#mission .imageContainer {
+  align-items: center; }
+
+#mission .imageContainer img {
+  height: auto;
+  max-width: 320px;
+  width: 100%; }
