@@ -1,0 +1,130 @@
+@import '../../../styles/_variables.scss';
+
+.menuContainer {
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 10px 30px;
+  box-sizing: border-box;
+  z-index: 100;
+
+  .logo {
+    text-transform: uppercase;
+    font-size: 48px;
+    letter-spacing: .1em;
+    font-family: $FONT_LOGO;
+    color: $COLOR_CORAL;
+    text-decoration: none;
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .menuItemsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menuItem {
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: $COLOR_MENU_LIGHT;
+    font-family: $FONT_MENU;
+    font-size: 18px;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0 18px;
+
+    &.active {
+      color: $COLOR_CORAL;
+    }
+
+    &:active,
+    &:focus {
+      outline: none;
+    }
+
+    &:hover {
+      transform: scaleX(1.02) scaleY(1.04);
+    }
+  }
+
+  .authBlock {
+    padding: 5px 9px;
+    margin: 0;
+    position: relative;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      transform: none;
+      color: $COLOR_CORAL;
+
+      .down {
+        path {
+          fill: $COLOR_CORAL;
+        }
+      }
+    }
+
+    .down {
+      position: absolute;
+      top: 50%;
+      right: -17px;
+      transform: translateY(-50%);
+      transition: all 0.5s;
+
+      &.active {
+        transform: translateY(-50%) rotateZ(180deg);
+      }
+    }
+
+    .dropdownMenu {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      transform: translateY(100%);
+      background-color: #FFFFFF;
+      opacity: .8;
+      padding: 0;
+      color: $COLOR_MENU_DARK;
+      text-transform: capitalize;
+      transition: all .4s;
+
+      li {
+        padding: 5px 5px;
+        margin: 7px 0;
+        border-left: 2px solid transparent;
+        transition: all .5s;
+
+        &:hover {
+          border-left: 2px solid $COLOR_CORAL;
+          color: black;
+        }
+      }
+
+      &.hidden {
+        //display: none;
+        transform: rotateX(90deg) translateY(100%);
+        bottom: -50px;
+        opacity: 0;
+      }
+
+
+    }
+
+    &.left {
+      border-right: solid 1px $COLOR_MENU_LIGHT;
+
+    }
+  }
+}

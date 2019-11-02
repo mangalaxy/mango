@@ -162,6 +162,7 @@ public class EmployerServiceTest {
         .location(locationRequest)
         .build();
 
+    Mockito.when(employerRepository.findById(expectedId)).thenReturn(java.util.Optional.of(firstMockEmployer));
     Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
     EmployerResponse response = employerService.updateEmployer(employerRequest, expectedId);
 
