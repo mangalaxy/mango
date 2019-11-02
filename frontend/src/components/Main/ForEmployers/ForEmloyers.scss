@@ -6,7 +6,7 @@
 
   .bannerContent {
     margin-left: 40%;
-    max-width: 30%;
+    max-width: 40%;
   }
 
   h1 {
@@ -69,7 +69,8 @@
     background: transparent;
     border: $COLOR_GREEN 2px solid;
     transform: translateY(-50%);
-    .innerCircle{
+
+    .innerCircle {
       width: 40px;
       height: 40px;
       border-radius: 50%;
@@ -78,11 +79,13 @@
       justify-content: center;
       align-items: center;
       background-color: $COLOR_GREEN;
-      .order{
+
+      .order {
         color: #FFFFFF;
         font-size: 20px;
         position: relative;
-        .pointHeader{
+
+        .pointHeader {
           position: absolute;
           left: 50%;
           color: $COLOR_MENU_DARK;
@@ -92,5 +95,53 @@
         }
       }
     }
+  }
+}
+
+#price {
+  background: url("../../../assets/images/balance.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textContainer {
+    min-width: 100px;
+    margin: 5em 0 20em;
+    display: inline-block;
+  }
+
+  h3, p {
+    color: $COLOR_MENU_LIGHT;
+  }
+
+  h3 {
+    font-size: 46px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  p {
+    width: 40%;
+    font-size: 24px;
+    margin-left: 1em;
+    margin-top: 1em;
+    line-height: 1.2em;
+  }
+}
+
+#say-hello {
+  padding: 2em;
+
+  h4 {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f;
+  }
+
+  .actionButton {
+    margin: 20px auto;
+    display: block;
   }
 }
