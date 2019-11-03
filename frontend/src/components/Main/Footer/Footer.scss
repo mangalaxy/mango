@@ -1,0 +1,54 @@
+@import '../../../styles/_variables.scss';
+
+.footer {
+  display: flex;
+  align-items: flex-start;
+  background-color: black;
+  padding: 40px 60px 40px;
+
+  .logo {
+    text-decoration: none;
+    color: $COLOR_CORAL;
+    font-family: $FONT_LOGO;
+    font-size: 40px;
+    line-height: 20px;
+    width: 25%;
+  }
+  .menuItem {
+    font-family: $FONT_MENU;
+    font-size: 18px;
+    color: $COLOR_MENU_LIGHT;
+    text-transform: uppercase;
+    margin-right: 60px;
+    text-decoration: none;
+    line-height: 20px;
+  }
+  .menuItemsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .itemsGroup {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    .menuItem{
+      font-size: 12px;
+      font-weight: 300;
+      opacity: .8;
+    }
+  }
+
+
+
+  .copyright {
+    font-size: 12px;
+    font-weight: 300;
+    color: #FFFFFF;
+    opacity: .4;
+  }
+}

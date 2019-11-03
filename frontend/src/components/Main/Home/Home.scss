@@ -1,0 +1,324 @@
+@import '../../../styles/_variables.scss';
+
+#home-banner {
+  background-image: url("../../../assets/images/MainPage/homeBG.png");
+  .buttonsContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button {
+      margin: 0 20px;
+    }
+  }
+}
+
+#mission {
+  background-color: #fafafa;
+
+  .container {
+    margin: 0 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .contentRow {
+      width: 30%;
+
+      h3 {
+        font-family: $FONT_COMMON;
+        font-weight: 600;
+        text-align: center;
+        font-size: 28px;
+        margin-top: 1em;
+      }
+
+      p {
+        font-family: $FONT_COMMON;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 1em 0;
+        color: #4f4f4f;
+        text-align: justify;
+      }
+
+
+    }
+  }
+}
+
+#steps {
+  .container {
+    margin-top: 100px;
+  }
+}
+
+#section4 {
+  background-color: $COLOR_BG_LIGHT;
+  display: flex;
+
+  .image {
+    width: 50%;
+    background-image: url("../../../assets/images/MainPage/section_4_bg.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .content {
+    width: 50%;
+    padding: 3em 2em;
+
+    p {
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+#jobRoles {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .cardContainer {
+    padding: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+#techCenters {
+  background-color: $COLOR_BG_LIGHT;
+  padding: 40px;
+
+  .citiesCarouselContainer {
+    width: 904px;
+    margin: 40px auto;
+  }
+}
+
+#partners {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.partnersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 120px;
+    margin: 20px 30px;
+    filter: grayscale(1);
+    opacity: .8;
+    transition: all 400ms;
+
+    &:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+  }
+}
+.greenDash {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stepsDiagram {
+  margin: 50px auto;
+  max-width: 1260px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  .flowLine {
+    width: 0;
+    height: 54px;
+    border-right: $COLOR_GREEN dotted 4px;
+  }
+
+  .outerCircle {
+    background-color: white;
+    height: 76px;
+    width: 76px;
+    box-sizing: border-box;
+    border: solid 2px $COLOR_GREEN;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .innerCircle {
+      width: 54px;
+      height: 54px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $COLOR_GREEN;
+      border-radius: 50%;
+
+      .index {
+        font-size: 24px;
+        color: white;
+      }
+    }
+
+    .horizonLine {
+      height: 0;
+      width: 300px;
+      position: absolute;
+      border: solid 1px $COLOR_GREEN;
+      right: 0;
+      transform: translateX(100%);
+
+      .lineEnd {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: $COLOR_GREEN 2px solid;
+        box-sizing: border-box;
+        position: absolute;
+        right: 0;
+        transform: translateX(100%) translateY(-50%);
+      }
+
+      .stepHeader {
+        position: absolute;
+        top: -8px;
+        right: 5px;
+        transform: translateY(-100%);
+        text-align: right;
+        width: 100%;
+        font-size: 32px;
+        font-weight: 300;
+      }
+
+      .stepText {
+        font-size: 14px;
+        line-height: 1.5em;
+        width: 80%;
+        position: absolute;
+        top: .5em;
+        right: 5px;
+        color: #828282;
+        text-align: right;
+      }
+
+      .stepImg {
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%) translateX(100%);
+        right: -50px;
+        border-radius: 20px;
+      }
+
+      &.left {
+        left: 0;
+        transform: translateX(-100%);
+
+        .lineEnd {
+          left: 0;
+          transform: translateX(-100%) translateY(-50%);
+        }
+
+        .stepHeader {
+          text-align: left;
+          left: 5px;
+        }
+
+        .stepText {
+          left: 5px;
+          text-align: left;
+        }
+
+        .stepImg {
+          transform: translateY(-50%) translateX(-100%);
+          left: -50px;
+        }
+      }
+    }
+  }
+}
+
+.jobCardMain {
+  min-height: 300px;
+  width: 310px;
+  border: 1px solid #DCE4E2;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
+  overflow: hidden;
+  margin: 0 32px;
+
+  h3 {
+    font-size: 24px;
+    padding: .5em 20px;
+    white-space: nowrap;
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: uppercase;
+    padding: 0 20px;
+  }
+
+  .imageContainer {
+    height: 50%;
+    width: 100%;
+    overflow: hidden;
+    margin: 1em 0 2em;
+
+    img {
+      width: 100%;
+      position: center;
+    }
+  }
+}
+
+.cityContainer {
+  height: 300px;
+  width: 300px;
+  border: none;
+  margin: 2px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  h3 {
+    color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 10;
+  }
+
+  img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all 500ms;
+
+    &:hover {
+      filter: brightness(1.2);
+    }
+  }
+}

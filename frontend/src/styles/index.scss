@@ -3,7 +3,6 @@
 body {
   margin: 0;
   padding: 0;
-
   font-family: $FONT_COMMON;
 }
 
@@ -13,4 +12,117 @@ h3 {
 
 p {
   color: $primaryColor;
+}
+
+.mainHeaderH2 {
+  font-family: $FONT_COMMON;
+  color: $primaryColor;
+  font-weight: 600;
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.mainHeaderH3 {
+  font-family: $FONT_COMMON;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $primaryColor;
+  text-align: center;
+  font-size: 26px;
+}
+
+.bannerContainer {
+  min-height: 100px;
+  overflow: hidden;
+  background-color: #4f4f4f;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
+  .bannerContent {
+    color: #FDFDFD;
+    padding: 200px 50px 200px;
+
+    h1 {
+      font-family: $FONT_COMMON;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 46px;
+      line-height: 50px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    h4 {
+      font-family: $FONT_COMMON;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 39px;
+      text-align: center;
+      width: 50%;
+      margin: 40px auto;
+    }
+
+    li {
+      color: $COLOR_MENU_LIGHT;
+      margin: 1em 0 1em 1em;
+      position: relative;
+      font-size: 20px;
+      line-height: 1.1em;
+
+      &:before {
+        content: ' ';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        display: inline-block;
+        background-color: $COLOR_MENU_LIGHT;
+        left: -1em;
+        top: 0.5em;
+        transform: translateY(-50%);
+      }
+    }
+  }
+}
+
+.actionButton {
+  background-color: $COLOR_CORAL;
+  border: $COLOR_CORAL 2px solid;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 18px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.actionButtonTransparent {
+  background-color: transparent;
+  box-sizing: border-box;
+  border: solid 2px #FFFFFF;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 18px;
+  padding: 12px 30px;
+  text-transform: uppercase;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
