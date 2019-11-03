@@ -1,17 +1,17 @@
 package com.mangalaxy.mango.security;
 
 
-import com.mangalaxy.mango.service.UserService;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -29,7 +29,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private UserService userService;
+  private CustomUserDetailsService customUserDetailsService;
 
   @Autowired
   private JwtAuthenticationEntryPoint unauthorizedHandler;
@@ -51,6 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 
   @Override
+  public void configure(WebSecurity web) throws Exception {
+    web.ignoring()
+        .antMatchers("/favicon.ico",
+            "/**/*.png",
+            "/**/*.gif",
+            "/**/*.svg",
+            "/**/*.jpg",
+            "/**/*.html",
+            "/**/*.css",
+            "/**/*.js");
+  }
+
+  @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
         .cors()
@@ -64,20 +77,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-        .antMatchers("/",
-            "/favicon.ico",
-            "/**/*.png",
-            "/**/*.gif",
-            "/**/*.svg",
-            "/**/*.jpg",
-            "/**/*.html",
-            "/**/*.css",
-            "/**/*.js")
-        .permitAll()
         .antMatchers("/api/v1/auth/**")
         .permitAll()
         .anyRequest()
-        .authenticated();
+        .authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/")
+        .permitAll()
+        .and()
+        .logout()
+        .logoutUrl("/api/v1/logout")
+        .permitAll();
 
     http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
@@ -85,7 +96,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(userService).passwordEncoder(encoder());
+    auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
   }
 
 }

@@ -1,8 +1,7 @@
 package com.mangalaxy.mango.security;
 
-import com.mangalaxy.mango.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,15 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
   @Autowired
   private JwtTokenProvider tokenProvider;
 
   @Autowired
-  private UserService userService;
-
-  private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
+  private CustomUserDetailsService customUserDetailsService;
 
   @Override
   protected void doFilterInternal(HttpServletRequest request,
@@ -37,25 +35,27 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
       if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
         Long userId = tokenProvider.getUserIdFromJWT(jwt);
 
-        UserDetails userDetails = userService.loadUserById(userId);
+        UserDetails userDetails = customUserDetailsService.loadUserById(userId);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     } catch (Exception ex) {
-      logger.error("Could not set user authentication in security context", ex);
+      log.error("Could not set user authentication in security context", ex);
     }
 
     filterChain.doFilter(request, response);
 
   }
 
-  private String getJwtFromRequest(HttpServletRequest request) {
+  private String getJwtFromRequest(HttpServletRequest request) throws Exception {
     String bearerToken = request.getHeader("Authorization");
     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
       return bearerToken.substring(7, bearerToken.length());
+    } else {
+      throw new Exception();
     }
-    return null;
+
   }
 }

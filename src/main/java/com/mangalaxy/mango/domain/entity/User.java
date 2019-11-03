@@ -20,7 +20,6 @@ public class User extends AbstractEntity {
 
   private String email;
   private String password;
-//  private String token;
 
   @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))

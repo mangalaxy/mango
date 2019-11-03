@@ -1,8 +1,10 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.domain.dto.request.UserRequest;
-import com.mangalaxy.mango.service.UserService;
+import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.response.ApiResponse;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,10 +15,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-  private final UserService userService;
+  private final CustomUserDetailsService customUserDetailsService;
 
-  @PostMapping("signIn")
-  public ResponseEntity<?> authenticateUser(@RequestBody UserRequest loginRequest) {
-    return ResponseEntity.ok(userService.signIn(loginRequest));
+  @PostMapping("login")
+  public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
+    return ResponseEntity.ok(customUserDetailsService.signIn(loginRequest));
+  }
+
+  @PostMapping("signUp")
+  public ResponseEntity<?> registerUser(@RequestBody LoginRequest loginRequest) {
+    ApiResponse response = customUserDetailsService.registerNewUser(loginRequest);
+    return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 }
