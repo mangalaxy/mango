@@ -7,8 +7,33 @@ import globe from '../../../assets/icons/globe.svg';
 import planet from '../../../assets/icons/planet-earth.svg';
 import city from '../../../assets/icons/city.svg';
 import briefcase from '../../../assets/icons/case.svg';
+import quotes from '../../../assets/icons/quotes.svg';
 
 type Props = {}
+
+const teamMembers = [
+  {image: '/images/team/photo1.jpg', name: 'Angel Lee', position: 'Cmo'},
+  {image: '/images/team/photo2.png', name: 'Bill  Brown', position: 'fOUNDER'},
+  {image: '/images/team/photo3.jpg', name: 'Kelly Rose', position: 'cfo'},
+  {image: '/images/team/photo4.jpg', name: 'Mike Stone ', position: 'co-founder'},
+];
+
+const feedback = [
+  {
+    header: 'Very professional team',
+    text: 'Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+    name: 'Emily Lewiz',
+    position: 'Top Manager',
+    image: '/images/face1.png',
+  },
+  {
+    header: 'Quickly and efficiently',
+    text: 'Lorem ipsum dolor sit amet, consectetur adig elit, sed do eiusmod tempor ididunt ut labore et dolore magnased do eiusmod tempor ididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
+    name: 'David McGee',
+    position: 'Lead Java Software Engineer',
+    image: '/images/face2.png',
+  },
+];
 
 class About extends Component <Props> {
   props: Props;
@@ -162,9 +187,80 @@ class About extends Component <Props> {
 
             </div>
           </section>
+
+          <section id='new-jobs'>
+            <h4>New interesting jobs and teams are waiting for you!</h4>
+            <button className='actionButton'>Apply now</button>
+          </section>
+
+          <section id='team'>
+            <h2 className="mainHeaderH2">
+              Our team
+            </h2>
+            <GreenDash/>
+            <div className='teamMembersContainer'>
+              {teamMembers.map((item, i) => <TeamMemberCard key={i} data={item}/>)}
+            </div>
+          </section>
+
+          <section id='partners-about'>
+            <h2 className="mainHeaderH2">Our partners</h2>
+            <GreenDash/>
+            <Partners/>
+          </section>
+
+          <section id='feedback'>
+            <div className='imageFilter'/>
+
+            <div className="content">
+              <h2 className="mainHeaderH2">what clients say</h2>
+              <GreenDash/>
+              <div className='feedbackContainer'>
+                {feedback.map(item => <Feedback data={item}/>)}
+              </div>
+            </div>
+          </section>
         </Fragment>
     );
   }
 }
 
 export default About;
+
+const TeamMemberCard = (props) => {
+  const {data} = props;
+  return (
+      <div className='memberCard'>
+        <div className="imageContainer">
+          <img src={data.image} alt={data.name}/>
+        </div>
+        <div className='memberInfo'>
+          <h3>{data.name}</h3>
+          <GreenDash/>
+          <span>{data.position}</span>
+        </div>
+      </div>
+  );
+};
+
+const Feedback = (props) => {
+  const {data} = props;
+  return (
+      <div className='feedbackBlock'>
+        <img className='quotes' src={quotes} alt=""/>
+        <div>
+          <h4>{data.header}</h4>
+          <p>{data.text}</p>
+        </div>
+        <div className='personData'>
+          <div>
+            <p className='personName'>{data.name}</p>
+            <p className='personPosition'>{data.position}</p>
+          </div>
+          <div className='imageContainer'>
+            <img src={data.image} alt=""/>
+          </div>
+        </div>
+      </div>
+  );
+};
