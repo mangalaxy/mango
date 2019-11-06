@@ -2,36 +2,42 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 #home-banner {
   background-image: url("../../../assets/images/MainPage/homeBG.png"); }
-  #home-banner .buttonsContainer {
-    display: flex;
-    align-items: center;
-    justify-content: center; }
-    #home-banner .buttonsContainer button {
-      margin: 0 20px; }
+
+#home-banner .buttonsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+#home-banner .buttonsContainer button {
+  margin: 0 20px; }
 
 #mission {
   background-color: #fafafa; }
-  #mission .container {
-    margin: 0 20%;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between; }
-    #mission .container .contentRow {
-      width: 30%; }
-      #mission .container .contentRow h3 {
-        font-family: "Monserrat", sans-serif;
-        font-weight: 600;
-        text-align: center;
-        font-size: 28px;
-        margin-top: 1em; }
-      #mission .container .contentRow p {
-        font-family: "Monserrat", sans-serif;
-        font-size: 16px;
-        line-height: 1.5;
-        margin: 1em 0;
-        color: #4f4f4f;
-        text-align: justify; }
+
+#mission .container {
+  margin: 0 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between; }
+
+#mission .container .contentRow {
+  width: 30%; }
+
+#mission .container .contentRow h3 {
+  font-family: "Monserrat", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  font-size: 28px;
+  margin-top: 1em; }
+
+#mission .container .contentRow p {
+  font-family: "Monserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 1em 0;
+  color: #4f4f4f;
+  text-align: justify; }
 
 #steps .container {
   margin-top: 100px; }
@@ -39,19 +45,22 @@
 #section4 {
   background-color: #fafafa;
   display: flex; }
-  #section4 .image {
-    width: 50%;
-    background-image: url("../../../assets/images/MainPage/section_4_bg.png");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat; }
-  #section4 .content {
-    width: 50%;
-    padding: 3em 2em; }
-    #section4 .content p {
-      font-size: 20px;
-      line-height: 30px;
-      margin-bottom: 1em; }
+
+#section4 .image {
+  width: 50%;
+  background-image: url("../../../assets/images/MainPage/section_4_bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; }
+
+#section4 .content {
+  width: 50%;
+  padding: 3em 2em; }
+
+#section4 .content p {
+  font-size: 20px;
+  line-height: 30px;
+  margin-bottom: 1em; }
 
 #jobRoles {
   padding: 3em;
@@ -59,18 +68,20 @@
   align-items: center;
   justify-content: center;
   flex-direction: column; }
-  #jobRoles .cardContainer {
-    padding: 3em;
-    display: flex;
-    align-items: center;
-    justify-content: center; }
+
+#jobRoles .cardContainer {
+  padding: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
 
 #techCenters {
   background-color: #fafafa;
   padding: 40px; }
-  #techCenters .citiesCarouselContainer {
-    width: 904px;
-    margin: 40px auto; }
+
+#techCenters .citiesCarouselContainer {
+  width: 904px;
+  margin: 40px auto; }
 
 #partners {
   padding: 3em;
@@ -83,15 +94,17 @@
   display: flex;
   align-items: center;
   justify-content: center; }
-  .partnersContainer img {
-    width: 120px;
-    margin: 20px 30px;
-    filter: grayscale(1);
-    opacity: .8;
-    transition: all 400ms; }
-    .partnersContainer img:hover {
-      filter: grayscale(0);
-      opacity: 1; }
+
+.partnersContainer img {
+  width: 120px;
+  margin: 20px 30px;
+  filter: grayscale(1);
+  opacity: .8;
+  transition: all 400ms; }
+
+.partnersContainer img:hover {
+  filter: grayscale(0);
+  opacity: 1; }
 
 .greenDash {
   margin-top: 1em;
@@ -107,88 +120,102 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start; }
-  .stepsDiagram .flowLine {
-    width: 0;
-    height: 54px;
-    border-right: rgba(54, 179, 168, 0.9) dotted 4px; }
-  .stepsDiagram .outerCircle {
-    background-color: white;
-    height: 76px;
-    width: 76px;
-    box-sizing: border-box;
-    border: solid 2px rgba(54, 179, 168, 0.9);
-    border-radius: 50%;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center; }
-    .stepsDiagram .outerCircle .innerCircle {
-      width: 54px;
-      height: 54px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(54, 179, 168, 0.9);
-      border-radius: 50%; }
-      .stepsDiagram .outerCircle .innerCircle .index {
-        font-size: 24px;
-        color: white; }
-    .stepsDiagram .outerCircle .horizonLine {
-      height: 0;
-      width: 300px;
-      position: absolute;
-      border: solid 1px rgba(54, 179, 168, 0.9);
-      right: 0;
-      transform: translateX(100%); }
-      .stepsDiagram .outerCircle .horizonLine .lineEnd {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: rgba(54, 179, 168, 0.9) 2px solid;
-        box-sizing: border-box;
-        position: absolute;
-        right: 0;
-        transform: translateX(100%) translateY(-50%); }
-      .stepsDiagram .outerCircle .horizonLine .stepHeader {
-        position: absolute;
-        top: -8px;
-        right: 5px;
-        transform: translateY(-100%);
-        text-align: right;
-        width: 100%;
-        font-size: 32px;
-        font-weight: 300; }
-      .stepsDiagram .outerCircle .horizonLine .stepText {
-        font-size: 14px;
-        line-height: 1.5em;
-        width: 80%;
-        position: absolute;
-        top: .5em;
-        right: 5px;
-        color: #828282;
-        text-align: right; }
-      .stepsDiagram .outerCircle .horizonLine .stepImg {
-        position: absolute;
-        top: 0;
-        transform: translateY(-50%) translateX(100%);
-        right: -50px;
-        border-radius: 20px; }
-      .stepsDiagram .outerCircle .horizonLine.left {
-        left: 0;
-        transform: translateX(-100%); }
-        .stepsDiagram .outerCircle .horizonLine.left .lineEnd {
-          left: 0;
-          transform: translateX(-100%) translateY(-50%); }
-        .stepsDiagram .outerCircle .horizonLine.left .stepHeader {
-          text-align: left;
-          left: 5px; }
-        .stepsDiagram .outerCircle .horizonLine.left .stepText {
-          left: 5px;
-          text-align: left; }
-        .stepsDiagram .outerCircle .horizonLine.left .stepImg {
-          transform: translateY(-50%) translateX(-100%);
-          left: -50px; }
+
+.stepsDiagram .flowLine {
+  width: 0;
+  height: 54px;
+  border-right: rgba(54, 179, 168, 0.9) dotted 4px; }
+
+.stepsDiagram .outerCircle {
+  background-color: white;
+  height: 76px;
+  width: 76px;
+  box-sizing: border-box;
+  border: solid 2px rgba(54, 179, 168, 0.9);
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.stepsDiagram .outerCircle .innerCircle {
+  width: 54px;
+  height: 54px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(54, 179, 168, 0.9);
+  border-radius: 50%; }
+
+.stepsDiagram .outerCircle .innerCircle .index {
+  font-size: 24px;
+  color: white; }
+
+.stepsDiagram .outerCircle .horizonLine {
+  height: 0;
+  width: 300px;
+  position: absolute;
+  border: solid 1px rgba(54, 179, 168, 0.9);
+  right: 0;
+  transform: translateX(100%); }
+
+.stepsDiagram .outerCircle .horizonLine .lineEnd {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: rgba(54, 179, 168, 0.9) 2px solid;
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  transform: translateX(100%) translateY(-50%); }
+
+.stepsDiagram .outerCircle .horizonLine .stepHeader {
+  position: absolute;
+  top: -8px;
+  right: 5px;
+  transform: translateY(-100%);
+  text-align: right;
+  width: 100%;
+  font-size: 32px;
+  font-weight: 300; }
+
+.stepsDiagram .outerCircle .horizonLine .stepText {
+  font-size: 14px;
+  line-height: 1.5em;
+  width: 80%;
+  position: absolute;
+  top: .5em;
+  right: 5px;
+  color: #828282;
+  text-align: right; }
+
+.stepsDiagram .outerCircle .horizonLine .stepImg {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%) translateX(100%);
+  right: -50px;
+  border-radius: 20px; }
+
+.stepsDiagram .outerCircle .horizonLine.left {
+  left: 0;
+  transform: translateX(-100%); }
+
+.stepsDiagram .outerCircle .horizonLine.left .lineEnd {
+  left: 0;
+  transform: translateX(-100%) translateY(-50%); }
+
+.stepsDiagram .outerCircle .horizonLine.left .stepHeader {
+  text-align: left;
+  left: 5px; }
+
+.stepsDiagram .outerCircle .horizonLine.left .stepText {
+  left: 5px;
+  text-align: left; }
+
+.stepsDiagram .outerCircle .horizonLine.left .stepImg {
+  transform: translateY(-50%) translateX(-100%);
+  left: -50px; }
 
 .jobCardMain {
   min-height: 300px;
@@ -198,23 +225,27 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
   overflow: hidden;
   margin: 0 32px; }
-  .jobCardMain h3 {
-    font-size: 24px;
-    padding: .5em 20px;
-    white-space: nowrap; }
-  .jobCardMain span {
-    font-size: 12px;
-    font-weight: 300;
-    text-transform: uppercase;
-    padding: 0 20px; }
-  .jobCardMain .imageContainer {
-    height: 50%;
-    width: 100%;
-    overflow: hidden;
-    margin: 1em 0 2em; }
-    .jobCardMain .imageContainer img {
-      width: 100%;
-      position: center; }
+
+.jobCardMain h3 {
+  font-size: 24px;
+  padding: .5em 20px;
+  white-space: nowrap; }
+
+.jobCardMain span {
+  font-size: 12px;
+  font-weight: 300;
+  text-transform: uppercase;
+  padding: 0 20px; }
+
+.jobCardMain .imageContainer {
+  height: 50%;
+  width: 100%;
+  overflow: hidden;
+  margin: 1em 0 2em; }
+
+.jobCardMain .imageContainer img {
+  width: 100%;
+  position: center; }
 
 .cityContainer {
   height: 300px;
@@ -226,17 +257,20 @@
   align-items: center;
   justify-content: center;
   overflow: hidden; }
-  .cityContainer h3 {
-    color: white;
-    font-size: 2em;
-    text-transform: uppercase;
-    text-align: center;
-    z-index: 10; }
-  .cityContainer img {
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transition: all 500ms; }
-    .cityContainer img:hover {
-      filter: brightness(1.2); }
+
+.cityContainer h3 {
+  color: white;
+  font-size: 2em;
+  text-transform: uppercase;
+  text-align: center;
+  z-index: 10; }
+
+.cityContainer img {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 500ms; }
+
+.cityContainer img:hover {
+  filter: brightness(1.2); }

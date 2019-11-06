@@ -1,0 +1,59 @@
+@import '../../styles/_variables.scss';
+
+.privacy-policy{
+
+  .privacy-policy-container {
+    width: 1200px;
+    min-height: calc(100vh - #{$MAIN_MENU_HEIGTH} - #{$FOOTER_HEIGHT});
+    margin: 0 auto;
+
+    &__header {
+      font-size: 32px;
+      font-weight: 600;
+      color: $COLOR_MENU_DARK;
+      text-transform: uppercase;
+      padding: 50px 0;
+    }
+  }
+
+  .privacy-policy-content {
+    display: flex;
+    font-size: 16px;
+    line-height: 21px;
+
+    .privacy-policy-text {
+      width: 70%;
+
+      .sub-header {
+        font-size: 28px;
+        color: #333333;
+        margin-bottom: 10px;
+      }
+    }
+
+    p {
+      margin-bottom: 30px;
+    }
+
+    p:last-child {
+      margin-bottom: 100px;
+    }
+
+    .side-menu {
+    width: 30%;
+
+      &__item {
+        font-size: 18px;
+      }
+
+      &__item::after {
+        content: '';
+        display: block;
+        background: rgba(54, 179, 168, 0.9);
+        height: 1px;
+        width: 60%;
+        margin: 11px 0;
+      }
+  }
+  }
+}
