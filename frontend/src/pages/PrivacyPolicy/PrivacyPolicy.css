@@ -3,7 +3,8 @@
 .privacy-policy .privacy-policy-container {
   width: 1200px;
   min-height: calc(100vh - 70px - 170px);
-  margin: 0 auto; }
+  margin: 0 auto;
+  padding: 0 30px; }
 
 .privacy-policy .privacy-policy-container__header {
   font-size: 32px;
@@ -35,12 +36,23 @@
   width: 30%; }
 
 .privacy-policy .privacy-policy-content .side-menu__item {
-  font-size: 18px; }
+  font-size: 18px;
+  cursor: pointer; }
+
+.privacy-policy .privacy-policy-content .side-menu__item:hover:after {
+  background: rgba(54, 179, 168, 0.9);
+  height: 2px;
+  margin-bottom: 10px; }
 
 .privacy-policy .privacy-policy-content .side-menu__item::after {
   content: '';
   display: block;
-  background: rgba(54, 179, 168, 0.9);
   height: 1px;
   width: 60%;
-  margin: 11px 0; }
+  margin: 11px 0;
+  background-color: #BDBDBD; }
+
+.privacy-policy .item-active > .side-menu__item::after {
+  background: rgba(54, 179, 168, 0.9);
+  height: 2px;
+  margin-bottom: 10px; }
