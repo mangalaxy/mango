@@ -220,6 +220,26 @@ class About extends Component <Props> {
               </div>
             </div>
           </section>
+
+          <section id='contact'>
+            <div className="content">
+              <div className='leftCol'>
+                <h2 className="mainHeaderH2">get in touch</h2>
+                <GreenDash/>
+              </div>
+              <div className='rightCol'>
+                <div className='headerBlock'>
+                  <h2 className="mainHeaderH2">how to find us</h2>
+                  <GreenDash/>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adig elit, sed do eiusmod tempor ididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. </p>
+              <p className="contactData">
+                phone: +38-099-55-69-781
+              </p>
+              </div>
+            </div>
+          </section>
         </Fragment>
     );
   }

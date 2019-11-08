@@ -255,3 +255,26 @@
   height: 60px;
   border-radius: 50%;
   overflow: hidden; }
+
+#contact .content {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 3em auto; }
+
+#contact .content .leftCol, #contact .content .rightCol {
+  width: 40%; }
+
+#contact .content .leftCol .headerBlock, #contact .content .rightCol .headerBlock {
+  display: inline-block; }
+
+#contact .content .rightCol p {
+  margin: 3em 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Monserrat", sans-serif; }
+
+#contact .content .rightCol .contactData {
+  margin: 0;
+  padding: 0; }

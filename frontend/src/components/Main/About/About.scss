@@ -258,39 +258,47 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .quotes{
+
+  .quotes {
     position: absolute;
     top: -15px;
     left: 25px;
   }
-  h4{
+
+  h4 {
     font-family: Segoe UI, sans-serif;
     font-size: 22px;
     line-height: 29px;
     margin-bottom: 1em;
   }
-  p{
+
+  p {
     font-family: $FONT_COMMON;
     font-size: 14px;
     line-height: 17px;
   }
-  .personData{
+
+  .personData {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    div{
-      .personName{
+
+    div {
+      .personName {
         font-size: 18px;
         line-height: 22px;
       }
-      .personPosition{
+
+      .personPosition {
         font-size: 14px;
         font-style: italic;
       }
     }
-    .imageContainer{
+
+    .imageContainer {
       margin-left: 20px;
-      img{
+
+      img {
         width: 60px;
         height: 60px;
         border-radius: 50%;
@@ -298,6 +306,36 @@
       }
 
 
+    }
+  }
+}
+
+#contact {
+  .content {
+    max-width: 1200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 3em auto;
+
+    .leftCol, .rightCol {
+      width: 40%;
+      .headerBlock{
+        display: inline-block;
+      }
+    }
+    .rightCol{
+      p{
+        margin: 3em 0;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: $FONT_COMMON;
+      }
+      .contactData{
+        margin: 0;
+        padding: 0;
+
+      }
     }
   }
 }
