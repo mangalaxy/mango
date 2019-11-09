@@ -17,7 +17,11 @@ const teamMembers = [
   {image: '/images/team/photo1.jpg', name: 'Angel Lee', position: 'Cmo'},
   {image: '/images/team/photo2.png', name: 'Bill  Brown', position: 'fOUNDER'},
   {image: '/images/team/photo3.jpg', name: 'Kelly Rose', position: 'cfo'},
-  {image: '/images/team/photo4.jpg', name: 'Mike Stone ', position: 'co-founder'},
+  {
+    image: '/images/team/photo4.jpg',
+    name: 'Mike Stone ',
+    position: 'co-founder',
+  },
 ];
 
 const feedback = [
@@ -40,18 +44,26 @@ const feedback = [
 class About extends Component <Props> {
   props: Props;
 
-  showSuccess=()=> {
-    this.growl.show({severity: 'success', summary: 'Success!', detail: 'Message submitted'});
-  }
+  showSuccess = () => {
+    this.growl.show({
+      severity: 'success',
+      summary: 'Success!',
+      detail: 'Message submitted',
+    });
+  };
 
-   showError=()=> {
-    this.growl.show({severity: 'error', summary: 'Error!', detail: 'Message submit failed'});
-  }
+  showError = () => {
+    this.growl.show({
+      severity: 'error',
+      summary: 'Error!',
+      detail: 'Message submit failed',
+    });
+  };
 
   render(): Node {
     return (
         <Fragment>
-          <Growl ref={(el) => this.growl = el} />
+          <Growl ref={(el) => this.growl = el}/>
           <div className='bannerContainer' id='about-banner'>
             <div className="imageFilter"/>
             <div className='bannerContent'>
@@ -210,7 +222,8 @@ class About extends Component <Props> {
             </h2>
             <GreenDash/>
             <div className='teamMembersContainer'>
-              {teamMembers.map((item, i) => <TeamMemberCard key={i} data={item}/>)}
+              {teamMembers.map(
+                  (item, i) => <TeamMemberCard key={i} data={item}/>)}
             </div>
           </section>
 
@@ -235,11 +248,13 @@ class About extends Component <Props> {
           <section id='contact'>
             <div className="content">
               <div className='leftCol'>
-                <h2 className="mainHeaderH2">get in touch</h2>
-                <GreenDash/>
+                <div className='headerBlock'>
+                  <h2 className="mainHeaderH2">get in touch</h2>
+                  <GreenDash/>
+                </div>
                 <AboutContactForm
-                onSuccess={this.showSuccess.bind(this)}
-                onError={this.showError.bind(this)}/>
+                    onSuccess={this.showSuccess.bind(this)}
+                    onError={this.showError.bind(this)}/>
               </div>
 
               <div className='rightCol'>
@@ -247,11 +262,13 @@ class About extends Component <Props> {
                   <h2 className="mainHeaderH2">how to find us</h2>
                   <GreenDash/>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adig elit, sed do eiusmod tempor ididunt ut labore et dolore
-                  magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. </p>
-              <p className="contactData">
-               Phone: <span>+38-099-55-69-781</span>
-              </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adig elit, sed do
+                  eiusmod tempor ididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam, quis nostrud
+                  exercitation ullamco laboris nisi ut aliquip. </p>
+                <p className="contactData">
+                  Phone: <span>+38-099-55-69-781</span>
+                </p>
                 <p className="contactData">
                   Email: <span>mango@gmail.com</span>
                 </p>
