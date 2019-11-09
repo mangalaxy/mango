@@ -320,21 +320,30 @@
 
     .leftCol, .rightCol {
       width: 40%;
-      .headerBlock{
+
+      .headerBlock {
         display: inline-block;
       }
     }
-    .rightCol{
-      p{
+
+    .rightCol {
+
+      p {
         margin: 3em 0;
         font-size: 14px;
         line-height: 20px;
         font-family: $FONT_COMMON;
+        color: #828282;
       }
-      .contactData{
+
+      .contactData {
         margin: 0;
         padding: 0;
+        font-size: 16px;
 
+        span {
+          font-weight: 600;
+        }
       }
     }
   }

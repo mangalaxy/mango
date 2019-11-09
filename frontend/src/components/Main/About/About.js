@@ -8,6 +8,8 @@ import planet from '../../../assets/icons/planet-earth.svg';
 import city from '../../../assets/icons/city.svg';
 import briefcase from '../../../assets/icons/case.svg';
 import quotes from '../../../assets/icons/quotes.svg';
+import {Growl} from 'primereact/growl';
+import AboutContactForm from '../../Forms/AboutContactForm';
 
 type Props = {}
 
@@ -38,9 +40,18 @@ const feedback = [
 class About extends Component <Props> {
   props: Props;
 
+  showSuccess=()=> {
+    this.growl.show({severity: 'success', summary: 'Success!', detail: 'Message submitted'});
+  }
+
+   showError=()=> {
+    this.growl.show({severity: 'error', summary: 'Error!', detail: 'Message submit failed'});
+  }
+
   render(): Node {
     return (
         <Fragment>
+          <Growl ref={(el) => this.growl = el} />
           <div className='bannerContainer' id='about-banner'>
             <div className="imageFilter"/>
             <div className='bannerContent'>
@@ -226,7 +237,11 @@ class About extends Component <Props> {
               <div className='leftCol'>
                 <h2 className="mainHeaderH2">get in touch</h2>
                 <GreenDash/>
+                <AboutContactForm
+                onSuccess={this.showSuccess.bind(this)}
+                onError={this.showError.bind(this)}/>
               </div>
+
               <div className='rightCol'>
                 <div className='headerBlock'>
                   <h2 className="mainHeaderH2">how to find us</h2>
@@ -235,8 +250,11 @@ class About extends Component <Props> {
                 <p>Lorem ipsum dolor sit amet, consectetur adig elit, sed do eiusmod tempor ididunt ut labore et dolore
                   magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip. </p>
               <p className="contactData">
-                phone: +38-099-55-69-781
+               Phone: <span>+38-099-55-69-781</span>
               </p>
+                <p className="contactData">
+                  Email: <span>mango@gmail.com</span>
+                </p>
               </div>
             </div>
           </section>
