@@ -16,6 +16,10 @@
     background-color: #f7f7f7;
   }
 
+  .logoContainer, .authLinks {
+    width: 200px;
+  }
+
   .logo {
     text-transform: uppercase;
     font-size: 48px;
@@ -127,7 +131,7 @@
       text-transform: capitalize;
       transition: all .4s;
 
-      &.gray{
+      &.gray {
         background-color: #f7f7f7;
         opacity: 1;
       }
