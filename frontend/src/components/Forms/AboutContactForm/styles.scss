@@ -1,0 +1,31 @@
+@import '../../../styles/variables';
+
+.about_contactForm {
+  margin: 3em 0;
+
+  .fieldContainer {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+  }
+  .field{
+    width: 100%;
+    padding: 0 5px;
+  }
+  .buttonsContainer {
+    display: flex;
+    width: 100%;
+
+    button {
+      margin: 0 5px;
+      display: block;
+      width: 100%;
+      &.actionButtonTransparent{
+        color: #4f4f4f;
+        border-color: $COLOR_CORAL;
+      }
+    }
+  }
+}
