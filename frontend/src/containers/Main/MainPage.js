@@ -21,7 +21,7 @@ class MainPage extends Component<Props> {
   render(): Node {
     return (
         <Fragment>
-          <MainMenu />
+          <MainMenu path={this.props.location.pathname}/>
           <div className="mainPageContent">
             <Switch>
               <Route exact path={routes.HOME} component={Home}/>
