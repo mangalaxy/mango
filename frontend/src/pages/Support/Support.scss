@@ -4,7 +4,7 @@
 
   .support-container {
     width: 1200px;
-    min-height: calc(100vh - #{$MAIN_MENU_HEIGTH} - #{$FOOTER_HEIGHT});
+    min-height: calc(100vh - #{$MAIN_MENU_HEIGHT} - #{$FOOTER_HEIGHT});
     margin: 0 auto;
     padding: 0 30px;
 
