@@ -35,7 +35,7 @@ export default class MainMenu extends PureComponent<Props, State> {
     const {dropdownVisible} = this.state;
     return (
         <div className={`menuContainer ${grayMode && 'gray'}`}>
-          <div>
+          <div className='logoContainer'>
             <Link to={routes.HOME} className='logo'>
               Mango
             </Link>
@@ -70,7 +70,7 @@ export default class MainMenu extends PureComponent<Props, State> {
               </NavLink>
             </li>
           </ul>
-          <div className='menuItemsContainer'>
+          <div className='menuItemsContainer authLinks'>
             <div>
               <span
                   className={`menuItem  ${grayMode && 'gray'} authBlock left`}>Log in</span>

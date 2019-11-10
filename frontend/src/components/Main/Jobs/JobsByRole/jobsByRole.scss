@@ -1,0 +1,35 @@
+@import '../../../../styles/_variables.scss';
+
+#main-by-job-role {
+  .contentContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: $MAIN_MENU_HEIGHT 2em 0;
+    box-sizing: border-box;
+
+    .descriptionHeader {
+      font-size: 42px;
+      font-weight: 600;
+      font-family: $FONT_COMMON;
+      text-align: center;
+      margin: 2em 0 0;
+    }
+
+    .description {
+      margin-top: 2em;
+      display: flex;
+      margin-bottom: 3em;
+      p {
+        width: 50%;
+        text-align: justify;
+        &:first-child{
+          padding-right: 15px;
+        }
+        &:last-child{
+          padding-left: 15px;
+        }
+      }
+    }
+
+  }
+}
