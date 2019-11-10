@@ -33,8 +33,8 @@ class MainPage extends Component<Props> {
               <Route path={routes.FIND_JOB + '/:jobRole'}
                      component={JobsByRole} url={routes.FIND_JOB}/>
               <Route path={routes.BLOG} component={BlogPage}/>
-              <Route path={routes.ABOUT_AS} component={About}/>
-              <Route path={'/*'} component={() => (<div>404</div>)}/>
+              <Route path={routes.ABOUT} component={About}/>
+              <Route path={'/*'} component={()=>(<div>404</div>)}/>
             </Switch>
           </div>
           <Footer/>
