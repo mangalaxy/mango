@@ -122,7 +122,7 @@ class Home extends Component {
             <h2 className="mainHeaderH2">Job roles</h2>
             <GreenDash/>
             <div className="cardContainer">
-              {jobCardData && jobCardData.map(job => <JobCard job={job}/>)}
+              {jobCardData && jobCardData.map((job, index) => <JobCard key={index} job={job}/>)}
             </div>
             <button className='actionButton'>Apply now</button>
           </section>
@@ -132,7 +132,7 @@ class Home extends Component {
             <GreenDash/>
             <div className="citiesCarouselContainer">
               <Slider {...settings}>
-                {cities.map(city => <CityCard city={city}/>)}
+                {cities.map((city, index) => <CityCard key={index} city={city}/>)}
               </Slider>
 
             </div>
@@ -188,7 +188,7 @@ const RenderStepsDiagram = () => {
         {steps.map((step, index) => {
           const right = !(index % 2);
           return (
-              <Fragment>
+              <Fragment key = {index}>
                 <div className='outerCircle'>
                   <div className='innerCircle'>
                     <span className="index">{index + 1}</span>
@@ -259,7 +259,7 @@ const partnersImages = [
 
 export const Partners = () =>(
     <div className="partnersContainer">
-      {partnersImages.map(path => <img src={path} alt=""/>)}
+      {partnersImages.map((path, index) => <img key={index} src={path} alt=""/>)}
     </div>
 );
 

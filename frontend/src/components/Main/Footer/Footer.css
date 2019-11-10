@@ -2,9 +2,11 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .footer {
   display: flex;
+  height: 170px;
   align-items: flex-start;
   background-color: black;
-  padding: 40px 60px 40px; }
+  padding: 40px 60px 40px;
+  box-sizing: border-box; }
   .footer .logo {
     text-decoration: none;
     color: #FF8080;

@@ -78,7 +78,7 @@ const WorksDiagram = () => {
   ];
   return (<div className='worksDiagramContainer'>
     {data.map((item, index) => (
-        <Fragment>
+        <Fragment key={index}>
           <div className="outerCircle"
                style={{top: `${item.y}%`, left: `${item.x}%`}}>
             <div className="innerCircle">
