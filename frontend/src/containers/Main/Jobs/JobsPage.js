@@ -1,7 +1,12 @@
+//@flow
 import React, {Component, Fragment} from 'react';
+import type {Node} from 'react';
 
-class JobsPage extends Component {
-  render(): React.ReactElement<any> | string | number | {} | React.ReactNodeArray | React.ReactPortal | boolean | null | undefined {
+type Props = {}
+
+class JobsPage  extends Component <Props>{
+
+  render(): Node {
     return (
         <Fragment>
           <div className='bannerContainer'>
