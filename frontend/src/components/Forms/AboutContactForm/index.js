@@ -19,7 +19,6 @@ const AboutContactForm = ({onSuccess, onError}) => (
           setStatus({});
           try {
             let data = {};
-            let submitError = false;
             data.email = email;
             data.name = name;
             data.message = message;
