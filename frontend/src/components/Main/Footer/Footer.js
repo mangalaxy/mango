@@ -42,7 +42,7 @@ export default class Footer extends PureComponent {
 
             <ul className='itemsGroup'>
               <li>
-                <Link to={routes.ABOUT_AS} className='menuItem'>
+                <Link to={routes.ABOUT} className='menuItem'>
                   About us
                 </Link>
               </li>
