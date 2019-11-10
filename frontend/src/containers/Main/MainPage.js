@@ -29,7 +29,7 @@ class MainPage extends Component<Props> {
               <Route path={routes.FOR_EMPLOYERS} component={ForEmployers}/>
               <Route path={routes.FIND_JOB} component={JobsPage}/>
               <Route path={routes.BLOG} component={BlogPage}/>
-              <Route path={routes.ABOUT_AS} component={About}/>
+              <Route path={routes.ABOUT} component={About}/>
               <Route path={'/*'} component={()=>(<div>404</div>)}/>
             </Switch>
           </div>
