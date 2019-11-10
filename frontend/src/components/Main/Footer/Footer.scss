@@ -2,9 +2,11 @@
 
 .footer {
   display: flex;
+  height: $FOOTER_HEIGHT;
   align-items: flex-start;
   background-color: black;
   padding: 40px 60px 40px;
+  box-sizing: border-box;
 
   .logo {
     text-decoration: none;
