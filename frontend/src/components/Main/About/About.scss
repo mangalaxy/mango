@@ -3,6 +3,7 @@
 #about-banner {
   background-image: url("../../../assets/images/main_about_bg.png");
   position: relative;
+  font-family: $FONT_COMMON;
 
   .imageFilter {
     position: absolute;
@@ -27,6 +28,7 @@
 
 #what-we-do,
 #mission {
+  font-family: $FONT_COMMON;
   .contentContainer {
     width: 50%;
 
@@ -87,6 +89,7 @@
     margin: 3em auto 0;
     padding: 0 20px;
     justify-content: space-between;
+    font-family: $FONT_COMMON;
   }
 }
 
@@ -94,6 +97,7 @@
   background-color: $COLOR_MENU_LIGHT;
   padding-top: 1em;
   padding-bottom: 4em;
+  font-family: $FONT_COMMON;
 
   .column {
     display: flex;
@@ -125,6 +129,7 @@
 
 #mission {
   background-color: #fff;
+  font-family: $FONT_COMMON;
 
   .imageContainer {
     align-items: center;
@@ -140,6 +145,7 @@
 #new-jobs {
   background-color: $COLOR_BG_LIGHT;
   padding: 2em;
+  font-family: $FONT_COMMON;
 
   h4 {
     text-align: center;
@@ -155,6 +161,7 @@
 
 #team {
   padding: 2em 0 4em;
+  font-family: $FONT_COMMON;
 
   .teamMembersContainer {
     display: flex;
@@ -213,6 +220,7 @@
 
 #partners-about {
   margin: 3em;
+  font-family: $FONT_COMMON;
 }
 
 #feedback {
@@ -220,6 +228,7 @@
   background-size: cover;
   background-position: center;
   position: relative;
+  font-family: $FONT_COMMON;
 
   .content {
     padding: 2em;
@@ -311,6 +320,7 @@
 }
 
 #contact {
+  font-family: $FONT_COMMON;
   .content {
     max-width: 1200px;
     display: flex;

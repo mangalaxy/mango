@@ -240,7 +240,7 @@ class About extends Component <Props> {
               <h2 className="mainHeaderH2">what clients say</h2>
               <GreenDash/>
               <div className='feedbackContainer'>
-                {feedback.map(item => <Feedback data={item}/>)}
+                {feedback.map((item, index) => <Feedback data={item} key={index}/>)}
               </div>
             </div>
           </section>

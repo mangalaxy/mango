@@ -34,9 +34,14 @@ class App extends React.Component <Props, State> {
   }
 
   render() {
+    const ScrollToTop = () => {
+      window.scrollTo(0, 0);
+      return null;
+    };
     return (
         <Provider store={store}>
           <Router>
+            <Route component={ScrollToTop} />
             <Switch>
               <Route path={routes.TALENT_HOME} component={Talent}/>
               <Route path={routes.EMPLOYERS_HOME} component={Employer}/>
