@@ -17,6 +17,7 @@ import Talent from './containers/Talent/TalentHome';
 import Employer from './containers/Employer/EmployerPage';
 import PrivacyPolicy from './pages/PrivacyPolicy/PrivacyPolicy'
 import Support from './pages/Support/Support'
+import Blog from './pages/Blog/Blog'
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -42,6 +43,7 @@ class App extends React.Component <Props, State> {
               <Route path={routes.EMPLOYERS_HOME} component={Employer}/>
               <Route path={routes.PRIVACY_POLICY} component={PrivacyPolicy}/>
               <Route path={routes.SUPPORT_CENTER} component={Support}/>
+              <Route path={routes.BLOG} component={Blog}/>
               <Route path={routes.HOME} component={MainPage}/>
             </Switch>
           </Router>
