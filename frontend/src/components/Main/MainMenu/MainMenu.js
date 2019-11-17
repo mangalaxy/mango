@@ -6,7 +6,8 @@ import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {
-  path: string
+  path: string,
+  openLoginForm: ()=>void
 };
 type State = {
   dropdownVisible: boolean
@@ -27,7 +28,7 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
-    const {path} = this.props;
+    const {path, openLoginForm} = this.props;
     let grayMode = !(path === routes.HOME || path === routes.FOR_TALENTS ||
         path === routes.FOR_EMPLOYERS || path === routes.ABOUT_AS || path ===
         routes.BLOG);
@@ -71,7 +72,7 @@ export default class MainMenu extends PureComponent<Props, State> {
             </li>
           </ul>
           <div className='menuItemsContainer authLinks'>
-            <div>
+            <div onClick={openLoginForm}>
               <span
                   className={`menuItem  ${grayMode && 'gray'} authBlock left`}>Log in</span>
             </div>

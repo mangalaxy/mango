@@ -17,6 +17,8 @@ import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
 import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
+import {renderModal} from '../../services/renderModal';
+import Login from '../../components/Auth/Login/Login';
 
 type Props = {
   history: Object
@@ -26,7 +28,11 @@ class MainPage extends Component<Props> {
   render(): Node {
     return (
         <Fragment>
-          <MainMenu path={this.props.location.pathname}/>
+          <MainMenu
+              path={this.props.location.pathname}
+              openLoginForm={this.openLoginForm}
+          />
+          <div id='dialog-container'/>
           <div className="mainPageContent">
             <Switch>
               <Route exact path={routes.HOME} component={Home}/>
@@ -47,6 +53,10 @@ class MainPage extends Component<Props> {
         </Fragment>
     );
   }
+
+  openLoginForm = () =>{
+    renderModal(<Login/>)
+  };
 }
 
 export default MainPage;
