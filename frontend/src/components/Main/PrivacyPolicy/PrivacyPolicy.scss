@@ -1,36 +1,37 @@
-@import '../../styles/_variables.scss';
+@import '../../../styles/variables';
 
-.terms-of-use{
+.privacy-policy {
+  padding-top: $MAIN_MENU_HEIGHT;
 
-  &__container {
+  .privacy-policy-container {
     width: 1200px;
-    min-height: calc(100vh - #{$MAIN_MENU_HEIGHT} - #{$FOOTER_HEIGHT});
+    min-height: calc(100vh - #{$FOOTER_HEIGHT});
     margin: 0 auto;
     padding: 0 30px;
+
+    &__header {
+      font-size: 32px;
+      font-weight: 600;
+      color: $COLOR_MENU_DARK;
+      text-transform: uppercase;
+      padding: 50px 0;
+    }
   }
 
-  &__header {
-    font-size: 32px;
-    font-weight: 600;
-    color: $COLOR_MENU_DARK;
-    text-transform: uppercase;
-    padding: 50px 0;
-  }
-
-  &__text {
-    width: 70%;
-  }
-
-  &__sub-header {
-    font-size: 28px;
-    color: #333333;
-    margin-bottom: 10px;
-  }
-
-  &__content {
+  .privacy-policy-content {
     display: flex;
     font-size: 16px;
     line-height: 21px;
+
+    .privacy-policy-text {
+      width: 70%;
+
+      .sub-header {
+        font-size: 28px;
+        color: #333333;
+        margin-bottom: 10px;
+      }
+    }
 
     p {
       margin-bottom: 30px;
@@ -46,10 +47,9 @@
       &__item {
         font-size: 18px;
         cursor: pointer;
-        color: #333333;
       }
 
-      &__item:hover:after{
+      &__item:hover:after {
         background: rgba(54, 179, 168, 0.9);
         height: 2px;
         margin-bottom: 10px;

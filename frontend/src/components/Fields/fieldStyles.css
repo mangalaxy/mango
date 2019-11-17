@@ -2,7 +2,8 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .fkInput .p-inputtext {
   width: 100% !important;
-  font-size: 16px; }
+  font-size: 16px;
+  font-family: "Monserrat", sans-serif !important; }
 
 .errorContainer {
   min-height: 18px; }
@@ -11,3 +12,6 @@
   font-size: 12px;
   font-family: "Monserrat", sans-serif;
   color: #B00020; }
+
+.p-float-label label {
+  font-family: "Monserrat", sans-serif !important; }

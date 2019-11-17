@@ -1,10 +1,10 @@
-@import '../../styles/_variables.scss';
+@import '../../../styles/variables';
 
 .support{
-
+  padding-top: $MAIN_MENU_HEIGHT;
   .support-container {
     width: 1200px;
-    min-height: calc(100vh - #{$MAIN_MENU_HEIGHT} - #{$FOOTER_HEIGHT});
+    min-height: calc(100vh - #{$FOOTER_HEIGHT});
     margin: 0 auto;
     padding: 0 30px;
 
