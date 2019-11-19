@@ -13,17 +13,21 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User extends AbstractEntity {
 
   private String email;
   private String password;
+  private boolean enabled;
 
   @ElementCollection(fetch = FetchType.EAGER)
   @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
   @Column(name = "role_id")
   private Set<Role> roles;
 
+  public User() {
+    super();
+    this.enabled=false;
+  }
 }

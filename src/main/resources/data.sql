@@ -14,7 +14,7 @@ INSERT INTO job (id, created_date, last_update, title, location_id, job_role, em
 INSERT INTO job (id, created_date, last_update, title, location_id, job_role, employer_id) VALUES (2, '2019-08-21 14:00:00', '2019-08-21 14:01:00', 'JS Developer', 2, 'role2', 1);
 INSERT INTO job (id, created_date, last_update, title, location_id, job_role, employer_id) VALUES (3, '2019-08-21 14:00:00', '2019-08-21 14:01:00', 'Front End', 1, 'role2', 2);
 
-INSERT INTO users (id, created_date, last_update, email, password) VALUES (1, '2019-03-12 14:00:00', '2019-03-13 14:01:00', 'test@gmail.com', '$2a$04$kDaKwBckpCiw/PFvV4qpqOdMl9oypQVKaXvANn.oeKC9xrGiYdfmO');
+INSERT INTO users (id, created_date, last_update, email, password, enabled) VALUES (1, '2019-03-12 14:00:00', '2019-03-13 14:01:00', 'test@gmail.com', '$2a$04$kDaKwBckpCiw/PFvV4qpqOdMl9oypQVKaXvANn.oeKC9xrGiYdfmO', true);
 
 INSERT INTO users_roles (user_id, role_id) VALUES (1, 0);
 
