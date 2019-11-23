@@ -1,13 +1,10 @@
 import React from 'react';
-import Footer from '../../components/Main/Footer/Footer'
-import TopMenuGrey from '../../components/TopMenuGray/TopMenuGrey'
-import { Link, animateScroll as scroll } from "react-scroll";
-import './PrivacyPolicy.scss'
+import {Link} from 'react-scroll';
+import './PrivacyPolicy.scss';
 
 function PrivacyPolicy(props) {
     return (
         <div className='privacy-policy'>
-            <TopMenuGrey/>
             <div className='privacy-policy-container'>
                 <h1 className='privacy-policy-container__header'>Privacy Policy</h1>
                 <div className='privacy-policy-content'>
@@ -85,7 +82,6 @@ function PrivacyPolicy(props) {
                     </div>
                 </div>
             </div>
-            <Footer/>
         </div>
     )
 }

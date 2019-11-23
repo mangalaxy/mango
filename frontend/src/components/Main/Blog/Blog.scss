@@ -1,0 +1,197 @@
+.blog-header {
+  width: 100%;
+  height: 500px;
+  background-image: url("../../../assets/images/bg-blog.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+  &__title {
+    width: 988px;
+    padding: 0 10px;
+    font-size: 48px;
+    font-weight: bold;
+    color: #fff;
+    z-index: 99999;
+    position: absolute;
+    text-transform: uppercase;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 50px;
+  }
+
+  &__image-filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #060C2E;
+    opacity: 50%;
+  }
+}
+
+.blog-container {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  display: flex;
+  margin-top: 87px;
+
+  .blog-content {
+    width: 70%;
+    margin-right: 70px;
+  }
+
+  .blog-item {
+    color: #828282;
+    margin-bottom: 67px;
+
+    &__description {
+      margin-bottom: 4px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    &__container {
+      display: flex;
+      margin-bottom: 16px;
+    }
+
+    &__header {
+      margin-bottom: 25px;
+      color: #4F4F4F;
+      font-size: 36px;
+      font-weight: 600;
+    }
+
+    &__text {
+      font-size: 24px;
+      line-height: 29px;
+    }
+
+    &__icon {
+      margin-right: 24px;
+      width: 180px;
+      height: 115px;
+      flex-shrink: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url("../../../assets/images/rachel-moenning-570271-unsplash.png");
+    }
+
+    &__link {
+      text-transform: uppercase;
+      text-decoration: underline;
+      font-size: 18px;
+      cursor: pointer;
+      color: #828282;
+    }
+
+    &__link:hover {
+      text-decoration: none;
+    }
+  }
+
+  .blog-sidebar {
+    color: #828282;
+
+    .search-form {
+      height: 44px;
+
+      .search-icon {
+        position: relative;
+        z-index: 10;
+        top: 13px;
+        left: 17px;
+      }
+
+      .search-input {
+        width: 306px;
+        height: 44px;
+        box-sizing: border-box;
+        padding-left: 44px;
+        border: 1px solid #BDBDBD;
+        border-radius: 8px;
+        position: absolute;
+
+        &::placeholder {
+          color: #828282;
+        }
+      }
+
+
+    }
+
+    .posts-title {
+      font-size: 24px;
+      color: #333333;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin: 57px 0 28px;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 306px;
+        height: 1px;
+        margin-top: 17px;
+        background: #BDBDBD;
+      }
+    }
+
+    .posts-list {
+      &__item {
+        font-size: 18px;
+        margin-top: 10px;
+        line-height: 22px;
+
+        &::after {
+          content: '';
+          display: block;
+          width: 306px;
+          height: 1px;
+          margin-top: 17px;
+          background: #BDBDBD;
+        }
+      }
+    }
+
+    .form-title {
+      font-size: 18px;
+      color: #333333;
+      font-weight: 600;
+      margin-top: 100px;
+    }
+  }
+
+  .subscribe-form {
+    .mail-input {
+      width: 306px;
+      height: 44px;
+      box-sizing: border-box;
+      padding-left: 44px;
+      border: 1px solid #BDBDBD;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    .send-btn {
+      padding: 15px 30px;
+      display: block;
+      background: #FF6F60;
+      border-radius: 8px;
+      border: none;
+      color: #ffffff;
+      font-size: 20px;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+  }
+}
+
