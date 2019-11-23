@@ -1,14 +1,11 @@
 import React, {Fragment} from 'react';
-import Footer from '../../components/Main/Footer/Footer'
-import MainMenu from '../../components/Main/MainMenu/MainMenu'
-import search from '../../assets/icons/search.svg';
+import search from '../../../assets/icons/search.svg';
 
-import './Blog.scss'
+import './Blog.scss';
 
 function Blog(props) {
     return (
         <Fragment>
-        <MainMenu/>
         <section className='blog-header'>
             <h1 className='blog-header__title'>stay up to date with the latest
                 news оf hiring</h1>
@@ -105,7 +102,6 @@ function Blog(props) {
                 </form>
             </div>
         </section>
-        <Footer/>
         </Fragment>
     )
 }
