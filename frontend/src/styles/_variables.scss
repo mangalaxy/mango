@@ -1,6 +1,24 @@
-$primaryColor: #FF8080;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Carter+One&display=swap');
+
+$primaryColor: #333333;
 $secondaryColor: #008489;
 $backgroundColor: #FFF;
 $surfaceColor: rgba(0, 132, 137, 0.03);
 $errorColor: #B00020;
 $onBackgroundColor: #000;
+
+$COLOR_CORAL: #FF8080;
+$COLOR_GREEN: rgba(54, 179, 168, 0.9);
+$COLOR_MENU_DARK: #4f4f4f;
+$COLOR_MENU_LIGHT: #f2f2f2;
+$COLOR_BLACK: #000;
+$COLOR_BG_LIGHT: #fafafa;
+
+$FONT_LOGO: 'Carter One', cursive;
+$FONT_MENU: 'Monserrat', sans-serif;
+$FONT_COMMON: 'Monserrat', sans-serif;
+$MAIN_MENU_HEIGHT: 70px;
+$FOOTER_HEIGHT: 170px;
+
+

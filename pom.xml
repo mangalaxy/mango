@@ -59,10 +59,10 @@
             <optional>true</optional>
         </dependency>
 
-      <!--<dependency>
+      <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-security</artifactId>
-      </dependency>-->
+      </dependency>
 
 
       <dependency>
@@ -77,11 +77,22 @@
             <scope>test</scope>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>-->
+        </dependency>
+
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.modelmapper</groupId>
@@ -98,11 +109,6 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
         </dependency>
 
     </dependencies>

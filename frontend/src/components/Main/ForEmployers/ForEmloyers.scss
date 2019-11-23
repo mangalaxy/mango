@@ -1,0 +1,147 @@
+@import '../../../styles/_variables.scss';
+
+#for-employers-banner {
+  background-image: url("../../../assets/images/main_employers_bg.png");
+  position: relative;
+
+  .bannerContent {
+    margin-left: 40%;
+    max-width: 40%;
+  }
+
+  h1 {
+    text-align: left;
+  }
+}
+
+#market {
+  padding: 3em 0 2em;
+  display: block;
+
+  .mapContainer {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+
+    img {
+      width: 100%;
+    }
+
+    .markers {
+      position: absolute;
+      width: 74%;
+      left: 12.26%;
+      top: 30%;
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f;
+  }
+
+  .actionButton {
+    margin: 1em auto;
+    display: block;
+  }
+}
+
+#how-works {
+  padding: 3em;
+  background-color: $COLOR_BG_LIGHT;
+}
+
+.worksDiagramContainer {
+  width: 60%;
+  margin: 50px auto;
+  height: 40vh;
+  position: relative;
+
+  .outerCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: $COLOR_GREEN 2px solid;
+    transform: translateY(-50%);
+
+    .innerCircle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $COLOR_GREEN;
+
+      .order {
+        color: #FFFFFF;
+        font-size: 20px;
+        position: relative;
+
+        .pointHeader {
+          position: absolute;
+          left: 50%;
+          color: $COLOR_MENU_DARK;
+          font-size: 14px;
+          width: 150px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+#price {
+  background: url("../../../assets/images/balance.png");
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .textContainer {
+    min-width: 100px;
+    margin: 5em 0 20em;
+    display: inline-block;
+  }
+
+  h3, p {
+    color: $COLOR_MENU_LIGHT;
+  }
+
+  h3 {
+    font-size: 46px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  p {
+    width: 40%;
+    font-size: 24px;
+    margin-left: 1em;
+    margin-top: 1em;
+    line-height: 1.2em;
+  }
+}
+
+#say-hello {
+  padding: 2em;
+
+  h4 {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f;
+  }
+
+  .actionButton {
+    margin: 20px auto;
+    display: block;
+  }
+}
