@@ -1,12 +1,9 @@
 import React from 'react';
-import Footer from '../../components/Main/Footer/Footer'
-import TopMenuGrey from '../../components/TopMenuGray/TopMenuGrey'
-import './Support.scss'
+import './Support.scss';
 
 function Support(props) {
     return (
         <div className='support'>
-            <TopMenuGrey/>
             <div className='support-container'>
                 <h1 className='support-container__header'>support center</h1>
                 <div className='support-content'>
@@ -38,7 +35,6 @@ function Support(props) {
                     </form>
                 </div>
             </div>
-            <Footer/>
         </div>
     )
 }
