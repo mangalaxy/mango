@@ -1,28 +1,8 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -35,19 +15,18 @@ import java.util.Set;
 @Builder
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true,
-      doNotUseGetters = true,
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true,
       onlyExplicitlyIncluded = true)
 @ToString(callSuper = true, doNotUseGetters = true)
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "company")
 public class Company extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "companySeqGenerator")
-  @SequenceGenerator(name = "companySeqGenerator", sequenceName = "company_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "companySequence")
+  @SequenceGenerator(name = "companySequence", sequenceName = "company_id_seq")
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Long id;
 
@@ -61,17 +40,17 @@ public class Company extends AuditEntity {
   @Column(name = "logo_url")
   private String logo;
 
-  @Column(name = "address")
-  private String address;
+  @Column(name = "hq_address")
+  private String headquartersAddress;
 
-  @Column(name = "size")
+  @Column(name = "emp_count")
   private String size;
 
   @Column(name = "industry")
   private String industry;
 
-  @Column(name = "media_url")
-  private String mediaUrl;
+  @Column(name = "promo_url")
+  private String promo;
 
   @Column(name = "about")
   private String about;
@@ -79,8 +58,7 @@ public class Company extends AuditEntity {
   @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   @JoinTable(name = "company_skill",
         joinColumns = @JoinColumn(name = "company_id"),
-        inverseJoinColumns = @JoinColumn(name = "skill_id")
-  )
+        inverseJoinColumns = @JoinColumn(name = "skill_id"))
   private Set<Skill> skills = new HashSet<>();
 
   @ElementCollection
@@ -104,8 +82,7 @@ public class Company extends AuditEntity {
   private Set<String> photos = new HashSet<>();
 
   @OneToMany(mappedBy = "company",
-             cascade = { CascadeType.PERSIST, CascadeType.MERGE }
-  )
+        cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   private Set<Employer> employers = new HashSet<>();
 
 }

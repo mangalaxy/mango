@@ -16,10 +16,10 @@ import java.math.BigDecimal;
 @Embeddable
 public class Salary {
 
-  @Column(name = "amount", scale = 2, precision = 7)
-  private BigDecimal amount;
-
   @Column(name = "currency")
   private String currency;
+
+  @Column(name = "amount", scale = 2, precision = 9)
+  private BigDecimal amount;
 
 }

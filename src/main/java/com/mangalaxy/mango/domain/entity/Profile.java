@@ -1,31 +1,16 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.mangalaxy.mango.domain.CandidateStatus;
+import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Contains talent experience information.
+ */
 @Getter
 @Setter
 @Builder
@@ -52,12 +37,11 @@ public class Profile {
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "profile_skill",
         joinColumns = @JoinColumn(name = "profile_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id")
-  )
+        inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id"))
   private Set<Skill> skills = new HashSet<>();
 
   @Enumerated(EnumType.STRING)
-  @Column(length = 12)
+  @Column(name = "status")
   private CandidateStatus status;
 
   @OneToOne(fetch = FetchType.LAZY)
@@ -68,7 +52,7 @@ public class Profile {
   private Salary preferredSalary;
 
   @ElementCollection
-  @CollectionTable(name = "profile_expectations")
+  @CollectionTable(name = "talent_expectations")
   @Column(name = "title")
   private Set<String> expectations = new HashSet<>();
 
@@ -78,11 +62,11 @@ public class Profile {
   private Set<String> preferredCompanyType = new HashSet<>();
 
   @ElementCollection
-  @CollectionTable(name = "profile_experiences")
+  @CollectionTable(name = "talent_experiences")
   private List<Experience> experiences;
 
   @ElementCollection
-  @CollectionTable(name = "profile_educations")
+  @CollectionTable(name = "talent_educations")
   private List<Education> educations;
 
   @ElementCollection

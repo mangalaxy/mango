@@ -1,30 +1,27 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Getter
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 @Entity
 @Table(name = "skill")
 public class Skill extends AuditEntity {
 
-  @NotBlank
-  @Size(max = 30)
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skillSeq")
+  @SequenceGenerator(name = "skillSeq", sequenceName = "skill_id_seq")
+  private Long id;
+
+  @EqualsAndHashCode.Include
   @Column(name = "name")
   private String name;
 

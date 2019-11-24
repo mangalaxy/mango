@@ -3,6 +3,7 @@ package com.mangalaxy.mango.service;
 import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
+import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
@@ -29,6 +30,7 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class JobServiceTest {
+
   @Autowired
   private JobService jobService;
 
@@ -41,59 +43,60 @@ public class JobServiceTest {
   @Autowired
   private ModelMapper modelMapper;
 
-  private static Job firstMockJob;
-  private static Job secondMockJob;
-  private static Job thirdMockJob;
-  private static Employer mockEmployer;
+  private Job firstMockJob;
+  private Job secondMockJob;
+  private Job thirdMockJob;
+  private Employer mockEmployer;
 
   @Before
   public void setUp() {
     Location firstLocation = new Location();
-    firstLocation.setId(1);
+    firstLocation.setId((short)1);
     firstLocation.setCity("Kyiv");
     firstLocation.setCountry("Ukraine");
 
     mockEmployer = new Employer();
     mockEmployer.setId(1L);
-    mockEmployer.setWorkEmail("test@mail.au");
+    mockEmployer.setEmail("test@mail.au");
     mockEmployer.setPassword("123456");
     mockEmployer.setFullName("Elon Mask");
     mockEmployer.setLocation(firstLocation);
 
     Location secondLocation = new Location();
-    secondLocation.setId(2);
+    secondLocation.setId((short)2);
     secondLocation.setCity("Lviv");
     secondLocation.setCountry("Ukraine");
 
-    firstMockJob = new Job();
 
     Employer employer = new Employer();
     employer.setId(1L);
     employer.setFullName("Elon Mask");
     employer.setLocation(firstLocation);
 
-    firstMockJob.setId(1L);
-    firstMockJob.setTitle("Java Developer");
-    firstMockJob.setLocation(firstLocation);
-    firstMockJob.setJobRole("role1");
-    firstMockJob.setPublisher(mockEmployer);
+    JobRole jobRole = new JobRole();
+    jobRole.setTitle("Software Engineering");
 
-    secondMockJob = new Job();
+    firstMockJob = new Job();
+    firstMockJob.setId(1L);
+    firstMockJob.setTitle("Senior Java Developer");
+    firstMockJob.setLocation(firstLocation);
+    firstMockJob.setJobRole(jobRole);
+    firstMockJob.setPublisher(mockEmployer);
     firstMockJob.setPublisher(employer);
 
+    secondMockJob = new Job();
     secondMockJob.setId(2L);
     secondMockJob.setTitle("JS Developer");
     secondMockJob.setLocation(secondLocation);
-    secondMockJob.setJobRole("role2");
+    secondMockJob.setJobRole(jobRole);
     secondMockJob.setPublisher(mockEmployer);
-
-    thirdMockJob = new Job();
     secondMockJob.setPublisher(employer);
 
+    thirdMockJob = new Job();
     thirdMockJob.setId(3L);
     thirdMockJob.setTitle("Front End");
     thirdMockJob.setLocation(firstLocation);
-    thirdMockJob.setJobRole("role2");
+    thirdMockJob.setJobRole(jobRole);
     thirdMockJob.setPublisher(mockEmployer);
     thirdMockJob.setPublisher(employer);
   }
@@ -107,10 +110,10 @@ public class JobServiceTest {
 
     Pageable pageable = mock(Pageable.class);
 
-    Page<Job> allJobs = new PageImpl(jobs);
+    Page<Job> allJobs = new PageImpl<>(jobs);
 
     Mockito.when(jobRepository.findAll(pageable)).thenReturn(allJobs);
-    Page<JobResponse> jobsList = jobService.getJobsByParameters("role2", "kyiv", pageable);
+    Page<JobResponse> jobsList = jobService.filterJobsByParams("role2", "Berlin", pageable);
 
     verify(jobRepository).findAll(pageable);
     Assert.assertEquals(1, jobsList.getContent().size());
@@ -118,20 +121,19 @@ public class JobServiceTest {
 
   @Test
   public void shouldGetJobsForEmployer() {
-    List<Job> jobs = new ArrayList<>();
-    jobs.add(firstMockJob);
-    jobs.add(secondMockJob);
-    jobs.add(thirdMockJob);
+    List<Job> jobMocks = new ArrayList<>();
+    jobMocks.add(firstMockJob);
+    jobMocks.add(secondMockJob);
+    jobMocks.add(thirdMockJob);
 
     Pageable pageable = mock(Pageable.class);
 
-    Page<Job> allJobs = new PageImpl(jobs);
+    Page<Job> jobPageMock = new PageImpl<>(jobMocks);
 
-    Mockito.when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(allJobs);
-    Page<JobResponse> jobList = jobService.getJobsForEmployer(pageable, 1L);
-
+    Mockito.when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(jobPageMock);
+    Page<JobResponse> jobList = jobService.fetchEmployerJobs(1L, pageable);
     verify(jobRepository).findAllByPublisher_Id(1L, pageable);
-    Assert.assertEquals(jobList.getContent().size(), jobs.size());
+    Assert.assertEquals(jobList.getContent().size(), jobMocks.size());
   }
 
   @Test
@@ -150,7 +152,7 @@ public class JobServiceTest {
   @Test
   public void shouldDeleteJob() {
     Mockito.when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(firstMockJob);
-    jobService.deletJob(1L, 1L);
+    jobService.deleteJob(1L, 1L);
     verify(jobRepository).delete(firstMockJob);
   }
 }

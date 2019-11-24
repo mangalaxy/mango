@@ -1,42 +1,20 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Represents an employer.
- */
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, doNotUseGetters = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true,
+      onlyExplicitlyIncluded = true)
 @ToString(callSuper = true, doNotUseGetters = true)
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @NaturalIdCache
@@ -44,8 +22,8 @@ import java.util.Set;
 public class Employer extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employerSeqGenerator")
-  @SequenceGenerator(name = "employerSeqGenerator", sequenceName = "employer_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employerSeq")
+  @SequenceGenerator(name = "employerSeq", sequenceName = "employer_id_seq")
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Long id;
 
@@ -62,13 +40,6 @@ public class Employer extends AuditEntity {
   @Column(name = "phone")
   private String phoneNumber;
 
-  @EqualsAndHashCode.Exclude
-  @ManyToOne(fetch = FetchType.LAZY,
-        cascade = {CascadeType.PERSIST, CascadeType.MERGE},
-        optional = false)
-  @JoinColumn(name = "company_id", nullable = false)
-  private Company company;
-
   @Column(name = "job_title")
   private String jobTitle;
 
@@ -76,19 +47,24 @@ public class Employer extends AuditEntity {
   private String photo;
 
   @EqualsAndHashCode.Exclude
-  @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+        fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "company_id", nullable = false)
+  private Company company;
+
+  @EqualsAndHashCode.Exclude
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
   @EqualsAndHashCode.Exclude
   @OneToMany(mappedBy = "publisher",
         cascade = CascadeType.ALL,
-        orphanRemoval = true
-  )
+        orphanRemoval = true)
   private Set<Job> jobs = new HashSet<>();
 
   @EqualsAndHashCode.Exclude
-  @ManyToMany
+  @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   @JoinTable(name = "bookmarked_talents",
         joinColumns = @JoinColumn(name = "employer_id"),
         inverseJoinColumns = @JoinColumn(name = "talent_id"))

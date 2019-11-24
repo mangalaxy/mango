@@ -1,36 +1,41 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "question")
-public class Question extends AbstractEntity {
+public class Question extends AuditEntity {
 
-  @NotBlank
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "questionSequence")
+  @SequenceGenerator(name = "questionSequence", sequenceName = "question_id_seq")
+  private Long id;
+
+  @Column(name = "message")
   private String message;
 
   @NotBlank
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employer_id")
   private Employer employer;
 
   @NotBlank
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "talent_id")
   private Talent talent;
 
   @NotBlank
   @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
   private Answer answer;
+
 }

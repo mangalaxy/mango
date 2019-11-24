@@ -26,10 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -49,25 +46,23 @@ public class TalentServiceTest {
 
   @Before
   public void setUp() {
-
     Location location = new Location();
-    location.setId(1);
-    location.setCity("Kyiv");
-    location.setCountry("UA");
-
+    location.setId((short) 1);
+    location.setCity("Frankfurt");
+    location.setCountry("Germany");
 
     firstMockTalent = new Talent();
     firstMockTalent.setId(1L);
     firstMockTalent.setEmail("test@gmai.com");
     firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("Ilon Mask");
+    firstMockTalent.setFullName("Mark Schmidt");
     firstMockTalent.setLocation(location);
 
     secondMockTalent = new Talent();
     secondMockTalent.setId(2L);
     secondMockTalent.setEmail("test2@gmai.com");
     secondMockTalent.setPassword("123456");
-    secondMockTalent.setFullName("Leo Messi");
+    secondMockTalent.setFullName("Leo Miller");
     secondMockTalent.setLocation(location);
 
     Profile profile = new Profile();
@@ -98,7 +93,7 @@ public class TalentServiceTest {
 
     Pageable pageable = mock(Pageable.class);
 
-    Page<Talent> talentList = new PageImpl(talents);
+    Page<Talent> talentList = new PageImpl<>(talents);
 
     Mockito.when(talentRepository.findAll(pageable)).thenReturn(talentList);
 

@@ -1,15 +1,12 @@
 package com.mangalaxy.mango.domain.entity;
 
+import com.mangalaxy.mango.domain.Degree;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -18,31 +15,17 @@ import javax.persistence.Enumerated;
 @Embeddable
 public class Education {
 
-  public enum Degree {
-    ASSOCIATE,
-    BACHELOR,
-    MASTER,
-    PHD
-  }
-
+  @Column(name = "institution")
   private String institution;
 
-  @Column(length = 10)
+  @Column(name = "degree")
   @Enumerated(EnumType.STRING)
   private Degree degree;
 
+  @Column(name = "specialization")
   private String specialization;
 
   @Embedded
   private ActivityPeriod period;
-
-  /**
-   * Convenient method for obtaining possible degrees.
-   *
-   * @return array of possible degrees.
-   */
-  public static Degree[] degrees() {
-    return Degree.values();
-  }
 
 }
