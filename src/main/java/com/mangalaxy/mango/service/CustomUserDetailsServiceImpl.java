@@ -1,13 +1,13 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.Role;
 import com.mangalaxy.mango.domain.dto.request.LoginRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
-import com.mangalaxy.mango.domain.entity.Role;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.repository.UserRepository;
-import com.mangalaxy.mango.security.JwtTokenProvider;
 import com.mangalaxy.mango.security.UserPrincipal;
+import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

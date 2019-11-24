@@ -1,6 +1,5 @@
-package com.mangalaxy.mango.domain;
+package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,12 +9,10 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @AllArgsConstructor
 @Embeddable
 public class Language {
@@ -30,12 +27,11 @@ public class Language {
     FLUENT
   }
 
-  @Column(length = 15)
+  @Column(name = "level", nullable = false)
   @Enumerated(EnumType.STRING)
   private Level level;
 
-  @NotBlank
-  @Size(max = 30)
+  @Column(name = "name", nullable = false)
   private String name;
 
   /**

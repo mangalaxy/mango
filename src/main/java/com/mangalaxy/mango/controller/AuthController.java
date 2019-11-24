@@ -15,14 +15,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
   private final CustomUserDetailsService customUserDetailsService;
 
-  @PostMapping("login")
+  @PostMapping("/login")
   public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
     return ResponseEntity.ok(customUserDetailsService.signIn(loginRequest));
   }
 
-  @PostMapping("signUp")
+  @PostMapping("/register")
   public ResponseEntity<?> registerUser(@RequestBody LoginRequest loginRequest) {
     ApiResponse response = customUserDetailsService.registerNewUser(loginRequest);
     return new ResponseEntity<>(response, HttpStatus.CREATED);

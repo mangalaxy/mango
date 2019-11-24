@@ -1,68 +1,48 @@
 package com.mangalaxy.mango.domain.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
-import java.util.List;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true)
+@ToString(callSuper = true, doNotUseGetters = true)
+@NaturalIdCache
 @Entity
 @Table(name = "talent")
-@NaturalIdCache
-@ApiModel(description = "All details about the Talent")
-public class Talent extends AbstractEntity {
+public class Talent extends AuditEntity {
 
-  @NotBlank
-  @Size(min = 6, max = 60)
-  @Column(name = "full_name")
-  @ApiModelProperty(notes = "The database generated talent ID")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "talentSeq")
+  @SequenceGenerator(name = "talentSeq", sequenceName = "talent_id_seq")
+  @Column(name = "id", nullable = false, unique = true, updatable = false)
+  private Long id;
+
+  @Column(name = "full_name", nullable = false)
   private String fullName;
 
-  @NotBlank
-  @Email(message = "Invalid email")
-  @Size(max = 60)
   @NaturalId
-  @ApiModelProperty(notes = "The talent email")
+  @Column(name = "email", nullable = false, unique = true)
   private String email;
 
-  @NotBlank
-  @Size(min = 6, max = 100)
-  @ApiModelProperty(notes = "The talent password")
+  @Column(name = "password", nullable = false)
   private String password;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id", referencedColumnName = "id")
   @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "The talent location")
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
-  @ManyToMany(mappedBy = "matchedTalents")
-  private Set<Employer> matchedEmployers;
-
-  @OneToMany(mappedBy = "talent")
-  private List<Question> questions;
+  @EqualsAndHashCode.Exclude
+  @ManyToMany(mappedBy = "bookmarkedTalents")
+  private Set<Employer> potentialEmployers = new HashSet<>();
 
 }

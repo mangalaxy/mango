@@ -1,9 +1,10 @@
 package com.mangalaxy.mango.security;
 
 
+import com.mangalaxy.mango.security.jwt.JwtAuthenticationEntryPoint;
+import com.mangalaxy.mango.security.jwt.JwtAuthenticationFilter;
 import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -26,17 +27,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
     prePostEnabled = true
 )
 @RequiredArgsConstructor
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private CustomUserDetailsService customUserDetailsService;
-
-  @Autowired
-  private JwtAuthenticationEntryPoint unauthorizedHandler;
+  private final CustomUserDetailsService customUserDetailsService;
+  private final JwtAuthenticationEntryPoint unauthorizedHandler;
 
   @Bean
   public JwtAuthenticationFilter jwtAuthenticationFilter() {
     return new JwtAuthenticationFilter();
+  }
+
+  @Bean
+  public BCryptPasswordEncoder encoder() {
+    return new BCryptPasswordEncoder();
   }
 
   @Bean(BeanIds.AUTHENTICATION_MANAGER)
@@ -45,13 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     return super.authenticationManagerBean();
   }
 
-  @Bean
-  public BCryptPasswordEncoder encoder() {
-    return new BCryptPasswordEncoder();
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
   }
 
   @Override
-  public void configure(WebSecurity web) throws Exception {
+  public void configure(WebSecurity web) {
     web.ignoring()
         .antMatchers("/favicon.ico",
             "/**/*.png",
@@ -67,36 +70,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http
         .cors()
-        .and()
+          .and()
         .csrf()
-        .disable()
+          .disable()
         .exceptionHandling()
-        .authenticationEntryPoint(unauthorizedHandler)
+          .authenticationEntryPoint(unauthorizedHandler)
         .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+          .sessionManagement()
+          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-        .antMatchers("/api/v1/auth/**")
+          .antMatchers("/api/v1/auth/**")
         .permitAll()
         .anyRequest()
         .authenticated()
         .and()
-        .formLogin()
-        .loginPage("/")
-        .permitAll()
+          .formLogin()
+          .loginPage("/")
+          .permitAll()
         .and()
-        .logout()
-        .logoutUrl("/api/v1/logout")
-        .permitAll();
+          .logout()
+          .logoutUrl("/api/v1/logout")
+          .permitAll();
 
     http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
-  }
-
-  @Override
-  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
   }
 
 }

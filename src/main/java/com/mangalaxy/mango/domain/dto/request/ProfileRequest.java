@@ -3,14 +3,12 @@ package com.mangalaxy.mango.domain.dto.request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.mangalaxy.mango.domain.CandidateStatus;
-import com.mangalaxy.mango.domain.Education;
-import com.mangalaxy.mango.domain.Experience;
-import com.mangalaxy.mango.domain.Language;
-import com.mangalaxy.mango.domain.Salary;
+import com.mangalaxy.mango.domain.entity.Education;
+import com.mangalaxy.mango.domain.entity.Experience;
+import com.mangalaxy.mango.domain.entity.Language;
+import com.mangalaxy.mango.domain.entity.Salary;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 import java.util.Set;

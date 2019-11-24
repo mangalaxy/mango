@@ -11,15 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -29,7 +21,7 @@ public class JobController {
 
   private final JobService jobService;
 
-  @GetMapping("jobs")
+  @GetMapping("/jobs")
   @ApiOperation(value = "View a list of jobs by parameters")
   public ResponseEntity<Page<JobResponse>> getJobsByParams(
       @ApiParam(value = "JobRole from which job object will retrieve")
@@ -37,20 +29,20 @@ public class JobController {
       @ApiParam(value = "City from which job object will retrieve")
       @RequestParam(name = "city", required = false) String city,
       Pageable pageable) {
-    Page<JobResponse> jobs = jobService.getJobsByParameters(jobRole, city, pageable);
+    Page<JobResponse> jobs = jobService.filterJobsByParams(jobRole, city, pageable);
     return ResponseEntity.ok(jobs);
   }
 
-  @GetMapping("employers/{employerId}/jobs")
+  @GetMapping("/employers/{employerId}/jobs")
   @ApiOperation(value = "View a list of jobs by employer id")
   public ResponseEntity<Page<JobResponse>> getOpenEmployersJobs(
       @ApiParam(value = "Employer id from which list of job objects will retrieve", required = true)
       @PathVariable Long employerId, Pageable pageable) {
-    Page<JobResponse> jobs = jobService.getJobsForEmployer(pageable, employerId);
+    Page<JobResponse> jobs = jobService.fetchEmployerJobs(employerId, pageable);
     return ResponseEntity.ok(jobs);
   }
 
-  @GetMapping("employers/{employerId}/jobs/{jobId}")
+  @GetMapping("/employers/{employerId}/jobs/{jobId}")
   @ApiOperation(value = "View job by employer and jobId")
   public ResponseEntity<JobResponse> getJobForEmployer(
       @ApiParam(value = "Employer id to check that job relevant for employer ")
@@ -61,7 +53,7 @@ public class JobController {
     return ResponseEntity.ok(jobResponse);
   }
 
-  @PostMapping("employers/{id}/jobs")
+  @PostMapping("/employers/{id}/jobs")
   @ApiOperation(value = "Create new Job")
   public ResponseEntity<JobResponse> createNewJob(
       @ApiParam(value = "Job object store in database table", required = true)
@@ -72,7 +64,7 @@ public class JobController {
     return new ResponseEntity<>(jobResponse, HttpStatus.CREATED);
   }
 
-  @PutMapping("employers/{employerId}/jobs/{jobId}")
+  @PutMapping("/employers/{employerId}/jobs/{jobId}")
   @ApiOperation(value = "Update job")
   public ResponseEntity<JobResponse> updateJob(
       @ApiParam(value = "Update employer object", required = true)
@@ -85,14 +77,14 @@ public class JobController {
     return ResponseEntity.ok(jobResponse);
   }
 
-  @DeleteMapping("employers/{employerId}/jobs/{jobId}")
+  @DeleteMapping("/employers/{employerId}/jobs/{jobId}")
   @ApiOperation(value = "Delete job")
   public ResponseEntity<Void> deleteJob(
       @ApiParam(value = "Employer id from which job object will retrieve", required = true)
       @PathVariable Long employerId,
       @ApiParam(value = "Job id from which job object will retrieve", required = true)
       @PathVariable Long jobId) {
-    jobService.deletJob(jobId, employerId);
+    jobService.deleteJob(jobId, employerId);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 }
