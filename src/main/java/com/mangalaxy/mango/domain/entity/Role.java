@@ -6,7 +6,8 @@ public enum Role implements GrantedAuthority {
   USER,
   TALENT,
   EMPLOYER,
-  ADMIN;
+  ADMIN,
+  CHANGE_PASSWORD_PRIVILEGE;
 
   @Override
   public String getAuthority() {
