@@ -1,90 +1,71 @@
 package com.mangalaxy.mango.domain.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.SortNatural;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents the published job by the employer in a company department.
+ * Represents the published job by the employer in a company.
  */
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true,
+      onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
-@RequiredArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "job")
-@ApiModel(description = "All details about the Job")
-public class Job extends AbstractEntity {
+public class Job extends AuditEntity {
 
-  @NotBlank
-  @Size(max = 60)
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobSequence")
+  @SequenceGenerator(name = "jobSequence", sequenceName = "job_id_seq")
+  @Column(name = "id", nullable = false, unique = true, updatable = false)
+  private Long id;
+
+  @Column(name = "title", nullable = false)
   private String title;
-  // TODO: Change to EmploymentType enum
+
+  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+        fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "job_role_id")
+  private JobRole jobRole;
+
   @Column(name = "employment_type")
-  @ApiModelProperty(notes = "Job employment type")
   private String employmentType;
 
   @Column(name = "is_remote")
-  @ApiModelProperty(notes = "Is remote job flag")
-  private Boolean isRemote;
+  private Boolean remote;
 
-  @Column(name = "is_relocate")
-  @ApiModelProperty(notes = "Is relocate job flag")
-  private Boolean isRelocate;
+  @Column(name = "relocation")
+  private Boolean relocation;
 
-  @Column(name = "is_sponsorship")
-  @ApiModelProperty(notes = "Is visa sponsored for job flag")
-  private Boolean isVisaSponsorship;
+  @Column(name = "visa_sponsorship")
+  private Boolean visaSponsorship;
 
-  @Column(name = "xp_range")
-  @ApiModelProperty(notes = "Job xp range")
-  private String xpRange;
+  @Column(name = "job_experience", nullable = false)
+  private String requiredExperience;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "location_id")
   @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "Job location")
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
   @SortNatural
-  @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+  @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   @JoinTable(name = "job_skill",
         joinColumns = @JoinColumn(name = "job_id"),
-        inverseJoinColumns = @JoinColumn(name = "skill_id")
-  )
-  @ApiModelProperty(notes = "List of job skills")
+        inverseJoinColumns = @JoinColumn(name = "skill_id"))
   private Set<Skill> skills = new HashSet<>();
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "employer_id", updatable = false, nullable = false)
   @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "Job publisher")
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "employer_id", nullable = false)
   private Employer publisher;
-
-  @Column(name = "job_role")
-  @ApiModelProperty(notes = "Job role")
-  private String jobRole;
 
 }

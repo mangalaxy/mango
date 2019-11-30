@@ -6,9 +6,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface JobService {
-  Page<JobResponse> getJobsByParameters(String jobRole, String city, Pageable pageable);
 
-  Page<JobResponse> getJobsForEmployer(Pageable pageable, Long emploterId);
+  Page<JobResponse> filterJobsByParams(String jobRole, String city, Pageable pageable);
+
+  Page<JobResponse> fetchEmployerJobs(final Long employerId, Pageable pageable);
 
   JobResponse findJobByEmployerAndId(Long jobId, Long employerId);
 
@@ -16,5 +17,6 @@ public interface JobService {
 
   JobResponse updateJob(JobRequest jobRequest, Long employerId, Long jobId);
 
-  void deletJob(Long jobId, Long employerId);
+  void deleteJob(Long jobId, Long employerId);
+
 }

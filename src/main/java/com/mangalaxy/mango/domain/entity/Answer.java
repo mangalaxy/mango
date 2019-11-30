@@ -1,22 +1,25 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "answer")
-public class Answer extends AbstractEntity {
+public class Answer extends AuditEntity {
 
-  @NotBlank
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answerSequence")
+  @SequenceGenerator(name = "answerSequence", sequenceName = "answer_id_seq")
+  private Long id;
+
+  @Column(name = "message", nullable = false)
   private String message;
 
   @OneToOne
@@ -25,3 +28,4 @@ public class Answer extends AbstractEntity {
   private Question question;
 
 }
+

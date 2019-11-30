@@ -1,7 +1,7 @@
 package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.model.dto.response.ProfileResponse;
+import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

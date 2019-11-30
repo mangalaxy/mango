@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.security;
+package com.mangalaxy.mango.security.jwt;
 
 import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +26,8 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private CustomUserDetailsService customUserDetailsService;
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request,
-                                  HttpServletResponse response,
-                                  FilterChain filterChain) throws ServletException, IOException {
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+        throws ServletException, IOException {
     try {
       String jwt = getJwtFromRequest(request);
 
@@ -52,7 +51,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   private String getJwtFromRequest(HttpServletRequest request) throws Exception {
     String bearerToken = request.getHeader("Authorization");
     if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-      return bearerToken.substring(7, bearerToken.length());
+      return bearerToken.substring(7);
     } else {
       throw new Exception();
     }

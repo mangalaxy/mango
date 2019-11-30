@@ -18,28 +18,28 @@ import java.util.EmptyStackException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RequiredArgsConstructor
 @Service
+@RequiredArgsConstructor
 @Transactional
-public class JobServiceImpl implements JobService {
+public class PersistentJobService implements JobService {
 
   private final JobRepository jobRepository;
   private final ModelMapper modelMapper;
   private final EmployerRepository employerRepository;
 
   @Override
-  public Page<JobResponse> getJobsByParameters(String jobRole, String city, Pageable pageable) {
+  public Page<JobResponse> filterJobsByParams(String jobRole, String city, Pageable pageable) {
     Page<Job> allJobs = jobRepository.findAll(pageable);
     List<JobResponse> jobsByParams = allJobs.getContent().stream()
-        .filter(job -> jobRole != null ? job.getJobRole().equalsIgnoreCase(jobRole) : true)
-        .filter(job -> city != null ? job.getLocation().getCity().equalsIgnoreCase(city) : true)
-        .map(job -> modelMapper.map(job, JobResponse.class))
-        .collect(Collectors.toList());
+          .filter(job -> jobRole == null || job.getJobRole().getTitle().equalsIgnoreCase(jobRole))
+          .filter(job -> city == null || job.getLocation().getCity().equalsIgnoreCase(city))
+          .map(job -> modelMapper.map(job, JobResponse.class))
+          .collect(Collectors.toList());
     return new PageImpl<>(jobsByParams, pageable, jobsByParams.size());
   }
 
   @Override
-  public Page<JobResponse> getJobsForEmployer(Pageable pageable, Long employerId) {
+  public Page<JobResponse> fetchEmployerJobs(Long employerId, Pageable pageable) {
     Page<Job> jobs = jobRepository.findAllByPublisher_Id(employerId, pageable);
     List<JobResponse> employerJobs = jobs.stream().map(job -> modelMapper.map(job, JobResponse.class)).collect(Collectors.toList());
     return new PageImpl<>(employerJobs, pageable, employerJobs.size());
@@ -72,8 +72,9 @@ public class JobServiceImpl implements JobService {
   }
 
   @Override
-  public void deletJob(Long jobId, Long employerId) {
+  public void deleteJob(Long jobId, Long employerId) {
     Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId);
     jobRepository.delete(job);
   }
 }
+
