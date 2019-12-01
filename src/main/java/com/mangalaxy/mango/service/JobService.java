@@ -5,18 +5,21 @@ import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+/**
+ * Provides a basic interface for jobs service.
+ */
 public interface JobService {
 
-  Page<JobResponse> filterJobsByParams(String jobRole, String city, Pageable pageable);
+  Page<JobResponse> selectJobsByParams(String jobRole, String city, Pageable pagination);
 
-  Page<JobResponse> fetchEmployerJobs(final Long employerId, Pageable pageable);
+  JobResponse createEmployerJob(Long employerId, JobRequest newJobInfo);
 
-  JobResponse findJobByEmployerAndId(Long jobId, Long employerId);
+  Page<JobResponse> getEmployerAllJobs(Long employerId, Pageable pagination);
 
-  JobResponse createNewJob(JobRequest jobRequest, Long employerId);
+  JobResponse getEmployerJob(Long employerId, Long jobId);
 
-  JobResponse updateJob(JobRequest jobRequest, Long employerId, Long jobId);
+  JobResponse updateEmployerJob(Long employerId, Long jobId, JobRequest jobUpdate);
 
-  void deleteJob(Long jobId, Long employerId);
+  void removeEmployerJob(Long employerId, Long jobId);
 
 }

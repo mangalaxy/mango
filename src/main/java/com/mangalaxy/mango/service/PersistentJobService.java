@@ -4,77 +4,90 @@ import com.mangalaxy.mango.domain.dto.request.JobRequest;
 import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
+import com.mangalaxy.mango.domain.entity.JobRole;
+import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
+import com.mangalaxy.mango.repository.JobRoleRepository;
+import com.mangalaxy.mango.repository.LocationRepository;
+import com.mangalaxy.mango.util.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.EmptyStackException;
-import java.util.List;
-import java.util.stream.Collectors;
-
-@Service
+/**
+ * Default implementation of {@link JobService} interface.
+ *
+ * @see com.mangalaxy.mango.service.JobService
+ */
 @RequiredArgsConstructor
-@Transactional
+@Service
 public class PersistentJobService implements JobService {
 
   private final JobRepository jobRepository;
-  private final ModelMapper modelMapper;
+  private final JobRoleRepository jobRoleRepository;
   private final EmployerRepository employerRepository;
+  private final LocationRepository locationRepository;
+  private final ModelMapper modelMapper;
 
   @Override
-  public Page<JobResponse> filterJobsByParams(String jobRole, String city, Pageable pageable) {
-    Page<Job> allJobs = jobRepository.findAll(pageable);
-    List<JobResponse> jobsByParams = allJobs.getContent().stream()
-          .filter(job -> jobRole == null || job.getJobRole().getTitle().equalsIgnoreCase(jobRole))
-          .filter(job -> city == null || job.getLocation().getCity().equalsIgnoreCase(city))
-          .map(job -> modelMapper.map(job, JobResponse.class))
-          .collect(Collectors.toList());
-    return new PageImpl<>(jobsByParams, pageable, jobsByParams.size());
+  public Page<JobResponse> selectJobsByParams(String jobRoleTitle, String city, Pageable pagination) {
+    JobRole foundJobRole = null;
+    Location foundLocation = null;
+    if (jobRoleTitle != null) {
+      foundJobRole = jobRoleRepository.findByTitle(jobRoleTitle);
+    }
+    if (city != null) {
+      foundLocation = locationRepository.findByCity(city);
+    }
+    Job probe = Job.builder().jobRole(foundJobRole).location(foundLocation).build();
+    Page<Job> foundJobs = jobRepository.findAll(Example.of(probe), pagination);
+    return foundJobs.map(this::mapToResponse);
   }
 
   @Override
-  public Page<JobResponse> fetchEmployerJobs(Long employerId, Pageable pageable) {
-    Page<Job> jobs = jobRepository.findAllByPublisher_Id(employerId, pageable);
-    List<JobResponse> employerJobs = jobs.stream().map(job -> modelMapper.map(job, JobResponse.class)).collect(Collectors.toList());
-    return new PageImpl<>(employerJobs, pageable, employerJobs.size());
+  public Page<JobResponse> getEmployerAllJobs(Long employerId, Pageable pagination) {
+    Page<Job> jobs = jobRepository.findAllByPublisher_Id(employerId, pagination);
+    return jobs.map(this::mapToResponse);
   }
 
   @Override
-  public JobResponse findJobByEmployerAndId(Long jobId, Long employerId) {
-    Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId);
-    JobResponse jobResponse = modelMapper.map(job, JobResponse.class);
-    return jobResponse;
+  public JobResponse getEmployerJob(Long employerId, Long jobId) {
+    return jobRepository.findByIdAndPublisher_Id(jobId, employerId)
+          .map(this::mapToResponse)
+          .orElseThrow(ResourceNotFoundException::new);
   }
 
   @Override
-  public JobResponse createNewJob(JobRequest jobRequest, Long employerId) {
-    Employer employer = employerRepository.findById(employerId).orElseThrow(EmptyStackException::new);
-    Job job = modelMapper.map(jobRequest, Job.class);
-    job.setPublisher(employer);
+  public JobResponse createEmployerJob(Long employerId, JobRequest newJobInfo) {
+    Employer employer = employerRepository.findById(employerId).orElseThrow(ResourceNotFoundException::new);
+    Job job = modelMapper.map(newJobInfo, Job.class);
+    employer.addJob(job);
     Job savedJob = jobRepository.save(job);
-    return modelMapper.map(savedJob, JobResponse.class);
+    return mapToResponse(savedJob);
   }
 
   @Override
-  public JobResponse updateJob(JobRequest jobRequest, Long employerId, Long jobId) {
-    Employer employer = employerRepository.findById(employerId).orElseThrow(EmptyStackException::new);
-    Job job = modelMapper.map(jobRequest, Job.class);
-    job.setPublisher(employer);
-    job.setId(jobId);
-    Job updateJob = jobRepository.save(job);
-    return modelMapper.map(updateJob, JobResponse.class);
+  public JobResponse updateEmployerJob(Long employerId, Long jobId, JobRequest jobUpdate) {
+    Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId).orElseThrow(ResourceNotFoundException::new);
+    modelMapper.map(jobUpdate, job);
+    Job updatedJob = jobRepository.save(job);
+    return mapToResponse(updatedJob);
   }
 
   @Override
-  public void deleteJob(Long jobId, Long employerId) {
-    Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId);
-    jobRepository.delete(job);
+  public void removeEmployerJob(Long employerId, Long jobId) {
+    boolean isPresent = jobRepository.existsByIdAndPublisher_Id(jobId, employerId);
+    if (isPresent) {
+      jobRepository.deleteByIdAndPublisher_Id(jobId, employerId);
+    }
+  }
+
+  // Helper methods for internal use cases.
+  private JobResponse mapToResponse(final Job source) {
+    return modelMapper.map(source, JobResponse.class);
   }
 }
-

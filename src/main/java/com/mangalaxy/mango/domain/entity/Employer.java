@@ -10,8 +10,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, doNotUseGetters = true,
-      onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true, onlyExplicitlyIncluded = true)
 @ToString(callSuper = true, doNotUseGetters = true)
 @Builder
 @NoArgsConstructor

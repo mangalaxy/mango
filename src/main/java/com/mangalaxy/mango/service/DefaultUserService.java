@@ -22,32 +22,24 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
-@Service
 @RequiredArgsConstructor
-public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
+@Service
+public class DefaultUserService implements UserService {
+
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider tokenProvider;
 
-  @Override
-  @Transactional
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    User user = userRepository.findByEmail(email);
-    return UserPrincipal.create(user);
-  }
-
-  @Override
   @Transactional
   public UserDetails loadUserById(Long id) {
     User user = userRepository.findById(id).orElseThrow(
-        () -> new UsernameNotFoundException("User not found with id : " + id)
+          () -> new UsernameNotFoundException("User not found with id : " + id)
     );
-
     return UserPrincipal.create(user);
   }
 
-  @Override
+  @Transactional
   public ApiResponse registerNewUser(LoginRequest request) {
     if (userRepository.existsByEmail(request.getEmail())) {
       return new ApiResponse(false, "Username with this email is already taken!");
@@ -66,13 +58,12 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     return new ApiResponse(true, "User registered successfully");
   }
 
-  @Override
   public JwtAuthenticationResponse signIn(LoginRequest loginRequest) {
     Authentication authentication = authenticationManager.authenticate(
-        new UsernamePasswordAuthenticationToken(
-            loginRequest.getEmail(),
-            loginRequest.getPassword()
-        )
+          new UsernamePasswordAuthenticationToken(
+                loginRequest.getEmail(),
+                loginRequest.getPassword()
+          )
     );
 
     SecurityContextHolder.getContext().setAuthentication(authentication);
