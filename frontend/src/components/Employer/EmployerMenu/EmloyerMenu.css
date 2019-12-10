@@ -8,8 +8,7 @@
   width: 100%;
   align-items: center;
   padding: 10px 30px;
-  box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0.2); }
+  box-sizing: border-box; }
   .employerMenuContainer .logo {
     text-transform: uppercase;
     font-size: 48px;
@@ -28,7 +27,7 @@
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
-    color: #f2f2f2;
+    color: #4f4f4f;
     font-family: "Monserrat", sans-serif;
     font-size: 18px;
     box-sizing: border-box;
@@ -82,4 +81,4 @@
         bottom: -50px;
         opacity: 0; }
     .employerMenuContainer .authBlock.left {
-      border-right: solid 1px #f2f2f2; }
+      border-right: solid 1px #4f4f4f; }

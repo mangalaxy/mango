@@ -9,7 +9,7 @@
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box;
-background-color: rgba(0,0,0,.2);
+// background-color: rgba(0,0,0,.2);
 
   .logo {
     text-transform: uppercase;
@@ -36,7 +36,8 @@ background-color: rgba(0,0,0,.2);
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
-    color: $COLOR_MENU_LIGHT;
+    // color: $COLOR_MENU_LIGHT;
+    color: $COLOR_MENU_DARK;
     font-family: $FONT_MENU;
     font-size: 18px;
     box-sizing: border-box;
@@ -122,7 +123,8 @@ background-color: rgba(0,0,0,.2);
     }
 
     &.left {
-      border-right: solid 1px $COLOR_MENU_LIGHT;
+      // border-right: solid 1px $COLOR_MENU_LIGHT;
+      border-right: solid 1px $COLOR_MENU_DARK;
 
     }
   }
