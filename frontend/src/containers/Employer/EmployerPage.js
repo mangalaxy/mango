@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
+import EmployerWelcome from '../../components/Employer/EmployerWelcome/EmployerWelcome';
 import './EmployerPage.scss';
 
 class Employer extends Component {
@@ -8,7 +9,7 @@ class Employer extends Component {
         <Fragment>
           <EmployerMenu currentPage={this.props.history.location.pathname}/>
           <div className="employersContent">
-            
+            <EmployerWelcome />
           </div>
         </Fragment>
     );
