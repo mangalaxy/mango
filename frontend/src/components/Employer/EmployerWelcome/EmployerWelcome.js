@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './EmployerWelcome.scss';
 
-class EmployerWelcome extends Component {
-  render() {
+const EmployerWelcome = () => {
+  // render() {
     return (
       <div className="employer-welcome">
         <h3 className="employer-welcome-title">
@@ -29,5 +29,5 @@ class EmployerWelcome extends Component {
       </div>
     )
   }
-}
+// }
 export default EmployerWelcome;
