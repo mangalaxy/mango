@@ -2,8 +2,8 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.TalentService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,7 +28,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 public class TalentControllerTest {
-
   @Autowired
   private MockMvc mockMvc;
 
@@ -65,14 +64,11 @@ public class TalentControllerTest {
 
   @Test
   public void createNewTalent() throws Exception {
-    String fullName = "Test Name";
     String expectedMail = "createdTalent@gmail.com";
     String expectedPassword = "12345";
-    TalentRequest talent = TalentRequest.builder()
-          .email(expectedMail)
-          .password(expectedPassword)
-          .fullName(fullName)
-          .build();
+    Talent talent = new Talent();
+    talent.setEmail(expectedMail);
+    talent.setPassword(expectedPassword);
 
     String talentJson = objectMapper.writeValueAsString(talent);
 
@@ -86,6 +82,7 @@ public class TalentControllerTest {
   @Test
   public void updateTalent() throws Exception {
     String updatedEmail = "updated@gmail.com";
+    Long talentId = 1L;
     TalentResponse talent = talentService.getTalentById(1L);
     talent.setEmail(updatedEmail);
 
@@ -102,6 +99,6 @@ public class TalentControllerTest {
 
   @Test
   public void deleteTalent() throws Exception {
-    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is(204));
+    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is4xxClientError());
   }
 }

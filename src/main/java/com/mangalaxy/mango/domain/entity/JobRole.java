@@ -18,7 +18,7 @@ public class JobRole {
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobRoleSequence")
   @SequenceGenerator(name = "jobRoleSequence", sequenceName = "job_role_id_seq")
-  @Column(name = "id", nullable = false, updatable = false)
+  @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Short id;
 
   @Column(name = "title", nullable = false)
