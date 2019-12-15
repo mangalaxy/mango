@@ -1,7 +1,7 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.dto.JobDto;
 import com.mangalaxy.mango.domain.dto.request.JobRequest;
-import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
@@ -17,6 +17,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Default implementation of {@link JobService} interface.
@@ -34,7 +35,8 @@ public class PersistentJobService implements JobService {
   private final ModelMapper modelMapper;
 
   @Override
-  public Page<JobResponse> selectJobsByParams(String jobRoleTitle, String city, Pageable pagination) {
+  @Transactional(readOnly = true)
+  public Page<JobDto> selectJobsByParams(String jobRoleTitle, String city, Pageable pagination) {
     JobRole foundJobRole = null;
     Location foundLocation = null;
     if (jobRoleTitle != null) {
@@ -45,37 +47,37 @@ public class PersistentJobService implements JobService {
     }
     Job probe = Job.builder().jobRole(foundJobRole).location(foundLocation).build();
     Page<Job> foundJobs = jobRepository.findAll(Example.of(probe), pagination);
-    return foundJobs.map(this::mapToResponse);
+    return foundJobs.map(this::mapToDto);
   }
 
   @Override
-  public Page<JobResponse> getEmployerAllJobs(Long employerId, Pageable pagination) {
+  public Page<JobDto> getEmployerAllJobs(Long employerId, Pageable pagination) {
     Page<Job> jobs = jobRepository.findAllByPublisher_Id(employerId, pagination);
-    return jobs.map(this::mapToResponse);
+    return jobs.map(this::mapToDto);
   }
 
   @Override
-  public JobResponse getEmployerJob(Long employerId, Long jobId) {
+  public JobDto getEmployerJob(Long employerId, Long jobId) {
     return jobRepository.findByIdAndPublisher_Id(jobId, employerId)
-          .map(this::mapToResponse)
+          .map(this::mapToDto)
           .orElseThrow(ResourceNotFoundException::new);
   }
 
   @Override
-  public JobResponse createEmployerJob(Long employerId, JobRequest newJobInfo) {
+  public JobDto createEmployerJob(Long employerId, JobRequest newJobInfo) {
     Employer employer = employerRepository.findById(employerId).orElseThrow(ResourceNotFoundException::new);
     Job job = modelMapper.map(newJobInfo, Job.class);
     employer.addJob(job);
     Job savedJob = jobRepository.save(job);
-    return mapToResponse(savedJob);
+    return mapToDto(savedJob);
   }
 
   @Override
-  public JobResponse updateEmployerJob(Long employerId, Long jobId, JobRequest jobUpdate) {
+  public JobDto updateEmployerJob(Long employerId, Long jobId, JobRequest jobUpdate) {
     Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId).orElseThrow(ResourceNotFoundException::new);
     modelMapper.map(jobUpdate, job);
     Job updatedJob = jobRepository.save(job);
-    return mapToResponse(updatedJob);
+    return mapToDto(updatedJob);
   }
 
   @Override
@@ -87,7 +89,7 @@ public class PersistentJobService implements JobService {
   }
 
   // Helper methods for internal use cases.
-  private JobResponse mapToResponse(final Job source) {
-    return modelMapper.map(source, JobResponse.class);
+  private JobDto mapToDto(final Job source) {
+    return modelMapper.map(source, JobDto.class);
   }
 }
