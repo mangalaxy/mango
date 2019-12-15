@@ -1,8 +1,8 @@
 package com.mangalaxy.mango.security;
 
-
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationEntryPoint;
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationFilter;
+import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
 import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,22 +19,19 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
-    securedEnabled = true,
-    jsr250Enabled = true,
-    prePostEnabled = true
-)
-@RequiredArgsConstructor
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final CustomUserDetailsService customUserDetailsService;
+  private final CustomUserDetailsService userDetailsService;
   private final JwtAuthenticationEntryPoint unauthorizedHandler;
+  private final JwtTokenProvider jwtTokenProvider;
 
   @Bean
   public JwtAuthenticationFilter jwtAuthenticationFilter() {
-    return new JwtAuthenticationFilter();
+    return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService);
   }
 
   @Bean
@@ -50,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-    auth.userDetailsService(customUserDetailsService).passwordEncoder(encoder());
+    auth.userDetailsService(userDetailsService).passwordEncoder(encoder());
   }
 
   @Override
@@ -69,10 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-        .cors()
-          .and()
-        .csrf()
-          .disable()
+        .cors().and().csrf().disable()
         .exceptionHandling()
           .authenticationEntryPoint(unauthorizedHandler)
         .and()
@@ -80,8 +74,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authorizeRequests()
-          .antMatchers("/api/v1/auth/**")
-        .permitAll()
+          .antMatchers("/api/v1/auth/**").permitAll()
         .anyRequest()
         .authenticated()
         .and()
