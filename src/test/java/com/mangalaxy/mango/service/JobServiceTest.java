@@ -1,6 +1,6 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.domain.dto.response.JobResponse;
+import com.mangalaxy.mango.domain.dto.JobDto;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
@@ -11,7 +11,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,9 +22,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -112,8 +113,8 @@ public class JobServiceTest {
 
     Page<Job> allJobs = new PageImpl<>(jobs);
 
-    Mockito.when(jobRepository.findAll(pageable)).thenReturn(allJobs);
-    Page<JobResponse> jobsList = jobService.filterJobsByParams("role2", "Berlin", pageable);
+    when(jobRepository.findAll(pageable)).thenReturn(allJobs);
+    Page<JobDto> jobsList = jobService.selectJobsByParams("role2", "Berlin", pageable);
 
     verify(jobRepository).findAll(pageable);
     Assert.assertEquals(1, jobsList.getContent().size());
@@ -130,29 +131,29 @@ public class JobServiceTest {
 
     Page<Job> jobPageMock = new PageImpl<>(jobMocks);
 
-    Mockito.when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(jobPageMock);
-    Page<JobResponse> jobList = jobService.fetchEmployerJobs(1L, pageable);
+    when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(jobPageMock);
+    Page<JobDto> jobList = jobService.getEmployerAllJobs(1L, pageable);
     verify(jobRepository).findAllByPublisher_Id(1L, pageable);
     Assert.assertEquals(jobList.getContent().size(), jobMocks.size());
   }
 
   @Test
-  public void shouldGetJobForEmployer() {
+  public void shouldFindJobForEmployer() {
     Long expectedId = 1L;
     String expectedTitle = "Java Developer";
 
-    Mockito.when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(firstMockJob);
-    JobResponse jobResponse = jobService.findJobByEmployerAndId(1L, 1L);
+    when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(Optional.ofNullable(firstMockJob));
+    JobDto job = jobService.getEmployerJob(1L, 1L);
 
     verify(jobRepository).findByIdAndPublisher_Id(1L, 1L);
-    Assert.assertEquals(expectedId, jobResponse.getId());
-    Assert.assertEquals(expectedTitle, jobResponse.getTitle());
+    Assert.assertEquals(expectedId, job.getId());
+    Assert.assertEquals(expectedTitle, job.getTitle());
   }
 
   @Test
   public void shouldDeleteJob() {
-    Mockito.when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(firstMockJob);
-    jobService.deleteJob(1L, 1L);
+    when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(Optional.ofNullable(firstMockJob));
+    jobService.removeEmployerJob(1L, 1L);
     verify(jobRepository).delete(firstMockJob);
   }
 }

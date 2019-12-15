@@ -3,7 +3,7 @@ package com.mangalaxy.mango.security;
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationEntryPoint;
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationFilter;
 import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
-import com.mangalaxy.mango.service.UserService;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,7 +16,6 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -26,14 +25,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-  private final UserDetailsService userDetailsService;
+  private final CustomUserDetailsService userDetailsService;
   private final JwtAuthenticationEntryPoint unauthorizedHandler;
   private final JwtTokenProvider jwtTokenProvider;
-  private final UserService userService;
 
   @Bean
   public JwtAuthenticationFilter jwtAuthenticationFilter() {
-    return new JwtAuthenticationFilter(jwtTokenProvider, userService);
+    return new JwtAuthenticationFilter(jwtTokenProvider, userDetailsService);
   }
 
   @Bean
