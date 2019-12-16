@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
-.employers-positions {
+.employersPositions {
   width: 1190px;
   margin: 75px auto 0; }
-  .employers-positions-btn {
+  .employersPositions-btn {
     display: inline-block;
     padding: 15px 25px;
     font-family: "Monserrat", sans-serif;
@@ -14,25 +14,25 @@
     background: #FF8080;
     border-radius: 8px;
     cursor: pointer; }
-  .employers-positions-title {
+  .employersPositions-title {
     margin-top: 15px;
     margin-bottom: 62px;
     font-family: "Monserrat", sans-serif;
     font-size: 48px;
     color: #333333;
     line-height: 60px; }
-  .employers-positions-title::after {
+  .employersPositions-title::after {
     content: '';
     display: block;
     margin-top: 30px;
     width: 135px;
     height: 3px;
     background-color: rgba(54, 179, 168, 0.9); }
-  .employers-positions-content {
+  .employersPositions-content {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; }
-  .employers-positions-item {
+  .employersPositions-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,17 +42,29 @@
     box-sizing: border-box;
     border-radius: 4px;
     margin-bottom: 15px;
-    padding: 20px; }
-    .employers-positions-item-icon {
-      width: 10%; }
-    .employers-positions-item-description {
+    padding: 17px 20px 11px 20px; }
+    .employersPositions-item-icon {
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .employersPositions-item-icon-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background-color: #F2F2F2; }
+    .employersPositions-item-description {
       width: 75%;
+      padding-left: 18px;
       color: #333333;
       font-family: "Monserrat", sans-serif;
       font-size: 24px;
       line-height: 29px;
       text-transform: capitalize; }
-    .employers-positions-item-swith {
+    .employersPositions-item-swith {
       height: 100%;
       display: flex;
       flex-direction: column;

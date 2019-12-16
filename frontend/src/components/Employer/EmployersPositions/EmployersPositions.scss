@@ -1,6 +1,6 @@
 @import '../../../styles/_variables.scss';
 
-.employers-positions {
+.employersPositions {
   width: 1190px;
   margin: 75px auto 0;
 
@@ -12,7 +12,7 @@
     line-height: 27px;
     text-transform: uppercase;
     color: #FFFFFF;
-    background: #FF8080;
+    background: $COLOR_CORAL;
     border-radius: 8px;
     cursor: pointer;
   }
@@ -52,14 +52,28 @@
     box-sizing: border-box;
     border-radius: 4px;
     margin-bottom: 15px;
-    padding: 20px;
+    padding: 17px 20px 11px 20px;
 
     &-icon {
       width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      &-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background-color:  #F2F2F2;;
+      }
     }
     
     &-description {
       width: 75%;
+      padding-left: 18px;
       color: $primaryColor;
       font-family: $FONT_COMMON;
       font-size: 24px;
