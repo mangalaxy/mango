@@ -25,7 +25,7 @@ class EmployersPositions extends Component {
           Your positions
         </h3>
 
-        <div className="employers-positions-container">
+        <div className="employers-positions-content">
           {this.state.map(item => (
             <EmployersPositionItem key={item.id} itemData={item} />
           ))}
