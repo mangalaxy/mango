@@ -1,0 +1,49 @@
+@import '../../../styles/_variables.scss';
+
+.text-input {
+  position: relative;
+
+  .icon-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  &__field {
+    font-family: Montserrat, 'sans-serif';
+    width: 100%;
+    min-width: 130px;
+    margin-top: 10px;
+    border: 1px solid #BDBDBD;
+    box-sizing: border-box;
+    border-radius: 5px;
+    padding: 6px 5px;
+    color: $COLOR_MENU_DARK;
+    font-size: 12px;
+
+    &--big-height {
+      height: 70px;
+    }
+
+    &--border-none {
+      border-radius: unset;
+      border: none;
+      border-bottom: 1px solid #BDBDBD;
+      box-shadow: none;
+    }
+  }
+
+  &--half-width {
+    .text-input__field {
+      width: 130px;
+    }
+  }
+}
+
+.control-label {
+  display: block;
+  margin: 30px 0 0 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: $COLOR_MENU_DARK;
+}
