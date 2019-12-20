@@ -10,8 +10,7 @@ import Home from '../../components/Main/Home/Home';
 import Footer from '../../components/Main/Footer/Footer';
 import './Main.scss';
 import About from '../../components/Main/About/About';
-import JobsRolesSelect
-  from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
+import JobsRolesSelect from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
 import JobsByRole from '../../components/Main/Jobs/JobsByRole/JobsByRole';
 import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
@@ -19,13 +18,10 @@ import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
-import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
-import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
-import Support from '../../components/Main/Support/Support';
-import Blog from '../../components/Main/Blog/Blog';
 
 type Props = {
-  history: Object
+  history: Object,
+  location: Object
 }
 
 class MainPage extends Component<Props> {
@@ -50,7 +46,7 @@ class MainPage extends Component<Props> {
               <Route path={routes.TERMS_OF_USE} component={TermsOfUse}/>
               <Route path={routes.SUPPORT_CENTER} component={Support}/>
               <Route path={routes.BLOG} component={Blog}/>
-              <Route path={'/*'} component={()=>(<div>404</div>)}/>
+              <Route path={'/*'} component={() => (<div>404</div>)}/>
             </Switch>
           </div>
           <Footer/>
@@ -58,8 +54,8 @@ class MainPage extends Component<Props> {
     );
   }
 
-  openLoginForm = () =>{
-    renderModal(<Login/>)
+  openLoginForm = () => {
+    renderModal(<Login/>);
   };
 }
 

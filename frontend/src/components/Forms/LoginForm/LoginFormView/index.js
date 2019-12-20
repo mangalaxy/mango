@@ -1,46 +1,46 @@
 import React from 'react';
 import {Field} from 'formik';
-import FKTextInput from '../../../Fields/FKTextInput/FKTextInput';
 import '../styles.scss';
+import FKAuthTextInput from '../../../Fields/FKAuthTextInput/FKAuthTextInput';
 
-const AboutContactFormView = ({
+const LoginFormView = ({
                                 handleSubmit,
                                 handleReset,
                                 isSubmitting,
                                 isValid,
                               }) => (
-    <div className='about_contactForm'>
+    <div className='loginForm'>
       <div className="fieldContainer">
         <Field
-            component={FKTextInput}
+            component={FKAuthTextInput}
             disabled={isSubmitting}
             name="email"
-            placeholder='email'
+            placeholder='Email'
             containerClassName='field'
         />
         <Field
-            component={FKTextInput}
+            component={FKAuthTextInput}
             disabled={isSubmitting}
             name="password"
             placeholder='Password'
             containerClassName='field'
+            secure
         />
       </div>
-
+      <div className='buttonsContainer'>
+        <input type="checkbox"/>
+        <span className='link'>Forgot password?</span>
+      </div>
       <div className='buttonsContainer'>
         <button className='actionButton'
                 disabled={!isValid || isSubmitting}
                 onClick={handleSubmit}>
-          Send
-        </button>
-        <button className='actionButtonTransparent'
-                disabled={!isValid || isSubmitting}
-        >
-          reset
+          Login
         </button>
       </div>
+
 
     </div>
 );
 
-export default AboutContactFormView;
+export default LoginFormView;

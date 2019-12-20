@@ -8,6 +8,63 @@
   }
 }
 
+.fkAuthInput {
+  margin-top: 40px;
+  position: relative;
+
+  .p-inputtext {
+    width: 100% !important;
+    font-size: 16px;
+    font-family: $FONT_COMMON !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: rgba(0, 0, 0, .2) 1.5px solid;
+    border-radius: 0 !important;
+
+
+    &:focus, &:active {
+      border: none !important;
+      border-bottom: rgba(0, 0, 0, .2) 1.5px solid !important;
+      box-shadow: none !important;
+    }
+  }
+
+  .p-float-label {
+    label {
+      font-family: $FONT_COMMON !important;
+      color: rgba(0, 0, 0, .4) !important;
+      font-weight: 300 !important;
+      font-size: 16px !important;
+    }
+  }
+
+  .pass {
+    width: 100% !important;
+    font-size: 16px;
+    font-family: $FONT_COMMON !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: rgba(0, 0, 0, .2) 1.5px solid;
+    border-radius: 0 !important;
+
+
+    &:focus, &:active {
+      border: none !important;
+      border-bottom: rgba(0, 0, 0, .2) 1.5px solid !important;
+      box-shadow: none !important;
+    }
+  }
+
+}
+
+.hidden {
+  .p-inputtext {
+    color: transparent;
+  }
+}
+
 .errorContainer {
   min-height: 18px;
 }
@@ -16,10 +73,9 @@
   font-size: 12px;
   font-family: $FONT_COMMON;
   color: $errorColor;
+  text-align: center;
+  display: inline-block;
+  width: 100%;
 }
 
-.p-float-label {
-  label {
-    font-family: $FONT_COMMON !important;
-  }
-}
+

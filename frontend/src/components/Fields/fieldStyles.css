@@ -5,13 +5,56 @@
   font-size: 16px;
   font-family: "Monserrat", sans-serif !important; }
 
+.fkAuthInput {
+  margin-top: 40px;
+  position: relative; }
+
+.fkAuthInput .p-inputtext {
+  width: 100% !important;
+  font-size: 16px;
+  font-family: "Monserrat", sans-serif !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid;
+  border-radius: 0 !important; }
+
+.fkAuthInput .p-inputtext:focus, .fkAuthInput .p-inputtext:active {
+  border: none !important;
+  border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid !important;
+  box-shadow: none !important; }
+
+.fkAuthInput .p-float-label label {
+  font-family: "Monserrat", sans-serif !important;
+  color: rgba(0, 0, 0, 0.4) !important;
+  font-weight: 300 !important;
+  font-size: 16px !important; }
+
+.fkAuthInput .pass {
+  width: 100% !important;
+  font-size: 16px;
+  font-family: "Monserrat", sans-serif !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid;
+  border-radius: 0 !important; }
+
+.fkAuthInput .pass:focus, .fkAuthInput .pass:active {
+  border: none !important;
+  border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid !important;
+  box-shadow: none !important; }
+
+.hidden .p-inputtext {
+  color: transparent; }
+
 .errorContainer {
   min-height: 18px; }
 
 .errorLabel {
   font-size: 12px;
   font-family: "Monserrat", sans-serif;
-  color: #B00020; }
-
-.p-float-label label {
-  font-family: "Monserrat", sans-serif !important; }
+  color: #B00020;
+  text-align: center;
+  display: inline-block;
+  width: 100%; }

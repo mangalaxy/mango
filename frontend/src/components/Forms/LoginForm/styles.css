@@ -1,22 +1,31 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
-.about_contactForm {
+.loginForm {
   margin: 3em 0; }
-  .about_contactForm .fieldContainer {
-    display: flex;
-    width: 100%;
-    margin: 0;
-    padding: 0; }
-  .about_contactForm .field {
-    width: 100%;
-    padding: 0 5px; }
-  .about_contactForm .buttonsContainer {
-    display: flex;
-    width: 100%; }
-    .about_contactForm .buttonsContainer button {
-      margin: 0 5px;
-      display: block;
-      width: 100%; }
-      .about_contactForm .buttonsContainer button.actionButtonTransparent {
-        color: #4f4f4f;
-        border-color: #FF8080; }
+
+.loginForm .fieldContainer {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column; }
+
+.loginForm .field {
+  width: 100%;
+  padding: 0 5px; }
+
+.loginForm .buttonsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.loginForm .buttonsContainer button {
+  margin: 0 5px;
+  display: block;
+  width: 100%;
+  letter-spacing: 1px; }
+
+.loginForm .link {
+  color: #828282; }

@@ -34,42 +34,47 @@ p {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; }
-  .bannerContainer .bannerContent {
-    color: #FDFDFD;
-    padding: 200px 50px 200px; }
-    .bannerContainer .bannerContent h1 {
-      font-family: "Monserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 46px;
-      line-height: 50px;
-      text-align: center;
-      text-transform: uppercase; }
-    .bannerContainer .bannerContent h4 {
-      font-family: "Monserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 39px;
-      text-align: center;
-      width: 50%;
-      margin: 40px auto; }
-    .bannerContainer .bannerContent li {
-      color: #f2f2f2;
-      margin: 1em 0 1em 1em;
-      position: relative;
-      font-size: 20px;
-      line-height: 1.1em; }
-      .bannerContainer .bannerContent li:before {
-        content: ' ';
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        display: inline-block;
-        background-color: #f2f2f2;
-        left: -1em;
-        top: 0.5em;
-        transform: translateY(-50%); }
+
+.bannerContainer .bannerContent {
+  color: #FDFDFD;
+  padding: 200px 50px 200px; }
+
+.bannerContainer .bannerContent h1 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 50px;
+  text-align: center;
+  text-transform: uppercase; }
+
+.bannerContainer .bannerContent h4 {
+  font-family: "Monserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  width: 50%;
+  margin: 40px auto; }
+
+.bannerContainer .bannerContent li {
+  color: #f2f2f2;
+  margin: 1em 0 1em 1em;
+  position: relative;
+  font-size: 20px;
+  line-height: 1.1em; }
+
+.bannerContainer .bannerContent li:before {
+  content: ' ';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  background-color: #f2f2f2;
+  left: -1em;
+  top: 0.5em;
+  transform: translateY(-50%); }
 
 .actionButton {
   background-color: #FF8080;
@@ -79,10 +84,12 @@ p {
   font-size: 18px;
   padding: 12px 30px;
   text-transform: uppercase; }
-  .actionButton:active, .actionButton:focus {
-    outline: none; }
-  .actionButton:active {
-    transform: translateY(1px); }
+
+.actionButton:active, .actionButton:focus {
+  outline: none; }
+
+.actionButton:active {
+  transform: translateY(1px); }
 
 .actionButtonTransparent {
   background-color: transparent;
@@ -93,10 +100,12 @@ p {
   font-size: 18px;
   padding: 12px 30px;
   text-transform: uppercase; }
-  .actionButtonTransparent:active, .actionButtonTransparent:focus {
-    outline: none; }
-  .actionButtonTransparent:active {
-    transform: translateY(1px); }
+
+.actionButtonTransparent:active, .actionButtonTransparent:focus {
+  outline: none; }
+
+.actionButtonTransparent:active {
+  transform: translateY(1px); }
 
 .dialogContainer {
   position: absolute;
