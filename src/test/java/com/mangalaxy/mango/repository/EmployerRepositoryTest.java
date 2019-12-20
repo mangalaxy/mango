@@ -1,16 +1,14 @@
-package com.mangalaxy.mango;
+package com.mangalaxy.mango.repository;
 
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.repository.EmployerRepository;
+import com.mangalaxy.mango.util.EmployerNotFoundExeption;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
@@ -19,12 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Sql(value = {"/before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-@Sql(value = {"/after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-public class EmployerTest {
+public class EmployerRepositoryTest {
 
   @Autowired
-  private TestEntityManager testEntityManager;
+  private TestEntityManager entityManager;
 
   @Autowired
   private EmployerRepository employerRepository;
@@ -34,13 +30,13 @@ public class EmployerTest {
     // given
     Employer employer = new Employer();
     employer.setFullName("Anna Fisher");
-    employer.setWorkEmail("anna.fisher2019@gmail.com");
+    employer.setEmail("anna.fisher2019@gmail.com");
     employer.setPassword("123AKYGCV72rett");
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
     employer.setLocation(new Location("Berlin", "Germany"));
     employer.setCreatedDate(LocalDateTime.now());
-    testEntityManager.persistAndFlush(employer);
+    entityManager.persistAndFlush(employer);
   }
 
   @Test
@@ -48,9 +44,9 @@ public class EmployerTest {
     // given
     String emailAddress = "anna.fisher2019@gmail.com";
     // when
-    Employer employer = employerRepository.findByWorkEmail(emailAddress).get();
-
+    Employer employer = employerRepository.findByEmail(emailAddress)
+          .orElseThrow(EmployerNotFoundExeption::new);
     // then
-    assertThat(employer.getWorkEmail()).isEqualTo(emailAddress);
+    assertThat(employer.getEmail()).isEqualTo(emailAddress);
   }
 }

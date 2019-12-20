@@ -19,6 +19,10 @@ import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
+import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
+import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
+import Support from '../../components/Main/Support/Support';
+import Blog from '../../components/Main/Blog/Blog';
 
 type Props = {
   history: Object

@@ -19,20 +19,20 @@ import static org.junit.Assert.assertTrue;
 @SpringBootTest
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
-public class MailSenderServiseTest {
+public class MailSenderServiceTest {
 
   @Autowired
-  private MailSenderServise mailSenderServise;
+  private MailSenderService mailSenderService;
 
   @Rule
-  public SmtpServerRule smtpServerRule = new SmtpServerRule(25);
+  public SmtpServerRule smtpServerRule;
 
   @Test
   public void shouldSendMailTest() throws MessagingException, IOException {
     String text = "Test";
     String mailTo = "nikolai.blashchuk@gmail.com";
     String subject = "Test Mail";
-    mailSenderServise.send(text, subject, mailTo);
+    mailSenderService.send(text, subject, mailTo);
 
     MimeMessage[] receivedMessages = smtpServerRule.getMessages();
     assertEquals(1, receivedMessages.length);

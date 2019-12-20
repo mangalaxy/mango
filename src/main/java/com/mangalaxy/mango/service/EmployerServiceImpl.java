@@ -32,8 +32,8 @@ public class EmployerServiceImpl implements EmployerService {
 
   @Override
   public Page<EmployerResponse> getEmployersByParams(Pageable pageable) {
-    Page<Employer> employersByparams = employerRepository.findAll(pageable);
-    return employersByparams.map(employer -> modelMapper.map(employer, EmployerResponse.class));
+    Page<Employer> employersByParams = employerRepository.findAll(pageable);
+    return employersByParams.map(employer -> modelMapper.map(employer, EmployerResponse.class));
   }
 
   @Override
@@ -73,8 +73,8 @@ public class EmployerServiceImpl implements EmployerService {
   public EmployerResponse matchTalentToEmployer(Long employerId, Long talentId, boolean set) {
     Employer employer = employerRepository.findById(employerId).orElseThrow(EmployerNotFoundExeption::new);
     Talent talent = talentRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
-    Set<Talent> talents = employer.getMatchedTalents();
-    Set<Employer> employers = talent.getMatchedEmployers();
+    Set<Talent> talents = employer.getBookmarkedTalents();
+    Set<Employer> employers = talent.getPotentialEmployers();
 
     if (set) {
       talents.add(talent);
@@ -83,8 +83,8 @@ public class EmployerServiceImpl implements EmployerService {
       employers.remove(employer);
     }
 
-    employer.setMatchedTalents(talents);
-    talent.setMatchedEmployers(employers);
+    employer.setBookmarkedTalents(talents);
+    talent.setPotentialEmployers(employers);
     talentRepository.save(talent);
     Employer updatedEmployer = employerRepository.save(employer);
     return modelMapper.map(updatedEmployer, EmployerResponse.class);

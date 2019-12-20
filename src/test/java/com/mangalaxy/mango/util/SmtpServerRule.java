@@ -2,32 +2,30 @@ package com.mangalaxy.mango.util;
 
 import com.icegreen.greenmail.util.GreenMail;
 import com.icegreen.greenmail.util.ServerSetup;
+import com.icegreen.greenmail.util.ServerSetupTest;
 import org.junit.rules.ExternalResource;
 
 import javax.mail.internet.MimeMessage;
 
 public class SmtpServerRule extends ExternalResource {
-  private GreenMail smtpServer;
-  private int port;
 
-  public SmtpServerRule(int port) {
-    this.port = port;
-  }
+  private GreenMail mailServer;
 
   @Override
   protected void before() throws Throwable {
     super.before();
-    smtpServer = new GreenMail(new ServerSetup(port, null, "smtp"));
-    smtpServer.start();
+    ServerSetup setupTest = ServerSetupTest.SMTP;
+    mailServer = new GreenMail(setupTest);
+    mailServer.start();
   }
 
   public MimeMessage[] getMessages() {
-    return smtpServer.getReceivedMessages();
+    return mailServer.getReceivedMessages();
   }
 
   @Override
   protected void after() {
     super.after();
-    smtpServer.stop();
+    mailServer.stop();
   }
 }

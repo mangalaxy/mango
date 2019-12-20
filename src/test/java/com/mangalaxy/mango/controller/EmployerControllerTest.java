@@ -3,10 +3,8 @@ package com.mangalaxy.mango.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
-import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.EmployerService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -32,6 +29,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 public class EmployerControllerTest {
+
   @Autowired
   private MockMvc mockMvc;
 
@@ -69,7 +67,7 @@ public class EmployerControllerTest {
   @Test
   public void shouldCreateEmployer() throws Exception {
     Employer employer = new Employer();
-    employer.setWorkEmail("testMail@com");
+    employer.setEmail("testMail@com");
     employer.setFullName("Test Name");
     employer.setLocation(new Location("Poltava", "UA"));
 

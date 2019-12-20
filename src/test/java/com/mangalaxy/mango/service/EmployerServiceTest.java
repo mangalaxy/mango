@@ -32,6 +32,7 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class EmployerServiceTest {
+
   @MockBean
   private EmployerRepository employerRepository;
 
@@ -52,7 +53,7 @@ public class EmployerServiceTest {
   @Before
   public void setUp() {
     Location firstLocation = new Location();
-    firstLocation.setId(1);
+    firstLocation.setId((short)1);
     firstLocation.setCity("Kyiv");
     firstLocation.setCountry("UA");
 
@@ -63,25 +64,25 @@ public class EmployerServiceTest {
     mockTalent.setLocation(firstLocation);
 
     Location secondLocation = new Location();
-    secondLocation.setId(2);
+    secondLocation.setId((short)2);
     secondLocation.setCity("Lviv");
     secondLocation.setCountry("UA");
 
     firstMockEmployer.setId(1L);
     firstMockEmployer.setFullName("Elon Mask");
-    firstMockEmployer.setWorkEmail("elon@gmail.com");
+    firstMockEmployer.setEmail("elon@gmail.com");
     firstMockEmployer.setPassword("123456");
     firstMockEmployer.setLocation(firstLocation);
 
     secondMockEmployer.setId(2L);
     secondMockEmployer.setFullName("Mark Zuckerberg");
-    secondMockEmployer.setWorkEmail("mark@gmail.com");
+    secondMockEmployer.setEmail("mark@gmail.com");
     secondMockEmployer.setPassword("123456");
     secondMockEmployer.setLocation(firstLocation);
 
     thirdMockEmployer.setId(3L);
     thirdMockEmployer.setFullName("Bill Gates");
-    thirdMockEmployer.setWorkEmail("bill@gmail.com");
+    thirdMockEmployer.setEmail("bill@gmail.com");
     thirdMockEmployer.setPassword("123456");
     thirdMockEmployer.setLocation(secondLocation);
   }
@@ -147,7 +148,7 @@ public class EmployerServiceTest {
   public void shouldUpdateEmployer() {
     Long expectedId = 1L;
     String expectedMail = "changed@gmail.com";
-    firstMockEmployer.setWorkEmail(expectedMail);
+    firstMockEmployer.setEmail(expectedMail);
 
     LocationRequest locationRequest = LocationRequest.builder()
         .id(1L)
@@ -182,9 +183,9 @@ public class EmployerServiceTest {
   public void shouldMathTalentToEmployer() {
     int expectedSize = 1;
 
-    Set<Talent> talents = firstMockEmployer.getMatchedTalents();
+    Set<Talent> talents = firstMockEmployer.getBookmarkedTalents();
     talents.add(mockTalent);
-    firstMockEmployer.setMatchedTalents(talents);
+    firstMockEmployer.setBookmarkedTalents(talents);
     Mockito.when(employerRepository.findById(1L)).thenReturn(java.util.Optional.of(firstMockEmployer));
     Mockito.when(talentRepository.findById(1L)).thenReturn(java.util.Optional.of(mockTalent));
     Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);

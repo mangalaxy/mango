@@ -1,15 +1,32 @@
 package com.mangalaxy.mango.service;
 
-import com.mangalaxy.mango.domain.dto.request.LoginRequest;
-import com.mangalaxy.mango.domain.dto.response.ApiResponse;
-import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
+import com.mangalaxy.mango.domain.entity.User;
+import com.mangalaxy.mango.repository.UserRepository;
+import com.mangalaxy.mango.security.UserPrincipal;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-public interface CustomUserDetailsService extends UserDetailsService {
-  JwtAuthenticationResponse signIn(LoginRequest request);
+@RequiredArgsConstructor
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
 
-  UserDetails loadUserById(Long id);
+  private final UserRepository userRepository;
 
-  ApiResponse registerNewUser(LoginRequest request);
+  @Override
+  @Transactional
+  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+    User user = userRepository.findByEmail(email);
+    return UserPrincipal.create(user);
+  }
+
+  @Transactional
+  public UserDetails loadUserById(Long id) {
+    User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + id));
+    return UserPrincipal.create(user);
+  }
+
 }

@@ -1,29 +1,36 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.mangalaxy.mango.domain.Role;
+import lombok.*;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(doNotUseGetters = true)
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User extends AbstractEntity {
+public class User extends AuditEntity {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
+  @SequenceGenerator(name = "userSequence", sequenceName = "users_id_seq")
+  @Column(name = "id", nullable = false, updatable = false)
+  private Long id;
 
   private String email;
+
   private String password;
 
-  @ElementCollection(fetch = FetchType.EAGER)
-  @CollectionTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"))
-  @Column(name = "role_id")
-  private Set<Role> roles;
+  @ElementCollection
+  @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+  @Column(name = "role_name", nullable = false)
+  @Enumerated(EnumType.STRING)
+  private Set<Role> roles = new HashSet<>();
 
 }
+

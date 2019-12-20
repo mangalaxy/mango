@@ -1,6 +1,6 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.service.MailSenderServise;
+import com.mangalaxy.mango.service.MailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/api/v1/mail")
 public class MailController {
+
   @Autowired
-  private MailSenderServise mailSenderServise;
+  private MailSenderService mailSenderService;
 
   @PostMapping
   public void sendMail(@RequestBody String text) {
-    mailSenderServise.send(text, "Test Mail", "nikolai.blashchuk@gmail.com");
+    mailSenderService.send(text, "Test Mail", "nikolai.blashchuk@gmail.com");
   }
 
 }

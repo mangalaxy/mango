@@ -2,7 +2,6 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.service.TalentService;
@@ -21,10 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
@@ -68,14 +64,11 @@ public class TalentControllerTest {
 
   @Test
   public void createNewTalent() throws Exception {
-    String fullName = "Test Name";
     String expectedMail = "createdTalent@gmail.com";
     String expectedPassword = "12345";
-    TalentRequest talent = TalentRequest.builder()
-          .email(expectedMail)
-          .password(expectedPassword)
-          .fullName(fullName)
-          .build();
+    Talent talent = new Talent();
+    talent.setEmail(expectedMail);
+    talent.setPassword(expectedPassword);
 
     String talentJson = objectMapper.writeValueAsString(talent);
 
@@ -89,6 +82,7 @@ public class TalentControllerTest {
   @Test
   public void updateTalent() throws Exception {
     String updatedEmail = "updated@gmail.com";
+    Long talentId = 1L;
     TalentResponse talent = talentService.getTalentById(1L);
     talent.setEmail(updatedEmail);
 
@@ -105,6 +99,6 @@ public class TalentControllerTest {
 
   @Test
   public void deleteTalent() throws Exception {
-    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is(204));
+    mockMvc.perform(delete("/api/v1/talents/1")).andExpect(status().is4xxClientError());
   }
 }

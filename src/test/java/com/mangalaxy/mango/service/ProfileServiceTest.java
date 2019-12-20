@@ -27,21 +27,20 @@ public class ProfileServiceTest {
   @Autowired
   private ProfileService profileService;
 
-  private static Talent firstMockTalent = new Talent();
-  private static Profile mockProfile = new Profile();
+  private Talent firstMockTalent = new Talent();
+  private Profile mockProfile = new Profile();
 
   @Before
   public void setUp() {
-
     Location location = new Location();
-    location.setId(1);
-    location.setCity("Kyiv");
-    location.setCountry("UA");
+    location.setId((short) 1);
+    location.setCity("Austin");
+    location.setCountry("USA");
 
     firstMockTalent.setId(1L);
     firstMockTalent.setEmail("test@gmai.com");
     firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("Ilon Mask");
+    firstMockTalent.setFullName("John Doe");
     firstMockTalent.setLocation(location);
 
     mockProfile.setId(1L);
