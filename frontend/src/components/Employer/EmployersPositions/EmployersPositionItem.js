@@ -3,6 +3,7 @@ import Switch from '../../Switch/Switch';
 import icon from '../../../assets/icons/bag.svg';
 
 const EmployersPositionItem = (props) => {
+  let {id, position, city, country, isChecked, date} = props.itemData;
   return(
     <div className="employersPositions-item">
 
@@ -14,15 +15,15 @@ const EmployersPositionItem = (props) => {
 
       <div className="employersPositions-item-description">
         <p>
-          {props.itemData.position} <br></br>
-          {props.itemData.city},<br></br>
-          {props.itemData.country}          
+          {position} <br></br>
+          {city},<br></br>
+          {country}          
         </p>
       </div>
 
       <div className="employersPositions-item-swith">
-        <Switch />
-        <div>{props.itemData.date}</div>
+        <Switch isChecked={isChecked} name={id}/>
+        <div>{date}</div>
       </div>
 
     </div>
