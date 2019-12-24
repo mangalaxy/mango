@@ -69,7 +69,7 @@ public class EmployerControllerTest {
     Employer employer = new Employer();
     employer.setEmail("testMail@com");
     employer.setFullName("Test Name");
-    employer.setLocation(new Location("Poltava", "UA"));
+    employer.setLocation(new Location("Poltava","Ukraine"));
 
     String employerRequest = objectMapper.writeValueAsString(employer);
     MvcResult result = mockMvc.perform(post("/api/v1/employers")
