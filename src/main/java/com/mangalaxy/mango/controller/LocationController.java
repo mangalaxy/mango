@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/locations")
 @RequiredArgsConstructor
@@ -18,8 +20,8 @@ public class LocationController {
   private final LocationService locationService;
 
   @GetMapping
-  public ResponseEntity<Page<LocationResponse>> getAllLoctions(Pageable pageable) {
-    Page<LocationResponse> locations = locationService.getAllLocations(pageable);
+  public ResponseEntity<List<LocationResponse>> getAllLoctions() {
+    List<LocationResponse> locations = locationService.getAllLocations();
     return ResponseEntity.ok(locations);
   }
 

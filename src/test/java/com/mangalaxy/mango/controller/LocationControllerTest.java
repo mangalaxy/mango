@@ -50,8 +50,8 @@ public class LocationControllerTest {
 
     MvcResult result = mockMvc.perform(get("/api/v1/locations")).andReturn();
     String response = result.getResponse().getContentAsString();
-    HashMap<String, Object> locations = objectMapper.readValue(response, new TypeReference<HashMap<String, Object>>(){});
+    List<LocationResponse> locations = objectMapper.readValue(response, new TypeReference<List<LocationResponse>>(){});
 
-    Assert.assertEquals(expectedSize, ((List)locations.get("content")).size());
+    Assert.assertEquals(expectedSize, locations.size());
   }
 }

@@ -64,14 +64,11 @@ public class LocationServiceTest {
     locations.add(firstMockLocation);
     locations.add(secondMockLocation);
 
-    Pageable pageable = mock(Pageable.class);
-    Page<Location> locationList = new PageImpl<>(locations);
+    Mockito.when(locationRepository.findAll()).thenReturn(locations);
+    List<LocationResponse> responses = locationService.getAllLocations();
 
-    Mockito.when(locationRepository.findAll(pageable)).thenReturn(locationList);
-    Page<LocationResponse> responses = locationService.getAllLocations(pageable);
-
-    Mockito.verify(locationRepository).findAll(pageable);
-    Assert.assertEquals(expectedSize, responses.getContent().size());
+    Mockito.verify(locationRepository).findAll();
+    Assert.assertEquals(expectedSize, responses.size());
 
   }
 }
