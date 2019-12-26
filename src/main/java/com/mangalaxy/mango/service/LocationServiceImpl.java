@@ -19,7 +19,7 @@ public class LocationServiceImpl implements LocationService {
 
   @Override
   public List<LocationResponse> getAllLocations() {
-    List<Location> locations = locationRepository.findAll();
+    List<Location> locations = (List<Location>) locationRepository.findAll();
     return locations.stream().map(location -> modelMapper.map(location, LocationResponse.class)).collect(Collectors.toList());
   }
 
