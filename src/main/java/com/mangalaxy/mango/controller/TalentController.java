@@ -49,7 +49,6 @@ public class TalentController {
     return ResponseEntity.ok(talents);
   }
 
-  @PreAuthorize("hasAuthority('TALENT')")
   @PostMapping("talents")
   @ApiOperation(value = "Create new Talent")
   public ResponseEntity<TalentResponse> createTalent(
