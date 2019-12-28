@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,6 +59,7 @@ public class EmployerController {
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 
+  @PreAuthorize("hasAuthority('EMPLOYER')")
   @PutMapping("{id}")
   @ApiOperation(value = "Update employer")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
@@ -70,6 +72,7 @@ public class EmployerController {
     return ResponseEntity.ok(response);
   }
 
+  @PreAuthorize("hasAuthority('EMPLOYER')")
   @DeleteMapping("{id}")
   @ApiOperation(value = "Delete an employer")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
@@ -80,6 +83,7 @@ public class EmployerController {
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
+  @PreAuthorize("hasAuthority('EMPLOYER')")
   @PutMapping("{employerId}/bookmarked/{talentId}")
   @ApiOperation(value = "Math employer with talent")
   @ApiResponses(value = {
@@ -96,6 +100,7 @@ public class EmployerController {
     return ResponseEntity.ok(response);
   }
 
+  @PreAuthorize("hasAuthority('EMPLOYER')")
   @PutMapping("{employerId}/jobs/{jobId}/matched")
   @ApiOperation(value = "Get list of matched talents for job")
   public ResponseEntity<Page<TalentResponse>> getMatchedTalentsForJob(

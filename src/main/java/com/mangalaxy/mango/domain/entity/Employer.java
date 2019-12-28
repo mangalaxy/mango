@@ -46,6 +46,7 @@ public class Employer extends AuditEntity {
   private String photo;
 
   @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
         fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "company_id", nullable = false)

@@ -8,12 +8,12 @@ import lombok.Data;
 @Data
 @Builder
 public class LocationRequest {
-  private final Long id;
+  private final Short id;
   private final String city;
   private final String country;
 
   @JsonCreator
-  public LocationRequest(@JsonProperty("id") Long id,
+  public LocationRequest(@JsonProperty("id") Short id,
                          @JsonProperty("city") String city,
                          @JsonProperty("country") String country) {
     this.id = id;

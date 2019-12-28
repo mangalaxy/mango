@@ -14,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,6 +49,7 @@ public class TalentController {
     return ResponseEntity.ok(talents);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @PostMapping("talents")
   @ApiOperation(value = "Create new Talent")
   public ResponseEntity<TalentResponse> createTalent(
@@ -57,6 +59,7 @@ public class TalentController {
     return new ResponseEntity<>(talent, HttpStatus.CREATED);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @PutMapping("talents/{talentId}")
   @ApiOperation(value = "Update talent")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Talent with given id not found")})
@@ -69,6 +72,7 @@ public class TalentController {
     return ResponseEntity.ok(response);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @DeleteMapping("talents/{talentId}")
   @ApiOperation(value = "Delete talent")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Talent with given id not found")})
@@ -79,6 +83,7 @@ public class TalentController {
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @GetMapping("me")
   @ApiOperation(value = "Get authenticated talent")
   public ResponseEntity<TalentResponse> getCurrentTalent() {
@@ -86,6 +91,7 @@ public class TalentController {
     return ResponseEntity.ok(talentResponse);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @PutMapping("me")
   @ApiOperation(value = "Update authenticated talent")
   public ResponseEntity<TalentResponse> updateCurrentTalent(@RequestBody TalentRequest talentRequest) {
@@ -93,6 +99,7 @@ public class TalentController {
     return ResponseEntity.ok(talentResponse);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @DeleteMapping("me")
   @ApiOperation(value = "Delete authenticated talent")
   public ResponseEntity<Void> deleteCurrentTalent() {
