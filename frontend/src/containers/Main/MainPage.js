@@ -18,6 +18,7 @@ import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
+import CreateProfile from "../../components/Profile/CreateProfile/CreateProfile";
 
 type Props = {
   history: Object,

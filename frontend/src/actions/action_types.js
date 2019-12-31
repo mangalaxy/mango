@@ -1,0 +1,1 @@
+  export const TOGGLE_JOB_STATUS = 'TOGGLE_JOB_STATUS';

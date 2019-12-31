@@ -1,0 +1,157 @@
+@import '../../../styles/_variables.scss';
+
+.profile {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../assets/images/profile-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &-header {
+    position: absolute;
+    z-index: 99999;
+  }
+
+  &-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Montserrat, 'sans-serif';
+  }
+
+  &-form {
+    min-height: 400px;
+    display: flex;
+
+    &__column-left, &__column-right {
+      box-sizing: border-box;
+      width: 50%;
+      padding: 0 20px;
+    }
+
+    &__title {
+      color: $COLOR_GREEN;
+      margin: 25px 0;
+      text-transform: uppercase;
+      font-size: 18px;
+      font-weight: 600;
+
+      &--margin-bottom-none {
+        margin-bottom: 0px;
+      }
+    }
+
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+
+      .inputs-container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+
+    &__item {
+      &--last {
+        font-size: 24px;
+        text-align: center;
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        .last-title {
+          margin-bottom: 20px;
+        }
+      }
+
+    }
+
+    &__description {
+      padding: 0 30px;
+      margin-top: 20px;
+      color: #828282;
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
+
+  &-menu {
+    width: 50px;
+    background: linear-gradient(92.12deg, rgba(82, 200, 205, 0.8) 8.08%, #008489 77.55%), #008489;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: 20px;
+
+    &__item {
+      width: 35px;
+      height: 35px;
+      color: $COLOR_MENU_LIGHT;
+      font-size: 18px;
+      border: 1px solid $COLOR_MENU_LIGHT;
+      border-radius: 40px;
+      text-align: center;
+      line-height: 35px;
+      margin: 0 auto 40px;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      &--active {
+        color: #fff;
+        border: 2px solid #ffffff;
+      }
+
+      &--checked {
+        position: relative;
+        border: none;
+        background-color: $secondaryColor;
+        font-size: 22px;
+        color: $secondaryColor;
+
+        &::before {
+          content: '\2713';
+          position: absolute;
+          top: 0;
+          left: 10px;
+          color: #fff;
+        }
+
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        width: 1px;
+        height: 40px;
+        margin: 0 auto;
+        box-sizing: border-box;
+        border-left: 2px dotted #ffffff;
+      }
+
+      &:last-child:after {
+        content: none;
+      }
+    }
+  }
+
+  .form-container {
+    width: 650px;
+    background-color: #ffffff;
+  }
+
+  .buttons-container {
+    width: 100%;
+    margin: 30px 0;
+    padding: 0 30px;
+    text-align: right;
+  }
+}
