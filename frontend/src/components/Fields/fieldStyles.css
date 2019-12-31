@@ -7,7 +7,7 @@
   font-family: "Monserrat", sans-serif !important; }
 
 .fkAuthInput {
-  margin-top: 40px;
+  margin-top: 25px;
   position: relative; }
 
 .fkAuthInput .p-inputtext {
@@ -24,6 +24,13 @@
   border: none !important;
   border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid !important;
   box-shadow: none !important; }
+
+.fkAuthInput .p-dropdown {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: rgba(0, 0, 0, 0.2) solid 2px;
+  width: 100%; }
 
 .fkAuthInput input {
   border-left: none;
@@ -42,11 +49,11 @@
   font-weight: 300 !important;
   font-size: 16px !important; }
 
-.hidden .p-inputtext {
-  color: transparent; }
-
 .errorContainer {
   min-height: 18px; }
+
+.fkDropdown .p-inputtext {
+  border: none !important; }
 
 .errorLabel {
   font-size: 12px;

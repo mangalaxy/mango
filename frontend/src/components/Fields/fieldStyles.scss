@@ -11,7 +11,7 @@
 }
 
 .fkAuthInput {
-  margin-top: 40px;
+  margin-top: 25px;
   position: relative;
 
   .p-inputtext {
@@ -30,6 +30,14 @@
       border-bottom: rgba(0, 0, 0, .2) 1.5px solid !important;
       box-shadow: none !important;
     }
+  }
+
+  .p-dropdown {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: rgba(0, 0, 0, .2) solid 2px;
+    width: 100%;
   }
 
   input {
@@ -54,14 +62,14 @@
 
 }
 
-.hidden {
-  .p-inputtext {
-    color: transparent;
-  }
-}
-
 .errorContainer {
   min-height: 18px;
+}
+
+.fkDropdown {
+  .p-inputtext {
+    border: none !important;
+  }
 }
 
 .errorLabel {
@@ -75,7 +83,7 @@
 
 .fkCheckbox {
   label {
-    color:rgba(0,0,0,.9);
+    color: rgba(0, 0, 0, .9);
     font-weight: 300;
     font-size: 16px;
     margin-left: 7px;

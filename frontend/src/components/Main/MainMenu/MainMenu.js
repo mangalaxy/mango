@@ -28,7 +28,7 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
-    const {path, openLoginForm} = this.props;
+    const {path, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
     let grayMode = !(path === routes.HOME || path === routes.FOR_TALENTS ||
         path === routes.FOR_EMPLOYERS || path === routes.ABOUT_AS || path ===
         routes.BLOG);
@@ -85,12 +85,11 @@ export default class MainMenu extends PureComponent<Props, State> {
                 'hidden'} ${grayMode && 'gray'}`}
                     onMouseLeave={this.hideMenu}
                 >
-                    <li>Talents</li>
-                    <li>Employers</li>
+                    <li onClick={openSignUpTalent}>Talents</li>
+                    <li onClick={openSignUpEmployer}>Employers</li>
                 </ul>
               </span>
             </div>
-
           </div>
         </div>
     );

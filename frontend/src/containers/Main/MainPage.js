@@ -10,7 +10,8 @@ import Home from '../../components/Main/Home/Home';
 import Footer from '../../components/Main/Footer/Footer';
 import './Main.scss';
 import About from '../../components/Main/About/About';
-import JobsRolesSelect from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
+import JobsRolesSelect
+  from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
 import JobsByRole from '../../components/Main/Jobs/JobsByRole/JobsByRole';
 import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
@@ -18,7 +19,12 @@ import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
-import CreateProfile from "../../components/Profile/CreateProfile/CreateProfile";
+import CreateProfile
+  from '../../components/Profile/CreateProfile/CreateProfile';
+import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
+import SignUpEmployer
+  from '../../components/Auth/SignUpEmployer/SignUpEmployer';
+
 
 type Props = {
   history: Object,
@@ -32,6 +38,8 @@ class MainPage extends Component<Props> {
           <MainMenu
               path={this.props.location.pathname}
               openLoginForm={this.openLoginForm}
+              openSignUpTalent={this.openSignUpTalent}
+              openSignUpEmployer={this.openSignUpEmployer}
           />
           <div id='dialog-container'/>
           <div className="mainPageContent">
@@ -56,8 +64,20 @@ class MainPage extends Component<Props> {
   }
 
   openLoginForm = () => {
-    renderModal(<Login/>);
+    renderModal(
+        <Login handleSignUpTalent={this.openSignUpTalent}
+        />,
+    );
   };
+
+  openSignUpTalent = () => renderModal(
+      <SignUpTalent handleSignIn={this.openLoginForm}
+      />,
+  );
+  openSignUpEmployer = () => renderModal(
+      <SignUpEmployer handleSignIn={this.openLoginForm}
+      />,
+  );
 }
 
 export default MainPage;

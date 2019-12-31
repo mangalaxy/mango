@@ -1,15 +1,15 @@
 import React from 'react';
-import './Login.scss';
+import './SignUpTalent.scss';
 import rocket from '../../../assets/icons/rocket.svg';
-import LoginForm from '../../Forms/LoginForm';
+import SighUpTalentForm from '../../Forms/SignUpTalentForm';
 
-const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer}) => {
+const SignUpTalent = ({handleSignIn}) => {
   return (
-      <div className="loginContainer">
+      <div className="signUpTalentContainer">
         <div className='infoContainer'>
           <div className="content">
             <img src={rocket} alt=""/>
-            <h2>Sign In</h2>
+            <h2>Sign Up</h2>
             <div>
               <span className='description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Excepturi hic iste pariatur perspiciatis! Accusamus cum deleniti dolor doloribus eligendi
@@ -20,10 +20,9 @@ const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer})
         </div>
         <div className='formContainer'>
           <div className="content">
-            <LoginForm
-            handleForgotPassword={handleForgotPassword}
+            <SighUpTalentForm
             />
-            <p>Don’t have an account? <span onClick={handleSignUpTalent}>Sign up</span></p>
+            <p>Have an account? <span onClick={handleSignIn}>Sign in</span></p>
           </div>
         </div>
       </div>
@@ -31,4 +30,4 @@ const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer})
 
 };
 
-export default Login;
+export default SignUpTalent;
