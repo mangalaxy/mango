@@ -2,49 +2,61 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .terms-of-use {
   padding-top: 70px; }
-  .terms-of-use__container {
-    width: 1200px;
-    min-height: calc(100vh - 170px);
-    margin: 0 auto;
-    padding: 0 30px; }
-  .terms-of-use__header {
-    font-size: 32px;
-    font-weight: 600;
-    color: #4f4f4f;
-    text-transform: uppercase;
-    padding: 50px 0; }
-  .terms-of-use__text {
-    width: 70%; }
-  .terms-of-use__sub-header {
-    font-size: 28px;
-    color: #333333;
-    margin-bottom: 10px; }
-  .terms-of-use__content {
-    display: flex;
-    font-size: 16px;
-    line-height: 21px; }
-    .terms-of-use__content p {
-      margin-bottom: 30px; }
-    .terms-of-use__content p:last-child {
-      margin-bottom: 100px; }
-    .terms-of-use__content .side-menu {
-      width: 30%; }
-      .terms-of-use__content .side-menu__item {
-        font-size: 18px;
-        cursor: pointer;
-        color: #333333; }
-      .terms-of-use__content .side-menu__item:hover:after {
-        background: rgba(54, 179, 168, 0.9);
-        height: 2px;
-        margin-bottom: 10px; }
-      .terms-of-use__content .side-menu__item::after {
-        content: '';
-        display: block;
-        height: 1px;
-        width: 60%;
-        margin: 11px 0;
-        background-color: #BDBDBD; }
-  .terms-of-use .item-active > .side-menu__item::after {
-    background: rgba(54, 179, 168, 0.9);
-    height: 2px;
-    margin-bottom: 10px; }
+
+.terms-of-use__container {
+  width: 1200px;
+  min-height: calc(100vh - 170px);
+  margin: 0 auto;
+  padding: 0 30px; }
+
+.terms-of-use__header {
+  font-size: 32px;
+  font-weight: 600;
+  color: #4f4f4f;
+  text-transform: uppercase;
+  padding: 50px 0; }
+
+.terms-of-use__text {
+  width: 70%; }
+
+.terms-of-use__sub-header {
+  font-size: 28px;
+  color: #333333;
+  margin-bottom: 10px; }
+
+.terms-of-use__content {
+  display: flex;
+  font-size: 16px;
+  line-height: 21px; }
+
+.terms-of-use__content p {
+  margin-bottom: 30px; }
+
+.terms-of-use__content p:last-child {
+  margin-bottom: 100px; }
+
+.terms-of-use__content .side-menu {
+  width: 30%; }
+
+.terms-of-use__content .side-menu__item {
+  font-size: 18px;
+  cursor: pointer;
+  color: #333333; }
+
+.terms-of-use__content .side-menu__item:hover:after {
+  background: rgba(54, 179, 168, 0.9);
+  height: 2px;
+  margin-bottom: 10px; }
+
+.terms-of-use__content .side-menu__item::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 60%;
+  margin: 11px 0;
+  background-color: #BDBDBD; }
+
+.terms-of-use .item-active > .side-menu__item::after {
+  background: rgba(54, 179, 168, 0.9);
+  height: 2px;
+  margin-bottom: 10px; }

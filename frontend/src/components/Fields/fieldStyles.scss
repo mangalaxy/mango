@@ -1,4 +1,6 @@
 @import '../../styles/variables';
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap');
+
 
 .fkInput {
   .p-inputtext {
@@ -30,31 +32,24 @@
     }
   }
 
-  .p-float-label {
+  input {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: rgba(0, 0, 0, .2) solid 2px;
+    width: 100%;
+  }
+
+  .input-label {
     label {
       font-family: $FONT_COMMON !important;
       color: rgba(0, 0, 0, .4) !important;
       font-weight: 300 !important;
       font-size: 16px !important;
     }
-  }
 
-  .pass {
-    width: 100% !important;
-    font-size: 16px;
-    font-family: $FONT_COMMON !important;
-    border-top: none !important;
-    border-left: none !important;
-    border-right: none !important;
-    border-bottom: rgba(0, 0, 0, .2) 1.5px solid;
-    border-radius: 0 !important;
-
-
-    &:focus, &:active {
-      border: none !important;
-      border-bottom: rgba(0, 0, 0, .2) 1.5px solid !important;
-      box-shadow: none !important;
-    }
+    display: block;
+    margin-bottom: 20px;
   }
 
 }
@@ -76,6 +71,17 @@
   text-align: center;
   display: inline-block;
   width: 100%;
+}
+
+.fkCheckbox {
+  label {
+    color:rgba(0,0,0,.9);
+    font-weight: 300;
+    font-size: 16px;
+    margin-left: 7px;
+    cursor: pointer;
+  }
+
 }
 
 

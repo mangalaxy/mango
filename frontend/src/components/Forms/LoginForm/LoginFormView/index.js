@@ -2,6 +2,7 @@ import React from 'react';
 import {Field} from 'formik';
 import '../styles.scss';
 import FKAuthTextInput from '../../../Fields/FKAuthTextInput/FKAuthTextInput';
+import FKCheckbox from '../../../Fields/FKCheckbox/FKCheckbox';
 
 const LoginFormView = ({
                                 handleSubmit,
@@ -28,7 +29,14 @@ const LoginFormView = ({
         />
       </div>
       <div className='buttonsContainer'>
-        <input type="checkbox"/>
+        <div>
+          <Field
+          component={FKCheckbox}
+          disabled={isSubmitting}
+          name='remember'
+          label='Remember me'
+          />
+        </div>
         <span className='link'>Forgot password?</span>
       </div>
       <div className='buttonsContainer'>

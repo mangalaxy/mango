@@ -79,7 +79,7 @@ export default class MainMenu extends PureComponent<Props, State> {
             <div>
               <span className={`menuItem  ${grayMode && 'gray'} authBlock`}
                     onClick={this.showMenu}>
-                Sign in
+                Sign up
                 <Down active={dropdownVisible} grayMode={grayMode}/>
                 <ul className={`dropdownMenu ${!dropdownVisible &&
                 'hidden'} ${grayMode && 'gray'}`}

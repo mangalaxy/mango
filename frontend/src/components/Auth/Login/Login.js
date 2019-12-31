@@ -3,8 +3,7 @@ import './Login.scss';
 import rocket from '../../../assets/icons/rocket.svg';
 import LoginForm from '../../Forms/LoginForm';
 
-const Login = props => {
-  const {closeForm} = props;
+const Login = ({handleForgotPassword, handleSignUp}) => {
   return (
       <div className="loginContainer">
         <div className='infoContainer'>
@@ -22,6 +21,7 @@ const Login = props => {
         <div className='formContainer'>
           <div className="content">
             <LoginForm/>
+            <p>Don’t have an account? <span>Sign up</span></p>
           </div>
         </div>
       </div>
