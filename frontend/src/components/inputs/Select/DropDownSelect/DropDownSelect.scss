@@ -11,7 +11,7 @@
   }
 
   .react-dropdown-select {
-    width: 250px;
+    width: 100%;
     min-height: 28px !important;
     margin: 10px 0;
     border: 1px solid #BDBDBD;
@@ -20,6 +20,7 @@
     color: $primaryColor;
     font-size: 12px;
     outline: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
     &-option {
       margin: 0;
@@ -30,26 +31,26 @@
     &-input {
 
       &::placeholder {
-        color: #BDBDBD !important;
+        color: #BDBDBD;
         font-size: 12px;
       }
     }
 
     &:hover {
-      border: 1px solid #BDBDBD !important;
+      border: 1px solid #BDBDBD;
     }
 
     &:focus {
       outline: none !important;
       box-shadow: none !important;
-      border: 1px solid #BDBDBD !important;
+      border: 1px solid #BDBDBD;
       min-height: 28px !important;
     }
 
     &:focus-within {
       outline: none !important;
       box-shadow: none !important;
-      border: 1px solid #BDBDBD !important;
+      border: 1px solid #BDBDBD;
     }
 
     &-dropdown {
