@@ -19,7 +19,9 @@ class EmployersPositions extends Component {
 
         <div className="employersPositions-content">
           {this.props.jobs.map(item => (
-            <EmployersPositionItem key={item.id} itemData={item} />
+            // <Link to="/employers/matched-talents">
+              <EmployersPositionItem key={item.id} itemData={item} />
+            // </Link>
           ))}
         </div>
 

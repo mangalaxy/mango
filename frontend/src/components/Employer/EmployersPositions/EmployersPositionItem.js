@@ -1,15 +1,22 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Switch from '../../Switch/Switch';
 import icon from '../../../assets/icons/bag.svg';
 
 const EmployersPositionItem = (props) => {
-  let {id, position, city, country, isChecked, date} = props.itemData;
+  let {id, position, location: {city, country}, isChecked, date} = props.itemData;
   return(
-    <div className="employersPositions-item">
+    <Link to={
+        {
+          pathname: `/employers/matched-talents`,
+          jobData: props.itemData
+        }
+      } 
+          className="employersPositions-item">
 
       <div className="employersPositions-item-icon">
         <div className="employersPositions-item-icon-box">
-          <img src={icon} width="25px" height="25px"/>
+          <img src={icon} width="25px" height="25px" alt="bag-icon"/>
         </div>
       </div>
 
@@ -26,7 +33,7 @@ const EmployersPositionItem = (props) => {
         <div>{date}</div>
       </div>
 
-    </div>
+    </Link>
   )
 }
 export default EmployersPositionItem;
