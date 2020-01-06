@@ -14,7 +14,7 @@ class Employer extends Component {
           <EmployerMenu currentPage={this.props.history.location.pathname}/>
           <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
           <Route path={routes.EMPLOYERS_OPEN_POSITIONS} component={EmployersPositions}/>
-          <Route path={routes.MATCHED_TALENTS} component={MatchedTalents}/>
+          <Route path={routes.MATCHED_TALENTS_ID} component={MatchedTalents}/>
         </div>  
     );
   }

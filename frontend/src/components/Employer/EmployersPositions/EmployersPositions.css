@@ -42,7 +42,8 @@
     box-sizing: border-box;
     border-radius: 4px;
     margin-bottom: 15px;
-    padding: 17px 20px 11px 20px; }
+    padding: 17px 20px 11px 20px;
+    cursor: pointer; }
     .employersPositions-item-icon {
       width: 10%;
       display: flex;

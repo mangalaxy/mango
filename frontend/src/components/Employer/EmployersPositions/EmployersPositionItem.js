@@ -1,25 +1,23 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Switch from '../../Switch/Switch';
 import icon from '../../../assets/icons/bag.svg';
 
 const EmployersPositionItem = (props) => {
+  function linkTo(e) {
+    if (e.target.tagName === 'SPAN' || e.target.tagName === 'INPUT') {
+      return;
+    } else {
+      props.history.push(`/employers/matched-talents/${id}`);
+    }
+  }
   let {id, position, location: {city, country}, isChecked, date} = props.itemData;
   return(
-    <Link to={
-        {
-          pathname: `/employers/matched-talents`,
-          jobData: props.itemData
-        }
-      } 
-          className="employersPositions-item">
-
+    <div onClick={linkTo} className="employersPositions-item">
       <div className="employersPositions-item-icon">
         <div className="employersPositions-item-icon-box">
           <img src={icon} width="25px" height="25px" alt="bag-icon"/>
         </div>
       </div>
-
       <div className="employersPositions-item-description">
         <p>
           {position} <br></br>
@@ -27,13 +25,11 @@ const EmployersPositionItem = (props) => {
           {country}          
         </p>
       </div>
-
       <div className="employersPositions-item-swith">
         <Switch isChecked={isChecked} name={id}/>
         <div>{date}</div>
       </div>
-
-    </Link>
+    </div>    
   )
 }
 export default EmployersPositionItem;

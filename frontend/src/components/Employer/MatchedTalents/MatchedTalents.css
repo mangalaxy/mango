@@ -73,3 +73,15 @@
           font-size: 24px;
           line-height: 29px;
           color: #4f4f4f; }
+
+div .position-container {
+  width: 1175px;
+  margin: 0 auto; }
+  div .position-container .running-title {
+    font-family: "Monserrat", sans-serif;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4f4f4f;
+    box-sizing: content-box;
+    margin-top: 25px;
+    margin-bottom: 25px; }

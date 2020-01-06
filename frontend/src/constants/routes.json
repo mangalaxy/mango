@@ -15,7 +15,7 @@
   "EMPLOYERS_HOME": "/employers",
   "EMPLOYERS_WELCOME": "/employers/welcome",
   "EMPLOYERS_OPEN_POSITIONS": "/employers/open-positions",
-  "MATCHED_TALENTS": "/employers/matched-talents",
+  "MATCHED_TALENTS_ID": "/employers/matched-talents/:id",
 
   "TALENT_HOME": "/talent",
   "PROFILE_CREATE": "/profile-create"

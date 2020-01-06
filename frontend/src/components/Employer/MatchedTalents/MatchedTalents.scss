@@ -97,3 +97,17 @@
     }
   }
 }
+div .position-container {
+  width: 1175px;
+  margin: 0 auto;
+
+  .running-title {
+    font-family: $FONT_COMMON;
+    font-size: 18px;
+    line-height: 22px;
+    color: $COLOR_MENU_DARK;
+    box-sizing: content-box;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+}
