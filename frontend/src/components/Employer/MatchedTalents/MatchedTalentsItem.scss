@@ -61,19 +61,45 @@
       line-height: 22px;      
       color: #000000;
     }
-    &-description {
-      margin-left: 14px;
-      font-family: $FONT_COMMON;
-      font-size: 16px;
-      line-height: 20px;
-      color: #828282;
-    }
-    &-description::after {
-      content: ', ';
-    }
-    &-description:last-child::after {
-      content: '';
-    }
+    &-group {
+      display: flex;
+      margin-bottom: 7px;
+      // align-items: center;
 
+      &-description {
+        margin-left: 14px;        
+        font-family: $FONT_COMMON;
+        font-size: 16px;
+        line-height: 16px;
+        color: #828282;
+      }
+      &-description::after {
+        content: ',';
+      }
+      &-description:last-child::after {
+        content: '';
+      }
+      &-skills {
+        display: flex;
+        flex-wrap: wrap;
+        
+        &-elements {
+          display: flex;
+          align-items: flex-end;
+
+          .matched-item-content-group-description::after {
+            content: ',';
+          }
+
+        }        
+        // &-elements::after {
+        //   content: ',';
+        // }
+
+        // .matched-item-content-group-description:last-child::after {
+        //   content: '';
+        // }        
+      }
+    }
   }
 }

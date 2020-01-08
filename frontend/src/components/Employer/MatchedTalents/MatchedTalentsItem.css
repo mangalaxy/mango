@@ -52,13 +52,24 @@
       font-size: 18px;
       line-height: 22px;
       color: #000000; }
-    .matched-item-content-description {
-      margin-left: 14px;
-      font-family: "Monserrat", sans-serif;
-      font-size: 16px;
-      line-height: 20px;
-      color: #828282; }
-    .matched-item-content-description::after {
-      content: ', '; }
-    .matched-item-content-description:last-child::after {
-      content: ''; }
+    .matched-item-content-group {
+      display: flex;
+      margin-bottom: 7px; }
+      .matched-item-content-group-description {
+        margin-left: 14px;
+        font-family: "Monserrat", sans-serif;
+        font-size: 16px;
+        line-height: 16px;
+        color: #828282; }
+      .matched-item-content-group-description::after {
+        content: ','; }
+      .matched-item-content-group-description:last-child::after {
+        content: ''; }
+      .matched-item-content-group-skills {
+        display: flex;
+        flex-wrap: wrap; }
+        .matched-item-content-group-skills-elements {
+          display: flex;
+          align-items: flex-end; }
+          .matched-item-content-group-skills-elements .matched-item-content-group-description::after {
+            content: ','; }

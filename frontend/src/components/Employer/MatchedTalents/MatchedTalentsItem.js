@@ -1,15 +1,38 @@
 import React, {Component} from 'react';
 import './MatchedTalentsItem.scss';
 import iconBag from '../../../assets/icons/bag.svg';
+import iconHat from '../../../assets/icons/hat.svg';
+import iconPencil from '../../../assets/icons/pencil.svg';
+import iconList from '../../../assets/icons/list.svg';
 
+function SkillsListElems(props) {
+  const skillElements = (Object.values(props.value));
+  return(
+    <ul className="matched-item-content-group-skills-elements">
+      {skillElements.map((elem, index) => {
+        return <li key={index} className="matched-item-content-group-description">{elem}</li>
+      })}
+    </ul>
+  )
+}
+
+function SkillsList(props) {  
+  return(
+    <ul className="matched-item-content-group-skills">
+      {props.skills.map((item, index) => {
+        return <SkillsListElems key={index} value={item}/>
+        })}
+    </ul>
+  )
+};
 
 class MatchedTalentsItem extends Component {
   render() {
-    console.log(this.props);
     const {id, type, salary, fullName, position, skillsDescription,
           location:{city, country},
-          experience:[...experienceArr]} = this.props.talentsData;
-    console.log(experienceArr);
+          experience:[...experienceArr],
+          education:[...educationArr],
+          skills:[...skillsArr]} = this.props.talentsData;
     return(
       <div className="matched-item">
         <div className="matched-item-talent">
@@ -23,14 +46,33 @@ class MatchedTalentsItem extends Component {
           <div className="matched-item-content-name">{fullName}</div>               
           <div className="matched-item-content-location">{`${city}, ${country}`}</div>
           <div className="matched-item-content-position">{`${position} ${skillsDescription}`}</div>
-          <div>
-            {/* <span className="matched-item-content-icon"></span> */}
-            <img src={iconBag}  width="18px" height="18px" className="matched-item-content-icon"/>
+          <div className="matched-item-content-group">
+            <img src={iconBag}  width="18px" height="18px"/>
             {experienceArr.map(item => (
-              <span className="matched-item-content-description">
+              <span key={item.id} className="matched-item-content-group-description">
                 {`${item.company} ${item.time}`}
               </span>
             ))}            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconHat}/>
+            {educationArr.map(item => (
+              <span key={item.id} className="matched-item-content-group-description">
+                {`${item.institution}, ${item.specialization}, ${item.degree}`}
+              </span>
+            ))}            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconPencil}/>
+            {experienceArr.map(item => (
+              <span key={item.id} className="matched-item-content-group-description">
+                {`${item.lastPosition} ${item.time}`}
+              </span>
+            ))}            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconList}/>
+            <SkillsList skills={skillsArr} /> 
           </div>
         </div>
       </div>

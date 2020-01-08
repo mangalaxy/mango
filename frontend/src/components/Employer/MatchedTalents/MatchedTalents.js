@@ -18,7 +18,6 @@ class MatchedTalents extends Component {
     const {position, skills, type, remote, experience,
           location: {city, country}, industry, relocation,
           visaSponsor} = selectedJob;
-    console.log(this.props);
     return (
       <>
         <div className="position-bg">
