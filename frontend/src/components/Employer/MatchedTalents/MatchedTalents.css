@@ -81,7 +81,8 @@ div .position-container {
     font-family: "Monserrat", sans-serif;
     font-size: 18px;
     line-height: 22px;
+    text-align: center;
     color: #4f4f4f;
     box-sizing: content-box;
     margin-top: 25px;
-    margin-bottom: 25px; }
+    padding-bottom: 25px; }

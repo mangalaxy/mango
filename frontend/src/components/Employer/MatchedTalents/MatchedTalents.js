@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import './MatchedTalents.scss';
 import iconReturn from '../../../assets/icons/return.png';
 import iconClose from '../../../assets/icons/close.png';
+import iconLeft from '../../../assets/icons/left.svg';
+import iconRight from '../../../assets/icons/right.svg';
 import MatchedTalentsItem from './MatchedTalentsItem';
 
 class MatchedTalents extends Component {
@@ -14,6 +16,7 @@ class MatchedTalents extends Component {
       if (item.id == selectedId) {        
         selectedJob = Object.assign({}, item);               
       }
+      return true;
     });    
     const {position, skills, type, remote, experience,
           location: {city, country}, industry, relocation,
@@ -74,11 +77,16 @@ class MatchedTalents extends Component {
         </div>
         <div>
           <div className="position-container">
-            <h4 className="running-title">1-50 of 128 candidates who match your criteria</h4>
+            <h4 className="running-title">1-50 of {this.props.talents.length} candidates who match your criteria</h4>
             {this.props.talents.map(item => (
-                <MatchedTalentsItem key={item.id} talentsData={item} />
+                <MatchedTalentsItem key={item.id} talentData={item} />
               ))            
             }
+            <h4 className="running-title">
+              <img src={iconLeft} alt="Left icon" />
+                1 2 3 ... 19 20
+              <img src={iconRight} alt="Right icon" /> 
+            </h4>
           </div>
         </div>  
       </>  

@@ -5,7 +5,7 @@
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 20px;
-  padding: 30px;
+  padding: 25px;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
   .matched-item-talent {
@@ -47,7 +47,7 @@
       color: #828282; }
     .matched-item-content-position {
       margin-top: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       font-family: "Monserrat", sans-serif;
       font-size: 18px;
       line-height: 22px;
@@ -55,21 +55,40 @@
     .matched-item-content-group {
       display: flex;
       margin-bottom: 7px; }
-      .matched-item-content-group-description {
-        margin-left: 14px;
-        font-family: "Monserrat", sans-serif;
-        font-size: 16px;
-        line-height: 16px;
-        color: #828282; }
-      .matched-item-content-group-description::after {
-        content: ','; }
-      .matched-item-content-group-description:last-child::after {
-        content: ''; }
       .matched-item-content-group-skills {
         display: flex;
-        flex-wrap: wrap; }
+        flex-wrap: wrap;
+        margin-left: 14px; }
+        .matched-item-content-group-skills-description {
+          font-family: "Monserrat", sans-serif;
+          font-size: 16px;
+          line-height: 16px;
+          color: #828282; }
+        .matched-item-content-group-skills-description::after {
+          content: ', '; }
+        .matched-item-content-group-skills-description:last-child::after {
+          content: none; }
         .matched-item-content-group-skills-elements {
           display: flex;
           align-items: flex-end; }
           .matched-item-content-group-skills-elements .matched-item-content-group-description::after {
-            content: ','; }
+            content: ', '; }
+        .matched-item-content-group-skills-elements::after {
+          content: ', '; }
+  .matched-item .matched-item-control {
+    display: flex; }
+    .matched-item .matched-item-control-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background: #F2F2F2;
+      cursor: pointer; }
+    .matched-item .matched-item-control-box:first-child {
+      margin-right: 16px; }
+    .matched-item .matched-item-control-box:hover {
+      border: 1px solid gray;
+      transform: scale(1.05);
+      transition: 0.4s; }
