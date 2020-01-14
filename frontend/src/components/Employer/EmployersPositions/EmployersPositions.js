@@ -27,6 +27,6 @@ class EmployersPositions extends Component {
   }
 }
 const mapStoreToProps = (store) => {
-  return {jobs: store.jobReducer}
+  return {jobs: store.jobsReducer}
 }
 export default connect(mapStoreToProps)(EmployersPositions);

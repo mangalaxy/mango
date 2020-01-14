@@ -67,35 +67,11 @@
       margin-bottom: 7px;
 
       &-skills {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 14px;
-        
-        &-description {
-          font-family: $FONT_COMMON;
-          font-size: 16px;
-          line-height: 16px;
-          color: #828282;
-        }
-        &-description::after {
-          content: ', '; 
-        }
-        &-description:last-child::after {
-          content: none;
-        }
-        
-        &-elements {
-          display: flex;
-          align-items: flex-end;
-
-          .matched-item-content-group-description::after {
-            content: ', ';
-          }
-
-        }        
-        &-elements::after {
-          content: ', ';
-        }       
+        padding-left: 14px;
+        font-family: $FONT_COMMON;
+        font-size: 16px;
+        line-height: 16px;
+        color: #828282;           
       }
     }
   }
@@ -120,6 +96,5 @@
       transform: scale(1.05);
       transition: 0.4s;
     }
-
   }
 }

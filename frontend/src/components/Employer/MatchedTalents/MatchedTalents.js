@@ -10,17 +10,22 @@ import MatchedTalentsItem from './MatchedTalentsItem';
 
 class MatchedTalents extends Component {
   render() {
-    const selectedId = this.props.match.params.id;
+    const selectedId = +this.props.match.params.id;
     let selectedJob = {};
     this.props.jobs.map(item => {
-      if (item.id == selectedId) {        
+      if (item.id === selectedId) {        
         selectedJob = Object.assign({}, item);               
       }
       return true;
     });    
-    const {position, skills, type, remote, experience,
+    const {position, skills:[...skillsArr], type, remote, experience,
           location: {city, country}, industry, relocation,
           visaSponsor} = selectedJob;
+
+    // for job:      
+    let skillsList = skillsArr.map(item => {
+      return Object.values(item)[0].join(', ');
+    });
     return (
       <>
         <div className="position-bg">
@@ -30,7 +35,7 @@ class MatchedTalents extends Component {
                 <h4 className="position-content-title">Position</h4>
                 <p className="position-content-title-description">{`${position}`}</p>
                 <h4 className="position-content-skills">Skills</h4>
-                <p className="position-content-skills-description">{`${skills}`}</p>
+                <p className="position-content-skills-description">{`${skillsList.join(', ')}`}</p>
               </div>
               <div className="position-control">
                 <Link to="/employers/open-positions" className="position-control-item">
@@ -88,14 +93,14 @@ class MatchedTalents extends Component {
               <img src={iconRight} alt="Right icon" /> 
             </h4>
           </div>
-        </div>  
+        </div>          
       </>  
     )
   }
 }
 const mapStoreToProps = (store) => {
   return {
-    jobs: store.jobReducer,
+    jobs: store.jobsReducer,
     talents: store.talentsReducer
   }
 }

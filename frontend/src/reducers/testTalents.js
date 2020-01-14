@@ -5,8 +5,9 @@ export const testTalents = '[\
 "location":{"city":"Seattle","country":"USA"},\
 "position":"Senior Backend Engineer",\
 "skillsDescription":"with PHP & JS skills; delivering core platform features from responsive one-page UI applications to millions subscription records.",\
-"experience":[{"id":1,"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"id":2,"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
-"education":[{"id":1,"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
+"workExperience":[{"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
+"roleExperience":[{"role":"Backend Engineer","time":"6 years 8 mon"},{"role":"Frontend Engineer","time":"3 years 4 mon"}],\
+"education":[{"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
 "type":"Full Time",\
 "salary":"$150 000.00",\
 "skills":[\
@@ -15,7 +16,7 @@ export const testTalents = '[\
 {"libraries":["AWS"]},\
 {"tools":["PyChart"]},\
 {"databases":["Num Py"]},\
-{"platforms":["ios"]},\
+{"platforms":["io"]},\
 {"environments":["etc"]}\
 ]\
 },\
@@ -25,8 +26,9 @@ export const testTalents = '[\
 "location":{"city":"Seattle","country":"USA"},\
 "position":"Senior Backend Engineer",\
 "skillsDescription":"with PHP & JS skills; delivering core platform features from responsive one-page UI applications to millions subscription records.",\
-"experience":[{"id":1,"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"id":2,"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
-"education":[{"id":1,"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
+"workExperience":[{"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
+"roleExperience":[{"role":"Backend Engineer","time":"6 years 8 mon"},{"role":"Frontend Engineer","time":"3 years 4 mon"}],\
+"education":[{"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
 "type":"Full Time",\
 "salary":"$200 000.00",\
 "skills":[\
@@ -45,8 +47,9 @@ export const testTalents = '[\
 "location":{"city":"Seattle","country":"USA"},\
 "position":"Senior Backend Engineer",\
 "skillsDescription":"with PHP & JS skills; delivering core platform features from responsive one-page UI applications to millions subscription records.",\
-"experience":[{"id":1,"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"id":2,"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
-"education":[{"id":1,"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
+"workExperience":[{"company":"DevTo","lastPosition":"Backend Engineer","time":"6 years 8 mon"},{"company":"Amazon","lastPosition":"Frontend Engineer","time":"3 years 4 mon"}],\
+"roleExperience":[{"role":"Backend Engineer","time":"6 years 8 mon"},{"role":"Frontend Engineer","time":"3 years 4 mon"}],\
+"education":[{"institution":"Cambridge University","specialization":"Computer Science","degree":"Bacherlog degree"}],\
 "type":"Full Time",\
 "salary":"$200 000.00",\
 "skills":[\

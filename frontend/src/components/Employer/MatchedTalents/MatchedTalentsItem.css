@@ -56,25 +56,11 @@
       display: flex;
       margin-bottom: 7px; }
       .matched-item-content-group-skills {
-        display: flex;
-        flex-wrap: wrap;
-        margin-left: 14px; }
-        .matched-item-content-group-skills-description {
-          font-family: "Monserrat", sans-serif;
-          font-size: 16px;
-          line-height: 16px;
-          color: #828282; }
-        .matched-item-content-group-skills-description::after {
-          content: ', '; }
-        .matched-item-content-group-skills-description:last-child::after {
-          content: none; }
-        .matched-item-content-group-skills-elements {
-          display: flex;
-          align-items: flex-end; }
-          .matched-item-content-group-skills-elements .matched-item-content-group-description::after {
-            content: ', '; }
-        .matched-item-content-group-skills-elements::after {
-          content: ', '; }
+        padding-left: 14px;
+        font-family: "Monserrat", sans-serif;
+        font-size: 16px;
+        line-height: 16px;
+        color: #828282; }
   .matched-item .matched-item-control {
     display: flex; }
     .matched-item .matched-item-control-box {
