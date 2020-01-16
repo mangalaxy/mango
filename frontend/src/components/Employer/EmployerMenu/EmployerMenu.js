@@ -44,8 +44,8 @@ export default class EmployerMenu extends PureComponent <Props, State> {
               </Link>
             </li>
             <li>
-              <Link to={routes.EMPLOYERS_HOME}
-                    className={currentPage === routes.FOR_TALENTS ?
+              <Link to={routes.BOOKMARKED_TALENTS}
+                    className={currentPage === routes.BOOKMARKED_TALENTS ?
                         'menuItem active' :
                         'menuItem'}>
                 Bookmarked
