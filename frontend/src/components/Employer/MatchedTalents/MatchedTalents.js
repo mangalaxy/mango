@@ -7,8 +7,23 @@ import iconClose from '../../../assets/icons/close.png';
 import iconLeft from '../../../assets/icons/left.svg';
 import iconRight from '../../../assets/icons/right.svg';
 import MatchedTalentsItem from './MatchedTalentsItem';
+import {jobDeleteAction} from '../../../actions/jobDeleteAction';
+import Modal from '../../Modal/Modal';
 
 class MatchedTalents extends Component {
+  constructor() {
+    super();
+    this.state = {isOpenModal: false};
+  }  
+  removeJob() {
+    this.props.dispatch(jobDeleteAction(+this.props.match.params.id));
+    this.props.history.push('/employers/open-positions');
+  }
+  toggleModal() {
+    this.setState((prevState) => {
+      return {isOpenModal: !prevState.isOpenModal}
+    });
+  }
   render() {
     const selectedId = +this.props.match.params.id;
     let selectedJob = {};
@@ -42,10 +57,10 @@ class MatchedTalents extends Component {
                   <img  src={iconReturn} className="position-control-item-img1" alt="Go to back"/>
                   Return
                 </Link>
-                <Link to="#" className="position-control-item">
+                <div onClick={this.toggleModal.bind(this)} className="position-control-item" title="Remove position">
                   <img  src={iconClose} className="position-control-item-img2" alt="Close"/>
                   Close Position
-                </Link>
+                </div>
               </div>
             </div>
             <ul className="position-data">
@@ -79,6 +94,13 @@ class MatchedTalents extends Component {
               </li>            
             </ul>
           </div>
+          {this.state.isOpenModal ?
+            <Modal canсelModal={this.toggleModal.bind(this)}
+                   modalAction={this.removeJob.bind(this)}
+                   modalText={'Are you sure you want to remove this position?'}
+            /> :
+            null
+          }
         </div>
         <div>
           <div className="position-container">

@@ -34,6 +34,7 @@
           line-height: 29px;
           text-transform: capitalize; }
       .position-bg .position-container .position-control {
+        display: flex;
         padding-top: 28px;
         padding-bottom: 28px; }
         .position-bg .position-container .position-control-item {
@@ -45,7 +46,8 @@
           color: #828282;
           font-size: 14px;
           line-height: 17px;
-          text-transform: uppercase; }
+          text-transform: uppercase;
+          cursor: pointer; }
           .position-bg .position-container .position-control-item-img1 {
             width: 14px;
             height: 10px;

@@ -1,4 +1,5 @@
 import {TOGGLE_JOB_STATUS} from '../actions/action_types';
+import {DELETE_JOB} from '../actions/action_types';
 
 // json for test:
 import {testPositions} from './testPositions.js';
@@ -16,6 +17,14 @@ export default function (state = JSON.parse(initialState), action) {
       });      
       return newState;
     }
+
+    case DELETE_JOB: {
+      const newState = state.filter(item => 
+          item.id !== action.payload
+        );
+      return newState;
+    }
+
     default: return state;      
   }  
 }

@@ -43,7 +43,7 @@ export const testTalents = '[\
 },\
 {"id":3,\
 "bookmarked":false,\
-"fullName":"Stef Scari",\
+"fullName":"Angela Pearl",\
 "location":{"city":"Seattle","country":"USA"},\
 "position":"Senior Backend Engineer",\
 "skillsDescription":"with PHP & JS skills; delivering core platform features from responsive one-page UI applications to millions subscription records.",\

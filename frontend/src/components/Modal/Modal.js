@@ -7,9 +7,9 @@ function Modal(props) {
     <div className='modal-container'>
       <div className="modal">
         <p className="modal-title">
-          Are you sure you want to remove this talent?
+          {props.modalText}
         </p>
-        <Button text={'Yes'} onClick={props.deleteTalent} className={'modal-btn btn-red'} />
+        <Button text={'Yes'} onClick={props.modalAction} className={'modal-btn btn-red'} />
         <Button text={'Cancel'} onClick={props.canсelModal} className={'modal-btn btn-gray'}/>
       </div>
     </div>

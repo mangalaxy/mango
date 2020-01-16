@@ -17,12 +17,8 @@ function MatchedTalentsItem(props) {
   function markTalent() {
     props.dispatch(toggleMarkTalent(props.talentData.id));
   }
-
-  function showModal() {
-    setOpenModal(true);
-  }
-  function canсelModal() {
-    setOpenModal(false);
+  function toggleModal() {
+    setOpenModal(!openModal);
   }  
   function deleteTalent() {
     props.dispatch(talentDeleteAction(props.talentData.id));
@@ -103,17 +99,20 @@ function MatchedTalentsItem(props) {
         </div>
       </div>
       <div className="matched-item-control">
-        <div onClick={markTalent} className="matched-item-control-box">
+        <div onClick={markTalent} className="matched-item-control-box" title="Mark talent">
           <svg id="marked-elem" width="16" height="21" viewBox="0 0 16 21" fill={markedColorFill} xmlns="http://www.w3.org/2000/svg">
             <path d="M14.5 1H1V18.5L8 14.5L14.5 18.5V1Z" stroke={markedColorStroke} strokeWidth="2"/>
           </svg>
         </div>        
-        <div onClick={showModal} className="matched-item-control-box">
+        <div onClick={toggleModal} className="matched-item-control-box" title="Remove talent">
           <img src={iconCross} />
         </div>
       </div>
       {openModal ?
-      <Modal canсelModal={canсelModal} deleteTalent={deleteTalent}/>
+      <Modal canсelModal={toggleModal}
+             modalAction={deleteTalent}
+             modalText={'Are you sure you want to remove this talent?'}
+      />
       : null }
     </div>
   )  
