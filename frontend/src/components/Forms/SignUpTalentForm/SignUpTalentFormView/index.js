@@ -18,21 +18,21 @@ const SignUpTalentFormView = ({
             disabled={isSubmitting}
             name="fullName"
             placeholder='Full name'
-            containerClassName='field'
+            containerClassName='fieldTalent'
         />
         <Field
             component={FKAuthTextInput}
             disabled={isSubmitting}
             name="email"
             placeholder='E-mail'
-            containerClassName='field'
+            containerClassName='fieldTalent'
         />
         <Field
             component={FKAuthDropdown}
             disabled={isSubmitting}
             name="location"
             placeholder='Location'
-            containerClassName='field'
+            containerClassName='fieldTalent'
             options={initialValues.locations}
         />
       </div>
@@ -48,7 +48,7 @@ const SignUpTalentFormView = ({
         </div>
         <span className={'link'}>Terms & Privacy</span>
       </div>
-      <div className='buttonsContainer'>
+      <div className='buttonsContainerTalent'>
         <button className='actionButton'
                 disabled={!isValid || isSubmitting}
                 onClick={handleSubmit}>
