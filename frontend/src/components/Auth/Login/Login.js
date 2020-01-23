@@ -23,7 +23,7 @@ const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer})
             <LoginForm
             handleForgotPassword={handleForgotPassword}
             />
-            <p>Don’t have an account? <span onClick={handleSignUpTalent}>Sign up</span></p>
+            <p>Don’t have an account? Sign up <span onClick={handleSignUpTalent}>as talent</span> or <span onClick={handleSingUpEmployer}>as employer</span></p>
           </div>
         </div>
       </div>

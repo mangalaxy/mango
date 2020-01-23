@@ -2,77 +2,63 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .support {
   padding-top: 70px; }
-
-.support .support-container {
-  width: 1200px;
-  min-height: calc(100vh - 170px);
-  margin: 0 auto;
-  padding: 0 30px; }
-
-.support .support-container__header {
-  font-size: 32px;
-  font-weight: 600;
-  color: #4f4f4f;
-  text-transform: uppercase;
-  padding: 50px 0; }
-
-.support .support-content {
-  font-size: 16px;
-  line-height: 21px; }
-
-.support .support-content .support-text {
-  width: 100%; }
-
-.support .support-content .support-text .sub-header {
-  font-size: 28px;
-  color: #333333;
-  margin-bottom: 10px; }
-
-.support .support-content p {
-  margin-bottom: 30px; }
-
-.support .support-content p:last-child {
-  margin-bottom: 40px; }
-
-.support .support-content .contact-header {
-  color: #181818;
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 60px; }
-
-.support .support-content .contacts-form {
-  font-size: 16px; }
-
-.support .support-content .contacts-form .contacts-email {
-  margin-bottom: 20px; }
-
-.support .support-content .contacts-form .contacts-email__input {
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 8px;
-  font-family: inherit;
-  padding: 16px 25px;
-  border: 1px solid #BDBDBD; }
-
-.support .support-content .contacts-form .contacts-text__input {
-  width: 100%;
-  min-height: 200px;
-  box-sizing: border-box;
-  padding: 16px 25px;
-  font-family: inherit;
-  border-radius: 8px;
-  border: 1px solid #BDBDBD;
-  resize: none; }
-
-.support .support-content .contacts-form .contacts-btn {
-  margin: 30px 0 70px;
-  text-align: right; }
-
-.support .support-content .contacts-form .contacts-btn__send {
-  width: 102px;
-  height: 36px;
-  background: #FF6F60;
-  border-radius: 8px;
-  color: #fff;
-  border: none;
-  text-transform: uppercase; }
+  .support .support-container {
+    width: 1200px;
+    min-height: calc(100vh - 170px);
+    margin: 0 auto;
+    padding: 0 30px; }
+    .support .support-container__header {
+      font-size: 32px;
+      font-weight: 600;
+      color: #4f4f4f;
+      text-transform: uppercase;
+      padding: 50px 0; }
+  .support .support-content {
+    font-size: 16px;
+    line-height: 21px; }
+    .support .support-content .support-text {
+      width: 100%; }
+      .support .support-content .support-text .sub-header {
+        font-size: 28px;
+        color: #333333;
+        margin-bottom: 10px; }
+    .support .support-content p {
+      margin-bottom: 30px; }
+    .support .support-content p:last-child {
+      margin-bottom: 40px; }
+    .support .support-content .contact-header {
+      color: #181818;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 60px; }
+    .support .support-content .contacts-form {
+      font-size: 16px; }
+      .support .support-content .contacts-form .contacts-email {
+        margin-bottom: 20px; }
+        .support .support-content .contacts-form .contacts-email__input {
+          width: 100%;
+          box-sizing: border-box;
+          border-radius: 8px;
+          font-family: inherit;
+          padding: 16px 25px;
+          border: 1px solid #BDBDBD; }
+      .support .support-content .contacts-form .contacts-text__input {
+        width: 100%;
+        min-height: 200px;
+        box-sizing: border-box;
+        padding: 16px 25px;
+        font-family: inherit;
+        border-radius: 8px;
+        border: 1px solid #BDBDBD;
+        resize: none; }
+      .support .support-content .contacts-form .contacts-btn {
+        margin: 30px 0 70px;
+        text-align: right; }
+        .support .support-content .contacts-form .contacts-btn__send {
+          width: 102px;
+          height: 36px;
+          background: #FF6F60;
+          border-radius: 8px;
+          color: #fff;
+          border: none;
+          text-transform: uppercase; }

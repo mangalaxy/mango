@@ -65,7 +65,7 @@ class MainPage extends Component<Props> {
 
   openLoginForm = () => {
     renderModal(
-        <Login handleSignUpTalent={this.openSignUpTalent}
+        <Login handleSignUpTalent={this.openSignUpTalent} handleSingUpEmployer={this.openSignUpEmployer}
         />,
     );
   };
