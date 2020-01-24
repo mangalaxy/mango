@@ -13,6 +13,17 @@ import Modal from '../../Modal/Modal';
 function MatchedTalentsItem(props) {
   const [isDeleted, setIsDeleted] = useState(false);
   const [openModal, setOpenModal] = useState(false);
+  function linkTo(e) {
+    if (e.target.tagName === 'path' ||
+        e.target.tagName === 'svg' ||
+        e.target.tagName === 'IMG')
+      {
+      return;
+    } else {
+      console.log(e.target.tagName);
+      props.history.push(`/employers/talent-full-profile/${props.talentData.id}`);
+    }
+  }
 
   function markTalent() {
     props.dispatch(toggleMarkTalent(props.talentData.id));
@@ -61,7 +72,7 @@ function MatchedTalentsItem(props) {
 
   return isDeleted ? null :
   (
-    <div className="matched-item">
+    <div onClick={linkTo} className="matched-item">
       <div className="matched-item-talent">
         <div className="matched-item-talent-foto"
              style={{backgroundImage: `url(${require(`../../../assets/images/talents_foto/${id}.png`)})`}}>

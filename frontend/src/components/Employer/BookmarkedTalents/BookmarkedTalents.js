@@ -15,7 +15,7 @@ function BookmarkedTalents(props) {
         {props.talents.map(item => (
             !item.bookmarked ?
             null:            
-            <MatchedTalentsItem key={item.id} talentData={item} />
+            <MatchedTalentsItem key={item.id} talentData={item} history={props.history}/>
           ))            
         }
         {markedTalents.length != 0 ?

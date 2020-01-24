@@ -106,7 +106,7 @@ class MatchedTalents extends Component {
           <div className="position-container">
             <h4 className="running-title">1-50 of {this.props.talents.length} candidates who match your criteria</h4>
             {this.props.talents.map(item => (
-                <MatchedTalentsItem key={item.id} talentData={item} />
+                <MatchedTalentsItem key={item.id} talentData={item} history={this.props.history} />
               ))            
             }
             <h4 className="running-title">

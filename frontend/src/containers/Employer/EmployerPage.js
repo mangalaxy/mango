@@ -6,6 +6,7 @@ import EmployerWelcome from '../../components/Employer/EmployerWelcome/EmployerW
 import EmployersPositions from '../../components/Employer/EmployersPositions/EmployersPositions';
 import MatchedTalents from '../../components/Employer/MatchedTalents/MatchedTalents';
 import BookmarkedTalents from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
+import TalentsFullProfile from '../../components/Employer/TalentsFullProfile/TalentsFullProfile';
 import './EmployerPage.scss';
 
 class Employer extends Component {
@@ -17,6 +18,7 @@ class Employer extends Component {
           <Route path={routes.EMPLOYERS_OPEN_POSITIONS} component={EmployersPositions}/>
           <Route path={routes.MATCHED_TALENTS_ID} component={MatchedTalents}/>
           <Route path={routes.BOOKMARKED_TALENTS} component={BookmarkedTalents}/>
+          <Route path={routes.TALENT_FULL_PROFILE} component={TalentsFullProfile}/>
         </div>  
     );
   }
