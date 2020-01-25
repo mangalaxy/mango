@@ -1,6 +1,7 @@
 # mango
 
 [![CircleCI](https://circleci.com/gh/mangalaxy/mango/tree/develop.svg?style=svg)](https://circleci.com/gh/mangalaxy/mango/tree/develop)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mangalaxy_mango&metric=alert_status)](https://sonarcloud.io/dashboard?id=mangalaxy_mango)
 
 
 Mango is a recruitment platform for talents and employers
