@@ -55,6 +55,13 @@
 .fkDropdown .p-inputtext {
   border: none !important; }
 
+.fkDropdown .p-inputtext:active, .fkDropdown .p-inputtext:focus {
+  border: none !important; }
+
+.fkDropdown .p-focus {
+  border-color: transparent !important;
+  box-shadow: none !important; }
+
 .errorLabel {
   font-size: 12px;
   font-family: "Monserrat", sans-serif;

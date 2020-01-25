@@ -1,16 +1,16 @@
 import React from 'react';
 import {Field} from 'formik';
-import '../styles.scss';
-import FKAuthTextInput from '../../../Fields/FKAuthTextInput/FKAuthTextInput';
-import FKCheckbox from '../../../Fields/FKCheckbox/FKCheckbox';
-import FKAuthDropdown from '../../../Fields/FKAuthDropdown/FKAuthDropdown';
+import './styles.scss';
+import FKAuthTextInput from '../../Fields/FKAuthTextInput/FKAuthTextInput';
+import FKCheckbox from '../../Fields/FKCheckbox/FKCheckbox';
+import FKAuthDropdown from '../../Fields/FKAuthDropdown/FKAuthDropdown';
 
-const SignUpEmployerFormView = ({
-                                handleSubmit,
-                                isSubmitting,
-                                isValid,
-                                initialValues,
-                              }) => (
+const SignUpFormView = ({
+                          handleSubmit,
+                          isSubmitting,
+                          isValid,
+                          initialValues,
+                        }) => (
     <div className='signUpTalentForm'>
       <div className="fieldContainer">
         <Field
@@ -24,30 +24,31 @@ const SignUpEmployerFormView = ({
             component={FKAuthTextInput}
             disabled={isSubmitting}
             name="email"
-            placeholder='E-mail'
+            placeholder={initialValues.role==='employer'?'Company e-mail':'E-mail'}
             containerClassName='field'
         />
-        <Field
+        {initialValues.role === 'employer' &&
+        <><Field
             component={FKAuthTextInput}
             disabled={isSubmitting}
             name="phone"
             placeholder='Phone number'
             containerClassName='field'
         />
-        <Field
-            component={FKAuthTextInput}
-            disabled={isSubmitting}
-            name="company"
-            placeholder='Company name'
-            containerClassName='field'
-        />
-        <Field
-            component={FKAuthTextInput}
-            disabled={isSubmitting}
-            name="jobTitle"
-            placeholder='Job title'
-            containerClassName='field'
-        />
+          <Field
+              component={FKAuthTextInput}
+              disabled={isSubmitting}
+              name="company"
+              placeholder='Company name'
+              containerClassName='field'
+          />
+          <Field
+              component={FKAuthTextInput}
+              disabled={isSubmitting}
+              name="jobTitle"
+              placeholder='Job title'
+              containerClassName='field'
+          /></>}
         <Field
             component={FKAuthDropdown}
             disabled={isSubmitting}
@@ -76,8 +77,7 @@ const SignUpEmployerFormView = ({
           get started
         </button>
       </div>
-
     </div>
 );
 
-export default SignUpEmployerFormView;
+export default SignUpFormView;

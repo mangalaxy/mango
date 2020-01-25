@@ -1,4 +1,4 @@
-@import '../../../styles/variables';
+@import '../../../styles/_variables';
 
 .signUpTalentForm {
   margin: 3em 0;
@@ -11,12 +11,12 @@
     flex-direction: column;
   }
 
-  .fieldTalent {
+  .field {
     width: 100%;
     padding: 0 5px;
   }
 
-  .buttonsContainerTalent {
+  .buttonsContainer {
     display: flex;
     width: 100%;
     justify-content: flex-start;

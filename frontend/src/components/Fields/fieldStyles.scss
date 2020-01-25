@@ -69,7 +69,14 @@
 .fkDropdown {
   .p-inputtext {
     border: none !important;
+    &:active, &:focus{
+      border: none!important;
+    }
   }
+.p-focus{
+  border-color: transparent!important;
+  box-shadow: none!important;
+}
 }
 
 .errorLabel {

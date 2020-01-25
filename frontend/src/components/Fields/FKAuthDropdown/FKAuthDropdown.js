@@ -19,7 +19,7 @@ const FKAuthDropdown = ({
                         }) => (
     <div className={`${containerClassName} fkAuthInput fkDropdown`}>
         <span className="input-label">
-        <label htmlFor="in">{placeholder}</label>
+        <label htmlFor="in" className="dropdownLabel">{placeholder}</label>
         </span>
       <Dropdown
           onChange={e => setFieldValue(name, e.value)}

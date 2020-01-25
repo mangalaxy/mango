@@ -1,7 +1,7 @@
 import {Formik} from 'formik';
 import React from 'react';
-import SignUpTalentFormView from './SignUpTalentFormView';
 import * as Yup from 'yup';
+import SignUpFormView from '../SignUpFormView';
 
 const contactSchema = Yup.object().shape({
   name: Yup.string().
@@ -15,7 +15,7 @@ const contactSchema = Yup.object().shape({
 const SignUpTalentForm = ({onSuccess, onError}) => (
     <Formik
         onSubmit={(
-            {email, password, rememberMe}, {resetForm, setStatus, setSubmitting}) => {
+            {email, password, rememberMe}, { setStatus, setSubmitting}) => {
           setStatus({});
           try {
             let data = {};
@@ -35,7 +35,7 @@ const SignUpTalentForm = ({onSuccess, onError}) => (
         }
         }
 
-        component={SignUpTalentFormView}
+        component={SignUpFormView}
         validationSchema={contactSchema}
         initialValues={{
           locations: [
