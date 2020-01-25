@@ -15,7 +15,7 @@ const contactSchema = Yup.object().shape({
 const SignUpTalentForm = ({onSuccess, onError}) => (
     <Formik
         onSubmit={(
-            {email, password, rememberMe}, { setStatus, setSubmitting}) => {
+            {email, password, rememberMe}, { resetForm, setStatus, setSubmitting}) => {
           setStatus({});
           try {
             let data = {};
@@ -25,7 +25,7 @@ const SignUpTalentForm = ({onSuccess, onError}) => (
 
             // TODO: do query to API
             onSuccess();
-            // resetForm();
+            resetForm();
           } catch (err) {
             setStatus({failed: true});
             setSubmitting(false);
@@ -39,11 +39,11 @@ const SignUpTalentForm = ({onSuccess, onError}) => (
         validationSchema={contactSchema}
         initialValues={{
           locations: [
+            {name: 'London', code: 'LDN'},
             {name: 'New York', code: 'NY'},
             {name: 'Rome', code: 'RM'},
-            {name: 'London', code: 'LDN'},
-            {name: 'Istanbul', code: 'IST'},
-            {name: 'Paris', code: 'PRS'}
+            {name: 'Paris', code: 'PRS'},
+            {name: 'Istanbul', code: 'IST'}
           ]
         }}
     />

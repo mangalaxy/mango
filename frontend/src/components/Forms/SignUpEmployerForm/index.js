@@ -3,27 +3,33 @@ import React from 'react';
 import SignUpFormView from '../SignUpFormView';
 import * as Yup from 'yup';
 
-const contactSchema = Yup.object().shape({
+const employerSignUpSchema = Yup.object().shape({
   fullName: Yup.string().
       min(2, 'Minimum 2 symbols').
       max(30, 'Maximum 30 symbols').
       required('Required field'),
   email: Yup.string().email('Invalid email format').required('Required field'),
+  phone: Yup.string().
+      required('Phone required'),
+  company:Yup.string().
+      required('Required field'),
 });
 
 const SignUpEmployerForm = ({onSuccess, onError}) => (
     <Formik
         onSubmit={(
-            {email, password, rememberMe},
+            {fullName, email, phone, company, jobTitle, location},
             {setStatus, setSubmitting}) => {
           setStatus({});
           try {
             let data = {};
+            data.fullName = fullName;
             data.email = email;
-            data.password = password;
-            data.rememberMe = rememberMe;
-
-            // TODO: do query to API
+            data.phone = phone;
+            data.company = company;
+            data.jobTitle = jobTitle;
+            data.location=location;
+            //TODO: do query to API
             onSuccess();
             // resetForm();
           } catch (err) {
@@ -36,7 +42,7 @@ const SignUpEmployerForm = ({onSuccess, onError}) => (
         }
 
         component={SignUpFormView}
-        validationSchema={contactSchema}
+        validationSchema={employerSignUpSchema}
         initialValues={{
           locations: [
             {name: 'New York', code: 'NY'},
