@@ -27,10 +27,12 @@ buildNumber.properties
 !/.mvn/wrapper/maven-wrapper.jar
 
 # Ignoring frontend dependencies and debug logs
-
 frontend/**/node_modules
 .pnp
 .pnp.js
+
+# compiled css files
+frontend/**/*.css
 
 # testing
 frontend/**/coverage
