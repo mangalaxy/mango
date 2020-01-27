@@ -1,0 +1,70 @@
+@import '../../../styles/_variables.scss';
+.talent {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+  &-foto {
+
+    &-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+    }
+    &-type {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-family: Segoe UI;
+      font-size: 12px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: $COLOR_GREEN;
+    }
+    &-salary {      
+      font-family: Segoe UI;
+      font-size: 18px;
+      line-height: 24px;
+      color: $COLOR_MENU_DARK;
+    }
+  }
+  &-data {
+    &>div {
+      display: flex;
+      justify-content: space-between;
+      
+      .talent-data-title {
+        
+        &-name {
+          font-family: $FONT_COMMON;
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 29px;
+          text-transform: capitalize;
+          color: $COLOR_MENU_DARK;
+        }      
+        &-location {
+          font-family: $FONT_COMMON;
+          font-size: 14px;
+          line-height: 17px;
+          color: #828282;
+        }
+      }
+      .talent-data-control {
+        display: flex;
+        
+        &-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 44px;
+          height: 44px;      
+          border-radius: 50%;
+          background: #F2F2F2;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

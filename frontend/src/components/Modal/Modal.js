@@ -2,15 +2,15 @@ import React from 'react';
 import './Modal.scss';
 import Button from '../Buttons/FormButton/FormButton';
 
-function Modal(props) {
+const Modal = ({modalText, modalAction, canсelModal, okLabel='Yes', noLabel='No'}) => {
   return(
     <div className='modal-container'>
       <div className="modal">
         <p className="modal-title">
-          {props.modalText}
+          {modalText}
         </p>
-        <Button text={'Yes'} onClick={props.modalAction} className={'modal-btn btn-red'} />
-        <Button text={'Cancel'} onClick={props.canсelModal} className={'modal-btn btn-gray'}/>
+        <Button text={okLabel} onClick={modalAction} className={'modal-btn btn-red'} />
+        <Button text={noLabel} onClick={canсelModal} className={'modal-btn btn-gray'}/>
       </div>
     </div>
   )

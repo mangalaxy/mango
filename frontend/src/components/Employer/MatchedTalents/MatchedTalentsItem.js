@@ -77,8 +77,8 @@ function MatchedTalentsItem(props) {
         <div className="matched-item-talent-foto"
              style={{backgroundImage: `url(${require(`../../../assets/images/talents_foto/${id}.png`)})`}}>
         </div>               
-        <div className="matched-item-talent-type">{type}</div>
-        <div className="matched-item-talent-salary">{salary}</div>
+        <p className="matched-item-talent-type">{type}</p>
+        <p className="matched-item-talent-salary">{salary}</p>
       </div>
       <div className="matched-item-content">
         <div className="matched-item-content-name">{fullName}</div>               
