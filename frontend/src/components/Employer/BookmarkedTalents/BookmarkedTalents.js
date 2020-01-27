@@ -5,16 +5,13 @@ import iconRight from '../../../assets/icons/right.svg';
 import MatchedTalentsItem from '../MatchedTalents/MatchedTalentsItem';
 import './BookmarkedTalents.scss';
 
-function BookmarkedTalents(props) {
-  let markedTalents = props.talents.filter(item => {
-    return item.bookmarked === true    
-  });
+const BookmarkedTalents = (props) => {
+  console.log(props);
+  let markedTalents = props.talents.filter(item => item.bookmarked);
   return(
     <div>
       <div className="bookmarked-container">
-        {props.talents.map(item => (
-            !item.bookmarked ?
-            null:            
+        {markedTalents.map(item => (           
             <MatchedTalentsItem key={item.id} talentData={item} />
           ))            
         }
