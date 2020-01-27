@@ -12,7 +12,7 @@
     font-size: 48px;
     font-weight: bold;
     color: #fff;
-    z-index: 99999;
+    z-index: 1;
     position: absolute;
     text-transform: uppercase;
     text-align: center;
