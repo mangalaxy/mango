@@ -1,11 +1,11 @@
 import React from 'react';
 import './company.scss';
-import {GreenDash} from '../../Main/Home/Home';
-import SvgIcon from '../../SvgIcon/SvgIcon';
 import EditIcon from '../../elements/icons/EditIcon';
+import GreenDash from '../../elements/GreenLine/greenLine';
 
 const Company = ({companyProfile}) => (
     <div className='companyPage'>
+      <header className='header'>
       <div className="contentContainer">
         <div className='companyHeader'>
           <div className="content">
@@ -14,17 +14,19 @@ const Company = ({companyProfile}) => (
             </div>
 
             <div>
-              <h4>Company</h4>
-              <h2>{companyProfile.name}</h2>
-              <GreenDash/>
+              <h4 className='label'>Company</h4>
+              <h2 className='companyName'>{companyProfile.name}</h2>
+              <GreenDash className='line'/>
+              <h5 className='slogan'>{companyProfile.slogan}</h5>
+              <h5 className='companyLocation'>{companyProfile.location}</h5>
             </div>
           </div>
-          <div>
-            <EditIcon/>
+          <div className='editButton'>
+            <EditIcon size={25}/>
           </div>
         </div>
       </div>
-
+    </header>
       <div>
 
       </div>

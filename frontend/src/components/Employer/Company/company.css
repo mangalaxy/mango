@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+.companyPage {
+  width: 100%;
+  background-color: white;
+  min-height: calc(100vh - 70px); }
+
+.companyPage .header {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+
+.companyPage .contentContainer {
+  margin: 0 auto;
+  padding: 0 50px;
+  max-width: 1200px; }
+
+.companyPage .contentContainer .companyHeader {
+  display: flex;
+  padding: 40px 0;
+  justify-content: space-between; }
+
+.companyPage .contentContainer .companyHeader .content {
+  display: flex; }
+
+.companyPage .contentContainer .companyHeader .content .logoContainer {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  margin-right: 40px; }
+
+.companyPage .contentContainer .companyHeader .content .logoContainer img {
+  max-height: 200px; }
+
+.companyPage .contentContainer .companyHeader .content .label {
+  font-size: 12px;
+  text-transform: capitalize;
+  color: #BDBDBD; }
+
+.companyPage .contentContainer .companyHeader .content .companyName {
+  color: #4f4f4f;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 2em;
+  text-transform: uppercase; }
+
+.companyPage .contentContainer .companyHeader .content .slogan {
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 2em; }
+
+.companyPage .contentContainer .companyHeader .content .companyLocation {
+  color: rgba(54, 179, 168, 0.9);
+  font-size: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400; }
+
+.companyPage .contentContainer .companyHeader .content .line {
+  justify-content: flex-start;
+  margin-top: 0;
+  margin-bottom: 1.5em; }
+
+.companyPage .contentContainer .companyHeader .editButton {
+  cursor: pointer; }
+
+.companyPage .contentContainer .companyHeader .editButton:hover {
+  opacity: .8; }
+
+.companyPage .contentContainer .companyHeader .editButton:active {
+  transform: translateY(1px); }
