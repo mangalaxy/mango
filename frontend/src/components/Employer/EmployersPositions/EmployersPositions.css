@@ -3,83 +3,74 @@
 .employersPositions {
   width: 1190px;
   margin: 75px auto 0; }
-
-.employersPositions-btn {
-  display: inline-block;
-  padding: 15px 25px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 22px;
-  line-height: 27px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  background: #FF8080;
-  border-radius: 8px;
-  cursor: pointer; }
-
-.employersPositions-title {
-  margin-top: 15px;
-  margin-bottom: 62px;
-  font-family: "Montserrat", sans-serif;
-  font-size: 48px;
-  color: #333333;
-  line-height: 60px; }
-
-.employersPositions-title::after {
-  content: '';
-  display: block;
-  margin-top: 30px;
-  width: 135px;
-  height: 3px;
-  background-color: rgba(54, 179, 168, 0.9); }
-
-.employersPositions-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between; }
-
-.employersPositions-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-basis: 49%;
-  background-color: #FFFFFF;
-  border: 1px solid #E0E0E0;
-  box-sizing: border-box;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  padding: 17px 20px 11px 20px; }
-
-.employersPositions-item-icon {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-.employersPositions-item-icon-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 24px;
-  background-color: #F2F2F2; }
-
-.employersPositions-item-description {
-  width: 75%;
-  padding-left: 18px;
-  color: #333333;
-  font-family: "Montserrat", sans-serif;
-  font-size: 24px;
-  line-height: 29px;
-  text-transform: capitalize; }
-
-.employersPositions-item-swith {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-between;
-  width: 15%;
-  color: #828282;
-  font-family: "Montserrat", sans-serif;
-  font-size: 16px; }
+  .employersPositions-btn {
+    display: inline-block;
+    padding: 15px 25px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    line-height: 27px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: #FF8080;
+    border-radius: 8px;
+    cursor: pointer; }
+  .employersPositions-title {
+    margin-top: 15px;
+    margin-bottom: 62px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 48px;
+    color: #333333;
+    line-height: 60px; }
+  .employersPositions-title::after {
+    content: '';
+    display: block;
+    margin-top: 30px;
+    width: 135px;
+    height: 3px;
+    background-color: rgba(54, 179, 168, 0.9); }
+  .employersPositions-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+  .employersPositions-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-basis: 49%;
+    background-color: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    padding: 17px 20px 11px 20px; }
+    .employersPositions-item-icon {
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .employersPositions-item-icon-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 24px;
+        background-color: #F2F2F2; }
+    .employersPositions-item-description {
+      width: 75%;
+      padding-left: 18px;
+      color: #333333;
+      font-family: "Montserrat", sans-serif;
+      font-size: 24px;
+      line-height: 29px;
+      text-transform: capitalize; }
+    .employersPositions-item-swith {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      width: 15%;
+      color: #828282;
+      font-family: "Montserrat", sans-serif;
+      font-size: 16px; }

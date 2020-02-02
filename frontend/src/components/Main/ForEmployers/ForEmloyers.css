@@ -3,40 +3,33 @@
 #for-employers-banner {
   background-image: url("../../../assets/images/main_employers_bg.png");
   position: relative; }
-
-#for-employers-banner .bannerContent {
-  margin-left: 40%;
-  max-width: 40%; }
-
-#for-employers-banner h1 {
-  text-align: left; }
+  #for-employers-banner .bannerContent {
+    margin-left: 40%;
+    max-width: 40%; }
+  #for-employers-banner h1 {
+    text-align: left; }
 
 #market {
   padding: 3em 0 2em;
   display: block; }
-
-#market .mapContainer {
-  width: 80%;
-  margin: 0 auto;
-  position: relative; }
-
-#market .mapContainer img {
-  width: 100%; }
-
-#market .mapContainer .markers {
-  position: absolute;
-  width: 74%;
-  left: 12.26%;
-  top: 30%; }
-
-#market p {
-  text-align: center;
-  font-size: 26px;
-  color: #4f4f4f; }
-
-#market .actionButton {
-  margin: 1em auto;
-  display: block; }
+  #market .mapContainer {
+    width: 80%;
+    margin: 0 auto;
+    position: relative; }
+    #market .mapContainer img {
+      width: 100%; }
+    #market .mapContainer .markers {
+      position: absolute;
+      width: 74%;
+      left: 12.26%;
+      top: 30%; }
+  #market p {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f; }
+  #market .actionButton {
+    margin: 1em auto;
+    display: block; }
 
 #how-works {
   padding: 3em;
@@ -47,41 +40,37 @@
   margin: 50px auto;
   height: 40vh;
   position: relative; }
-
-.worksDiagramContainer .outerCircle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: rgba(54, 179, 168, 0.9) 2px solid;
-  transform: translateY(-50%); }
-
-.worksDiagramContainer .outerCircle .innerCircle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(54, 179, 168, 0.9); }
-
-.worksDiagramContainer .outerCircle .innerCircle .order {
-  color: #FFFFFF;
-  font-size: 20px;
-  position: relative; }
-
-.worksDiagramContainer .outerCircle .innerCircle .order .pointHeader {
-  position: absolute;
-  left: 50%;
-  color: #4f4f4f;
-  font-size: 14px;
-  width: 150px;
-  text-align: center; }
+  .worksDiagramContainer .outerCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: rgba(54, 179, 168, 0.9) 2px solid;
+    transform: translateY(-50%); }
+    .worksDiagramContainer .outerCircle .innerCircle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(54, 179, 168, 0.9); }
+      .worksDiagramContainer .outerCircle .innerCircle .order {
+        color: #FFFFFF;
+        font-size: 20px;
+        position: relative; }
+        .worksDiagramContainer .outerCircle .innerCircle .order .pointHeader {
+          position: absolute;
+          left: 50%;
+          color: #4f4f4f;
+          font-size: 14px;
+          width: 150px;
+          text-align: center; }
 
 #price {
   background: url("../../../assets/images/balance.png");
@@ -89,36 +78,30 @@
   display: flex;
   flex-direction: column;
   align-items: center; }
-
-#price .textContainer {
-  min-width: 100px;
-  margin: 5em 0 20em;
-  display: inline-block; }
-
-#price h3, #price p {
-  color: #f2f2f2; }
-
-#price h3 {
-  font-size: 46px;
-  font-weight: 600;
-  text-align: center;
-  text-transform: uppercase; }
-
-#price p {
-  width: 40%;
-  font-size: 24px;
-  margin-left: 1em;
-  margin-top: 1em;
-  line-height: 1.2em; }
+  #price .textContainer {
+    min-width: 100px;
+    margin: 5em 0 20em;
+    display: inline-block; }
+  #price h3, #price p {
+    color: #f2f2f2; }
+  #price h3 {
+    font-size: 46px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase; }
+  #price p {
+    width: 40%;
+    font-size: 24px;
+    margin-left: 1em;
+    margin-top: 1em;
+    line-height: 1.2em; }
 
 #say-hello {
   padding: 2em; }
-
-#say-hello h4 {
-  text-align: center;
-  font-size: 26px;
-  color: #4f4f4f; }
-
-#say-hello .actionButton {
-  margin: 20px auto;
-  display: block; }
+  #say-hello h4 {
+    text-align: center;
+    font-size: 26px;
+    color: #4f4f4f; }
+  #say-hello .actionButton {
+    margin: 20px auto;
+    display: block; }

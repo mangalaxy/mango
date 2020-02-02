@@ -3,107 +3,92 @@
 #for-talent-banner {
   background-image: url("../../../assets/images/main_talent_bg.png");
   position: relative; }
-
-#for-talent-banner .imageFilter {
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.35);
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  box-sizing: border-box; }
-
-#for-talent-banner .bannerContent {
-  margin-left: 40%;
-  max-width: 40%; }
-
-#for-talent-banner h1 {
-  text-align: left;
-  color: #f2f2f2;
-  transform: translateZ(0); }
+  #for-talent-banner .imageFilter {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.35);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    box-sizing: border-box; }
+  #for-talent-banner .bannerContent {
+    margin-left: 40%;
+    max-width: 40%; }
+  #for-talent-banner h1 {
+    text-align: left;
+    color: #f2f2f2;
+    transform: translateZ(0); }
 
 #our-help {
   padding: 0;
   display: flex;
   flex-direction: row;
   justify-content: center; }
-
-#our-help .contentBox {
-  width: 560px;
-  padding: 3em 0; }
-
-#our-help .imageContainer {
-  position: relative; }
-
-#our-help .imageContainer img {
-  height: 450px; }
+  #our-help .contentBox {
+    width: 560px;
+    padding: 3em 0; }
+  #our-help .imageContainer {
+    position: relative; }
+    #our-help .imageContainer img {
+      height: 450px; }
 
 #goal {
   display: flex; }
-
-#goal .imageContainer {
-  width: 50%;
-  background: url("/images/goal.png");
-  background-size: cover;
-  background-position: center; }
-
-#goal .contentContainer {
-  background-color: #EFEFEF;
-  width: 50%;
-  padding: 4em 3em; }
-
-#goal .contentContainer h4 {
-  font-size: 26px;
-  margin-bottom: 1em;
-  color: #333333; }
+  #goal .imageContainer {
+    width: 50%;
+    background: url("/images/goal.png");
+    background-size: cover;
+    background-position: center; }
+  #goal .contentContainer {
+    background-color: #EFEFEF;
+    width: 50%;
+    padding: 4em 3em; }
+    #goal .contentContainer h4 {
+      font-size: 26px;
+      margin-bottom: 1em;
+      color: #333333; }
 
 #how-it-works {
   padding: 2em;
   display: flex;
   flex-direction: row;
   justify-content: center; }
-
-#how-it-works .contentContainer {
-  width: 400px;
-  padding: 3em 0; }
-
-#how-it-works .contentContainer p {
-  margin: 2em 0;
-  line-height: 1.5em;
-  color: #828282; }
-
-#how-it-works .imageContainer img {
-  height: 450px; }
+  #how-it-works .contentContainer {
+    width: 400px;
+    padding: 3em 0; }
+    #how-it-works .contentContainer p {
+      margin: 2em 0;
+      line-height: 1.5em;
+      color: #828282; }
+  #how-it-works .imageContainer img {
+    height: 450px; }
 
 #why-trusted {
   display: flex;
   flex-direction: column;
   align-items: center; }
-
-#why-trusted ul {
-  width: 400px; }
+  #why-trusted ul {
+    width: 400px; }
 
 #our-help ul,
 #why-trusted ul {
   margin: 1em; }
-
-#our-help ul li,
-#why-trusted ul li {
-  line-height: 1.5em;
-  margin: 2em 1em 1em 2em;
-  color: #828282;
-  font-size: 14px;
-  position: relative; }
-
-#our-help ul li:before,
-#why-trusted ul li:before {
-  content: ' ';
-  position: absolute;
-  width: 19px;
-  height: 14px;
-  background: url("../../../assets/icons/check.svg");
-  background-size: contain;
-  left: -2em;
-  top: 3px; }
+  #our-help ul li,
+  #why-trusted ul li {
+    line-height: 1.5em;
+    margin: 2em 1em 1em 2em;
+    color: #828282;
+    font-size: 14px;
+    position: relative; }
+    #our-help ul li:before,
+    #why-trusted ul li:before {
+      content: ' ';
+      position: absolute;
+      width: 19px;
+      height: 14px;
+      background: url("../../../assets/icons/check.svg");
+      background-size: contain;
+      left: -2em;
+      top: 3px; }
 
 #global {
   padding-top: 3em; }
