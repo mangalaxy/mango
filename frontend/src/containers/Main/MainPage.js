@@ -17,7 +17,6 @@ import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
 import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
-import CreateProfile from "../../components/Profile/CreateProfile/CreateProfile";
 
 type Props = {
   history: Object

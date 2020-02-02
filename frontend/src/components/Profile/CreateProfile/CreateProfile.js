@@ -7,13 +7,53 @@ import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
 import Step5 from "./Step5/Step5";
+import { useFormik } from 'formik';
 
 function CreateProfile(props) {
     const [activeStep, setActiveStep] = useState(1);
 
+    const formik = useFormik({
+        initialValues: {
+            position: '',
+            roles: '',
+            specialties: '',
+            country: '',
+            city: '',
+            type: '',
+            expectations: '',
+            companyType: '',
+            salary: '',
+            industry: '',
+            fullName: '',
+            email: '',
+            phone: '',
+            location: '',
+            blog: '',
+            website: '',
+            portfolio: '',
+            linkedIn: '',
+            institute: '',
+            specialization: '',
+            degree: '',
+            uducationStart: '',
+            uducationFinished: '',
+            company: '',
+            companyPosition: '',
+            startedWork: '',
+            description: '',
+            language: '',
+            level: '',
+        },
+        onSubmit: values => {
+            console.log(values);
+        },
+    });
+
     return (
         <Fragment>
             <div className='profile'>
+                <div className='profile--filter'>
+                </div>
                 <div className='profile-header'>
                     <TalentMenu/>
                 </div>

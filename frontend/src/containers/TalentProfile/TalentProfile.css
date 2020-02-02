@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+:export {
+  colorGrey: #808080; }
+
+.talent-profile {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("../../assets/images/profile-background.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: Montserrat, sans-serif; }
+  .talent-profile--filter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(240, 240, 240, 0.8); }
+  .talent-profile__header {
+    position: relative;
+    height: 70px; }
+  .talent-profile__container {
+    position: relative;
+    width: 750px;
+    margin: 40px auto 0; }
+    .talent-profile__container .talent-form {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      background-color: #ffffff; }
+      .talent-profile__container .talent-form__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px; }
+      .talent-profile__container .talent-form__section {
+        width: 50%;
+        margin-bottom: 30px;
+        padding: 0 20px;
+        box-sizing: border-box; }
+        .talent-profile__container .talent-form__section .section-title {
+          display: flex;
+          align-items: center; }
+          .talent-profile__container .talent-form__section .section-title__text {
+            color: rgba(0, 0, 0, 0.8);
+            font-weight: 600;
+            margin-left: 10px;
+            font-size: 16px;
+            text-transform: uppercase; }
+            .talent-profile__container .talent-form__section .section-title__text--clicked {
+              display: inline-block;
+              margin-left: 10px;
+              color: #636363; }
+      .talent-profile__container .talent-form .section-block {
+        display: flex;
+        align-items: center;
+        justify-content: space-between; }
+      .talent-profile__container .talent-form .section-row {
+        position: relative;
+        margin-left: 30px; }
+        .talent-profile__container .talent-form .section-row .delete-row {
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          color: #BDBDBD;
+          font-size: 24px; }
+        .talent-profile__container .talent-form .section-row--margin-bottom {
+          margin-bottom: 10px; }
+        .talent-profile__container .talent-form .section-row--margin-top {
+          margin-top: 35px; }
+        .talent-profile__container .talent-form .section-row__description {
+          display: flex;
+          align-items: center;
+          margin-top: 5px; }
+        .talent-profile__container .talent-form .section-row__text {
+          margin-left: 10px;
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 14px; }
+        .talent-profile__container .talent-form .section-row__title {
+          margin-top: 15px;
+          color: rgba(0, 0, 0, 0.5);
+          font-size: 14px; }
+      .talent-profile__container .talent-form__buttons {
+        width: 100%;
+        text-align: right; }

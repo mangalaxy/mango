@@ -16,6 +16,7 @@ import routes from './constants/routes';
 import Talent from './containers/Talent/TalentHome';
 import Employer from './containers/Employer/EmployerPage';
 import CreateProfile from "./components/Profile/CreateProfile/CreateProfile";
+import TalentProfile from "./containers/TalentProfile/TalentProfile";
 
 const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -45,6 +46,7 @@ class App extends React.Component <Props, State> {
               <Route path={routes.TALENT_HOME} component={Talent}/>
               <Route path={routes.EMPLOYERS_HOME} component={Employer}/>
               <Route path={routes.PROFILE_CREATE} component={CreateProfile}/>
+              <Route path={routes.TALENT_PROFILE} component={TalentProfile} />
               <Route path={routes.HOME} component={MainPage}/>
             </Switch>
           </Router>
