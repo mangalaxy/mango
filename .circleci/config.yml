@@ -2,7 +2,11 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+  
 jobs:
   build:
     # directory where steps will run
@@ -45,6 +49,9 @@ jobs:
       - store_test_results:  
       # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: target/surefire-reports
+          
+      - codecov/upload:
+          file: {{ coverage_report_filepath }}
 
       # store the uber jar as an artifact
       - store_artifacts: 
