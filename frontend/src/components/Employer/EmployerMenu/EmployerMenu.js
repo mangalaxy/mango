@@ -15,8 +15,14 @@ type State = {
 export default class EmployerMenu extends PureComponent <Props, State> {
   render(): Node {
     const {currentPage} = this.props;
+    let bgMenuColor;
+    if(currentPage.split('/').indexOf('matched-talents') !== -1) {
+      bgMenuColor = '#F7F7F7';
+    } else {
+      bgMenuColor = 'transparent';
+    }
     return (
-        <div className='employerMenuContainer'>
+        <div className='employerMenuContainer' style={{backgroundColor:bgMenuColor}}>
           <div>
             <Link to={routes.EMPLOYERS_HOME} className='logo'>
               Mango
@@ -25,7 +31,7 @@ export default class EmployerMenu extends PureComponent <Props, State> {
           <ul className='menuItemsContainer'>
             <li>
               <Link to={routes.EMPLOYERS_OPEN_POSITIONS}
-                    className={currentPage === routes.EMPLOYERS_OPEN_POSITIONS ?
+                    className={currentPage === routes.EMPLOYERS_OPEN_POSITIONS || /^\/employers\/matched-talents/.test(currentPage) ?
                         'menuItem active' :
                         'menuItem'}>Positions</Link>
             </li>
@@ -38,8 +44,8 @@ export default class EmployerMenu extends PureComponent <Props, State> {
               </Link>
             </li>
             <li>
-              <Link to={routes.EMPLOYERS_HOME}
-                    className={currentPage === routes.FOR_TALENTS ?
+              <Link to={routes.BOOKMARKED_TALENTS}
+                    className={currentPage === routes.BOOKMARKED_TALENTS ?
                         'menuItem active' :
                         'menuItem'}>
                 Bookmarked
