@@ -6,7 +6,8 @@ import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {
-  path: string
+  path: string,
+  openLoginForm: ()=>void
 };
 type State = {
   dropdownVisible: boolean
@@ -27,7 +28,11 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
+<<<<<<< HEAD
     const {path, grey, dark} = this.props;
+=======
+    const {path, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
+>>>>>>> develop
     let grayMode = !(path === routes.HOME || path === routes.FOR_TALENTS ||
         path === routes.FOR_EMPLOYERS || path === routes.ABOUT_AS || path ===
         routes.BLOG);
@@ -71,25 +76,24 @@ export default class MainMenu extends PureComponent<Props, State> {
             </li>
           </ul>
           <div className='menuItemsContainer authLinks'>
-            <div>
+            <div onClick={openLoginForm}>
               <span
                   className={`menuItem  ${grayMode || grey && 'gray'} authBlock left`}>Log in</span>
             </div>
             <div>
               <span className={`menuItem  ${grayMode || grey && 'gray'} authBlock`}
                     onClick={this.showMenu}>
-                Sign in
+                Sign up
                 <Down active={dropdownVisible} grayMode={grayMode}/>
                 <ul className={`dropdownMenu ${!dropdownVisible &&
                 'hidden'} ${grayMode && 'gray'}`}
                     onMouseLeave={this.hideMenu}
                 >
-                    <li>Talents</li>
-                    <li>Employers</li>
+                    <li onClick={openSignUpTalent}>Talents</li>
+                    <li onClick={openSignUpEmployer}>Employers</li>
                 </ul>
               </span>
             </div>
-
           </div>
         </div>
     );
