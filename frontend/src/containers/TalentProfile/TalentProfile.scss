@@ -29,12 +29,21 @@
     position: relative;
     width: 750px;
     margin: 40px auto 0;
+    padding-bottom: 40px;
 
     .talent-form {
+      position: relative;
       display: flex;
       flex-wrap: wrap;
-      padding: 20px;
+      padding: 30px;
       background-color: #ffffff;
+
+      &__edit {
+        position: absolute;
+        top: 25px;
+        right: 25px;
+        cursor: pointer;
+      }
 
       &__header {
         width: 100%;
@@ -64,6 +73,7 @@
               display: inline-block;
               margin-left: 10px;
               color: #636363;
+              cursor: pointer;
             }
           }
         }
@@ -72,19 +82,46 @@
       .section-block {
         display: flex;
         align-items: center;
-        justify-content: space-between;
       }
 
       .section-row {
         position: relative;
         margin-left: 30px;
 
+        &__skill-item {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
+        }
+
+        &__skill-text {
+          margin-left: 5px;
+          color: #000;
+          font-size: 12px;
+        }
+
+        &__cicle {
+          display: inline-block;
+          width: 5px;
+          height: 5px;
+          border-radius: 5px;
+          background-color: $COLOR_MENU_DARK;
+        }
+
+        &__value {
+          margin: 10px 0 0 0;
+          color: #000;
+          font-size: 12px;
+          line-height: 14px;
+        }
+
         .delete-row {
           position: absolute;
-          top: 10px;
+          top: 4px;
           left: 50%;
           color: #BDBDBD;
           font-size: 24px;
+          cursor: pointer;
         }
 
         &--margin-bottom {
@@ -119,5 +156,63 @@
         text-align: right;
       }
     }
+  }
+
+  .talent-languages {
+    &__item {
+      position: relative;
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .talent-educations, .talent-worklist {
+    &__item {
+      position: relative;
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .delete-row {
+        position: absolute;
+        z-index: 9999;
+        top: 85px;
+        right: 0;
+        color: #BDBDBD;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__headers {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 22px;
+    color: #000;
+
+    &--light {
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 18px;
+    }
+  }
+
+  .section-skills-list {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 20px;
+  }
+
+  .talent-avatar-editor {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 0 auto;
+    overflow: hidden;
+    border: 1px solid $COLOR_GREY;
   }
 }

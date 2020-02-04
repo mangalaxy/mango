@@ -1,11 +1,12 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 :export {
-  colorGrey: #808080; }
+  colorGrey: #808080;
+  colorPrimery: #333333; }
 
 .calendar {
   position: relative;
-  width: 130px;
+  width: 120px;
   font-family: Montserrat, 'sans-serif'; }
   .calendar__wrapper {
     position: relative;

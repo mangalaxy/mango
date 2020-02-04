@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 :export {
-  colorGrey: #808080; }
+  colorGrey: #808080;
+  colorPrimery: #333333; }
 
 .talent-profile {
   position: relative;
@@ -13,77 +14,174 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   font-family: Montserrat, sans-serif; }
-  .talent-profile--filter {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(240, 240, 240, 0.8); }
-  .talent-profile__header {
-    position: relative;
-    height: 70px; }
-  .talent-profile__container {
-    position: relative;
-    width: 750px;
-    margin: 40px auto 0; }
-    .talent-profile__container .talent-form {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      background-color: #ffffff; }
-      .talent-profile__container .talent-form__header {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px; }
-      .talent-profile__container .talent-form__section {
-        width: 50%;
-        margin-bottom: 30px;
-        padding: 0 20px;
-        box-sizing: border-box; }
-        .talent-profile__container .talent-form__section .section-title {
-          display: flex;
-          align-items: center; }
-          .talent-profile__container .talent-form__section .section-title__text {
-            color: rgba(0, 0, 0, 0.8);
-            font-weight: 600;
-            margin-left: 10px;
-            font-size: 16px;
-            text-transform: uppercase; }
-            .talent-profile__container .talent-form__section .section-title__text--clicked {
-              display: inline-block;
-              margin-left: 10px;
-              color: #636363; }
-      .talent-profile__container .talent-form .section-block {
-        display: flex;
-        align-items: center;
-        justify-content: space-between; }
-      .talent-profile__container .talent-form .section-row {
-        position: relative;
-        margin-left: 30px; }
-        .talent-profile__container .talent-form .section-row .delete-row {
-          position: absolute;
-          top: 10px;
-          left: 50%;
-          color: #BDBDBD;
-          font-size: 24px; }
-        .talent-profile__container .talent-form .section-row--margin-bottom {
-          margin-bottom: 10px; }
-        .talent-profile__container .talent-form .section-row--margin-top {
-          margin-top: 35px; }
-        .talent-profile__container .talent-form .section-row__description {
-          display: flex;
-          align-items: center;
-          margin-top: 5px; }
-        .talent-profile__container .talent-form .section-row__text {
-          margin-left: 10px;
-          color: rgba(0, 0, 0, 0.5);
-          font-size: 14px; }
-        .talent-profile__container .talent-form .section-row__title {
-          margin-top: 15px;
-          color: rgba(0, 0, 0, 0.5);
-          font-size: 14px; }
-      .talent-profile__container .talent-form__buttons {
-        width: 100%;
-        text-align: right; }
+
+.talent-profile--filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(240, 240, 240, 0.8); }
+
+.talent-profile__header {
+  position: relative;
+  height: 70px; }
+
+.talent-profile__container {
+  position: relative;
+  width: 750px;
+  margin: 40px auto 0;
+  padding-bottom: 40px; }
+
+.talent-profile__container .talent-form {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30px;
+  background-color: #ffffff; }
+
+.talent-profile__container .talent-form__edit {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  cursor: pointer; }
+
+.talent-profile__container .talent-form__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px; }
+
+.talent-profile__container .talent-form__section {
+  width: 50%;
+  margin-bottom: 30px;
+  padding: 0 20px;
+  box-sizing: border-box; }
+
+.talent-profile__container .talent-form__section .section-title {
+  display: flex;
+  align-items: center; }
+
+.talent-profile__container .talent-form__section .section-title__text {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  margin-left: 10px;
+  font-size: 16px;
+  text-transform: uppercase; }
+
+.talent-profile__container .talent-form__section .section-title__text--clicked {
+  display: inline-block;
+  margin-left: 10px;
+  color: #636363;
+  cursor: pointer; }
+
+.talent-profile__container .talent-form .section-block {
+  display: flex;
+  align-items: center; }
+
+.talent-profile__container .talent-form .section-row {
+  position: relative;
+  margin-left: 30px; }
+
+.talent-profile__container .talent-form .section-row__skill-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px; }
+
+.talent-profile__container .talent-form .section-row__skill-text {
+  margin-left: 5px;
+  color: #000;
+  font-size: 12px; }
+
+.talent-profile__container .talent-form .section-row__cicle {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  background-color: #4f4f4f; }
+
+.talent-profile__container .talent-form .section-row__value {
+  margin: 10px 0 0 0;
+  color: #000;
+  font-size: 12px;
+  line-height: 14px; }
+
+.talent-profile__container .talent-form .section-row .delete-row {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  color: #BDBDBD;
+  font-size: 24px;
+  cursor: pointer; }
+
+.talent-profile__container .talent-form .section-row--margin-bottom {
+  margin-bottom: 10px; }
+
+.talent-profile__container .talent-form .section-row--margin-top {
+  margin-top: 35px; }
+
+.talent-profile__container .talent-form .section-row__description {
+  display: flex;
+  align-items: center;
+  margin-top: 5px; }
+
+.talent-profile__container .talent-form .section-row__text {
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px; }
+
+.talent-profile__container .talent-form .section-row__title {
+  margin-top: 15px;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 14px; }
+
+.talent-profile__container .talent-form__buttons {
+  width: 100%;
+  text-align: right; }
+
+.talent-profile .talent-languages__item {
+  position: relative;
+  margin-bottom: 20px; }
+
+.talent-profile .talent-languages__item:last-child {
+  margin-bottom: 0; }
+
+.talent-profile .talent-educations__item, .talent-profile .talent-worklist__item {
+  position: relative;
+  margin-bottom: 20px; }
+
+.talent-profile .talent-educations__item:last-child, .talent-profile .talent-worklist__item:last-child {
+  margin-bottom: 0; }
+
+.talent-profile .talent-educations__item .delete-row, .talent-profile .talent-worklist__item .delete-row {
+  position: absolute;
+  z-index: 9999;
+  top: 85px;
+  right: 0;
+  color: #BDBDBD;
+  font-size: 24px;
+  cursor: pointer; }
+
+.talent-profile__headers {
+  margin-top: 20px;
+  font-weight: 600;
+  font-size: 22px;
+  color: #000; }
+
+.talent-profile__headers--light {
+  margin-top: 10px;
+  font-weight: 500;
+  font-size: 18px; }
+
+.talent-profile .section-skills-list {
+  display: flex;
+  margin-left: 30px;
+  margin-top: 20px; }
+
+.talent-profile .talent-avatar-editor {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #808080; }
