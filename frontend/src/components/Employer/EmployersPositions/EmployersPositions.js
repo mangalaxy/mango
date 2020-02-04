@@ -19,15 +19,14 @@ class EmployersPositions extends Component {
 
         <div className="employersPositions-content">
           {this.props.jobs.map(item => (
-            <EmployersPositionItem key={item.id} itemData={item} />
+            <EmployersPositionItem key={item.id} itemData={item} history={this.props.history} />
           ))}
         </div>
-
       </div>
     )
   }
 }
 const mapStoreToProps = (store) => {
-  return {jobs: store.jobReducer}
+  return {jobs: store.jobsReducer}
 }
 export default connect(mapStoreToProps)(EmployersPositions);
