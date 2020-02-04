@@ -13,14 +13,7 @@ const mockOptions = [
 function TalentSkills(props) {
     const {user, edit} = props;
     const {skills} = user;
-    const skillsList = skills.map(skill => {
-        return (
-            <div className='section-row__skill-item'>
-                <div className='section-row__cicle'></div>
-                <div className='section-row__skill-text'>{skill}</div>
-            </div>
-        )
-    })
+    const skillsList = skills.map((skill, index) => <TalentSkill skill={skill} key={index} />)
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
@@ -79,6 +72,16 @@ function TalentSkills(props) {
                 }
 
             </div>
+        </div>
+    )
+}
+
+const TalentSkill = (props) => {
+    const {skill} = props;
+    return (
+        <div className='section-row__skill-item'>
+            <div className='section-row__cicle'></div>
+            <div className='section-row__skill-text'>{skill}</div>
         </div>
     )
 }

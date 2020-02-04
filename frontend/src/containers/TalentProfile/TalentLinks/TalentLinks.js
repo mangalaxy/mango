@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import colors from "../../../constants/colors";
 import {links} from "../../../assets/icons";
 import TextInput from '../../../components/inputs/TextInput/TextInput';

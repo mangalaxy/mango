@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+:export {
+  colorGrey: #808080;
+  colorPrimery: #333333; }
+
 .signUpTalentForm {
   margin: 3em 0; }
   .signUpTalentForm .fieldContainer {

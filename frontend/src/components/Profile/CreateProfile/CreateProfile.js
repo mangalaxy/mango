@@ -7,7 +7,7 @@ import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
 import Step5 from "./Step5/Step5";
-import { useFormik } from 'formik';
+import {useFormik} from 'formik';
 
 function CreateProfile(props) {
     const [activeStep, setActiveStep] = useState(1);
@@ -59,38 +59,38 @@ function CreateProfile(props) {
                 </div>
                 <div className='profile-container'>
                     <div className='profile-form'>
-                            <ul className="profile-menu" hidden={activeStep==5}>
+                            <ul className="profile-menu" hidden={activeStep === 5}>
                                 <li
                                     className={`profile-menu__item
-                                    ${activeStep == 1 ? 'profile-menu__item--active' : ''}
+                                    ${activeStep === 1 ? 'profile-menu__item--active' : ''}
                                     ${activeStep > 1 ? 'profile-menu__item--checked' : ''}
                                     `}>
                                     1
                                 </li>
                                 <li
                                     className={`profile-menu__item
-                                    ${activeStep == 2 ? 'profile-menu__item--active' : ''}
+                                    ${activeStep === 2 ? 'profile-menu__item--active' : ''}
                                     ${activeStep > 2 ? 'profile-menu__item--checked' : ''}
                                     `}>
                                     2
                                 </li>
                                 <li
                                     className={`profile-menu__item
-                                    ${activeStep == 3 ? 'profile-menu__item--active' : ''}
+                                    ${activeStep === 3 ? 'profile-menu__item--active' : ''}
                                     ${activeStep > 3 ? 'profile-menu__item--checked' : ''}
                                     `}>
                                     3
                                 </li>
                                 <li
                                     className={`profile-menu__item
-                                    ${activeStep == 4 ? 'profile-menu__item--active' : ''}
+                                    ${activeStep === 4 ? 'profile-menu__item--active' : ''}
                                     ${activeStep > 4 ? 'profile-menu__item--checked' : ''}
                                     `}>
                                     4
                                 </li>
                                 <li
                                     className={`profile-menu__item
-                                    ${activeStep == 5 ? 'profile-menu__item--active' : ''}`}>
+                                    ${activeStep === 5 ? 'profile-menu__item--active' : ''}`}>
                                     5
                                 </li>
                             </ul>

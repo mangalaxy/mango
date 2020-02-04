@@ -28,11 +28,7 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
-<<<<<<< HEAD
-    const {path, grey, dark} = this.props;
-=======
-    const {path, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
->>>>>>> develop
+    const {path, grey, dark, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
     let grayMode = !(path === routes.HOME || path === routes.FOR_TALENTS ||
         path === routes.FOR_EMPLOYERS || path === routes.ABOUT_AS || path ===
         routes.BLOG);

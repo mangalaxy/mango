@@ -15,7 +15,7 @@ function TalentLanguages(props) {
     const {user, edit} = props;
     const {userLanguages} = user;
     const [languagesCount, setLanguagesCount] = useState(0);
-    const languagesList = userLanguages.map(item => <LenguageItem language={item} edit={edit} />)
+    const languagesList = userLanguages.map(item => <LenguageItem language={item} edit={edit} key={item.id} />)
     const addedLanguagesList = Array.apply(null, {length: languagesCount}).map((item,index) => <LenguageItem key={index} edit={edit} />);
 
     return (

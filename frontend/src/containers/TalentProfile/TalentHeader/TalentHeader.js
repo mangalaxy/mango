@@ -31,7 +31,7 @@ function TalentHeader(props) {
                 <input type='file' name='file' id='avatar' hidden onChange={uploadPhoto}/>
                 {
                     !avatarEditor &&
-                    <label htmlFor={edit && 'avatar'}>
+                    <label htmlFor={edit ? 'avatar' : ''}>
                         <Avatar
                             img={user.avatarUrl}
                             alt={user.name}
