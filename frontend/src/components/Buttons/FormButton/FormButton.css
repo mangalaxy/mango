@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
-:export {
-  colorGrey: #808080;
-  colorPrimery: #333333; }
-
 .form-button {
   color: #fff;
   font-weight: 500;
@@ -13,10 +9,12 @@
   border: none;
   border-radius: 10px;
   text-transform: uppercase; }
-  .form-button--white {
-    margin-right: 30px;
-    background-color: #fff;
-    color: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(0, 0, 0, 0.4); }
-  .form-button--red {
-    background: #FF8080; }
+
+.form-button--white {
+  margin-right: 30px;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.4); }
+
+.form-button--red {
+  background: #FF8080; }

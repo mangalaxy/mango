@@ -1,8 +1,6 @@
-import variables from '../styles/_variables.scss';
-
 export default {
-    COLOR_GREY: variables.colorGrey,
-    COLOR_PRIMERY: variables.colorPrimery
+    COLOR_GREY: '#808080',
+    COLOR_PRIMERY: '#333333'
 }
 
 

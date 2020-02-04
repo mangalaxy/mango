@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
-:export {
-  colorGrey: #808080;
-  colorPrimery: #333333; }
-
 .talent-menu {
   display: flex;
   flex-direction: row;
@@ -13,26 +9,31 @@
   padding: 10px 30px;
   box-sizing: border-box;
   background-color: rgba(0, 0, 0, 0); }
-  .talent-menu .logo {
-    text-transform: uppercase;
-    font-size: 48px;
-    letter-spacing: .1em;
-    font-family: "Carter One", cursive;
-    color: #FF8080;
-    text-decoration: none; }
-    .talent-menu .logo:active, .talent-menu .logo:focus {
-      outline: none; }
-  .talent-menu__item {
-    color: #FF8080;
-    text-transform: uppercase;
-    font-family: "Monserrat", sans-serif;
-    font-size: 18px;
-    cursor: pointer; }
-    .talent-menu__item:hover .sign-out__icon {
-      transform: translateY(-50%) rotateZ(180deg); }
-  .talent-menu .sign-out__icon {
-    position: absolute;
-    top: 45%;
-    right: 10px;
-    transform: translateY(-50%);
-    transition: all 0.5s; }
+
+.talent-menu .logo {
+  text-transform: uppercase;
+  font-size: 48px;
+  letter-spacing: .1em;
+  font-family: "Carter One", cursive;
+  color: #FF8080;
+  text-decoration: none; }
+
+.talent-menu .logo:active, .talent-menu .logo:focus {
+  outline: none; }
+
+.talent-menu__item {
+  color: #FF8080;
+  text-transform: uppercase;
+  font-family: "Monserrat", sans-serif;
+  font-size: 18px;
+  cursor: pointer; }
+
+.talent-menu__item:hover .sign-out__icon {
+  transform: translateY(-50%) rotateZ(180deg); }
+
+.talent-menu .sign-out__icon {
+  position: absolute;
+  top: 45%;
+  right: 10px;
+  transform: translateY(-50%);
+  transition: all 0.5s; }
