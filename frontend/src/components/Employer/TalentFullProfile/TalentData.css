@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+.talent {
+  display: flex;
+  padding: 30px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
+  .talent-foto {
+    flex-basis: 9%;
+    max-width: 165px;
+    padding-right: 20px; }
+    .talent-foto-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%; }
+    .talent-foto-type {
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-family: Segoe UI;
+      font-size: 12px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: rgba(54, 179, 168, 0.9); }
+    .talent-foto-salary {
+      font-family: Segoe UI;
+      font-size: 18px;
+      line-height: 24px;
+      color: #4f4f4f; }
+  .talent-data {
+    flex-basis: 91%; }
+    .talent-data > div {
+      display: flex;
+      justify-content: space-between; }
+      .talent-data > div .talent-data-title-name {
+        font-family: "Monserrat", sans-serif;
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 29px;
+        text-transform: capitalize;
+        color: #4f4f4f; }
+      .talent-data > div .talent-data-title-location {
+        font-family: "Monserrat", sans-serif;
+        font-size: 14px;
+        line-height: 17px;
+        color: #828282; }
+      .talent-data > div .talent-data-control {
+        display: flex; }
+        .talent-data > div .talent-data-control-box {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 44px;
+          height: 44px;
+          margin-right: 15px;
+          border-radius: 50%;
+          background: #F2F2F2;
+          cursor: pointer; }

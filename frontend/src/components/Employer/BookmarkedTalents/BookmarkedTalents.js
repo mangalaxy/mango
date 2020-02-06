@@ -12,7 +12,7 @@ const BookmarkedTalents = (props) => {
     <div>
       <div className="bookmarked-container">
         {markedTalents.map(item => (           
-            <MatchedTalentsItem key={item.id} talentData={item} />
+            <MatchedTalentsItem key={item.id} talentData={item} history={props.history}/>
           ))            
         }
         {markedTalents.length != 0 ?

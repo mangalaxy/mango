@@ -6,7 +6,7 @@ const Remove = ({click, title}) => {
   return(
     <>        
       <div onClick={click} className="remove" title={title}>
-        <img src={iconCross} />
+        <img src={iconCross} alt="Remove" />
       </div>
     </>
   )
