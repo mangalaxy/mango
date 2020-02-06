@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+=======
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+>>>>>>> develop
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .matched-item {
   display: flex;
@@ -7,8 +11,12 @@
   margin-bottom: 20px;
   padding: 25px;
   background-color: #FFFFFF;
+<<<<<<< HEAD
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer; }
+=======
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
+>>>>>>> develop
   .matched-item-talent {
     display: flex;
     flex-direction: column;
@@ -70,7 +78,11 @@
       align-items: center;
       width: 44px;
       height: 44px;
+<<<<<<< HEAD
       border-radius: 50%;
+=======
+      border-radius: 22px;
+>>>>>>> develop
       background: #F2F2F2;
       cursor: pointer; }
     .matched-item .matched-item-control-box:first-child {
