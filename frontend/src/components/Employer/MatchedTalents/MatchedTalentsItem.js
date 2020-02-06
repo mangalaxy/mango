@@ -5,9 +5,9 @@ import iconBag from '../../../assets/icons/bag.svg';
 import iconHat from '../../../assets/icons/hat.svg';
 import iconPencil from '../../../assets/icons/pencil.svg';
 import iconList from '../../../assets/icons/list.svg';
-import iconCross from '../../../assets/icons/cross.svg';
 import {toggleMarkTalent} from '../../../actions/toggleMarkTalent';
 import {talentDeleteAction} from '../../../actions/talentDeleteAction';
+import Remove from '../../Remove/Remove';
 import Modal from '../../Modal/Modal';
 
 function MatchedTalentsItem(props) {
@@ -109,15 +109,16 @@ function MatchedTalentsItem(props) {
           </p>
         </div>
       </div>
+      
       <div className="matched-item-control">
         <div onClick={markTalent} className="matched-item-control-box" title="Mark talent">
           <svg id="marked-elem" width="16" height="21" viewBox="0 0 16 21" fill={markedColorFill} xmlns="http://www.w3.org/2000/svg">
             <path d="M14.5 1H1V18.5L8 14.5L14.5 18.5V1Z" stroke={markedColorStroke} strokeWidth="2"/>
           </svg>
-        </div>        
-        <div onClick={toggleModal} className="matched-item-control-box" title="Remove talent">
-          <img src={iconCross} />
         </div>
+
+        <Remove click={toggleModal}  title="Remove talent"/>
+
       </div>
       {openModal ?
       <Modal canсelModal={toggleModal}
