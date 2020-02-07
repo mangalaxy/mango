@@ -3,10 +3,8 @@
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
 version: 2.1
-
 orbs:
   codecov: codecov/codecov@1.0.2
-  
 jobs:
   build:
     # directory where steps will run
@@ -19,22 +17,21 @@ jobs:
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/postgres:10.8-alpine
-        environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: mango_test
+      # - image: circleci/postgres:10.8-alpine
+      #  environment:
+      #    POSTGRES_USER: postgres
+      #    POSTGRES_DB: mango_test
 
     environment:
       # Customize the JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3200m
+      MAVEN_OPTS: -Xmx3g
 
     steps:
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
-            - circleci-java-spring-{{ checksum "pom.xml" }}
+            - circleci-mango-{{ checksum "pom.xml" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       # gets the project dependencies
@@ -43,25 +40,25 @@ jobs:
       - save_cache:
           paths:
             - ~/.m2
-          key: circleci-java-spring-{{ checksum "pom.xml" }}
+          key: circleci-mango-{{ checksum "pom.xml" }}
 
       # package into a jar
       - run: mvn package
       - run:
           name: Save test results
           command: |
-            mkdir -p ~/test-results/junit/
-            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
+            mkdir -p ./test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ./test-results/junit/ \;
           when: always
 
       - store_test_results:
-          path: ~/test-results
+          path: ./test-results
 
       - store_artifacts:
-          path: ~/test-results/junit
+          path: ./test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
-          file: target/jacoco-reports
+          file: ./target/jacoco-reports
 
       # store the uber jar as an artifact
       - store_artifacts: 
