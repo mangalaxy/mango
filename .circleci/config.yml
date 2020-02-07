@@ -47,22 +47,22 @@ jobs:
       - run:
           name: Save test results
           command: |
-            mkdir -p ./test-results/junit/
-            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ./test-results/junit/ \;
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
 
       - store_test_results:
-          path: ./test-results
+          path: ~/test-results
 
       - store_artifacts:
-          path: ./test-results/junit
+          path: ~/test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
-          file: ./target/jacoco-reports
+          file: ~/target/jacoco-reports
 
       # store the uber jar as an artifact
       - store_artifacts: 
       # Upload test summary for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: target
+          path: target/mango-1.0.$CIRCLE_BUILD_NUM
           destination: mango
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples    
