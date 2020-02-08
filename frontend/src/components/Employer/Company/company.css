@@ -4,144 +4,115 @@
   width: 100%;
   background-color: white;
   min-height: calc(100vh - 70px); }
-
-.companyPage .header {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
-
-.companyPage .contentContainer {
-  margin: 0 auto;
-  padding: 40px 50px;
-  max-width: 1200px;
-  display: flex;
-  justify-content: space-between; }
-
-.companyPage .contentContainer .content {
-  display: flex; }
-
-.companyPage .contentContainer .content .logoContainer {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  margin-right: 40px; }
-
-.companyPage .contentContainer .content .logoContainer img {
-  max-height: 200px; }
-
-.companyPage .contentContainer .content .label {
-  font-size: 12px;
-  text-transform: capitalize;
-  color: #BDBDBD; }
-
-.companyPage .contentContainer .content .companyName {
-  color: #4f4f4f;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 2em;
-  text-transform: uppercase; }
-
-.companyPage .contentContainer .content .slogan {
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400;
-  line-height: 2em; }
-
-.companyPage .contentContainer .content .companyLocation {
-  color: rgba(54, 179, 168, 0.9);
-  font-size: 20px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 400; }
-
-.companyPage .contentContainer .content .line {
-  justify-content: flex-start;
-  margin-top: 0;
-  margin-bottom: 1.5em; }
-
-.companyPage .contentContainer .editButton {
-  cursor: pointer; }
-
-.companyPage .contentContainer .editButton:hover {
-  opacity: .8; }
-
-.companyPage .contentContainer .editButton:active {
-  transform: translateY(1px); }
-
-.companyPage .contentContainer .companyInfo {
-  width: 70%; }
-
-.companyPage .contentContainer .companyInfo .mainImage {
-  width: 100%; }
-
-.companyPage .contentContainer .companyInfo .companyName {
-  color: #4f4f4f;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 2em;
-  text-transform: uppercase;
-  margin-top: 1em; }
-
-.companyPage .contentContainer .companyInfo p {
-  font-size: 20px;
-  line-height: 28px;
-  color: #828282;
-  text-align: justify; }
-
-.companyPage .contentContainer .companyInfo .companyImages {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px 0px;
-  width: 100%;
-  overflow: hidden; }
-
-.companyPage .contentContainer .companyInfo .companyImages .imageContainer {
-  width: 50%;
-  padding: 15px;
-  overflow: hidden;
-  height: 400px; }
-
-.companyPage .contentContainer .companyInfo .companyImages .imageContainer.left {
-  padding-left: 0; }
-
-.companyPage .contentContainer .companyInfo .companyImages .imageContainer.right {
-  padding-right: 0; }
-
-.companyPage .contentContainer .companyInfo .companyImages .imageContainer span {
-  overflow: hidden;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center; }
-
-.companyPage .contentContainer .companyInfo .companyImages .imageContainer span img {
-  height: 100%; }
-
-.companyPage .contentContainer .companySummary {
-  width: 30%;
-  display: block;
-  padding-left: 50px; }
-
-.companyPage .contentContainer .companySummary .blockHeader {
-  width: 100%;
-  padding-bottom: 15px;
-  border-bottom: 2px solid #BDBDBD;
-  color: #4f4f4f;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  font-size: 20px;
-  text-transform: uppercase;
-  margin-bottom: .5em;
-  margin-top: 2em; }
-
-.companyPage .contentContainer .companySummary .blockItem {
-  display: flex;
-  align-items: center; }
-
-.companyPage .contentContainer .companySummary .blockItem svg {
-  margin-right: 10px; }
-
-.companyPage .contentContainer .companySummary .blockItem span {
-  color: #828282;
-  font-size: 16px;
-  line-height: 22px; }
-
-.companyPage .contentContainer .companySummary :first-child {
-  margin-top: 0; }
+  .companyPage .header {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }
+  .companyPage .contentContainer {
+    margin: 0 auto;
+    padding: 40px 50px;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between; }
+    .companyPage .contentContainer .content {
+      display: flex; }
+      .companyPage .contentContainer .content .logoContainer {
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        margin-right: 40px; }
+        .companyPage .contentContainer .content .logoContainer img {
+          max-height: 200px; }
+      .companyPage .contentContainer .content .label {
+        font-size: 12px;
+        text-transform: capitalize;
+        color: #BDBDBD; }
+      .companyPage .contentContainer .content .companyName {
+        color: #4f4f4f;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 2em;
+        text-transform: uppercase; }
+      .companyPage .contentContainer .content .slogan {
+        font-size: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        line-height: 2em; }
+      .companyPage .contentContainer .content .companyLocation {
+        color: rgba(54, 179, 168, 0.9);
+        font-size: 20px;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400; }
+      .companyPage .contentContainer .content .line {
+        justify-content: flex-start;
+        margin-top: 0;
+        margin-bottom: 1.5em; }
+    .companyPage .contentContainer .editButton {
+      cursor: pointer; }
+      .companyPage .contentContainer .editButton:hover {
+        opacity: .8; }
+      .companyPage .contentContainer .editButton:active {
+        transform: translateY(1px); }
+    .companyPage .contentContainer .companyInfo {
+      width: 70%; }
+      .companyPage .contentContainer .companyInfo .mainImage {
+        width: 100%; }
+      .companyPage .contentContainer .companyInfo .companyName {
+        color: #4f4f4f;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 2em;
+        text-transform: uppercase;
+        margin-top: 1em; }
+      .companyPage .contentContainer .companyInfo p {
+        font-size: 20px;
+        line-height: 28px;
+        color: #828282;
+        text-align: justify; }
+      .companyPage .contentContainer .companyInfo .companyImages {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 10px 0px;
+        width: 100%;
+        overflow: hidden; }
+        .companyPage .contentContainer .companyInfo .companyImages .imageContainer {
+          width: 50%;
+          padding: 15px;
+          overflow: hidden;
+          height: 400px; }
+          .companyPage .contentContainer .companyInfo .companyImages .imageContainer.left {
+            padding-left: 0; }
+          .companyPage .contentContainer .companyInfo .companyImages .imageContainer.right {
+            padding-right: 0; }
+          .companyPage .contentContainer .companyInfo .companyImages .imageContainer span {
+            overflow: hidden;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center; }
+            .companyPage .contentContainer .companyInfo .companyImages .imageContainer span img {
+              height: 100%; }
+    .companyPage .contentContainer .companySummary {
+      width: 30%;
+      display: block;
+      padding-left: 50px; }
+      .companyPage .contentContainer .companySummary .blockHeader {
+        width: 100%;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #BDBDBD;
+        color: #4f4f4f;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        text-transform: uppercase;
+        margin-bottom: .5em;
+        margin-top: 2em; }
+      .companyPage .contentContainer .companySummary .blockItem {
+        display: flex;
+        align-items: center; }
+        .companyPage .contentContainer .companySummary .blockItem svg {
+          margin-right: 10px; }
+        .companyPage .contentContainer .companySummary .blockItem span {
+          color: #828282;
+          font-size: 16px;
+          line-height: 22px; }
+      .companyPage .contentContainer .companySummary :first-child {
+        margin-top: 0; }

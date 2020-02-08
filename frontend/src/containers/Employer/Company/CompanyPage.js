@@ -1,42 +1,44 @@
 import React, {Component} from 'react';
 import Company from '../../../components/Employer/Company/Company';
+import CompanyEdit from '../../../components/Employer/CompanyEdit/CompanyEdit';
+import routes from '../../../constants/routes';
+
 
 class EmployersCompany extends Component {
   state = {
-    editMode: false,
     companyProfile: mockCompanyProfile,
   };
 
-  setEditMode = (editMode) => {
-    this.setState({editMode: editMode});
-  };
-
   render() {
-    const {editMode, companyProfile} = this.state;
+    const {companyProfile} = this.state;
+    const editMode = this.props.match.params.mode === 'edit';
     return (
         <div>
-          {editMode ? <></> : <Company
-              companyProfile={companyProfile}
-              setEditMode={this.setEditMode}
-          />}
-
+          {editMode ? <CompanyEdit companyProfile={companyProfile} onSaveChanges={()=>this.onSaveCompanyProfile()}/> :
+              <Company companyProfile={companyProfile}/>}
         </div>
     );
+  }
+
+  onSaveCompanyProfile = (profile) => {
+    console.log('SAVED!');
+    this.setState({companyProfile: profile})
+    this.props.history.push(routes.EMPLOYERS_COMPANY)
   }
 }
 
 export default EmployersCompany;
 
 const mockCompanyProfile = {
-  logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
+  // logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
   name: 'dragon innovation',
-  slogan: 'Leading the hardware revolution',
+  headline: 'Leading the hardware revolution',
   location: 'Alewife center, Cambridge, Massachusets',
   employersCountRange: '20-50',
   category: 'Hardware',
   images: [
     'http://www.techaxisinc.com/wp-content/uploads/2018/01/techaxis-about-hero-cropped.jpg',
-    'https://careers.ti.com/wp-content/uploads/2015/06/Our-Company-_MG_9470-cropped1.jpg',
+    'http://www.rimoldiecf.com/sites/default/files/styles/square_crop_medium-clean/public/DC6A6276-Modifica.jpg?itok=AmHpOuAv',
     'http://www.rimoldiecf.com/sites/default/files/styles/square_crop_medium-clean/public/DC6A6276-Modifica.jpg?itok=AmHpOuAv',
     'http://www.rimoldiecf.com/sites/default/files/styles/square_crop_medium-clean/public/rimoldi%20-%20headquarter.jpg?itok=ctReR616',
     'http://prodagi-life.ru/wp-content/uploads/2016/02/klienty-min-e1455540759857.jpg',

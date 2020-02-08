@@ -2,8 +2,10 @@ import React from 'react';
 import './company.scss';
 import EditIcon from '../../elements/icons/EditIcon';
 import GreenDash from '../../elements/GreenLine/greenLine';
+import routes from '../../../constants/routes';
+import {Link} from 'react-router-dom';
 
-const Company = ({companyProfile, setEditMode}) => (
+const Company = ({companyProfile}) => (
     <div className='companyPage'>
       <header className='header'>
         <div className="contentContainer">
@@ -18,14 +20,17 @@ const Company = ({companyProfile, setEditMode}) => (
               companyProfile.name}</h2>
               <GreenDash className='line'/>
               <h5 className='slogan'>{companyProfile &&
-              companyProfile.slogan}</h5>
+              companyProfile.headline}</h5>
               <h5 className='companyLocation'>{companyProfile &&
               companyProfile.location}</h5>
             </div>
           </div>
-          <div className='editButton' onClick={() => setEditMode(true)}>
-            <EditIcon size={25}/>
-          </div>
+          <Link to={routes.EMPLOYERS_COMPANY_EDIT}>
+            <div className='editButton' >
+              <EditIcon size={25}/>
+            </div>
+          </Link>
+
         </div>
       </header>
 
@@ -58,7 +63,7 @@ const Company = ({companyProfile, setEditMode}) => (
           {companyProfile && companyProfile.techStack && <>
             <h3 className='blockHeader'>Tech stack</h3>
             {companyProfile.techStack.map((item, index) => (
-                <div className='blockItem'>
+                <div className='blockItem' key={index}>
                   <svg width="6" height="6" viewBox="0 0 6 6" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <circle r="3" transform="matrix(-1 0 0 1 3 3)"
@@ -71,7 +76,7 @@ const Company = ({companyProfile, setEditMode}) => (
           {companyProfile && companyProfile.perks && <>
             <h3 className='blockHeader'>Perks</h3>
             {companyProfile.perks.map((item, index) => (
-                <div className='blockItem'>
+                <div className='blockItem' key={index}>
                   <svg width="6" height="6" viewBox="0 0 6 6" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <circle r="3" transform="matrix(-1 0 0 1 3 3)"
@@ -84,7 +89,7 @@ const Company = ({companyProfile, setEditMode}) => (
           {companyProfile && companyProfile.benefits && <>
             <h3 className='blockHeader'>Benefits</h3>
             {companyProfile.benefits.map((item, index) => (
-                <div className='blockItem'>
+                <div className='blockItem' key={index}>
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -98,7 +103,7 @@ const Company = ({companyProfile, setEditMode}) => (
           {companyProfile && companyProfile.links && <>
             <h3 className='blockHeader'>Links</h3>
             {companyProfile.links.map((item, index) => (
-                <div className='blockItem'>
+                <div className='blockItem' key={index}>
                   <span>{item}</span>
                 </div>
             ))}</>}

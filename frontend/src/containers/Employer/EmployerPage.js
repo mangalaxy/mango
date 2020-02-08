@@ -19,8 +19,8 @@ type Props = {
 
 class Employer extends Component<Props> {
   getMenuTheme = () => {
-    if (this.props.location.pathname ===
-        routes.EMPLOYERS_COMPANY) return 'white';
+    const path = this.props.location.pathname;
+    if (path.startsWith(routes.EMPLOYERS_COMPANY)) return 'white';
     return null;
   };
 
@@ -35,7 +35,10 @@ class Employer extends Component<Props> {
           <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
           <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
                  component={EmployersPositions}/>
-          <Route path={routes.EMPLOYERS_COMPANY} component={EmployersCompany}/>
+          <Route exact path={routes.EMPLOYERS_COMPANY}
+                 component={EmployersCompany}/>
+          <Route path={`${routes.EMPLOYERS_COMPANY}/:mode`}
+                 component={EmployersCompany}/>
         </div>
     );
   }

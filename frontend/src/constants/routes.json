@@ -16,6 +16,7 @@
   "EMPLOYERS_WELCOME": "/employers/welcome",
   "EMPLOYERS_OPEN_POSITIONS": "/employers/open-positions",
   "EMPLOYERS_COMPANY": "/employers/company",
+  "EMPLOYERS_COMPANY_EDIT": "/employers/company/edit",
   "EMPLOYERS_FIND_TALENT": "/employers/find_talent",
   "EMPLOYERS_BOOKMARKED": "/employers/bookmarked",
   "EMPLOYERS_INTERVIEWS": "/employers/interviews",
