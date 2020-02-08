@@ -24,10 +24,6 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: Check current version of maven
-          command: mvn –v
-      # Download and cache dependencies
       - restore_cache:
           keys:
             - circleci-mango-{{ checksum "pom.xml" }}
@@ -59,4 +55,3 @@ jobs:
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
           destination: mango
-      # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples
