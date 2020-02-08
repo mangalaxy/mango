@@ -6,13 +6,13 @@ orbs:
 
 jobs:
   build:
-    working_directory: ~/circleci-mango
+    working_directory: ~/mango-build
     docker:
       - image: circleci/openjdk:8-jdk-stretch
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
-      - image: circleci/postgres:9.6-alpine-postgis-ram
+      - image: circleci/postgres:9.6-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: D30f$83fe%1917_3ab42
@@ -30,7 +30,7 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
       - run:
-          name: Get dependencies
+          name: Get maven dependencies
           command: mvn dependency:go-offline
       - save_cache:
           paths:
@@ -42,16 +42,16 @@ jobs:
       - run:
           name: Save test results
           command: |
-            mkdir -p ~/mango/test-results/junit/
-            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/mango/test-results/junit/ \;
+            mkdir -p ~/test-results/junit/
+            find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/test-results/junit/ \;
           when: always
       - store_test_results:
-          path: ~/mango/test-results
+          path: ~/test-results
       - store_artifacts:
-          path: ~/mango/test-results/junit
+          path: ~/test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
           file: ~/target/jacoco-reports
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
-          destination: mango
+          destination: ~/mango-build/artifact-storage
