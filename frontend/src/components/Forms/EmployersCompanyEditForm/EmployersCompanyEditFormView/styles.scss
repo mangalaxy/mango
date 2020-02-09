@@ -1,0 +1,54 @@
+@import '../../../../styles/_variables';
+
+.employersCompanyEditForm{
+  margin: 0 auto;
+  padding: 40px 50px;
+  max-width: 1200px;
+  .headSection{
+    display: flex;
+    .logoContainer{
+      min-width: 250px;
+      height: 240px;
+      margin-right: 40px;
+      img{
+        height: 100%;
+      }
+      .logoPlaceholder{
+        width: 100%;
+        height: 100%;
+        border: #E0E0E0 3px dashed;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        span{
+          margin-top: 10px;
+          text-align: center;
+          text-transform: uppercase;
+          color: #E0E0E0;
+          width: 60%;
+        }
+      }
+    }
+    .fieldContainer{
+      width: 100%;
+      .flex{
+        display: flex;
+        :first-child{
+          width: 40%;
+          margin-right: 20px;
+        }
+        :last-child{
+          width: 60%;
+        }
+      }
+    }
+  }
+
+  .fieldLabel{
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #4F4F4F;
+  }
+}

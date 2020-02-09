@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .menuContainer {
   position: absolute;
@@ -34,7 +34,7 @@
     text-decoration: none;
     text-transform: uppercase;
     color: #f2f2f2;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 18px;
     box-sizing: border-box;
     padding: 0;
