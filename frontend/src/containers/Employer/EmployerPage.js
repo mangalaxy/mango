@@ -7,10 +7,10 @@ import EmployerWelcome
   from '../../components/Employer/EmployerWelcome/EmployerWelcome';
 import EmployersPositions
   from '../../components/Employer/EmployersPositions/EmployersPositions';
-import EmployerWelcome from '../../components/Employer/EmployerWelcome/EmployerWelcome';
-import EmployersPositions from '../../components/Employer/EmployersPositions/EmployersPositions';
-import MatchedTalents from '../../components/Employer/MatchedTalents/MatchedTalents';
-import BookmarkedTalents from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
+import MatchedTalents
+  from '../../components/Employer/MatchedTalents/MatchedTalents';
+import BookmarkedTalents
+  from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
 import './EmployerPage.scss';
 import EmployersCompany from './Company/CompanyPage';
 import {connect} from 'react-redux';
@@ -37,10 +37,12 @@ class Employer extends Component<Props> {
               theme={this.getMenuTheme()}
           />
           <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
-          <Route path={routes.EMPLOYERS_OPEN_POSITIONS} component={EmployersPositions}/>
+          <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
+                 component={EmployersPositions}/>
           <Route path={routes.MATCHED_TALENTS_ID} component={MatchedTalents}/>
-          <Route path={routes.BOOKMARKED_TALENTS} component={BookmarkedTalents}/>
-               <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
+          <Route path={routes.BOOKMARKED_TALENTS}
+                 component={BookmarkedTalents}/>
+          <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
                  component={EmployersPositions}/>
           <Route exact path={routes.EMPLOYERS_COMPANY}
                  component={EmployersCompany}/>
@@ -57,4 +59,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps)(Employer);
+export default connect(mapStateToProps, mapDispatchToProps)(Employer);

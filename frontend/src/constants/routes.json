@@ -18,7 +18,6 @@
   "EMPLOYERS_COMPANY": "/employers/company",
   "EMPLOYERS_COMPANY_EDIT": "/employers/company/edit",
   "EMPLOYERS_FIND_TALENT": "/employers/find_talent",
-  "EMPLOYERS_BOOKMARKED": "/employers/bookmarked",
   "EMPLOYERS_INTERVIEWS": "/employers/interviews",
   "MATCHED_TALENTS_ID": "/employers/matched-talents/:id",
   "BOOKMARKED_TALENTS": "/employers/bookmarked-talents",

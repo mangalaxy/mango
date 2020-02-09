@@ -30,7 +30,7 @@ class EmployersCompany extends Component {
 export default EmployersCompany;
 
 const mockCompanyProfile = {
-  // logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
+  logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
   name: 'dragon innovation',
   headline: 'Leading the hardware revolution',
   location: 'Alewife center, Cambridge, Massachusets',
