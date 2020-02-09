@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -21,13 +22,17 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
 @Transactional
+@WithMockUser(username = "test@gmail.com")
 public class EmployerControllerTest {
 
   @Autowired
@@ -61,7 +66,7 @@ public class EmployerControllerTest {
     EmployerResponse employer = objectMapper.readValue(response, EmployerResponse.class);
 
     Assert.assertEquals(expectedId, employer.getId());
-    Assert.assertEquals(expectedMail, employer.getWorkEmail());
+    Assert.assertEquals(expectedMail, employer.getEmail());
   }
 
   @Test
@@ -79,7 +84,7 @@ public class EmployerControllerTest {
     String response = result.getResponse().getContentAsString();
     EmployerResponse createdEmployer = objectMapper.readValue(response, EmployerResponse.class);
 
-    Assert.assertEquals("testMail@com", createdEmployer.getWorkEmail());
+    Assert.assertEquals("testMail@com", createdEmployer.getEmail());
   }
 
   @Test
@@ -87,7 +92,7 @@ public class EmployerControllerTest {
     Long employerId = 1L;
     String expectedMail = "changed@mail.com";
     EmployerResponse employer = employerService.getEmployerById(employerId);
-    employer.setWorkEmail(expectedMail);
+    employer.setEmail(expectedMail);
 
     String request = objectMapper.writeValueAsString(employer);
 
@@ -100,7 +105,7 @@ public class EmployerControllerTest {
     EmployerResponse employerResponse = objectMapper.readValue(response, EmployerResponse.class);
 
     Assert.assertEquals(employerId, employerResponse.getId());
-    Assert.assertEquals(expectedMail, employerResponse.getWorkEmail());
+    Assert.assertEquals(expectedMail, employerResponse.getEmail());
   }
 
   @Test

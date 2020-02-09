@@ -22,5 +22,8 @@ INSERT INTO job (id, created_date, last_update, title, location_id, employer_id,
 INSERT INTO users (id, created_date, last_update, email, password) VALUES (1, '2019-03-12 14:00:00', '2019-03-13 14:01:00', 'test@gmail.com', '$2a$04$kDaKwBckpCiw/PFvV4qpqOdMl9oypQVKaXvANn.oeKC9xrGiYdfmO');
 
 INSERT INTO user_roles (user_id, role_name) VALUES (1, 0);
+INSERT INTO user_roles (user_id, role_name) VALUES (1, 1);
+INSERT INTO user_roles (user_id, role_name) VALUES (1, 2);
+INSERT INTO user_roles (user_id, role_name) VALUES (1, 3);
 
 
