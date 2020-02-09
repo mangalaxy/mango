@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 body {
   margin: 0;
   padding: 0;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
 
 h3 {
   color: #000; }
@@ -12,7 +12,7 @@ p {
   color: #333333; }
 
 .mainHeaderH2 {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #333333;
   font-weight: 600;
   font-size: 40px;
@@ -20,7 +20,7 @@ p {
   text-transform: uppercase; }
 
 .mainHeaderH3 {
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   color: #333333;
@@ -38,7 +38,7 @@ p {
     color: #FDFDFD;
     padding: 200px 50px 200px; }
     .bannerContainer .bannerContent h1 {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 46px;
@@ -46,7 +46,7 @@ p {
       text-align: center;
       text-transform: uppercase; }
     .bannerContainer .bannerContent h4 {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-style: normal;
       font-weight: 600;
       font-size: 32px;
