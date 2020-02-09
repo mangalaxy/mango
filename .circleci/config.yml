@@ -51,7 +51,7 @@ jobs:
           path: ~/test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
-          file: ~/target/jacoco-reports
+          file: ~/target/jacoco-reports/report.xml
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
           destination: ~/mango-build/artifact-storage
