@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .position-bg {
   background-color: #fff;
@@ -15,20 +15,20 @@
         flex-basis: 55%; }
         .position-bg .position-container .position-content-title, .position-bg .position-container .position-content-skills {
           margin-top: 25px;
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           color: #BDBDBD;
           font-weight: 600;
           font-size: 14px;
           line-height: 17px;
           text-transform: capitalize; }
         .position-bg .position-container .position-content-title-description {
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           color: #333333;
           font-weight: 600;
           font-size: 24px;
           text-transform: capitalize; }
         .position-bg .position-container .position-content-skills-description {
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           color: #4f4f4f;
           font-size: 24px;
           line-height: 29px;
@@ -42,7 +42,7 @@
           border-radius: 8px;
           padding: 7px 14px;
           margin-left: 16px;
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           color: #828282;
           font-size: 14px;
           line-height: 17px;
@@ -64,14 +64,14 @@
       .position-bg .position-container .position-data-item {
         margin-right: 40px; }
         .position-bg .position-container .position-data-item-name {
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-weight: 600;
           font-size: 14px;
           line-height: 17px;
           text-transform: capitalize;
           color: #BDBDBD; }
         .position-bg .position-container .position-data-item-description {
-          font-family: "Monserrat", sans-serif;
+          font-family: "Montserrat", sans-serif;
           font-size: 24px;
           line-height: 29px;
           color: #4f4f4f; }
@@ -80,7 +80,7 @@ div .position-container {
   width: 1175px;
   margin: 0 auto; }
   div .position-container .running-title {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 18px;
     line-height: 22px;
     text-align: center;

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 #main-by-job-role .contentContainer {
   max-width: 1200px;
@@ -8,7 +8,7 @@
   #main-by-job-role .contentContainer .descriptionHeader {
     font-size: 42px;
     font-weight: 600;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-align: center;
     margin: 2em 0 0; }
   #main-by-job-role .contentContainer .description {
