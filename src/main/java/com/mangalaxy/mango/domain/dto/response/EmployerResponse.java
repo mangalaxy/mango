@@ -14,9 +14,9 @@ public class EmployerResponse {
   private LocalDateTime createdDate;
   private LocalDateTime lastModifiedDate;
   private String fullName;
-  private String workEmail;
+  private String email;
   private String phoneNumber;
-  private Company company;
+  private CompanyResponse company;
   private String jobTitle;
   private String photoUrl;
   private Set<TalentResponse> talents;

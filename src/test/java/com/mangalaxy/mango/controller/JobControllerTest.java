@@ -88,7 +88,7 @@ public class JobControllerTest {
     String expectedTitle = "Java Developer";
 
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();

@@ -115,7 +115,7 @@ public class EmployerServiceTest {
     EmployerResponse response = employerService.getEmployerById(expectedId);
 
     Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedMail, response.getWorkEmail());
+    Assert.assertEquals(expectedMail, response.getEmail());
   }
 
   @Test
@@ -124,13 +124,13 @@ public class EmployerServiceTest {
     String expectedMail = "elon@gmail.com";
 
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();
     EmployerRequest employerRequest = EmployerRequest.builder()
         .id(expectedId)
-        .workEmail(expectedMail)
+        .email(expectedMail)
         .password("123456")
         .fullName("Elon Mask")
         .location(locationRequest)
@@ -141,7 +141,7 @@ public class EmployerServiceTest {
 
     verify(employerRepository).save(firstMockEmployer);
     Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedMail, response.getWorkEmail());
+    Assert.assertEquals(expectedMail, response.getEmail());
   }
 
   @Test
@@ -151,13 +151,13 @@ public class EmployerServiceTest {
     firstMockEmployer.setEmail(expectedMail);
 
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1)
         .country("UA")
         .city("Kyiv")
         .build();
     EmployerRequest employerRequest = EmployerRequest.builder()
         .id(expectedId)
-        .workEmail(expectedMail)
+        .email(expectedMail)
         .password("123456")
         .fullName("Elon Mask")
         .location(locationRequest)
@@ -168,8 +168,7 @@ public class EmployerServiceTest {
     EmployerResponse response = employerService.updateEmployer(employerRequest, expectedId);
 
     verify(employerRepository).save(firstMockEmployer);
-    Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedMail, response.getWorkEmail());
+    verify(employerRepository).findById(expectedId);
   }
 
   @Test
