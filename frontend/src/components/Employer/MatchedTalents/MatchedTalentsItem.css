@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .matched-item {
   display: flex;
@@ -17,14 +17,14 @@
       height: 140px;
       background-size: cover; }
     .matched-item-talent-type {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 12px;
       margin-top: 18px;
       line-height: 15px;
       text-transform: uppercase;
       color: #000000; }
     .matched-item-talent-salary {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       margin-top: 5px;
       font-size: 18px;
       line-height: 22px;
@@ -35,20 +35,20 @@
     align-items: flex-start;
     padding-left: 20px; }
     .matched-item-content-name {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 24px;
       line-height: 29px;
       text-transform: capitalize;
       color: #000000; }
     .matched-item-content-location {
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 14px;
       line-height: 17px;
       color: #828282; }
     .matched-item-content-position {
       margin-top: 10px;
       margin-bottom: 15px;
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 18px;
       line-height: 22px;
       color: #000000; }
@@ -57,7 +57,7 @@
       margin-bottom: 7px; }
       .matched-item-content-group-skills {
         padding-left: 14px;
-        font-family: "Monserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 16px;
         line-height: 16px;
         color: #828282; }

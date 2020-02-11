@@ -7,6 +7,8 @@
     width: 100% !important;
     font-size: 16px;
     font-family: $FONT_COMMON !important;
+    border-color: #BDBDBD;
+    border-radius: 4px;
   }
 }
 
@@ -23,7 +25,6 @@
     border-right: none !important;
     border-bottom: rgba(0, 0, 0, .2) 1.5px solid;
     border-radius: 0 !important;
-
 
     &:focus, &:active {
       border: none !important;
@@ -98,5 +99,21 @@
   }
 
 }
-
+.textInput{
+  .p-label{
+    label{
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 600;
+      color: #4F4F4F;
+    }
+  }
+  .p-inputtext {
+    width: 100% !important;
+    font-size: 16px;
+    font-family: $FONT_COMMON !important;
+    border-color: #BDBDBD;
+    border-radius: 4px;
+  }
+}
 

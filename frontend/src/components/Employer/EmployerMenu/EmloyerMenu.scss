@@ -10,6 +10,9 @@
   padding: 10px 30px;
   box-sizing: border-box;
 // background-color: rgba(0,0,0,.2);
+  &.white{
+    background-color: white;
+  }
 
   .logo {
     text-transform: uppercase;
@@ -79,7 +82,7 @@
     .down {
       position: absolute;
       top: 50%;
-      right: -17px;
+      right: 5px;
       transform: translateY(-50%);
       transition: all 0.5s;
 
@@ -91,20 +94,21 @@
     .dropdownMenu {
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -5px;
       transform: translateY(100%);
       background-color: #FFFFFF;
-      opacity: .8;
-      padding: 0;
+      padding: 0 70px 0 0;
       color: $COLOR_MENU_DARK;
       text-transform: capitalize;
       transition: all .4s;
+      box-shadow: #8a8a8a 2px 2px 5px;
 
-      li {
+      li, & a{
         padding: 5px 5px;
         margin: 7px 0;
         border-left: 2px solid transparent;
         transition: all .5s;
+        color: $COLOR_MENU_DARK;
 
         &:hover {
           border-left: 2px solid $COLOR_CORAL;
@@ -118,14 +122,13 @@
         bottom: -50px;
         opacity: 0;
       }
-
-
     }
 
     &.left {
       // border-right: solid 1px $COLOR_MENU_LIGHT;
+      padding: 5px 29px 5px 9px;
       border-right: solid 1px $COLOR_MENU_DARK;
-
+      text-transform: none;
     }
   }
 }

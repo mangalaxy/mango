@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 .fkInput .p-inputtext {
   width: 100% !important;
   font-size: 16px;
-  font-family: "Monserrat", sans-serif !important; }
+  font-family: "Montserrat", sans-serif !important;
+  border-color: #BDBDBD;
+  border-radius: 4px; }
 
 .fkAuthInput {
   margin-top: 10px;
@@ -12,7 +14,7 @@
   .fkAuthInput .p-inputtext {
     width: 100% !important;
     font-size: 16px;
-    font-family: "Monserrat", sans-serif !important;
+    font-family: "Montserrat", sans-serif !important;
     border-top: none !important;
     border-left: none !important;
     border-right: none !important;
@@ -38,7 +40,7 @@
     display: block;
     margin-bottom: 20px; }
     .fkAuthInput .input-label label {
-      font-family: "Monserrat", sans-serif !important;
+      font-family: "Montserrat", sans-serif !important;
       color: rgba(0, 0, 0, 0.4) !important;
       font-weight: 300 !important;
       font-size: 16px !important; }
@@ -57,7 +59,7 @@
 
 .errorLabel {
   font-size: 12px;
-  font-family: "Monserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: #B00020;
   text-align: center;
   display: inline-block;
@@ -69,3 +71,16 @@
   font-size: 16px;
   margin-left: 7px;
   cursor: pointer; }
+
+.textInput .p-label label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #4F4F4F; }
+
+.textInput .p-inputtext {
+  width: 100% !important;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif !important;
+  border-color: #BDBDBD;
+  border-radius: 4px; }
