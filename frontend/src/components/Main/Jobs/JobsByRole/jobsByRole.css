@@ -4,7 +4,8 @@
   max-width: 1200px;
   margin: 0 auto 20px;
   padding: 0 10px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  font-family: "Monserrat", sans-serif;}
 
 .job-role__tags {
   margin-top: 100px;
@@ -46,7 +47,6 @@
 .job-role__title {
   font-size: 42px;
   font-weight: 600;
-  font-family: "Monserrat", sans-serif;
   text-align: center;
   margin-top: 30px; }
 
