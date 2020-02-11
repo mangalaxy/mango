@@ -8,87 +8,73 @@
   padding: 25px;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
-
-.matched-item-talent {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; }
-
-.matched-item-talent-foto {
-  width: 140px;
-  height: 140px;
-  background-size: cover; }
-
-.matched-item-talent-type {
-  font-family: "Monserrat", sans-serif;
-  font-size: 12px;
-  margin-top: 18px;
-  line-height: 15px;
-  text-transform: uppercase;
-  color: #000000; }
-
-.matched-item-talent-salary {
-  font-family: "Monserrat", sans-serif;
-  margin-top: 5px;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000; }
-
-.matched-item-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-left: 20px; }
-
-.matched-item-content-name {
-  font-family: "Monserrat", sans-serif;
-  font-size: 24px;
-  line-height: 29px;
-  text-transform: capitalize;
-  color: #000000; }
-
-.matched-item-content-location {
-  font-family: "Monserrat", sans-serif;
-  font-size: 14px;
-  line-height: 17px;
-  color: #828282; }
-
-.matched-item-content-position {
-  margin-top: 10px;
-  margin-bottom: 15px;
-  font-family: "Monserrat", sans-serif;
-  font-size: 18px;
-  line-height: 22px;
-  color: #000000; }
-
-.matched-item-content-group {
-  display: flex;
-  margin-bottom: 7px; }
-
-.matched-item-content-group-skills {
-  padding-left: 14px;
-  font-family: "Monserrat", sans-serif;
-  font-size: 16px;
-  line-height: 16px;
-  color: #828282; }
-
-.matched-item .matched-item-control {
-  display: flex; }
-
-.matched-item .matched-item-control-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 22px;
-  background: #F2F2F2;
-  cursor: pointer; }
-
-.matched-item .matched-item-control-box:first-child {
-  margin-right: 16px; }
-
-.matched-item .matched-item-control-box:hover {
-  border: 1px solid gray;
-  transform: scale(1.05);
-  transition: 0.4s; }
+  .matched-item-talent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; }
+    .matched-item-talent-foto {
+      width: 140px;
+      height: 140px;
+      background-size: cover; }
+    .matched-item-talent-type {
+      font-family: "Montserrat", sans-serif;
+      font-size: 12px;
+      margin-top: 18px;
+      line-height: 15px;
+      text-transform: uppercase;
+      color: #000000; }
+    .matched-item-talent-salary {
+      font-family: "Montserrat", sans-serif;
+      margin-top: 5px;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000000; }
+  .matched-item-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px; }
+    .matched-item-content-name {
+      font-family: "Montserrat", sans-serif;
+      font-size: 24px;
+      line-height: 29px;
+      text-transform: capitalize;
+      color: #000000; }
+    .matched-item-content-location {
+      font-family: "Montserrat", sans-serif;
+      font-size: 14px;
+      line-height: 17px;
+      color: #828282; }
+    .matched-item-content-position {
+      margin-top: 10px;
+      margin-bottom: 15px;
+      font-family: "Montserrat", sans-serif;
+      font-size: 18px;
+      line-height: 22px;
+      color: #000000; }
+    .matched-item-content-group {
+      display: flex;
+      margin-bottom: 7px; }
+      .matched-item-content-group-skills {
+        padding-left: 14px;
+        font-family: "Montserrat", sans-serif;
+        font-size: 16px;
+        line-height: 16px;
+        color: #828282; }
+  .matched-item .matched-item-control {
+    display: flex; }
+    .matched-item .matched-item-control-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 22px;
+      background: #F2F2F2;
+      cursor: pointer; }
+    .matched-item .matched-item-control-box:first-child {
+      margin-right: 16px; }
+    .matched-item .matched-item-control-box:hover {
+      border: 1px solid gray;
+      transform: scale(1.05);
+      transition: 0.4s; }

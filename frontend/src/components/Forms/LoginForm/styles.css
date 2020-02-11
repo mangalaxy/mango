@@ -1,33 +1,28 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .loginForm {
   margin: 3em 0; }
-
-.loginForm .fieldContainer {
-  display: flex;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  flex-direction: column; }
-
-.loginForm .field {
-  width: 100%;
-  padding: 0 5px; }
-
-.loginForm .buttonsContainer {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 15px;
-  padding-bottom: 15px; }
-
-.loginForm .buttonsContainer button {
-  margin: 0 5px;
-  display: block;
-  width: 100%;
-  letter-spacing: 1px; }
-
-.loginForm .link {
-  color: #008489;
-  cursor: pointer; }
+  .loginForm .fieldContainer {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    flex-direction: column; }
+  .loginForm .field {
+    width: 100%;
+    padding: 0 5px; }
+  .loginForm .buttonsContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    .loginForm .buttonsContainer button {
+      margin: 0 5px;
+      display: block;
+      width: 100%;
+      letter-spacing: 1px; }
+  .loginForm .link {
+    color: #008489;
+    cursor: pointer; }
