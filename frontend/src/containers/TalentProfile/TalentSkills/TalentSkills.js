@@ -4,7 +4,7 @@ import {name} from "../../../assets/icons";
 import DropDownSelect from "../../../components/inputs/Select/DropDownSelect/DropDownSelect";
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 
-const mockOptions = [
+const mockOptions1 = [
     {label: 'Option1', value: 'Option1'},
     {label: 'Option2', value: 'Option2'},
     {label: 'Option3', value: 'Option3'},
@@ -27,43 +27,43 @@ function TalentSkills(props) {
                         :
                         <div className='section-row'>
                             <DropDownSelect
-                                name='role'
+                                name='languages'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Programming Languages (Sripting and Markup)'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Frameworks'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Frameworks'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Libraries'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Libraries'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Tools'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Tools'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Databases'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Databases'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Platforms'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Platforms'
                             />
                             <DropDownSelect
-                                name='role'
+                                name='Environments'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Development Environments'
