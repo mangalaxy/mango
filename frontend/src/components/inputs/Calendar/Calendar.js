@@ -1,6 +1,6 @@
-import React, {Fragment, useState} from 'react';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import React, {useState} from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
@@ -8,7 +8,7 @@ function Calendar(props) {
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
         setStartDate(date);
-    }
+    };
     return (
         <div className={`calendar ${halfWidth && 'calendar--half-width'}`}>
             {label && <label className="control-label">{label}</label>}

@@ -26,7 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -108,7 +111,7 @@ public class TalentServiceTest {
   public void createTalentTest() {
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();
@@ -127,7 +130,7 @@ public class TalentServiceTest {
   public void updateTalentTest() throws ResourceNotFoundException {
     firstMockTalent.setEmail("new-mail@gmail.com");
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();

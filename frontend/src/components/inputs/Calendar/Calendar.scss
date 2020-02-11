@@ -3,7 +3,7 @@
 .calendar {
   position: relative;
   width: 120px;
-  font-family: Montserrat, 'sans-serif';
+  font-family: $FONT_COMMON;
 
   &__wrapper {
     position: relative;
@@ -35,7 +35,7 @@
         border-radius: 5px;
         padding: 6px 5px;
         color: $COLOR_MENU_DARK;
-        font-family: Montserrat, 'sans-serif';
+        font-family: $FONT_COMMON;
         font-size: 12px;
 
         &::placeholder {
