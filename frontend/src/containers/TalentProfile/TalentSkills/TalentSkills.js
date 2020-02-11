@@ -28,36 +28,43 @@ function TalentSkills(props) {
                         <div className='section-row'>
                             <DropDownSelect
                                 name='languages'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Programming Languages (Sripting and Markup)'
                             />
                             <DropDownSelect
                                 name='Frameworks'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Frameworks'
                             />
                             <DropDownSelect
                                 name='Libraries'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Libraries'
                             />
                             <DropDownSelect
                                 name='Tools'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Tools'
                             />
                             <DropDownSelect
                                 name='Databases'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Databases'
                             />
                             <DropDownSelect
                                 name='Platforms'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Platforms'
                             />
                             <DropDownSelect
                                 name='Environments'
+                                options={mockOptions}
                                 multi={true}
                                 placeholder='Development Environments'
                             />
