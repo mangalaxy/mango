@@ -4,7 +4,7 @@
   padding: 30px;
   background-color: #FFFFFF;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
+  height: 100%;
   &-foto {
     flex-basis: 9%;
     max-width: 165px;
@@ -65,6 +65,28 @@
           background: #F2F2F2;
           cursor: pointer;
         }
+      }
+    }
+    .talent-data-position {
+      margin-top: 10px;
+      font-family: $FONT_COMMON;
+      font-size: 18px;
+      line-height: 22px;
+      color: $COLOR_MENU_DARK;
+    }
+    .talent-data-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 20px;
+
+      &-info {        
+        margin-left: 12px;
+        font-family: $FONT_COMMON;
+        font-weight: 350;
+        font-size: 16px;
+        line-height: 21px;
+        color: $COLOR_MENU_DARK;
       }
     }
   }

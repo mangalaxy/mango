@@ -4,7 +4,8 @@
   display: flex;
   padding: 30px;
   background-color: #FFFFFF;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); }
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 100%; }
   .talent-foto {
     flex-basis: 9%;
     max-width: 165px;
@@ -55,3 +56,21 @@
           border-radius: 50%;
           background: #F2F2F2;
           cursor: pointer; }
+    .talent-data .talent-data-position {
+      margin-top: 10px;
+      font-family: "Monserrat", sans-serif;
+      font-size: 18px;
+      line-height: 22px;
+      color: #4f4f4f; }
+    .talent-data .talent-data-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 20px; }
+      .talent-data .talent-data-item-info {
+        margin-left: 12px;
+        font-family: "Monserrat", sans-serif;
+        font-weight: 350;
+        font-size: 16px;
+        line-height: 21px;
+        color: #4f4f4f; }

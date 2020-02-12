@@ -5,7 +5,6 @@ import RequestInterview from './RequestInterview';
 import './TalentFullProfile.scss';
 
 const TalentFullProfile = (props) => {
-  console.log(props);
   return(
     <section className="talentProfile">
       <div className="talentProfile-container">
@@ -13,15 +12,10 @@ const TalentFullProfile = (props) => {
           <TalentData talentId={props.match.params.id} history={props.history}/>
         </div>
         <div className="talentProfile-interview">
-          <RequestInterview />
+          <RequestInterview talentId={props.match.params.id} />
         </div>
       </div>
     </section>
   )
 }
-// const mapStoreToProps = (store) => {
-//   return {
-//     talents: store.talentsReducer
-//   }
-// }
 export default connect()(TalentFullProfile);

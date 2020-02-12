@@ -20,7 +20,6 @@ function MatchedTalentsItem(props) {
       {
       return;
     } else {
-      console.log(e.target.tagName);
       props.history.push(`/employers/talent-full-profile/${props.talentData.id}`);
     }
   }

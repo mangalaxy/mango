@@ -1,0 +1,71 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+.interview {
+  padding: 25px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 100%; }
+  .interview-title {
+    font-family: "Monserrat", sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    text-transform: capitalize;
+    color: #4f4f4f; }
+  .interview-itemTitle {
+    margin-top: 20px;
+    font-family: "Monserrat", sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    color: #BDBDBD; }
+  .interview-itemTitle-description {
+    margin-top: 8px;
+    font-family: "Monserrat", sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    color: #4f4f4f;
+    text-transform: capitalize; }
+  .interview-select {
+    border: 1px solid #E0E0E0;
+    border-radius: 8px !important;
+    color: #4F4F4F;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 21px;
+    margin-top: 13px; }
+  .interview-select:hover, .interview-textArea:hover {
+    border-color: gray !important;
+    box-shadow: none !important; }
+  .interview-textArea {
+    width: 100%;
+    min-height: 170px;
+    padding: 8px 12px !important;
+    border: 1px solid #E0E0E0 !important;
+    border-radius: 8px !important;
+    color: #4F4F4F !important;
+    font-weight: 600;
+    font-size: 16px !important;
+    line-height: 21px;
+    margin-top: 13px;
+    outline: none !important;
+    outline-offset: none !important; }
+  .interview-textArea:focus {
+    outline: none !important;
+    outline-offset: none !important;
+    box-shadow: none !important; }
+  .interview-error {
+    padding: 15px;
+    font-size: 16px;
+    color: red; }
+  .interview-btn {
+    margin-top: 40px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    height: 50px;
+    background-color: #FF8080;
+    font-family: "Monserrat", sans-serif;
+    font-size: 22px;
+    text-transform: uppercase; }

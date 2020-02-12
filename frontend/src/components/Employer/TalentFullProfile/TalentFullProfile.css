@@ -1,10 +1,12 @@
-.talentProfile .talentProfile-container {
-  display: flex;
-  max-width: 1200px;
-  margin: 0 auto; }
-  .talentProfile .talentProfile-container .talentProfile-profile {
-    flex-basis: 66%;
-    margin-right: 35px; }
-  .talentProfile .talentProfile-container .talentProfile-interview {
-    flex-basis: 33%;
-    background-color: lemonchiffon; }
+.talentProfile {
+  padding-top: 60px;
+  padding-bottom: 20px; }
+  .talentProfile .talentProfile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto; }
+    .talentProfile .talentProfile-container .talentProfile-profile {
+      flex-basis: 66%;
+      margin-right: 35px; }
+    .talentProfile .talentProfile-container .talentProfile-interview {
+      flex-basis: 33%; }
