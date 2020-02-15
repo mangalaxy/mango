@@ -10,7 +10,6 @@
   height: $MAIN_MENU_HEIGHT;
   align-items: center;
   padding: 10px 30px;
-  height: $MAIN_MENU_HEIGHT;
   box-sizing: border-box;
   z-index: 100;
 
@@ -108,18 +107,7 @@
       }
     }
 
-    .down {
-      position: absolute;
-      top: 50%;
-      right: -17px;
-      transform: translateY(-50%);
-      transition: all 0.5s;
 
-
-      &.active {
-        transform: translateY(-50%) rotateZ(180deg);
-      }
-    }
 
     .dropdownMenu {
       position: absolute;
