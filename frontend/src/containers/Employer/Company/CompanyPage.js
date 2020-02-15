@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Company from '../../../components/Employer/Company/Company';
 import CompanyEdit from '../../../components/Employer/CompanyEdit/CompanyEdit';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 
 const mockCompanyProfile = {
   logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
@@ -26,9 +26,9 @@ const mockCompanyProfile = {
     'Redis',
   ],
   perks: [
-    'Flexible work shedule',
+    'Flexible work schedule',
     'Unlimited vacation',
-    'Excelent benefits',
+    'Excellent benefits',
     'Great team',
   ],
   benefits: [
