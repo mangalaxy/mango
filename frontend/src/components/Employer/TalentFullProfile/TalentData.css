@@ -17,13 +17,13 @@
     .talent-foto-type {
       margin-top: 20px;
       margin-bottom: 10px;
-      font-family: Segoe UI;
+      font-family: "Montserrat", sans-serif;
       font-size: 12px;
       line-height: 16px;
       text-transform: uppercase;
       color: rgba(54, 179, 168, 0.9); }
     .talent-foto-salary {
-      font-family: Segoe UI;
+      font-family: "Montserrat", sans-serif;
       font-size: 18px;
       line-height: 24px;
       color: #4f4f4f; }

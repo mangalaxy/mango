@@ -11,11 +11,11 @@ const EmployersPositionItem = (props) => {
   let {id, position, location: {city, country}, isChecked, date} = props.itemData;
   function LinkTo(e) {
     if(e.target.tagName !== 'INPUT' &&
-       e.target.tagName !== 'SPAN' &&
-       e.target.tagName !== 'IMG' &&
-       isChecked
-      )
-    props.history.push(`/employers/matched-talents/${id}`);
+      e.target.tagName !== 'SPAN' &&
+      e.target.tagName !== 'IMG' &&
+      isChecked) {
+      props.history.push(`/employers/matched-talents/${id}`);
+    }
   }
   function toggleModal() {
     setOpenModal(!openModal);

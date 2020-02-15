@@ -17,14 +17,14 @@
     &-type {
       margin-top: 20px;
       margin-bottom: 10px;
-      font-family: Segoe UI;
+      font-family: $FONT_COMMON;
       font-size: 12px;
       line-height: 16px;
       text-transform: uppercase;
       color: $COLOR_GREEN;
     }
     &-salary {      
-      font-family: Segoe UI;
+      font-family: $FONT_COMMON;
       font-size: 18px;
       line-height: 24px;
       color: $COLOR_MENU_DARK;

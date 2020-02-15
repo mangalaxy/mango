@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {toggleMarkTalent} from '../../../actions/toggleMarkTalent';
 import Remove from '../../Remove/Remove';
-import Email from '../../../assets/icons/@';
+import Email from '../../../assets/icons/e-mail';
 import Mphone from '../../../assets/icons/mPhone';
 import Bag from '../../../assets/icons/bag';
 import Hat from '../../../assets/icons/hat';
