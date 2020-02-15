@@ -1,128 +1,51 @@
-import React, {Fragment} from 'react';
-import TextInput from "../../../inputs/TextInput/TextInput";
-import DropDownSelect from "../../../inputs/Select/DropDownSelect/DropDownSelect";
+import React, {useState} from 'react';
+import Experience from './Experience/Experience';
+import Education from './Education/Education';
+import Languages from './Languages/Languages';
 import FormButton from "../../../Buttons/FormButton/FormButton";
-
-const mockYear = [
-    {label: '1990', value: '1990'},
-    {label: '1991', value: '1991'},
-    {label: '1992', value: '1992'},
-];
-
-const mockLenguage = [
-    {label: 'Ukraine', value: 'Ukraine'},
-    {label: 'Germany', value: 'Germany'},
-    {label: 'English', value: 'English'},
-];
-
-const mockLevels = [
-    {label: 'beginers', value: 'beginers'},
-    {label: 'intermediate', value: 'intermediate'},
-    {label: 'master', value: 'master'},
-];
 
 function Step4(props) {
     const {hidden, prev, next} = props;
+    const [experienceCount, setExperienceCount] = useState(1);
+    const [educationCount, setEducationCount] = useState(1);
+    const [languagesCount, setLanguagesCount] = useState(1);
+
+    const experiences = Array.apply(null, {length: experienceCount}).map(item => <Experience/>);
+    const educations = Array.apply(null, {length: educationCount}).map(item => <Education/>);
+    const languages = Array.apply(null, {length: languagesCount}).map(item => <Languages/>);
+
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__container'>
                 <div className='profile-form__column-left'>
-                    <h2 className='profile-form__title'>Experience</h2>
-                    <TextInput
-                        name='position'
-                        type='text'
-                        placeholder='Company'
-                    />
-                    <TextInput
-                        name='position'
-                        type='text'
-                        placeholder='Position'
-                    />
-                    <div className='inputs-container'>
-                        <DropDownSelect
-                            label='Started'
-                            name='Started'
-                            options={mockYear}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
-                        <DropDownSelect
-                            label='Finished'
-                            name='Finished'
-                            options={mockYear}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
+                    <div className='profile-form__title-container'>
+                        <h2 className='profile-form__title'>Experience</h2>
+                        <div
+                            className='profile-form__add-icon'
+                            onClick={() => setExperienceCount(experienceCount + 1)}
+                        >
+                            +
+                        </div>
                     </div>
-                    <TextInput
-                        label='Description'
-                        name='position'
-                        type='text'
-                        placeholder=''
-                        className='text-input__field--big-height'
-                    />
+                    {experiences}
                 </div>
                 <div className='profile-form__column-right'>
-                    <h2 className='profile-form__title'>Education</h2>
-                    <div className='inputs-container'>
-                        <TextInput
-                            name='position'
-                            type='text'
-                            placeholder='Institution'
-                            halfWidth
-                        />
-                        <TextInput
-                            name='position'
-                            type='text'
-                            placeholder='Specialization'
-                            halfWidth
-                        />
-                        <TextInput
-                            name='position'
-                            type='text'
-                            placeholder='Degree'
-                            halfWidth
-                        />
+                    <div className='profile-form__title-container'>
+                        <h2 className='profile-form__title'>Education</h2>
+                        <div
+                            className='profile-form__add-icon'
+                            onClick={() => setEducationCount(educationCount + 1)}
+                        >+</div>
                     </div>
-                    <div className='inputs-container'>
-                        <DropDownSelect
-                            label='Started'
-                            name='Started'
-                            options={mockYear}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
-                        <DropDownSelect
-                            label='Finished'
-                            name='Finished'
-                            options={mockYear}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
+                    {educations}
+                    <div className='profile-form__title-container'>
+                        <h2 className='profile-form__title profile-form__title--margin-bottom-none'>Languages</h2>
+                        <div
+                            className='profile-form__add-icon profile-form__add-icon--margin-top'
+                            onClick={() => setLanguagesCount(languagesCount + 1)}
+                        >+</div>
                     </div>
-                    <h2 className='profile-form__title profile-form__title--margin-bottom-none'>Languages</h2>
-                    <div className='inputs-container'>
-                        <DropDownSelect
-                            label='Started'
-                            name='Started'
-                            options={mockLenguage}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
-                        <DropDownSelect
-                            label='Finished'
-                            name='Finished'
-                            options={mockLevels}
-                            multi={true}
-                            placeholder='Month, year'
-                            halfWidth
-                        />
-                    </div>
+                    {languages}
                 </div>
                 <div className='buttons-container'>
                     <FormButton

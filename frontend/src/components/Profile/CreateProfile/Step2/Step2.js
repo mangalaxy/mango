@@ -41,7 +41,7 @@ function Step2(props) {
                     <h2 className='profile-form__title'>type of company</h2>
                     <SimpleSelect
                         label='What type of company suits you?'
-                        name='type'
+                        name='companyType'
                         options={mockCompaniTypes}
                         multi={false}
                     />

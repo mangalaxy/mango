@@ -2,7 +2,7 @@ import React from 'react';
 import './FormButton.scss';
 
 function FormButton(props) {
-    const {text, className, onClick} = props
+    const {text, className, onClick, type} = props
     const click = (e) => {
         if (onClick) {
             e.preventDefault()
@@ -11,7 +11,7 @@ function FormButton(props) {
     }
 
     return (
-        <button className={`form-button ${className || ''}`} onClick={click}>{text}</button>
+        <button type={type} className={`form-button ${className || ''}`} onClick={click}>{text}</button>
     )
 }
 

@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .employersPositions {
   width: 1190px;
@@ -6,7 +6,7 @@
   .employersPositions-btn {
     display: inline-block;
     padding: 15px 25px;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 22px;
     line-height: 27px;
     text-transform: uppercase;
@@ -17,7 +17,7 @@
   .employersPositions-title {
     margin-top: 15px;
     margin-bottom: 62px;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 48px;
     color: #333333;
     line-height: 60px; }
@@ -42,7 +42,8 @@
     box-sizing: border-box;
     border-radius: 4px;
     margin-bottom: 15px;
-    padding: 17px 20px 11px 20px; }
+    padding: 17px 20px 11px 20px;
+    cursor: pointer; }
     .employersPositions-item-icon {
       width: 10%;
       display: flex;
@@ -60,11 +61,11 @@
       width: 75%;
       padding-left: 18px;
       color: #333333;
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 24px;
       line-height: 29px;
       text-transform: capitalize; }
-    .employersPositions-item-swith {
+    .employersPositions-item-control {
       height: 100%;
       display: flex;
       flex-direction: column;
@@ -72,5 +73,18 @@
       justify-content: space-between;
       width: 15%;
       color: #828282;
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 16px; }
+      .employersPositions-item-control-close {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 34px;
+        height: 34px;
+        border-radius: 22px;
+        background: #F2F2F2;
+        cursor: pointer; }
+      .employersPositions-item-control-close:hover {
+        border: 1px solid gray;
+        transform: scale(1.05);
+        transition: 0.4s; }

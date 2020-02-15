@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -31,6 +32,7 @@ public class ProfileController {
     return ResponseEntity.ok(profileResponse);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @GetMapping("me/profile")
   @ApiOperation(value = "Get profile for current authorized user")
   public ResponseEntity<ProfileResponse> getCurretnTalentProfile() {
@@ -38,6 +40,7 @@ public class ProfileController {
     return ResponseEntity.ok(profileResponse);
   }
 
+  @PreAuthorize("hasAuthority('TALENT')")
   @PutMapping("me/profile")
   @ApiOperation(value = "Update profile for current authorized user")
   public ResponseEntity<ProfileResponse> updateCurrentProfile(@RequestBody ProfileRequest profileRequest) {

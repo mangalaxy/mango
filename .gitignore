@@ -31,17 +31,12 @@ frontend/**/node_modules
 .pnp
 .pnp.js
 
-# compiled css files
+# auto-generated
+frontend/**/coverage
+frontend/**/build
 frontend/**/*.css
 
-# testing
-frontend/**/coverage
-
-# production
-frontend/**/build
-
 # misc
-.DS_Store
 .env.local
 .env.development.local
 .env.test.local
