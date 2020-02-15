@@ -1,0 +1,18 @@
+.talentProfile {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  
+  .talentProfile-container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .talentProfile-profile {
+      flex-basis: 66%;
+      margin-right: 35px;
+    }    
+    .talentProfile-interview {
+      flex-basis: 33%;      
+    }    
+  }
+}

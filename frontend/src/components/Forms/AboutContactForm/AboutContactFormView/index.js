@@ -35,14 +35,10 @@ const AboutContactFormView = ({
           containerClassName='field'
       />
       <div className='buttonsContainer'>
-        <button className='actionButton'
-                disabled={!isValid || isSubmitting}
-                onClick={handleSubmit}>
+        <button className='actionButton' disabled={!isValid || isSubmitting} onClick={handleSubmit}>
           Send
         </button>
-        <button className='actionButtonTransparent'
-                disabled={!isValid || isSubmitting}
-        >
+        <button className='actionButtonTransparent' disabled={!isValid || isSubmitting}>
           reset
         </button>
       </div>

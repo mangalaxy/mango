@@ -6,16 +6,15 @@ import MatchedTalentsItem from '../MatchedTalents/MatchedTalentsItem';
 import './BookmarkedTalents.scss';
 
 const BookmarkedTalents = (props) => {
-  console.log(props);
   let markedTalents = props.talents.filter(item => item.bookmarked);
   return(
     <div>
       <div className="bookmarked-container">
         {markedTalents.map(item => (           
-            <MatchedTalentsItem key={item.id} talentData={item} />
+            <MatchedTalentsItem key={item.id} talentData={item} history={props.history}/>
           ))            
         }
-        {markedTalents.length != 0 ?
+        {markedTalents.length !== 0 ?
         <p className="running-title">
           <img src={iconLeft} alt="Left icon" />
             1 2 3 ... 19 20
