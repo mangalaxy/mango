@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .interview {
   padding: 25px;
@@ -6,7 +6,7 @@
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   height: 100%; }
   .interview-title {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 24px;
     line-height: 29px;
@@ -14,14 +14,14 @@
     color: #4f4f4f; }
   .interview-itemTitle {
     margin-top: 20px;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 16px;
     line-height: 21px;
     color: #BDBDBD; }
   .interview-itemTitle-description {
     margin-top: 8px;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
     font-size: 18px;
     line-height: 22px;
@@ -56,16 +56,18 @@
     outline-offset: none !important;
     box-shadow: none !important; }
   .interview-error {
-    padding: 15px;
+    height: 18px;
+    margin-top: 12px;
     font-size: 16px;
-    color: red; }
+    color: red;
+    text-align: center; }
   .interview-btn {
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 50%;
     transform: translateX(-50%);
     width: 240px;
     height: 50px;
     background-color: #FF8080;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 22px;
     text-transform: uppercase; }

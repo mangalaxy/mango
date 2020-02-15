@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 import './MatchedTalentsItem.scss';
 import iconBag from '../../../assets/icons/bag.svg';
 import iconHat from '../../../assets/icons/hat.svg';
@@ -13,21 +14,13 @@ import Modal from '../../Modal/Modal';
 function MatchedTalentsItem(props) {
   const [isDeleted, setIsDeleted] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  function linkTo(e) {
-    if (e.target.tagName === 'path' ||
-        e.target.tagName === 'svg' ||
-        e.target.tagName === 'IMG')
-      {
-      return;
-    } else {
-      props.history.push(`/employers/talent-full-profile/${props.talentData.id}`);
-    }
-  }
 
-  function markTalent() {
+  function markTalent(e) {
+    e.preventDefault();
     props.dispatch(toggleMarkTalent(props.talentData.id));
   }
-  function toggleModal() {
+  function toggleModal(e) {    
+    e.preventDefault();
     setOpenModal(!openModal);
   }  
   function deleteTalent() {
@@ -71,61 +64,60 @@ function MatchedTalentsItem(props) {
 
   return isDeleted ? null :
   (
-    <div onClick={linkTo} className="matched-item">
-      <div className="matched-item-talent">
-        <div className="matched-item-talent-foto"
-             style={{backgroundImage: `url(${require(`../../../assets/images/talents_foto/${id}.png`)})`}}>
-        </div>               
-        <p className="matched-item-talent-type">{type}</p>
-        <p className="matched-item-talent-salary">{salary}</p>
-      </div>
-      <div className="matched-item-content">
-        <div className="matched-item-content-name">{fullName}</div>               
-        <div className="matched-item-content-location">{`${city}, ${country}`}</div>
-        <div className="matched-item-content-position">{`${position} ${skillsDescription}`}</div>
-        <div className="matched-item-content-group">
-          <img src={iconBag}  width="18px" height="18px" alt="icon Bag"/>
-          <p className="matched-item-content-group-skills">
-            {workExp.join(', ')}
-          </p>            
+    <>
+      <Link  to={`/employers/talent-full-profile/${id}`} className="matched-item">
+        <div className="matched-item-talent">
+          <div className="matched-item-talent-foto"
+              style={{backgroundImage: `url(${require(`../../../assets/images/talents_foto/${id}.png`)})`}}>
+          </div>               
+          <p className="matched-item-talent-type">{type}</p>
+          <p className="matched-item-talent-salary">{salary}</p>
         </div>
-        <div className="matched-item-content-group">
-          <img src={iconHat} alt="icon Hat"/>
-          <p className="matched-item-content-group-skills">
-            {education.join('; ')}
-          </p>            
+        <div className="matched-item-content">
+          <div className="matched-item-content-name">{fullName}</div>               
+          <div className="matched-item-content-location">{`${city}, ${country}`}</div>
+          <div className="matched-item-content-position">{`${position} ${skillsDescription}`}</div>
+          <div className="matched-item-content-group">
+            <img src={iconBag}  width="18px" height="18px" alt="icon Bag"/>
+            <p className="matched-item-content-group-skills">
+              {workExp.join(', ')}
+            </p>            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconHat} alt="icon Hat"/>
+            <p className="matched-item-content-group-skills">
+              {education.join('; ')}
+            </p>            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconPencil} alt="icon Pencil"/>
+            <p className="matched-item-content-group-skills">
+              {roleExp.join(', ')}
+            </p>            
+          </div>
+          <div className="matched-item-content-group">
+            <img src={iconList} alt="icon List"/>
+            <p className="matched-item-content-group-skills">
+              {skillsList.join(', ')}
+            </p>
+          </div>
+        </div>        
+        <div className="matched-item-control">
+          <div onClick={markTalent} className="matched-item-control-box" title="Mark talent">
+            <svg id="marked-elem" width="16" height="21" viewBox="0 0 16 21" fill={markedColorFill} xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.5 1H1V18.5L8 14.5L14.5 18.5V1Z" stroke={markedColorStroke} strokeWidth="2"/>
+            </svg>
+          </div>
+          <Remove click={toggleModal}  title="Remove talent"/>
         </div>
-        <div className="matched-item-content-group">
-          <img src={iconPencil} alt="icon Pencil"/>
-          <p className="matched-item-content-group-skills">
-            {roleExp.join(', ')}
-          </p>            
-        </div>
-        <div className="matched-item-content-group">
-          <img src={iconList} alt="icon List"/>
-          <p className="matched-item-content-group-skills">
-            {skillsList.join(', ')}
-          </p>
-        </div>
-      </div>
-      
-      <div className="matched-item-control">
-        <div onClick={markTalent} className="matched-item-control-box" title="Mark talent">
-          <svg id="marked-elem" width="16" height="21" viewBox="0 0 16 21" fill={markedColorFill} xmlns="http://www.w3.org/2000/svg">
-            <path d="M14.5 1H1V18.5L8 14.5L14.5 18.5V1Z" stroke={markedColorStroke} strokeWidth="2"/>
-          </svg>
-        </div>
-
-        <Remove click={toggleModal}  title="Remove talent"/>
-
-      </div>
+      </Link>
       {openModal ?
-      <Modal canсelModal={toggleModal}
-             modalAction={deleteTalent}
-             modalText={'Are you sure you want to remove this talent?'}
-      />
+        <Modal canсelModal={toggleModal}
+              modalAction={deleteTalent}
+              modalText={'Are you sure you want to remove this talent?'}
+        />
       : null }
-    </div>
+    </>
   )  
 }
 const mapStoreToProps = (store) => {

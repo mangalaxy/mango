@@ -4,10 +4,10 @@ import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
 import './EmloyerMenu.scss';
 
-const EmployerMenu = ({user, theme = null}) => {
+const EmployerMenu = ({user, currentPage, theme = null}) => {
 const [menuVisible, setMenuVisible] = useState(false);
   return (
-      <div className={`employerMenuContainer ${theme === 'white' && 'white'}`}>
+      <div className={`employerMenuContainer ${(theme === 'white' && 'white') || (theme === 'gray' && 'gray')}`}>
         <div>
           <Link to={routes.EMPLOYERS_HOME} className='logo'>
             Mango
@@ -15,10 +15,12 @@ const [menuVisible, setMenuVisible] = useState(false);
         </div>
         <ul className='menuItemsContainer'>
           <li>
-            <NavLink to={routes.EMPLOYERS_OPEN_POSITIONS}
-                     className={'menuItem'}
-                     activeClassName={'menuItem active'}
-            >Positions</NavLink>
+            <Link to={routes.EMPLOYERS_OPEN_POSITIONS}
+                  className={currentPage === routes.EMPLOYERS_OPEN_POSITIONS || /^\/employers\/matched-talents/.test(currentPage) ?
+                  'menuItem active' :
+                  'menuItem'}>
+              Positions
+            </Link>
           </li>
           <li>
             <NavLink to={routes.EMPLOYERS_FIND_TALENT}

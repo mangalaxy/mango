@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .talent {
   display: flex;
@@ -33,14 +33,14 @@
       display: flex;
       justify-content: space-between; }
       .talent-data > div .talent-data-title-name {
-        font-family: "Monserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-weight: 600;
         font-size: 24px;
         line-height: 29px;
         text-transform: capitalize;
         color: #4f4f4f; }
       .talent-data > div .talent-data-title-location {
-        font-family: "Monserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-size: 14px;
         line-height: 17px;
         color: #828282; }
@@ -58,7 +58,7 @@
           cursor: pointer; }
     .talent-data .talent-data-position {
       margin-top: 10px;
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       font-size: 18px;
       line-height: 22px;
       color: #4f4f4f; }
@@ -69,7 +69,7 @@
       margin-top: 20px; }
       .talent-data .talent-data-item-info {
         margin-left: 12px;
-        font-family: "Monserrat", sans-serif;
+        font-family: "Montserrat", sans-serif;
         font-weight: 350;
         font-size: 16px;
         line-height: 21px;

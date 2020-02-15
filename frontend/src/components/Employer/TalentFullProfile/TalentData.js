@@ -1,9 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-// import Modal from '../../Modal/Modal';
 import {toggleMarkTalent} from '../../../actions/toggleMarkTalent';
-// import {talentDeleteAction} from '../../../actions/talentDeleteAction';
-// import iconCross from '../../../assets/icons/cross.svg';
 import Remove from '../../Remove/Remove';
 import Email from '../../../assets/icons/@';
 import Mphone from '../../../assets/icons/mPhone';
@@ -50,16 +47,6 @@ const TalentData = (props) => {
   const markTalent = () => props.dispatch(toggleMarkTalent(id));
   
   const closeProfile = () => props.history.goBack();
-  
-  // const [isDeleted, setIsDeleted] = useState(false);
-  // const [openModal, setOpenModal] = useState(false);  
-  // function toggleModal() {
-  //   setOpenModal(!openModal);
-  // }  
-  // function deleteTalent() {
-  //   props.dispatch(talentDeleteAction(props.talentData.id));
-  //   setIsDeleted(true);
-  // }
 
   let markedColorFill, markedColorStroke;    
   if(bookmarked) {
@@ -71,7 +58,6 @@ const TalentData = (props) => {
     markedColorStroke = '#BDBDBD';
   } 
   
-  // return isDeleted ? null :
   return(
     <div className="talent">
       <div className="talent-foto">   
@@ -98,9 +84,6 @@ const TalentData = (props) => {
                     click={closeProfile}
                     title={'Go back'}
                     history={props.history}/>        
-            {/* <div onClick={toggleModal} className="talent-data-control-box" title="Remove talent">
-              <img src={iconCross} />
-            </div> */}
           </div>
         </div>
         <div className="talent-data-position">{`${position} ${skillsDescription}`}</div>
@@ -145,12 +128,6 @@ const TalentData = (props) => {
           <p className="talent-data-item-info">{link}</p>
         </div>
       </div>
-      {/* {openModal ?
-      <Modal canсelModal={toggleModal}
-             modalAction={deleteTalent}
-             modalText={'Are you sure you want to remove this talent?'}
-      />
-      : null } */}
     </div> 
   )
 }

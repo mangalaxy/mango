@@ -63,12 +63,14 @@
     box-shadow: none !important;
   }
   &-error {
-    padding: 15px;
+    height: 18px;
+    margin-top: 12px;
     font-size: 16px;
     color: red;
+    text-align: center;
   }
   &-btn {    
-    margin-top: 40px;
+    margin-top: 20px;
     margin-left: 50%;
     transform: translateX(-50%);
     width: 240px;

@@ -9,18 +9,14 @@ import Modal from '../../Modal/Modal';
 const EmployersPositionItem = (props) => {
   const [openModal, setOpenModal] = useState(false);
   let {id, position, location: {city, country}, isChecked, date} = props.itemData;
-
-  function linkTo(e) {
-    if (e.target.tagName === 'SPAN' ||
-        e.target.tagName === 'INPUT' ||
-        e.target.tagName === 'IMG')
-      {
-      return;
-    } else {
-      props.history.push(`/employers/matched-talents/${id}`);
-    }
+  function LinkTo(e) {
+    if(e.target.tagName !== 'INPUT' &&
+       e.target.tagName !== 'SPAN' &&
+       e.target.tagName !== 'IMG' &&
+       isChecked
+      )
+    props.history.push(`/employers/matched-talents/${id}`);
   }
-
   function toggleModal() {
     setOpenModal(!openModal);
   }
@@ -29,7 +25,7 @@ const EmployersPositionItem = (props) => {
   }
   return(
     <>
-      <div onClick={linkTo} className="employersPositions-item">
+      <div onClick={LinkTo} className="employersPositions-item">
         <div className="employersPositions-item-icon">
           <div className="employersPositions-item-icon-box">
             <img src={iconBag} width="25px" height="25px" alt="bag icon"/>
@@ -44,7 +40,6 @@ const EmployersPositionItem = (props) => {
         </div>
         <div className="employersPositions-item-control">
           <Switch isChecked={isChecked} name={id}/>
-
           <span onClick={toggleModal} className="employersPositions-item-control-close">
             <img src={iconCross} alt="cross icon" />
           </span>
