@@ -1,35 +1,297 @@
 @import '../../../../styles/_variables.scss';
 
-#main-by-job-role {
-  .contentContainer {
+.job-role {
+  &__content {
     max-width: 1200px;
-    margin: 0 auto;
-    padding: $MAIN_MENU_HEIGHT 2em 0;
+    margin: 0 auto 20px;
+    padding: 0 10px;
     box-sizing: border-box;
+    font-family: $FONT_MENU;
+  }
 
-    .descriptionHeader {
-      font-size: 42px;
-      font-weight: 600;
-      font-family: $FONT_COMMON;
-      text-align: center;
-      margin: 2em 0 0;
+  &__tags {
+    margin-top: 100px;
+    display: flex;
+    color: #828282;
+    font-size: 16px;
+  }
+
+  &__tag {
+    position: relative;
+    margin-right: 30px;
+
+    &::after {
+      position: absolute;
+      top: -2px;
+      right: -20px;
+      content: '\003E';
+      color: #828282;
+      display: block;
+      font-size: 20px;
     }
 
-    .description {
-      margin-top: 2em;
-      display: flex;
-      margin-bottom: 3em;
-      p {
-        width: 50%;
-        text-align: justify;
-        &:first-child{
-          padding-right: 15px;
+    &:last-child {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &__description {
+    margin-top: 2em;
+    display: flex;
+    margin-bottom: 30px;
+    p {
+      width: 50%;
+      text-align: justify;
+      &:first-child{
+        padding-right: 15px;
+      }
+      &:last-child{
+        padding-left: 15px;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 42px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  &__categories {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__category {
+    position: relative;
+    width: 320px;
+    height: 80px;
+    text-align: left;
+    color: $COLOR_MENU_DARK;
+    font-size: 24px;
+    margin: 0 10px 10px 0;
+    padding: 0 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    background-color: #ffffff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    &:after {
+      content:'\2713';
+      position: absolute;
+      top: 20px;
+      right: 15px;
+      display: block;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      border-radius: 30px;
+      background-color: $COLOR_MENU_LIGHT;
+      text-align: center;
+      line-height: 40px;
+      color: #E0E0E0;
+    }
+
+    &--selected {
+      &:after {
+        color: $secondaryColor;
+        background-color: #EDF7ED;;
+      }
+    }
+  }
+
+  &__filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__filter {
+    color: $primaryColor;
+    font-size: 12px;
+    font-weight: 700;
+
+    &:first-child {
+      margin-right: 10px;
+    }
+
+    .react-dropdown-select {
+      width: auto !important;
+      margin: 10px 10px !important;
+      border: none !important;
+
+      &-input {
+        &::placeholder {
+          color: $primaryColor !important;
+          font-size: 12px !important;
+          font-weight: 700;
         }
-        &:last-child{
-          padding-left: 15px;
+      }
+
+      &:hover {
+        border: none !important;
+      }
+
+      &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        min-height: 28px !important;
+      }
+
+      &:focus-within {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      &-dropdown {
+        background-color: #FBFBFB;
+        padding: 5px 0;
+        color: $COLOR_MENU_DARK;
+        border: none;
+        z-index: 9999;
+        box-shadow: none;
+      }
+
+      &-item {
+        position: relative;
+        padding: 10px 10px 5px 27px;
+        border: none;
+
+        &::before {
+          position: absolute;
+          top: 8px;
+          left: 7px;
+          content: '';
+          display: block;
+          width: 14px;
+          height: 14px;
+          border: 1px solid #BDBDBD;
+          border-radius: 1px;
+          box-sizing: border-box;
+          text-align: center;
+          line-height: 14px;
+          font-size: 14px;
+        }
+
+        &-selected {
+          background-color: #FBFBFB !important;
+          color: $COLOR_MENU_DARK !important;
+          border: none !important;
+
+          &::before {
+            content: '\2713';
+            color: #fff;
+            background-color: $COLOR_GREEN;
+            border: none;
+          }
         }
       }
     }
+  }
 
+  .jobs-list {
+
+    .job-item {
+      display: flex;
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #E0E0E0;
+      box-sizing: border-box;
+      border-radius: 4px;
+
+      &__photo {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #E0E0E0;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      &__content {
+        margin-left: 10px;
+      }
+
+      &__title {
+        color: #333333;
+        font-size: 24px;
+      }
+    }
+
+    .company-info {
+      display: flex;
+      margin-top: 10px;
+
+      .company-title {
+        margin-right: 20px;
+        color: $COLOR_MENU_DARK;
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .company-employers, .company-location, .company-category {
+        display: flex;
+        color: #828282;
+        font-size: 18px;
+        margin: 0 20px;
+      }
+
+      &__text {
+        margin-left: 10px;
+      }
+    }
+
+    .company-description {
+      margin-top: 10px;
+      color: #828282;
+      font-size: 16px;
+    }
+  }
+
+  .jobs-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    &__item {
+      margin: 0 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    &__link {
+      color: #828282;
+
+      &--next {
+        &::after {
+          content: '\003E';
+          color: #828282;
+          display: block;
+          font-size: 20px;
+        }
+      }
+
+      &--prev {
+        &::after {
+          content: '\003C';
+          color: #828282;
+          display: block;
+          font-size: 20px;
+        }
+      }
+
+      &--active {
+        color: #333333;
+        position: relative;
+        top: 2px;
+      }
+    }
   }
 }

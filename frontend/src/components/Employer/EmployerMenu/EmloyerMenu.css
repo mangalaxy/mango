@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .employerMenuContainer {
   display: flex;
@@ -8,6 +8,10 @@
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box; }
+  .employerMenuContainer.white {
+    background-color: white; }
+  .employerMenuContainer.gray {
+    background-color: #F7F7F7; }
   .employerMenuContainer .logo {
     text-transform: uppercase;
     font-size: 48px;
@@ -27,7 +31,7 @@
     text-decoration: none;
     text-transform: uppercase;
     color: #4f4f4f;
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 18px;
     box-sizing: border-box;
     padding: 0;
@@ -51,7 +55,7 @@
     .employerMenuContainer .authBlock .down {
       position: absolute;
       top: 50%;
-      right: -17px;
+      right: 5px;
       transform: translateY(-50%);
       transition: all 0.5s; }
       .employerMenuContainer .authBlock .down.active {
@@ -59,20 +63,21 @@
     .employerMenuContainer .authBlock .dropdownMenu {
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -5px;
       transform: translateY(100%);
       background-color: #FFFFFF;
-      opacity: .8;
-      padding: 0;
+      padding: 0 70px 0 0;
       color: #4f4f4f;
       text-transform: capitalize;
-      transition: all .4s; }
-      .employerMenuContainer .authBlock .dropdownMenu li {
+      transition: all .4s;
+      box-shadow: #8a8a8a 2px 2px 5px; }
+      .employerMenuContainer .authBlock .dropdownMenu li, .employerMenuContainer .authBlock .dropdownMenu a {
         padding: 5px 5px;
         margin: 7px 0;
         border-left: 2px solid transparent;
-        transition: all .5s; }
-        .employerMenuContainer .authBlock .dropdownMenu li:hover {
+        transition: all .5s;
+        color: #4f4f4f; }
+        .employerMenuContainer .authBlock .dropdownMenu li:hover, .employerMenuContainer .authBlock .dropdownMenu a:hover {
           border-left: 2px solid #FF8080;
           color: black; }
       .employerMenuContainer .authBlock .dropdownMenu.hidden {
@@ -80,4 +85,6 @@
         bottom: -50px;
         opacity: 0; }
     .employerMenuContainer .authBlock.left {
-      border-right: solid 1px #4f4f4f; }
+      padding: 5px 29px 5px 9px;
+      border-right: solid 1px #4f4f4f;
+      text-transform: none; }

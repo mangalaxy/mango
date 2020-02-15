@@ -4,15 +4,17 @@ import SignUpFormView from '../SignUpFormView';
 import * as Yup from 'yup';
 
 const employerSignUpSchema = Yup.object().shape({
-  fullName: Yup.string().
-      min(2, 'Minimum 2 symbols').
-      max(30, 'Maximum 30 symbols').
-      required('Required field'),
-  email: Yup.string().email('Invalid email format').required('Required field'),
-  phone: Yup.string().
-      required('Phone required'),
-  company:Yup.string().
-      required('Required field'),
+  fullName: Yup.string()
+        .min(2, 'Minimum 2 symbols')
+        .max(30, 'Maximum 30 symbols')
+        .required('Required field'),
+  email: Yup.string()
+        .email('Invalid email format')
+        .required('Required field'),
+  phone: Yup.string()
+        .required('Phone required'),
+  company:Yup.string()
+        .required('Required field'),
 });
 
 const SignUpEmployerForm = ({onSuccess, onError}) => (

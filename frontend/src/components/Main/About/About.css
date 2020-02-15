@@ -3,7 +3,7 @@
 #about-banner {
   background-image: url("../../../assets/images/main_about_bg.png");
   position: relative;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #about-banner .imageFilter {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
@@ -21,7 +21,7 @@
 
 #what-we-do,
 #mission {
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #what-we-do .contentContainer,
   #mission .contentContainer {
     width: 50%; }
@@ -43,12 +43,12 @@
       #mission .contentContainer .row .rowContent h4 {
         font-size: 16px;
         font-weight: 700;
-        font-family: "Monserrat", sans-serif; }
+        font-family: "Montserrat", sans-serif; }
       #what-we-do .contentContainer .row .rowContent p,
       #mission .contentContainer .row .rowContent p {
         padding: 1em 0 2em;
         font-size: 16px;
-        font-family: "Monserrat", sans-serif; }
+        font-family: "Montserrat", sans-serif; }
   #what-we-do .imageContainer,
   #mission .imageContainer {
     width: 50%;
@@ -70,13 +70,13 @@
   margin: 3em auto 0;
   padding: 0 20px;
   justify-content: space-between;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
 
 #numbers {
   background-color: #f2f2f2;
   padding-top: 1em;
   padding-bottom: 4em;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #numbers .column {
     display: flex;
     flex-direction: column;
@@ -97,7 +97,7 @@
 
 #mission {
   background-color: #fff;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #mission .imageContainer {
     align-items: center; }
     #mission .imageContainer img {
@@ -108,7 +108,7 @@
 #new-jobs {
   background-color: #fafafa;
   padding: 2em;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #new-jobs h4 {
     text-align: center;
     font-size: 26px;
@@ -119,7 +119,7 @@
 
 #team {
   padding: 2em 0 4em;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #team .teamMembersContainer {
     display: flex;
     max-width: 1200px;
@@ -159,14 +159,14 @@
 
 #partners-about {
   margin: 3em;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
 
 #feedback {
   background-image: url("../../../assets/images/feedback_bg.png");
   background-size: cover;
   background-position: center;
   position: relative;
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #feedback .content {
     padding: 2em; }
     #feedback .content .feedbackContainer {
@@ -207,7 +207,7 @@
     line-height: 29px;
     margin-bottom: 1em; }
   .feedbackBlock p {
-    font-family: "Monserrat", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 14px;
     line-height: 17px; }
   .feedbackBlock .personData {
@@ -229,7 +229,7 @@
         overflow: hidden; }
 
 #contact {
-  font-family: "Monserrat", sans-serif; }
+  font-family: "Montserrat", sans-serif; }
   #contact .content {
     max-width: 1200px;
     display: flex;
@@ -244,7 +244,7 @@
       margin: 3em 0;
       font-size: 14px;
       line-height: 20px;
-      font-family: "Monserrat", sans-serif;
+      font-family: "Montserrat", sans-serif;
       color: #828282; }
     #contact .content .rightCol .contactData {
       margin: 0;

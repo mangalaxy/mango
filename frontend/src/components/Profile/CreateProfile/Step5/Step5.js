@@ -10,6 +10,7 @@ function Step5(props) {
                 <FormButton
                     text='Got it'
                     className='form-button--red'
+                    type='submit'
                 />
             </div>
         </div>

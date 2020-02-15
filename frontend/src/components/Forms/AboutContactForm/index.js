@@ -3,18 +3,22 @@ import React from 'react';
 import AboutContactFormView from './AboutContactFormView';
 import * as Yup from 'yup';
 
-const contactSchema = Yup.object().shape({
-  name: Yup.string().
-      min(2, 'Minimum 2 symbols').
-      max(30, 'Maximum 30 symbols').
-      required('Required field'),
-  email: Yup.string().email('Invalid email format').required('Required field'),
-  message: Yup.string().required('Required field'),
-});
+const contactSchema = Yup.object().shape(
+      {
+        name: Yup.string()
+              .min(2, 'Minimum 2 symbols')
+              .max(30, 'Maximum 30 symbols')
+              .required('Required field'),
+        email: Yup.string()
+              .email('Invalid email format')
+              .required('Required field'),
+        message: Yup.string()
+              .required('Required field')
+      }
+);
 
-const AboutContactForm = ({onSuccess, onError}) => (
-    <Formik
-        onSubmit={(
+const AboutContactForm = ({ onSuccess, onError }) => (
+    <Formik onSubmit={(
             {name, email, message}, {resetForm, setStatus, setSubmitting}) => {
           setStatus({});
           try {
