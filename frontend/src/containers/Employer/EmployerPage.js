@@ -1,7 +1,7 @@
 //@flow
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
-import routes from '../../constants/routes';
+import {routes} from '../../constants/routes';
 import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
 import EmployerWelcome
   from '../../components/Employer/EmployerWelcome/EmployerWelcome';
