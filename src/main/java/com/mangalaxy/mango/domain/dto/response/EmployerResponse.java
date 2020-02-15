@@ -1,6 +1,5 @@
 package com.mangalaxy.mango.domain.dto.response;
 
-import com.mangalaxy.mango.domain.entity.Company;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

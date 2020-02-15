@@ -3,7 +3,6 @@ package com.mangalaxy.mango.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
-import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.service.EmployerService;
@@ -23,7 +22,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashMap;
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
@@ -70,11 +72,9 @@ public class EmployerControllerTest {
   @Test
   public void shouldCreateEmployer() throws Exception {
     Employer employer = new Employer();
-    employer.setPassword("123456");
     employer.setEmail("testMail@com");
     employer.setFullName("Test Name");
     employer.setLocation(new Location("Poltava","Ukraine"));
-    employer.setCompany(new Company("NewCompany"));
 
     String employerRequest = objectMapper.writeValueAsString(employer);
     MvcResult result = mockMvc.perform(post("/api/v1/employers")

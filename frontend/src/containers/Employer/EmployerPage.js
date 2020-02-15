@@ -1,16 +1,12 @@
 //@flow
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
-import routes from '../../constants/routes';
+import {routes} from '../../constants/routes';
 import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
-import EmployerWelcome
-  from '../../components/Employer/EmployerWelcome/EmployerWelcome';
-import EmployersPositions
-  from '../../components/Employer/EmployersPositions/EmployersPositions';
-import MatchedTalents
-  from '../../components/Employer/MatchedTalents/MatchedTalents';
-import BookmarkedTalents
-  from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
+import EmployerWelcome from '../../components/Employer/EmployerWelcome/EmployerWelcome';
+import EmployersPositions from '../../components/Employer/EmployersPositions/EmployersPositions';
+import MatchedTalents from '../../components/Employer/MatchedTalents/MatchedTalents';
+import BookmarkedTalents from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
 import './EmployerPage.scss';
 import EmployersCompany from './Company/CompanyPage';
 import {connect} from 'react-redux';

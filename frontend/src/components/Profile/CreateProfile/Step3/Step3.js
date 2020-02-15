@@ -11,32 +11,32 @@ function Step3(props) {
                 <div className='profile-form__column-left'>
                     <h2 className='profile-form__title'>contacts</h2>
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='fullName'
                         type='text'
                         placeholder='Full name'
                         withIcon
                         icon={name()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='email'
                         type='text'
                         placeholder='E-mail'
                         withIcon
                         icon={email()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='phone'
                         type='text'
                         placeholder='Phone number'
                         withIcon
                         icon={phone()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='location'
                         type='text'
                         placeholder='Location'
                         withIcon
@@ -46,32 +46,32 @@ function Step3(props) {
                 <div className='profile-form__column-right'>
                     <h2 className='profile-form__title'>links</h2>
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='blog'
                         type='text'
                         placeholder='Blog'
                         withIcon
                         icon={blog()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='website'
                         type='text'
                         placeholder='Personal website'
                         withIcon
                         icon={website()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='portfolio'
                         type='text'
                         placeholder='Portfolio'
                         withIcon
                         icon={portfolio()}
                     />
                     <TextInput
-                        label=' '
-                        name='salary'
+                        label=''
+                        name='linkedIn'
                         type='text'
                         placeholder='LinkedIn'
                         withIcon
