@@ -1,56 +1,33 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .profile {
-  position: relative;
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-image: url("../../../assets/images/profile-background.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat; }
   .profile-header {
-    position: relative;
+    position: absolute;
     z-index: 99999; }
-  .profile--filter {
+  .profile-container {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(240, 240, 240, 0.8); }
-  .profile-container {
-    position: relative;
-    margin-top: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: Montserrat, 'sans-serif'; }
   .profile-form {
-    width: 700px;
     min-height: 400px;
-    display: flex;
-    margin: 0 auto; }
-    .profile-form__row {
-      margin-bottom: 30px; }
-      .profile-form__row:last-child {
-        margin-bottom: 0; }
+    display: flex; }
     .profile-form__column-left, .profile-form__column-right {
       box-sizing: border-box;
       width: 50%;
       padding: 0 20px; }
-    .profile-form__title-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center; }
-    .profile-form__add-icon {
-      width: 15px;
-      height: 15px;
-      line-height: 15px;
-      border: 1px solid rgba(54, 179, 168, 0.9);
-      border-radius: 15px;
-      font-size: 18px;
-      text-align: center;
-      color: #BDBDBD;
-      cursor: pointer; }
-      .profile-form__add-icon--margin-top {
-        margin-top: 25px; }
     .profile-form__title {
       color: rgba(54, 179, 168, 0.9);
       margin: 25px 0;
@@ -77,7 +54,7 @@
       .profile-form__item--last .last-title {
         margin-bottom: 20px; }
     .profile-form__description {
-      padding: 0 20px;
+      padding: 0 30px;
       margin-top: 20px;
       color: #828282;
       font-size: 12px;
