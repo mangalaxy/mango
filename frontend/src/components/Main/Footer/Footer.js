@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import './Footer.scss';
 import {Link, NavLink} from 'react-router-dom';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 
 export default class Footer extends PureComponent {
   render(){

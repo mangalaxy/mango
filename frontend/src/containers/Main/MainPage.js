@@ -3,7 +3,7 @@ import type {Node} from 'react';
 import React, {Component, Fragment} from 'react';
 import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import {Route, Switch} from 'react-router-dom';
-import routes from '../../constants/routes';
+import {routes} from '../../constants/routes';
 import ForTalents from '../../components/Main/ForTalents/ForTalents';
 import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
 import Home from '../../components/Main/Home/Home';

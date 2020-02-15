@@ -1,4 +1,4 @@
-{
+export const routes = {
   "HOME": "/",
   "LOGIN": "/login",
   "FOR_TALENTS": "/for-talents",
@@ -25,4 +25,4 @@
   "TALENT_HOME": "/talent",
   "PROFILE_CREATE": "/profile-create",
   "TALENT_PROFILE": "/talent-profile"
-}
+};

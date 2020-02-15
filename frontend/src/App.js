@@ -12,7 +12,7 @@ import thunk from 'redux-thunk';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import reducer from './reducers';
 import MainPage from './containers/Main/MainPage';
-import routes from './constants/routes';
+import {routes} from './constants/routes';
 import Talent from './containers/Talent/TalentHome';
 import Employer from './containers/Employer/EmployerPage';
 import CreateProfile from "./components/Profile/CreateProfile/CreateProfile";

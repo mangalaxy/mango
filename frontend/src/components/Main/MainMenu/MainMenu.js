@@ -1,8 +1,8 @@
 //@flow
-import React, {PureComponent} from 'react';
 import type {Node} from 'react';
+import React, {PureComponent} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {

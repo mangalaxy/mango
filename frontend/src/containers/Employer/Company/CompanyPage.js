@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Company from '../../../components/Employer/Company/Company';
 import CompanyEdit from '../../../components/Employer/CompanyEdit/CompanyEdit';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 
 class EmployersCompany extends Component {
   state = {
