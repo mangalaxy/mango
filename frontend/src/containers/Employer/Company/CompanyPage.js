@@ -3,30 +3,6 @@ import Company from '../../../components/Employer/Company/Company';
 import CompanyEdit from '../../../components/Employer/CompanyEdit/CompanyEdit';
 import routes from '../../../constants/routes';
 
-
-class EmployersCompany extends Component {
-  state = {
-    companyProfile: mockCompanyProfile,
-  };
-
-  render() {
-    const {companyProfile} = this.state;
-    const editMode = this.props.match.params.mode === 'edit';
-    return (
-        <div>
-          {editMode ? <CompanyEdit companyProfile={companyProfile} onSaveChanges={()=>this.onSaveCompanyProfile()}/> :
-              <Company companyProfile={companyProfile}/>}
-        </div>
-    );
-  }
-
-  onSaveCompanyProfile = (profile) => {
-    console.log('SAVED!');
-    this.setState({companyProfile: profile})
-    this.props.history.push(routes.EMPLOYERS_COMPANY)
-  }
-}
-
 export default EmployersCompany;
 
 const mockCompanyProfile = {
@@ -64,3 +40,27 @@ const mockCompanyProfile = {
   ],
   links: ['dragoninovation.com'],
 };
+
+class EmployersCompany extends Component {
+  state = {
+    companyProfile: mockCompanyProfile,
+  };
+
+  render() {
+    const {companyProfile} = this.state;
+    const editMode = this.props.match.params.mode === 'edit';
+    return (
+        <div>
+          {editMode ? <CompanyEdit companyProfile={companyProfile} onSaveChanges={()=>this.onSaveCompanyProfile()}/> :
+              <Company companyProfile={companyProfile}/>}
+        </div>
+    );
+  }
+
+  onSaveCompanyProfile = (profile) => {
+    console.log('SAVED!');
+    this.setState({companyProfile: profile});
+    this.props.history.push(routes.EMPLOYERS_COMPANY)
+  }
+}
+
