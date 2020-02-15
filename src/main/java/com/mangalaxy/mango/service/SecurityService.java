@@ -1,5 +1,5 @@
 package com.mangalaxy.mango.service;
 
-public interface SecuriyService {
+public interface SecurityService {
   String validatePasswordResetToken(long id, String token);
 }

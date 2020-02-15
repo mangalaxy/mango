@@ -17,7 +17,7 @@ import java.util.Calendar;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class SecurityServiceImpl implements SecuriyService {
+public class SecurityServiceImpl implements SecurityService {
   private final PasswordResetTokenRepository passwordResetTokenRepository;
 
   @Override

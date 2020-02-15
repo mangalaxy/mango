@@ -65,8 +65,8 @@ public class TalentController {
   public ResponseEntity<TalentResponse> updateTalent(
       @ApiParam(value = "Update talent object", required = true)
       @RequestBody TalentRequest talentRequest,
-      @ApiParam(value = "Talent Id to update talent object", required = true)
-      @PathVariable Long talentId) throws ResourceNotFoundException {
+      @ApiParam(value = "Talent ID to update talent object", required = true)
+      @PathVariable Long talentId) {
     TalentResponse response = talentService.updateTalent(talentRequest, talentId);
     return ResponseEntity.ok(response);
   }
@@ -76,8 +76,8 @@ public class TalentController {
   @ApiOperation(value = "Delete talent")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Talent with given id not found")})
   public ResponseEntity<Void> deleteTalent(
-      @ApiParam(value = "Talent Id from which talent object will delete from database table", required = true)
-      @PathVariable Long talentId) throws ResourceNotFoundException {
+      @ApiParam(value = "Talent ID from which talent object will delete from database table", required = true)
+      @PathVariable Long talentId) {
     talentService.deleteTalent(talentId);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }

@@ -6,13 +6,11 @@ import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
 import com.mangalaxy.mango.domain.entity.PasswordResetToken;
-import com.mangalaxy.mango.domain.entity.Role;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
 import com.mangalaxy.mango.repository.UserRepository;
-import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
-import com.mangalaxy.mango.security.JwtTokenProvider;
 import com.mangalaxy.mango.security.UserPrincipal;
+import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
 import com.mangalaxy.mango.util.AppException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,8 +26,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -38,13 +36,14 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Transactional
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
+
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
   private final PasswordEncoder passwordEncoder;
   private final JwtTokenProvider tokenProvider;
-  private final MailSenderServise mailSenderServise;
+  private final MailSenderService mailSenderService;
   private final PasswordResetTokenRepository passwordResetTokenRepository;
-  private final SecuriyService securiyService;
+  private final SecurityService securityService;
 
   @Override
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -57,7 +56,6 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     User user = userRepository.findById(id).orElseThrow(
         () -> new UsernameNotFoundException("User not found with id : " + id)
     );
-
     return UserPrincipal.create(user);
   }
 
@@ -93,7 +91,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     String message = "http://localhost:9000/api/v1/auth/changePassword?id=" +
         user.getId() + "&token=" + token;
 
-    mailSenderServise.send(message, "Reset Password", user.getEmail());
+    mailSenderService.send(message, "Reset Password", user.getEmail());
 
     return new  ApiResponse(true, "To reset your password we send the letter to you email");
   }
@@ -117,7 +115,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     final User user = passToken.getUser();
 
     final Authentication auth = new UsernamePasswordAuthenticationToken(
-        user.getEmail(), user.getPassword(), Arrays.asList(
+        user.getEmail(), user.getPassword(), Collections.singleton(
         new SimpleGrantedAuthority("CHANGE_PASSWORD_PRIVILEGE")));
     SecurityContextHolder.getContext().setAuthentication(auth);
 
@@ -138,8 +136,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
   public PasswordResetToken createPasswordResetTokenForUser(User user, String token) {
     PasswordResetToken myToken = new PasswordResetToken(token, user);
-    PasswordResetToken saved =  passwordResetTokenRepository.save(myToken);
-    return saved;
+    return passwordResetTokenRepository.save(myToken);
   }
 
   @Override

@@ -1,27 +1,40 @@
 package com.mangalaxy.mango.domain.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.dom4j.tree.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "reset_password")
-@Data
 @NoArgsConstructor
-public class PasswordResetToken extends AbstractEntity{
+public class PasswordResetToken extends AbstractEntity {
+
   private static final int EXPIRATION = 60 * 24;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE)
+  @Column(name = "id", nullable = false)
+  private Long id;
 
   private String token;
 
-  @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-  @JoinColumn(nullable = false, name = "user_id")
+  @OneToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id", nullable = false)
   private User user;
 
   private Date expiryDate;
@@ -46,3 +59,4 @@ public class PasswordResetToken extends AbstractEntity{
     this.expiryDate = calculateExpiryDate(EXPIRATION);
   }
 }
+
