@@ -1,7 +1,7 @@
 //@flow
 import React, {useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 import './EmloyerMenu.scss';
 
 const EmployerMenu = ({user, theme = null}) => {

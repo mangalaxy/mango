@@ -9,18 +9,13 @@ function DropDownSelect(props) {
     return (
         <div className={`dropdown-select ${halfWidth && 'dropdown-select--half-width'}`}>
             {label && <label className="control-label">{label}</label>}
-            <Field
+            <Select
                 name={name}
                 options={options}
-                component={() => {
-                    return <Select
-                                options={options}
-                                onChange={onChange}
-                                className={className}
-                                multi={multi}
-                                placeholder={placeholder}
-                            />
-                }}
+                onChange={onChange}
+                className={className}
+                multi={multi}
+                placeholder={placeholder}
             />
         </div>
     )

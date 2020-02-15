@@ -3,15 +3,14 @@ import type {Node} from 'react';
 import React, {Component, Fragment} from 'react';
 import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import {Route, Switch} from 'react-router-dom';
-import routes from '../../constants/routes';
+import {routes} from '../../constants/routes';
 import ForTalents from '../../components/Main/ForTalents/ForTalents';
 import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
 import Home from '../../components/Main/Home/Home';
 import Footer from '../../components/Main/Footer/Footer';
 import './Main.scss';
 import About from '../../components/Main/About/About';
-import JobsRolesSelect
-  from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
+import JobsRolesSelect from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
 import JobsByRole from '../../components/Main/Jobs/JobsByRole/JobsByRole';
 import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
@@ -19,12 +18,8 @@ import Support from '../../components/Main/Support/Support';
 import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
-import CreateProfile
-  from '../../components/Profile/CreateProfile/CreateProfile';
 import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
-import SignUpEmployer
-  from '../../components/Auth/SignUpEmployer/SignUpEmployer';
-
+import SignUpEmployer from '../../components/Auth/SignUpEmployer/SignUpEmployer';
 
 type Props = {
   history: Object,

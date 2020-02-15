@@ -19,6 +19,7 @@
     color: $primaryColor;
     font-size: 12px;
     outline: none;
+    z-index: 9000;
 
     &-content {
       display: none;

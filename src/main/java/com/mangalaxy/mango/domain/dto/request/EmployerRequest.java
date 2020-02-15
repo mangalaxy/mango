@@ -2,7 +2,6 @@ package com.mangalaxy.mango.domain.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mangalaxy.mango.domain.entity.Company;
 import lombok.Builder;
 import lombok.Data;
 

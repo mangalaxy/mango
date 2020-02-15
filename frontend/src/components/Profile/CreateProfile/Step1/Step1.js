@@ -8,6 +8,9 @@ const mockRoles = [
     {label: 'Role1', value: 'Role1'},
     {label: 'Role2', value: 'Role2'},
     {label: 'Role3', value: 'Role3'},
+    {label: 'Role4', value: 'Role4'},
+    {label: 'Role5', value: 'Role5'},
+    {label: 'Role6', value: 'Role6'},
 ];
 
 const mockSpecialities = [
@@ -50,9 +53,9 @@ function Step1(props) {
                     />
                     <DropDownSelect
                         label='Job Role'
-                        name='role'
+                        name='roles'
                         options={mockRoles}
-                        multi={false}
+                        multi={true}
                         placeholder='Role'
                     />
                     <DropDownSelect
@@ -73,7 +76,7 @@ function Step1(props) {
                         placeholder='Country'
                     />
                     <DropDownSelect
-                        name='cyti'
+                        name='city'
                         options={mockCities}
                         multi={false}
                         placeholder='City'

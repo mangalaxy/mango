@@ -1,8 +1,8 @@
 //@flow
-import React, {PureComponent} from 'react';
 import type {Node} from 'react';
+import React, {PureComponent} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import routes from '../../../constants/routes';
+import {routes} from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {
@@ -28,14 +28,14 @@ export default class MainMenu extends PureComponent<Props, State> {
 
   render(): Node {
 
-    const {path, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
+    const {path, grey, dark, openLoginForm, openSignUpTalent, openSignUpEmployer} = this.props;
     let grayMode = !(path === routes.HOME || path === routes.FOR_TALENTS ||
         path === routes.FOR_EMPLOYERS || path === routes.ABOUT_AS || path ===
         routes.BLOG);
 
     const {dropdownVisible} = this.state;
     return (
-        <div className={`menuContainer ${grayMode && 'gray'}`}>
+        <div className={`menuContainer ${grayMode || grey && 'gray'}`}>
           <div className='logoContainer'>
             <Link to={routes.HOME} className='logo'>
               Mango
@@ -45,28 +45,28 @@ export default class MainMenu extends PureComponent<Props, State> {
             <li>
               <NavLink to={routes.FOR_TALENTS}
                        activeClassName={'menuItem active'}
-                       className={`menuItem ${grayMode && 'gray'}`}>
+                       className={`menuItem ${grayMode || grey && 'gray'}`}>
                 Talents
               </NavLink>
             </li>
             <li>
               <NavLink to={routes.FOR_EMPLOYERS}
                        activeClassName={'menuItem active'}
-                       className={`menuItem ${grayMode && 'gray'}`}>
+                       className={`menuItem ${grayMode || grey && 'gray'}`}>
                 Employers
               </NavLink>
             </li>
             <li>
               <NavLink to={routes.FIND_JOB}
                        activeClassName={'menuItem active'}
-                       className={`menuItem ${grayMode && 'gray'}`}>
+                       className={`menuItem ${grayMode || grey && 'gray'}`}>
                 Jobs
               </NavLink>
             </li>
             <li>
               <NavLink to={routes.BLOG}
                        activeClassName={'menuItem active'}
-                       className={`menuItem ${grayMode && 'gray'}`}>
+                       className={`menuItem ${grayMode || grey && 'gray'}`}>
                 Blog
               </NavLink>
             </li>
@@ -74,10 +74,10 @@ export default class MainMenu extends PureComponent<Props, State> {
           <div className='menuItemsContainer authLinks'>
             <div onClick={openLoginForm}>
               <span
-                  className={`menuItem  ${grayMode && 'gray'} authBlock left`}>Log in</span>
+                  className={`menuItem  ${grayMode || grey && 'gray'} authBlock left`}>Log in</span>
             </div>
             <div>
-              <span className={`menuItem  ${grayMode && 'gray'} authBlock`}
+              <span className={`menuItem  ${grayMode || grey && 'gray'} authBlock`}
                     onClick={this.showMenu}>
                 Sign up
                 <Down active={dropdownVisible} grayMode={grayMode}/>

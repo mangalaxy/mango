@@ -85,7 +85,4 @@ public class Company extends AuditEntity {
         cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   private Set<Employer> employers = new HashSet<>();
 
-  public Company(String name) {
-    this.name = name;
-  }
 }

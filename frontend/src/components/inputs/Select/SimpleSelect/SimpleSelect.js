@@ -9,21 +9,16 @@ function SimpleSelect(props) {
     return (
         <div className={`simple-select ${directionTable && 'simple-select--direction-table'}`}>
             {label && <label className="control-label">{label}</label>}
-            <Field
+            <Select
                 name={name}
                 options={options}
-                component={() => {
-                    return <Select
-                        options={options}
-                        onChange={onChange}
-                        className={`${className}`}
-                        multi={multi}
-                        placeholder={''}
-                        dropdownHandle={false}
-                        keepOpen={true}
-                        dropdownPosition="auto"
-                    />
-                }}
+                onChange={onChange}
+                className={`${className}`}
+                multi={multi}
+                placeholder={''}
+                dropdownHandle={false}
+                keepOpen={true}
+                dropdownPosition="auto"
             />
         </div>
     )
