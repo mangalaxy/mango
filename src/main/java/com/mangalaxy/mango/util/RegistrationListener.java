@@ -2,7 +2,7 @@ package com.mangalaxy.mango.util;
 
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.service.CustomUserDetailsService;
-import com.mangalaxy.mango.service.MailSenderServise;
+import com.mangalaxy.mango.service.MailSenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
@@ -15,7 +15,7 @@ import java.util.UUID;
 public class RegistrationListener implements
     ApplicationListener<OnRegistrationCompleteEvent> {
   private final CustomUserDetailsService service;
-  private final MailSenderServise mailSenderServise;
+  private final MailSenderService mailSenderService;
 
   @Value("${app.domain}")
   private String domain;
@@ -32,10 +32,9 @@ public class RegistrationListener implements
 
     String recipientAddress = user.getEmail();
     String subject = "Registration Confirmation";
-    String confirmationUrl
-        = event.getAppUrl() + "/api/v1/auth/regitrationConfirm?token=" + token;
+    String confirmationUrl = event.getAppUrl() + "/api/v1/auth/confirm?token=" + token;
 
-    mailSenderServise.send(domain + confirmationUrl, subject, recipientAddress);
+    mailSenderService.send(domain + confirmationUrl, subject, recipientAddress);
 
   }
 }
