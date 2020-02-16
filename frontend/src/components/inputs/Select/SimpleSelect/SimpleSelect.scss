@@ -1,0 +1,121 @@
+@import '../../../../styles/variables';
+
+.simple-select {
+
+  .control-label {
+    display: block;
+    margin: 0 0 10px 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: $primaryColor;
+  }
+
+  .react-dropdown-select {
+    width: 100%;
+    min-height: 28px !important;
+    margin: 10px 0;
+    border: none;
+    box-sizing: border-box;
+    color: $primaryColor;
+    font-size: 12px;
+    outline: none;
+    z-index: 9000;
+
+    &-content {
+      display: none;
+    }
+
+    &-option {
+      margin: 0;
+      background-color: #fff;
+      color: $primaryColor;
+    }
+
+    &-input {
+
+      &::placeholder {
+        color: #BDBDBD !important;
+        font-size: 12px;
+      }
+    }
+
+    &:hover {
+      border: none !important;
+    }
+
+    &:focus {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+      min-height: 28px !important;
+    }
+
+    &:focus-within {
+      outline: none !important;
+      box-shadow: none !important;
+      border: none !important;
+    }
+
+    &-dropdown {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 80%;
+      padding: 5px 0;
+      color: $COLOR_MENU_DARK;
+      border: none;
+      z-index: 9999;
+      box-shadow: none;
+      flex-direction: unset;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &-item {
+      position: relative;
+      padding: 10px 10px 5px 27px;
+      border: none;
+      min-width: 50%;
+      box-sizing: border-box;
+
+      &::before {
+        position: absolute;
+        top: 8px;
+        left: 7px;
+        content: '';
+        display: block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid #BDBDBD;
+        border-radius: 1px;
+        box-sizing: border-box;
+        text-align: center;
+        line-height: 14px;
+        font-size: 14px;
+      }
+
+      &-selected {
+        background-color: #FBFBFB !important;
+        color: $COLOR_MENU_DARK !important;
+        border: none !important;
+
+        &::before {
+          content: '\2713';
+          color: #fff;
+          background-color: $COLOR_GREEN;
+          border: none;
+        }
+      }
+    }
+  }
+
+  &--direction-table {
+    .react-dropdown-select {
+      &-dropdown {
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+/* Path */

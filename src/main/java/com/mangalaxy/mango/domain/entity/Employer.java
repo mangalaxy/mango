@@ -1,12 +1,11 @@
 package com.mangalaxy.mango.domain.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.NaturalIdCache;
@@ -15,100 +14,96 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true, doNotUseGetters = true, onlyExplicitlyIncluded = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "employer")
 @NaturalIdCache
-@ApiModel(description = "All details about the Employer")
-public class Employer extends AbstractEntity {
+@Table(name = "employer")
+public class Employer extends AuditEntity {
 
-  @NotBlank
-  @Size(min = 6, max = 60)
-  @Column(name = "full_name")
-  @ApiModelProperty(notes = "The employer full name")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employerSeq")
+  @SequenceGenerator(name = "employerSeq", sequenceName = "employer_id_seq")
+  @Column(name = "id", nullable = false, unique = true, updatable = false)
+  private Long id;
+
+  @Column(name = "full_name", nullable = false)
   private String fullName;
 
-  @NotBlank
-  @Email(message = "Invalid email")
-  @Size(max = 60)
-  @Column(name = "email")
   @NaturalId
-  @ApiModelProperty(notes = "The employer work email")
-  private String workEmail;
+  @Column(name = "email", nullable = false, unique = true)
+  private String email;
 
-  @NotBlank
-  @Size(min = 6, max = 100)
-  @ApiModelProperty(notes = "The employer password")
+  @Column(name = "password", nullable = false)
   private String password;
 
-  @Size(max = 18)
   @Column(name = "phone")
-  @ApiModelProperty(notes = "The employer phone number")
   private String phoneNumber;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "company_id")
-  @ApiModelProperty(notes = "The employer company")
-  private Company company;
-
-  @Column(name = "job_title", length = 30)
-  @ApiModelProperty(notes = "The employer job title")
+  @Column(name = "job_title")
   private String jobTitle;
 
   @Column(name = "photo_url")
-  @ApiModelProperty(notes = "The employer photo")
-  private String photoUrl;
+  private String photo;
 
-  @ManyToOne(cascade = CascadeType.PERSIST)
-  @JoinColumn(name = "location_id", nullable = false,
-        foreignKey = @ForeignKey(name = "location_id_fk"))
   @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "The employer location")
+  @ToString.Exclude
+  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+        fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "company_id", nullable = false)
+  private Company company;
+
+  @EqualsAndHashCode.Exclude
+  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
+  @EqualsAndHashCode.Exclude
   @OneToMany(mappedBy = "publisher",
         cascade = CascadeType.ALL,
-        orphanRemoval = true
-  )
+        orphanRemoval = true)
+  private Set<Job> jobs = new HashSet<>();
+
   @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "List of employer open jobs")
-  private Set<Job> openJobs = new HashSet<>();
+  @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+  @JoinTable(name = "bookmarked_talents",
+        joinColumns = @JoinColumn(name = "employer_id"),
+        inverseJoinColumns = @JoinColumn(name = "talent_id"))
+  private Set<Talent> bookmarkedTalents = new HashSet<>();
 
-  @ManyToMany
-  @JoinTable(name = "matched_talents",
-        joinColumns = {@JoinColumn(name = "employer_id")},
-        inverseJoinColumns = {@JoinColumn(name = "talent_id")})
-  @ToString.Exclude
-  private Set<Talent> matchedTalents = new HashSet<>();
-
-  @OneToMany(mappedBy = "employer", orphanRemoval = true)
-  private List<Question> questions;
-
-  public void addJob(Job job) {
-    openJobs.add(job);
+  /**
+   * Add a new job to existing set of open jobs.
+   * @param job a job to add.
+   */
+  public void addJob(final Job job) {
+    jobs.add(job);
     job.setPublisher(this);
   }
 
-  public void removeJob(Job job) {
-    openJobs.remove(job);
+  /**
+   * Removes the job from set of open jobs.
+   * @param job a job to remove.
+   */
+  public void removeJob(final Job job) {
+    jobs.remove(job);
     job.setPublisher(null);
   }
 

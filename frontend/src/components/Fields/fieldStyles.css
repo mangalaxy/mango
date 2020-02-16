@@ -1,17 +1,86 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
 .fkInput .p-inputtext {
   width: 100% !important;
   font-size: 16px;
-  font-family: "Monserrat", sans-serif !important; }
+  font-family: "Montserrat", sans-serif !important;
+  border-color: #BDBDBD;
+  border-radius: 4px; }
+
+.fkAuthInput {
+  margin-top: 10px;
+  position: relative; }
+  .fkAuthInput .p-inputtext {
+    width: 100% !important;
+    font-size: 16px;
+    font-family: "Montserrat", sans-serif !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid;
+    border-radius: 0 !important; }
+    .fkAuthInput .p-inputtext:focus, .fkAuthInput .p-inputtext:active {
+      border: none !important;
+      border-bottom: rgba(0, 0, 0, 0.2) 1.5px solid !important;
+      box-shadow: none !important; }
+  .fkAuthInput .p-dropdown {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: rgba(0, 0, 0, 0.2) solid 2px;
+    width: 100%; }
+  .fkAuthInput input {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom: rgba(0, 0, 0, 0.2) solid 2px;
+    width: 100%; }
+  .fkAuthInput .input-label {
+    display: block;
+    margin-bottom: 20px; }
+    .fkAuthInput .input-label label {
+      font-family: "Montserrat", sans-serif !important;
+      color: rgba(0, 0, 0, 0.4) !important;
+      font-weight: 300 !important;
+      font-size: 16px !important; }
 
 .errorContainer {
   min-height: 18px; }
 
+.fkDropdown .p-inputtext {
+  border: none !important; }
+  .fkDropdown .p-inputtext:active, .fkDropdown .p-inputtext:focus {
+    border: none !important; }
+
+.fkDropdown .p-focus {
+  border-color: transparent !important;
+  box-shadow: none !important; }
+
 .errorLabel {
   font-size: 12px;
-  font-family: "Monserrat", sans-serif;
-  color: #B00020; }
+  font-family: "Montserrat", sans-serif;
+  color: #B00020;
+  text-align: center;
+  display: inline-block;
+  width: 100%; }
 
-.p-float-label label {
-  font-family: "Monserrat", sans-serif !important; }
+.fkCheckbox label {
+  color: rgba(0, 0, 0, 0.9);
+  font-weight: 300;
+  font-size: 16px;
+  margin-left: 7px;
+  cursor: pointer; }
+
+.textInput .p-label label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #4F4F4F; }
+
+.textInput .p-inputtext {
+  width: 100% !important;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif !important;
+  border-color: #BDBDBD;
+  border-radius: 4px; }

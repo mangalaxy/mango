@@ -1,0 +1,18 @@
+.remove {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;      
+  border-radius: 50%;
+  background: #F2F2F2;
+  cursor: pointer;
+}
+.remove:first-child {
+  margin-right: 16px;
+}
+.remove:hover {
+  border: 1px solid gray;
+  transform: scale(1.05);
+  transition: 0.4s;
+}

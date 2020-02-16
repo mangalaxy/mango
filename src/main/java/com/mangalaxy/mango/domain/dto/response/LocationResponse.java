@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class LocationResponse {
-  private Long id;
+  private Short id;
   private String city;
   private String country;
 }

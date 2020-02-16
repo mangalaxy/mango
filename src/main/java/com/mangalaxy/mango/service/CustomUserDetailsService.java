@@ -1,6 +1,7 @@
 package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
 import com.mangalaxy.mango.domain.entity.User;
@@ -11,9 +12,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.context.request.WebRequest;
 
-public interface CustomUserDetailsService extends UserDetailsService {
-  JwtAuthenticationResponse signIn(LoginRequest request);
+import javax.servlet.http.HttpServletRequest;
 
+public interface CustomUserDetailsService extends UserDetailsService {
   UserDetails loadUserById(Long id);
 
   ApiResponse registerNewUser(LoginRequest loginRequest,
@@ -31,4 +32,9 @@ public interface CustomUserDetailsService extends UserDetailsService {
   void createVerificationToken(User user, String token);
 
   VerificationToken getVerificationToken(String VerificationToken);
+  JwtAuthenticationResponse signIn(LoginRequest request);
+  ApiResponse registerNewUser(LoginRequest request);
+  ApiResponse resetPassword(HttpServletRequest request, String userEmail);
+  JwtAuthenticationResponse changePassword(long id, String token);
+  ApiResponse savePassword(PasswordRequest password);
 }

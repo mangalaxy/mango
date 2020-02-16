@@ -7,6 +7,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  height: $MAIN_MENU_HEIGHT;
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box;
@@ -106,18 +107,7 @@
       }
     }
 
-    .down {
-      position: absolute;
-      top: 50%;
-      right: -17px;
-      transform: translateY(-50%);
-      transition: all 0.5s;
 
-
-      &.active {
-        transform: translateY(-50%) rotateZ(180deg);
-      }
-    }
 
     .dropdownMenu {
       position: absolute;

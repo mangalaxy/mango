@@ -1,7 +1,7 @@
 @import '../../../styles/_variables.scss';
 
 .employerMenuContainer {
-  position: fixed;
+  // position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -9,7 +9,13 @@
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box;
-background-color: rgba(0,0,0,.2);
+// background-color: rgba(0,0,0,.2);
+  &.white{
+    background-color: white;
+  }
+  &.gray{
+    background-color: #F7F7F7;
+  }
 
   .logo {
     text-transform: uppercase;
@@ -36,7 +42,8 @@ background-color: rgba(0,0,0,.2);
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
-    color: $COLOR_MENU_LIGHT;
+    // color: $COLOR_MENU_LIGHT;
+    color: $COLOR_MENU_DARK;
     font-family: $FONT_MENU;
     font-size: 18px;
     box-sizing: border-box;
@@ -78,7 +85,7 @@ background-color: rgba(0,0,0,.2);
     .down {
       position: absolute;
       top: 50%;
-      right: -17px;
+      right: 5px;
       transform: translateY(-50%);
       transition: all 0.5s;
 
@@ -90,20 +97,21 @@ background-color: rgba(0,0,0,.2);
     .dropdownMenu {
       position: absolute;
       left: 0;
-      bottom: 0;
+      bottom: -5px;
       transform: translateY(100%);
       background-color: #FFFFFF;
-      opacity: .8;
-      padding: 0;
+      padding: 0 70px 0 0;
       color: $COLOR_MENU_DARK;
       text-transform: capitalize;
       transition: all .4s;
+      box-shadow: #8a8a8a 2px 2px 5px;
 
-      li {
+      li, & a{
         padding: 5px 5px;
         margin: 7px 0;
         border-left: 2px solid transparent;
         transition: all .5s;
+        color: $COLOR_MENU_DARK;
 
         &:hover {
           border-left: 2px solid $COLOR_CORAL;
@@ -117,13 +125,13 @@ background-color: rgba(0,0,0,.2);
         bottom: -50px;
         opacity: 0;
       }
-
-
     }
 
     &.left {
-      border-right: solid 1px $COLOR_MENU_LIGHT;
-
+      // border-right: solid 1px $COLOR_MENU_LIGHT;
+      padding: 5px 29px 5px 9px;
+      border-right: solid 1px $COLOR_MENU_DARK;
+      text-transform: none;
     }
   }
 }

@@ -49,25 +49,23 @@ public class TalentServiceTest {
 
   @Before
   public void setUp() {
-
     Location location = new Location();
-    location.setId(1);
-    location.setCity("Kyiv");
-    location.setCountry("UA");
-
+    location.setId((short) 1);
+    location.setCity("Frankfurt");
+    location.setCountry("Germany");
 
     firstMockTalent = new Talent();
     firstMockTalent.setId(1L);
     firstMockTalent.setEmail("test@gmai.com");
     firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("Ilon Mask");
+    firstMockTalent.setFullName("Mark Schmidt");
     firstMockTalent.setLocation(location);
 
     secondMockTalent = new Talent();
     secondMockTalent.setId(2L);
     secondMockTalent.setEmail("test2@gmai.com");
     secondMockTalent.setPassword("123456");
-    secondMockTalent.setFullName("Leo Messi");
+    secondMockTalent.setFullName("Leo Miller");
     secondMockTalent.setLocation(location);
 
     Profile profile = new Profile();
@@ -98,7 +96,7 @@ public class TalentServiceTest {
 
     Pageable pageable = mock(Pageable.class);
 
-    Page<Talent> talentList = new PageImpl(talents);
+    Page<Talent> talentList = new PageImpl<>(talents);
 
     Mockito.when(talentRepository.findAll(pageable)).thenReturn(talentList);
 
@@ -113,7 +111,7 @@ public class TalentServiceTest {
   public void createTalentTest() {
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();
@@ -132,7 +130,7 @@ public class TalentServiceTest {
   public void updateTalentTest() throws ResourceNotFoundException {
     firstMockTalent.setEmail("new-mail@gmail.com");
     LocationRequest locationRequest = LocationRequest.builder()
-        .id(1L)
+        .id((short) 1L)
         .country("UA")
         .city("Kyiv")
         .build();

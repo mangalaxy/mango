@@ -1,32 +1,40 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+/**
+ * Represents a post that published in the mangostart blog.
+ *
+ * @see Topic
+ */
+@Getter
+@Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, doNotUseGetters = true)
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "post")
-public class Post extends AbstractEntity {
+public class Post extends AuditEntity {
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postSeq")
+  @SequenceGenerator(name = "postSeq", sequenceName = "post_id_seq", allocationSize = 10)
+  @Column(name = "id", nullable = false, unique = true, updatable = false)
+  private Integer id;
+
+  @Column(name = "title", nullable = false)
   private String title;
 
+  @Column(name = "description", nullable = false)
   private String description;
 
+  @Column(name = "body", nullable = false)
   private String body;
 
   @Column(name = "image_url")
@@ -38,12 +46,17 @@ public class Post extends AbstractEntity {
   @Column(name = "count_likes")
   private Integer countLikes;
 
-  @EqualsAndHashCode.Exclude
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "topic_id", nullable = false)
   private Topic topic;
 
-  @Column(name = "created_by")
-  private String createdBy;
+  @Column(name = "author")
+  private String author;
+
+  @Singular
+  @ElementCollection
+  @CollectionTable(name = "post_tags")
+  @Column(name = "tag")
+  private Set<String> tags = new HashSet<>();
 
 }

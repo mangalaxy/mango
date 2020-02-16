@@ -1,21 +1,9 @@
 package com.mangalaxy.mango.domain.entity;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,45 +13,42 @@ import java.util.Set;
  * It's includes only a specific country and city, it does not include
  * such geographical attributes as latitude and longitude.
  */
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"city","country"})
+@ToString(doNotUseGetters = true, of = {"id","city","country"})
 @Entity
 @Table(name = "location")
-@ApiModel(description = "All details about the Location")
 public class Location {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE)
-  @ApiModelProperty(notes = "The database generated location ID")
-  private Integer id;
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locationSeq")
+  @SequenceGenerator(name = "locationSeq", sequenceName = "location_id_seq")
+  @Column(name = "id", nullable = false, updatable = false)
+  private Short id;
 
-  @NotBlank
-  @Size(max = 30)
-  @ApiModelProperty(notes = "The location city")
+  @Column(name = "city", nullable = false)
   private String city;
 
-  @NotBlank
-  @Size(max = 30)
-  @ApiModelProperty(notes = "The location country")
+  @Column(name = "country", nullable = false)
   private String country;
 
   @OneToMany(mappedBy = "location")
-  @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "List of jobs related with current location")
   private Set<Job> jobs = new HashSet<>();
 
   @OneToMany(mappedBy = "location")
-  @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "List of talents related with current location")
   private Set<Talent> talents = new HashSet<>();
 
-  @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
-  @EqualsAndHashCode.Exclude
-  @ApiModelProperty(notes = "List of employers related with current location")
+  @OneToMany(mappedBy = "location")
   private Set<Employer> employers = new HashSet<>();
 
+  /**
+   * A basic constructor with the required properties.
+   * @param city a city.
+   * @param country a country.
+   */
   public Location(@NotBlank String city, @NotBlank String country) {
     this.city = city;
     this.country = country;
