@@ -11,12 +11,11 @@ import com.mangalaxy.mango.domain.entity.VerificationToken;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
 import com.mangalaxy.mango.repository.UserRepository;
 import com.mangalaxy.mango.repository.VerificationTokenRepository;
-import com.mangalaxy.mango.security.JwtTokenProvider;
 import com.mangalaxy.mango.security.UserPrincipal;
-import com.mangalaxy.mango.util.EmailNotConfirmedException;
-import com.mangalaxy.mango.util.OnRegistrationCompleteEvent;
 import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
 import com.mangalaxy.mango.util.AppException;
+import com.mangalaxy.mango.util.EmailNotConfirmedException;
+import com.mangalaxy.mango.util.OnRegistrationCompleteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -33,7 +32,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.persistence.EntityNotFoundException;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -76,9 +78,6 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   }
 
   @Override
-  @Transactional
-  public ApiResponse registerNewUser(LoginRequest request) {
-    if (userRepository.existsByEmail(request.getEmail())) {
   public ApiResponse registerNewUser(LoginRequest loginRequest, BindingResult result,
                                      WebRequest request,
                                      Errors errors) {
@@ -95,13 +94,11 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
     user.setRoles(roles);
 
-    userRepository.save(user);
-    return new ApiResponse(true, "User registered successfully");
     User registeredUser = userRepository.save(user);
 
     String appUrl = request.getContextPath();
     eventPublisher.publishEvent(new OnRegistrationCompleteEvent
-        (registeredUser, request.getLocale(), appUrl));
+          (registeredUser, request.getLocale(), appUrl));
 
     return new ApiResponse(true, "To confirm registration you need to confirm your email");
   }

@@ -33,7 +33,6 @@ public interface CustomUserDetailsService extends UserDetailsService {
 
   VerificationToken getVerificationToken(String VerificationToken);
   JwtAuthenticationResponse signIn(LoginRequest request);
-  ApiResponse registerNewUser(LoginRequest request);
   ApiResponse resetPassword(HttpServletRequest request, String userEmail);
   JwtAuthenticationResponse changePassword(long id, String token);
   ApiResponse savePassword(PasswordRequest password);
