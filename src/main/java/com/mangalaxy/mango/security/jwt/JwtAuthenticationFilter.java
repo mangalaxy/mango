@@ -53,6 +53,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     } else {
       throw new Exception();
     }
-
   }
 }
