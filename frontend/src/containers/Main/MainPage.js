@@ -20,7 +20,7 @@ import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
 import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
 import SignUpEmployer from '../../components/Auth/SignUpEmployer/SignUpEmployer';
-import Info from '../../containers/Info/Info';
+import Post from '../Post/Post';
 
 type Props = {
   history: Object,
@@ -51,7 +51,7 @@ class MainPage extends Component<Props> {
               <Route path={routes.TERMS_OF_USE} component={TermsOfUse}/>
               <Route path={routes.SUPPORT_CENTER} component={Support}/>
               <Route path={routes.BLOG} component={Blog}/>
-              <Route path={routes.INFO + '/:id'} component={Info}/>
+              <Route path={routes.POST} component={Post}/>
               <Route path={'/*'} component={() => (<div>404</div>)}/>
             </Switch>
           </div>

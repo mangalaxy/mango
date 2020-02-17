@@ -1,10 +1,33 @@
 import React from 'react';
-import './Info.scss'
+import './Post.scss'
 import {like, twitter, facebook} from "../../assets/icons";
 import SvgIcon from '../../components/SvgIcon/SvgIcon';
+import PostItem from './PostItem/PostItem'
 
-function Info(props) {
+const mockPosts = [
+    {
+        id: 1,
+        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
+        tag: 'Design',
+        title: 'Principles For Designing Better Products'
+    },
+    {
+        id: 1,
+        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
+        tag: 'Design',
+        title: 'Principles For Designing Better Products'
+    },
+    {
+        id: 1,
+        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
+        tag: 'Design',
+        title: 'Principles For Designing Better Products'
+    }
+];
+
+function Post(props) {
     const id = props.match.params.id;
+    const postsList = mockPosts.map(post => <PostItem key={post.id} post={post} />)
     return (
         <div className='info'>
             <div className='info__container'>
@@ -43,27 +66,7 @@ function Info(props) {
                 <div className='info__similar-list'>
                     <div className="info__list-description">Similar articles:</div>
                     <div className='info-list'>
-                        <div className='info-list__item'>
-                            <div className='info-photo'>
-                                <img className='info-photo__img' src='https://nashagazeta.ch/sites/default/files/graphic-design.jpg'/>
-                            </div>
-                            <div className='info__tag'>Design</div>
-                            <div className='info__subtitle'>Principles For Designing Better Products</div>
-                        </div>
-                        <div className='info-list__item'>
-                            <div className='info-photo'>
-                                <img className='info-photo__img' src='https://nashagazeta.ch/sites/default/files/graphic-design.jpg'/>
-                            </div>
-                            <div className='info__tag'>Design</div>
-                            <div className='info__subtitle'>Principles For Designing Better Products</div>
-                        </div>
-                        <div className='info-list__item'>
-                            <div className='info-photo'>
-                                <img className='info-photo__img' src='https://nashagazeta.ch/sites/default/files/graphic-design.jpg'/>
-                            </div>
-                            <div className='info__tag'>Design</div>
-                            <div className='info__subtitle'>Principles For Designing Better Products</div>
-                        </div>
+                        {postsList}
                     </div>
                 </div>
             </div>
@@ -71,4 +74,4 @@ function Info(props) {
     )
 }
 
-export default Info;
+export default Post;

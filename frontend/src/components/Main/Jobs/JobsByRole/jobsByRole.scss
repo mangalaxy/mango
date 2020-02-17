@@ -12,7 +12,7 @@
   &__tags {
     margin-top: 100px;
     display: flex;
-    color: #828282;
+    color: $COLOR_PRIMERY_GREY;
     font-size: 16px;
   }
 
@@ -25,7 +25,7 @@
       top: -2px;
       right: -20px;
       content: '\003E';
-      color: #828282;
+      color: $COLOR_PRIMERY_GREY;
       display: block;
       font-size: 20px;
     }
@@ -74,7 +74,7 @@
     font-size: 24px;
     margin: 0 10px 10px 0;
     padding: 0 10px;
-    border: 1px solid #E0E0E0;
+    border: 1px solid $COLOR_SECONDARY_GREY;
     border-radius: 4px;
     background-color: #ffffff;
     cursor: pointer;
@@ -93,7 +93,7 @@
       background-color: $COLOR_MENU_LIGHT;
       text-align: center;
       line-height: 40px;
-      color: #E0E0E0;
+      color: $COLOR_SECONDARY_GREY;
     }
 
     &--selected {
@@ -150,7 +150,7 @@
       }
 
       &-dropdown {
-        background-color: #FBFBFB;
+        background-color: $COLOR_LIGHT;
         padding: 5px 0;
         color: $COLOR_MENU_DARK;
         border: none;
@@ -171,7 +171,7 @@
           display: block;
           width: 14px;
           height: 14px;
-          border: 1px solid #BDBDBD;
+          border: 1px solid $COLOR_LABEL_GRAY;
           border-radius: 1px;
           box-sizing: border-box;
           text-align: center;
@@ -201,14 +201,14 @@
       display: flex;
       margin-top: 20px;
       padding: 10px;
-      border: 1px solid #E0E0E0;
+      border: 1px solid $COLOR_SECONDARY_GREY;
       box-sizing: border-box;
       border-radius: 4px;
 
       &__photo {
         width: 100px;
         height: 100px;
-        border: 1px solid #E0E0E0;
+        border: 1px solid $COLOR_SECONDARY_GREY;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -219,7 +219,7 @@
       }
 
       &__title {
-        color: #333333;
+        color: $primaryColor;
         font-size: 24px;
       }
     }
@@ -236,7 +236,7 @@
       }
       .company-employers, .company-location, .company-category {
         display: flex;
-        color: #828282;
+        color: $COLOR_PRIMERY_GREY;
         font-size: 18px;
         margin: 0 20px;
       }
@@ -248,7 +248,7 @@
 
     .company-description {
       margin-top: 10px;
-      color: #828282;
+      color: $COLOR_PRIMERY_GREY;
       font-size: 16px;
     }
   }
@@ -267,12 +267,12 @@
     }
 
     &__link {
-      color: #828282;
+      color: $COLOR_PRIMERY_GREY;
 
       &--next {
         &::after {
           content: '\003E';
-          color: #828282;
+          color: $COLOR_PRIMERY_GREY;
           display: block;
           font-size: 20px;
         }
@@ -281,14 +281,14 @@
       &--prev {
         &::after {
           content: '\003C';
-          color: #828282;
+          color: $COLOR_PRIMERY_GREY;
           display: block;
           font-size: 20px;
         }
       }
 
       &--active {
-        color: #333333;
+        color: $primaryColor;
         position: relative;
         top: 2px;
       }

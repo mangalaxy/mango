@@ -26,5 +26,5 @@ export const routes = {
   "TALENT_HOME": "/talent",
   "PROFILE_CREATE": "/profile-create",
   "TALENT_PROFILE": "/talent-profile",
-  "INFO": "/info"
+  "POST": "/post/:id"
 };
