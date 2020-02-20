@@ -4,7 +4,7 @@ import './TextInput.scss';
 import SvgIcon from '../../SvgIcon/SvgIcon'
 
 function TextInput(props) {
-    const {name, label, type, placeholder, defaultValue, withIcon, icon, halfWidth, className} = props;
+    const {name, label, type, placeholder, defaultValue, withIcon, icon, halfWidth, className, onChange} = props;
 
     return (
         <Fragment>
@@ -14,6 +14,7 @@ function TextInput(props) {
             ${withIcon && 'text-input--margin-bottom'}
             `}>
                 <input
+                    onChange={onChange}
                     name={name}
                     type={type}
                     placeholder={placeholder || ''}

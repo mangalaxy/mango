@@ -3,6 +3,7 @@ import TextInput from "../../../inputs/TextInput/TextInput";
 import DropDownSelect from "../../../inputs/Select/DropDownSelect/DropDownSelect";
 import SimpleSelect from "../../../inputs/Select/SimpleSelect/SimpleSelect";
 import FormButton from "../../../Buttons/FormButton/FormButton";
+import {useFormik} from 'formik';
 
 const mockRoles = [
     {label: 'Role1', value: 'Role1'},
@@ -39,64 +40,103 @@ const mockTypes =  [
 ];
 
 function Step1(props) {
-    const {hidden, next} = props;
+    const {hidden, next, onSubmitStep} = props;
+
+    const formik = useFormik({
+        initialValues: {
+            jobTitle: '',
+            jobRoles: [],
+            jobSpecialities: [],
+            prefferedLocation: {
+                country: '',
+                city: ''
+            },
+            employmentType: ''
+
+        },
+        onSubmit: values => {
+            onSubmitStep(values);
+        },
+    });
+
+    const clickButton = () => {
+        formik.handleSubmit()
+        next();
+    }
+
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__description'>All fields are required unless otherwise stated.</div>
-            <div className='profile-form__container'>
-                <div className='profile-form__column-left'>
-                    <h2 className='profile-form__title'>position’s name</h2>
-                    <TextInput
-                        label='Position'
-                        name='position'
-                        type='text'
-                    />
-                    <DropDownSelect
-                        label='Job Role'
-                        name='roles'
-                        options={mockRoles}
-                        multi={true}
-                        placeholder='Role'
-                    />
-                    <DropDownSelect
-                        label='Select up to maximum 3 specialties'
-                        name='specialties'
-                        options={mockSpecialities}
-                        multi={true}
-                        placeholder='Specialties'
-                    />
-                </div>
-                <div className='profile-form__column-right'>
-                    <h2 className='profile-form__title'>location</h2>
-                    <DropDownSelect
-                        label='What places would you like to work?'
-                        name='country'
-                        options={mockCountries}
-                        multi={false}
-                        placeholder='Country'
-                    />
-                    <DropDownSelect
-                        name='city'
-                        options={mockCities}
-                        multi={false}
-                        placeholder='City'
-                    />
-                    <h2 className='profile-form__title'>type of employment</h2>
-                    <SimpleSelect
-                        label='What type of employment are you looking for?'
-                        name='type'
-                        options={mockTypes}
-                        multi={false}
-                    />
-                </div>
-                <div className='buttons-container'>
-                    <FormButton
-                        text='Next'
-                        className='form-button--red'
-                        onClick={next}
-                    />
-                </div>
-            </div>
+            <form onSubmit={formik.handleSubmit}>
+                <div className='profile-form__container'>
+                    <div className='profile-form__column-left'>
+                        <h2 className='profile-form__title'>position’s name</h2>
+                        <TextInput
+                            label='Position'
+                            name='jobTitle'
+                            type='text'
+                            onChange={formik.handleChange}
+                            value={formik.values.jobTitle}
+                        />
+                        <DropDownSelect
+                            label='Job Role'
+                            name='jobRoles'
+                            options={mockRoles}
+                            multi={true}
+                            type='text'
+                            placeholder='Role'
+                            onChange={value => formik.setFieldValue('jobRoles', value)}
+                            value={formik.values.jobRoles}
+                        />
+                        <DropDownSelect
+                            label='Select up to maximum 3 specialties'
+                            name='jobSpecialities'
+                            options={mockSpecialities}
+                            multi={true}
+                            placeholder='Specialties'
+                            onChange={value => formik.setFieldValue('jobSpecialities', value)}
+                            value={formik.values.jobSpecialities}
+                        />
+                    </div>
+                    <div className='profile-form__column-right'>
+                        <h2 className='profile-form__title'>location</h2>
+                        <DropDownSelect
+                            label='What places would you like to work?'
+                            name='prefferedLocation.country'
+                            options={mockCountries}
+                            multi={false}
+                            placeholder='Country'
+                            onChange={value => formik.setFieldValue('prefferedLocation.country', value)}
+                            value={formik.values.prefferedLocation.country}
+                        />
+                        <DropDownSelect
+                            name='prefferedLocation.city'
+                            options={mockCities}
+                            multi={false}
+                            placeholder='City'
+                            onChange={value => formik.setFieldValue('prefferedLocation.city', value)}
+                            value={formik.values.prefferedLocation.city}
+                        />
+                        <h2 className='profile-form__title'>type of employment</h2>
+                        <SimpleSelect
+                            label='What type of employment are you looking for?'
+                            name='employmentType'
+                            options={mockTypes}
+                            multi={false}
+                            onChange={value => formik.setFieldValue('employmentType', value)}
+                            value={formik.values.employmentType}
+                        />
+                    </div>
+                    <div className='buttons-container'>
+                        <FormButton
+                            text='Next'
+                            className='form-button--red'
+                            onClick={clickButton}
+                            type='submit'
+                        />
+                    </div>
+                 </div>
+            </form>
         </div>
     )
 }

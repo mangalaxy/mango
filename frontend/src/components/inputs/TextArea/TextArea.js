@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import './TextArea.scss';
 
 function TextArea(props) {
-    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, height} = props;
+    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, height, onChange} = props;
 
     return (
         <Fragment>
@@ -16,6 +16,7 @@ function TextArea(props) {
                     className={`text-area__field ${className}`}
                     defaultValue={defaultValue || ''}
                     style={{ height: height }}
+                    onChange={onChange}
                 />
             </div>
         </Fragment>

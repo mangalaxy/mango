@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
-    const {name, label, type, input, placeholder, defaultValue, halfWidth, className} = props;
+    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, onChange} = props;
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
+        if (onChange) {
+            const res = moment(date).format().slice(0, 10);
+            onChange(res);
+        }
         setStartDate(date);
     };
     return (

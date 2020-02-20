@@ -1,18 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Experience from './Experience/Experience';
 import Education from './Education/Education';
 import Languages from './Languages/Languages';
 import FormButton from "../../../Buttons/FormButton/FormButton";
+import {useFormik} from 'formik';
 
 function Step4(props) {
-    const {hidden, prev, next} = props;
+    const {hidden, prev, next, onSubmitStep, experienceList, educationList, languagesList} = props;
     const [experienceCount, setExperienceCount] = useState(1);
     const [educationCount, setEducationCount] = useState(1);
     const [languagesCount, setLanguagesCount] = useState(1);
 
-    const experiences = Array.apply(null, {length: experienceCount}).map(item => <Experience/>);
-    const educations = Array.apply(null, {length: educationCount}).map(item => <Education/>);
-    const languages = Array.apply(null, {length: languagesCount}).map(item => <Languages/>);
+    const formik = useFormik({
+        initialValues: {
+            experience: [{}],
+            education: [{}],
+            languages: [{}]
+        },
+        onSubmit: values => {
+            onSubmitStep(values);
+        },
+    });
+
+    const clickButton = () => {
+        formik.handleSubmit()
+        next();
+    }
+
+    const experiences = Array.apply(null, {length: experienceCount}).map((item, index) => <Experience index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
+    const educations = Array.apply(null, {length: educationCount}).map((item, index) => <Education index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
+    const languages = Array.apply(null, {length: languagesCount}).map((item, index) => <Languages index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
 
     return (
         <div className='profile-form__item' hidden={hidden}>
@@ -22,7 +39,10 @@ function Step4(props) {
                         <h2 className='profile-form__title'>Experience</h2>
                         <div
                             className='profile-form__add-icon'
-                            onClick={() => setExperienceCount(experienceCount + 1)}
+                            onClick={() => {
+                                setExperienceCount(experienceCount + 1);
+                                formik.setFieldValue('experience', formik.values.experience.concat([{}]))
+                            }}
                         >
                             +
                         </div>
@@ -34,7 +54,10 @@ function Step4(props) {
                         <h2 className='profile-form__title'>Education</h2>
                         <div
                             className='profile-form__add-icon'
-                            onClick={() => setEducationCount(educationCount + 1)}
+                            onClick={() => {
+                                setEducationCount(educationCount + 1);
+                                formik.setFieldValue('education', formik.values.education.concat([{}]));
+                            }}
                         >+</div>
                     </div>
                     {educations}
@@ -42,7 +65,10 @@ function Step4(props) {
                         <h2 className='profile-form__title profile-form__title--margin-bottom-none'>Languages</h2>
                         <div
                             className='profile-form__add-icon profile-form__add-icon--margin-top'
-                            onClick={() => setLanguagesCount(languagesCount + 1)}
+                            onClick={() => {
+                                setLanguagesCount(languagesCount + 1);
+                                formik.setFieldValue('languages', formik.values.languages.concat([{}]));
+                            }}
                         >+</div>
                     </div>
                     {languages}
@@ -56,7 +82,7 @@ function Step4(props) {
                     <FormButton
                         text='Next'
                         className='form-button--red'
-                        onClick={next}
+                        onClick={clickButton}
                     />
                 </div>
             </div>

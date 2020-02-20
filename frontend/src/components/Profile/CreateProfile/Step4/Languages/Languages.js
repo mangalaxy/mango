@@ -14,23 +14,29 @@ const mockLevels = [
 ];
 
 
-function Languages() {
+function Languages(props) {
+    const {index, inputChage, select, value} = props;
+
     return (
         <div className='profile-form__row'>
             <div className='inputs-container'>
                 <DropDownSelect
-                    name='language'
+                    name={`l.${index}.language`}
                     options={mockLenguage}
-                    multi={true}
+                    multi={false}
                     placeholder='language'
                     halfWidth
+                    value={value.languages[index].language}
+                    onChange={value => select(`languages.${index}.language`, value)}
                 />
                 <DropDownSelect
-                    name='level'
+                    name={`experience.${index}.level`}
                     options={mockLevels}
-                    multi={true}
+                    multi={false}
                     placeholder='level'
                     halfWidth
+                    value={value.languages[index].level}
+                    onChange={value => select(`languages.${index}.level`, value)}
                 />
             </div>
         </div>

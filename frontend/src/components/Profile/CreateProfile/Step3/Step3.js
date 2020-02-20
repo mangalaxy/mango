@@ -2,9 +2,35 @@ import React, {Fragment} from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 import TextInput from "../../../inputs/TextInput/TextInput";
 import {name, email, phone, location, blog, website, portfolio, linkedIn} from "../../../../assets/icons";
+import {useFormik} from 'formik';
 
 function Step3(props) {
-    const {hidden, prev, next} = props;
+    const {hidden, prev, next, onSubmitStep} = props;
+
+    const formik = useFormik({
+        initialValues: {
+            talent: {
+                fullName: '',
+                email: '',
+                location: '',
+            },
+            phone: '',
+            links: {
+                portfolio: '',
+                blog: '',
+                website: '',
+                linkedIn: '',
+            }
+        },
+        onSubmit: values => {
+            onSubmitStep(values);
+        },
+    });
+
+    const clickButton = () => {
+        formik.handleSubmit()
+        next();
+    }
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__container'>
@@ -12,19 +38,23 @@ function Step3(props) {
                     <h2 className='profile-form__title'>contacts</h2>
                     <TextInput
                         label=''
-                        name='fullName'
+                        name='talent.fullName'
                         type='text'
                         placeholder='Full name'
                         withIcon
                         icon={name()}
+                        onChange={formik.handleChange}
+                        value={formik.values.talent.fullName}
                     />
                     <TextInput
                         label=''
-                        name='email'
+                        name='talent.email'
                         type='text'
                         placeholder='E-mail'
                         withIcon
                         icon={email()}
+                        onChange={formik.handleChange}
+                        value={formik.values.talent.email}
                     />
                     <TextInput
                         label=''
@@ -33,49 +63,61 @@ function Step3(props) {
                         placeholder='Phone number'
                         withIcon
                         icon={phone()}
+                        onChange={formik.handleChange}
+                        value={formik.values.phone}
                     />
                     <TextInput
                         label=''
-                        name='location'
+                        name='talent.location'
                         type='text'
                         placeholder='Location'
                         withIcon
                         icon={location()}
+                        onChange={formik.handleChange}
+                        value={formik.values.talent.location}
                     />
                 </div>
                 <div className='profile-form__column-right'>
                     <h2 className='profile-form__title'>links</h2>
                     <TextInput
                         label=''
-                        name='blog'
+                        name='links.blog'
                         type='text'
                         placeholder='Blog'
                         withIcon
                         icon={blog()}
+                        onChange={formik.handleChange}
+                        value={formik.values.links.blog}
                     />
                     <TextInput
                         label=''
-                        name='website'
+                        name='links.website'
                         type='text'
                         placeholder='Personal website'
                         withIcon
                         icon={website()}
+                        onChange={formik.handleChange}
+                        value={formik.values.links.website}
                     />
                     <TextInput
                         label=''
-                        name='portfolio'
+                        name='links.portfolio'
                         type='text'
                         placeholder='Portfolio'
                         withIcon
                         icon={portfolio()}
+                        onChange={formik.handleChange}
+                        value={formik.values.links.portfolio}
                     />
                     <TextInput
                         label=''
-                        name='linkedIn'
+                        name='links.linkedIn'
                         type='text'
                         placeholder='LinkedIn'
                         withIcon
                         icon={linkedIn()}
+                        onChange={formik.handleChange}
+                        value={formik.values.links.linkedIn}
                     />
                 </div>
                 <div className='buttons-container'>
@@ -87,7 +129,7 @@ function Step3(props) {
                     <FormButton
                         text='Next'
                         className='form-button--red'
-                        onClick={next}
+                        onClick={clickButton}
                     />
                 </div>
             </div>
