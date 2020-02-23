@@ -8,6 +8,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: $FONT_COMMON;
 
   &-header {
     position: relative;
@@ -26,7 +27,6 @@
   &-container {
     position: relative;
     margin-top: 40px;
-    font-family: Montserrat, 'sans-serif';
   }
 
   &-form {
@@ -63,7 +63,7 @@
       border-radius: 15px;
       font-size: 18px;
       text-align: center;
-      color: #BDBDBD;
+      color: $COLOR_LABEL_GRAY;
       cursor: pointer;
 
       &--margin-top {
@@ -114,7 +114,7 @@
     &__description {
       padding: 0 20px;
       margin-top: 20px;
-      color: #828282;
+      color: $COLOR_PRIMERY_GREY;
       font-size: 12px;
       font-weight: 300;
     }
