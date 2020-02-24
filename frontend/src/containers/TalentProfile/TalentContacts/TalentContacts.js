@@ -5,7 +5,7 @@ import {email} from "../../../assets/icons";
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 
 function TalentContacts(props) {
-    const {user, edit} = props;
+    const {user, edit, onСhange} = props;
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
@@ -17,11 +17,14 @@ function TalentContacts(props) {
                 {
                     edit ?
                         <TextInput
+                            name='talent.email'
                             type='email'
-                            defaultValue={user.email}
+                            defaultValue={user.talent.email}
+                            onChange={onСhange}
+                            value={user.talent.email}
                         />
                         :
-                        <div className='section-row__value'>{user.email}</div>
+                        <div className='section-row__value'>{user.talent.email}</div>
                 }
 
             </div>
@@ -30,8 +33,11 @@ function TalentContacts(props) {
                 {
                     edit ?
                         <TextInput
+                            name='phone'
                             type='text'
                             defaultValue={user.phone}
+                            onChange={onСhange}
+                            value={user.phone}
                         />
                         :
                         <div className='section-row__value'>{user.phone}</div>

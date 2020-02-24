@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
-    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, onChange} = props;
+    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, onChange, selected} = props;
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
         if (onChange) {
@@ -20,7 +20,7 @@ function Calendar(props) {
             <div className='calendar__wrapper'>
                 <DatePicker
                     name={name}
-                    selected={startDate}
+                    selected={selected || startDate}
                     onChange={handleChange}
                     dateFormat="MMM yyyy"
                     showMonthYearPicker

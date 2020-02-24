@@ -1,6 +1,5 @@
-import React, {useState, Fragment} from 'react';
+import React from 'react';
 import './SimpleSelect.scss';
-import {Field} from 'redux-form';
 import Select from "react-dropdown-select";
 
 function SimpleSelect(props) {
@@ -24,6 +23,7 @@ function SimpleSelect(props) {
                 dropdownHandle={false}
                 keepOpen={true}
                 dropdownPosition="auto"
+                values={values}
             />
         </div>
     )

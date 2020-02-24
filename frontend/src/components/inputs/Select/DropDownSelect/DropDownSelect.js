@@ -22,6 +22,7 @@ function DropDownSelect(props) {
                 placeholder={placeholder}
                 searchable={searchable}
                 name={name}
+                values={values}
             />
         </div>
     )

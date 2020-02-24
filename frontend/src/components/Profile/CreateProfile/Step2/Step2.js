@@ -76,7 +76,7 @@ function Step2(props) {
                     <TextInput
                         label='What are your base salary expectations?'
                         name='salary'
-                        type='text'
+                        type='number'
                         onChange={formik.handleChange}
                         value={formik.values.salary}
                     />

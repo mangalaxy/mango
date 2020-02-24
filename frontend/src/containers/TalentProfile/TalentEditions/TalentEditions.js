@@ -5,7 +5,7 @@ import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 import TextArea from '../../../components/inputs/TextArea/TextArea';
 
 function TalentEditions(props) {
-    const {user, isEdit} = props;
+    const {user, isEdit, onСhange} = props;
     const {headline, objectives} = user;
 
     return (
@@ -19,9 +19,13 @@ function TalentEditions(props) {
                 {
                     isEdit ?
                         <TextArea
+                            name='headline'
                             type='text'
                             height={80}
                             placeholder='Owner of UX product'
+                            onChange={onСhange}
+                            value={headline}
+                            defaultValue={headline}
                         />
                         :
                         <div className='section-row__value'>{headline}</div>
@@ -33,9 +37,13 @@ function TalentEditions(props) {
                 {
                     isEdit ?
                         <TextArea
+                            name='objectives'
                             type='text'
                             height={80}
                             placeholder='Shiping 15+ successful app'
+                            onChange={onСhange}
+                            value={objectives}
+                            defaultValue={objectives}
                         />
                         :
                         <div className='section-row__value'>{objectives}</div>
