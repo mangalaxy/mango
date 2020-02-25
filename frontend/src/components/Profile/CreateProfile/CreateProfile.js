@@ -9,8 +9,11 @@ import Step5 from "./Step5/Step5";
 
 function CreateProfile(props) {
     const [activeStep, setActiveStep] = useState(1);
-    const [pfofile, changeProfile] = useState({});
+    const [profile, changeProfile] = useState({});
 
+    const submitForm = () => {
+        console.log(profile);
+    }
     return (
             <div className='profile'>
                 <div className='profile--filter'>
@@ -59,29 +62,29 @@ function CreateProfile(props) {
                             <Step1
                                 hidden={activeStep !== 1}
                                 next={() => setActiveStep(2)}
-                                onSubmitStep={value => changeProfile(Object.assign(pfofile, value))}
+                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
                             />
                             <Step2
                                 hidden={activeStep !== 2}
                                 next={() => setActiveStep(3)}
                                 prev={() => setActiveStep(1)}
-                                onSubmitStep={value => changeProfile(Object.assign(pfofile, value))}
+                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
                             />
                             <Step3
                                 hidden={activeStep !== 3}
                                 next={() => setActiveStep(4)}
                                 prev={() => setActiveStep(2)}
-                                onSubmitStep={value => changeProfile(Object.assign(pfofile, value))}
+                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
                             />
                             <Step4
                                 hidden={activeStep !== 4}
                                 next={() => setActiveStep(5)}
                                 prev={() => setActiveStep(3)}
-                                onSubmitStep={value => changeProfile(Object.assign(pfofile, value))}
+                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
                             />
                             <Step5
                                 hidden={activeStep !== 5}
-                                onSubmitStep={() => console.log(pfofile)}
+                                onSubmitStep={submitForm}
                             />
                         </div>
                     </div>

@@ -8,6 +8,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  font-family: $FONT_COMMON;
 
   &-header {
     position: relative;
@@ -26,7 +27,6 @@
   &-container {
     position: relative;
     margin-top: 40px;
-    font-family: Montserrat, 'sans-serif';
   }
 
   &-form {

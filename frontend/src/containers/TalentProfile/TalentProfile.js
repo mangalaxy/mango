@@ -119,7 +119,7 @@ function TalentProfile(props) {
                     <TalentEducation user={formik.values} edit={edit} onСhange={formik.handleChange} onSelect={formik.setFieldValue} />
                     <TalentSertificates user={formik.values} edit={edit} onСhange={formik.handleChange} onSelect={formik.setFieldValue} />
                     <TalentLanguages user={formik.values} edit={edit} onСhange={formik.handleChange} onSelect={formik.setFieldValue} />
-                    <TalentEditions user={formik.values} edit={edit} onСhange={formik.handleChange} onSelect={formik.setFieldValue} />
+                    <TalentEditions user={formik.values} isEdit={edit} onСhange={formik.handleChange} onSelect={formik.setFieldValue} />
                     {
                         edit &&
                         <div className='talent-form__buttons'>

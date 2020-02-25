@@ -11,7 +11,7 @@ function TalentExperience(props) {
         return (
             <WorkItem
                 work={item}
-                key={item.id}
+                key={index}
                 edit={edit}
                 inputChange={onСhange}
                 onSelect={onSelect}

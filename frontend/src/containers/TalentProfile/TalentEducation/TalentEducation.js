@@ -16,7 +16,7 @@ function TalentEducation(props) {
         return (
             <EducationItem
                 education={item}
-                key={item.id}
+                key={index}
                 edit={edit}
                 inputChange={onСhange}
                 onSelect={onSelect}

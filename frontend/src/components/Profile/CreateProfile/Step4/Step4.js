@@ -27,9 +27,9 @@ function Step4(props) {
         next();
     }
 
-    const experiences = Array.apply(null, {length: experienceCount}).map((item, index) => <Experience index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
-    const educations = Array.apply(null, {length: educationCount}).map((item, index) => <Education index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
-    const languages = Array.apply(null, {length: languagesCount}).map((item, index) => <Languages index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values}/>);
+    const experiences = Array.apply(null, {length: experienceCount}).map((item, index) => <Experience index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values} key={index}/>);
+    const educations = Array.apply(null, {length: educationCount}).map((item, index) => <Education index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values} key={index}/>);
+    const languages = Array.apply(null, {length: languagesCount}).map((item, index) => <Languages index={index} inputChage={formik.handleChange} select={formik.setFieldValue} value={formik.values} key={index}/>);
 
     return (
         <div className='profile-form__item' hidden={hidden}>

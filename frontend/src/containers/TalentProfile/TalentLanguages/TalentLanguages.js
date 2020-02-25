@@ -15,7 +15,7 @@ const mockOptions = [
 
 function TalentLanguages(props) {
     const {user, edit, onSelect} = props;
-    const languagesList = user.languages.map((item, index) => <LenguageItem user={user} key={index} language={item} edit={edit} key={item.id} onSelect={onSelect} index={index}/>)
+    const languagesList = user.languages.map((item, index) => <LenguageItem user={user} key={index} language={item} edit={edit} onSelect={onSelect} index={index}/>)
 
     const addNewLanguage = () => {
         const {languages} = user;
