@@ -1,36 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 import TextInput from "../../../inputs/TextInput/TextInput";
 import {name, email, phone, location, blog, website, portfolio, linkedIn} from "../../../../assets/icons";
-import {useFormik} from 'formik';
 
 function Step3(props) {
-    const {hidden, prev, next, onSubmitStep} = props;
+    const {hidden, prev, next, profile, inputChange, onSelect} = props;
 
-    const formik = useFormik({
-        initialValues: {
-            talent: {
-                fullName: '',
-                email: '',
-                location: '',
-            },
-            phone: '',
-            links: {
-                portfolio: '',
-                blog: '',
-                website: '',
-                linkedIn: '',
-            }
-        },
-        onSubmit: values => {
-            onSubmitStep(values);
-        },
-    });
-
-    const clickButton = () => {
-        formik.handleSubmit()
-        next();
-    }
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__container'>
@@ -43,8 +18,8 @@ function Step3(props) {
                         placeholder='Full name'
                         withIcon
                         icon={name()}
-                        onChange={formik.handleChange}
-                        value={formik.values.talent.fullName}
+                        onChange={inputChange}
+                        value={profile.talent.fullName}
                     />
                     <TextInput
                         label=''
@@ -53,8 +28,8 @@ function Step3(props) {
                         placeholder='E-mail'
                         withIcon
                         icon={email()}
-                        onChange={formik.handleChange}
-                        value={formik.values.talent.email}
+                        onChange={inputChange}
+                        value={profile.talent.email}
                     />
                     <TextInput
                         label=''
@@ -63,8 +38,8 @@ function Step3(props) {
                         placeholder='Phone number'
                         withIcon
                         icon={phone()}
-                        onChange={formik.handleChange}
-                        value={formik.values.phone}
+                        onChange={inputChange}
+                        value={profile.phone}
                     />
                     <TextInput
                         label=''
@@ -73,8 +48,8 @@ function Step3(props) {
                         placeholder='Location'
                         withIcon
                         icon={location()}
-                        onChange={formik.handleChange}
-                        value={formik.values.talent.location}
+                        onChange={inputChange}
+                        value={profile.talent.location}
                     />
                 </div>
                 <div className='profile-form__column-right'>
@@ -86,8 +61,8 @@ function Step3(props) {
                         placeholder='Blog'
                         withIcon
                         icon={blog()}
-                        onChange={formik.handleChange}
-                        value={formik.values.links.blog}
+                        onChange={inputChange}
+                        value={profile.links.blog}
                     />
                     <TextInput
                         label=''
@@ -96,8 +71,8 @@ function Step3(props) {
                         placeholder='Personal website'
                         withIcon
                         icon={website()}
-                        onChange={formik.handleChange}
-                        value={formik.values.links.website}
+                        onChange={inputChange}
+                        value={profile.links.website}
                     />
                     <TextInput
                         label=''
@@ -106,8 +81,8 @@ function Step3(props) {
                         placeholder='Portfolio'
                         withIcon
                         icon={portfolio()}
-                        onChange={formik.handleChange}
-                        value={formik.values.links.portfolio}
+                        onChange={inputChange}
+                        value={profile.links.portfolio}
                     />
                     <TextInput
                         label=''
@@ -116,8 +91,8 @@ function Step3(props) {
                         placeholder='LinkedIn'
                         withIcon
                         icon={linkedIn()}
-                        onChange={formik.handleChange}
-                        value={formik.values.links.linkedIn}
+                        onChange={inputChange}
+                        value={profile.links.linkedIn}
                     />
                 </div>
                 <div className='buttons-container'>
@@ -129,7 +104,7 @@ function Step3(props) {
                     <FormButton
                         text='Next'
                         className='form-button--red'
-                        onClick={clickButton}
+                        onClick={next}
                     />
                 </div>
             </div>

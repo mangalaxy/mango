@@ -3,7 +3,6 @@ import TextInput from "../../../inputs/TextInput/TextInput";
 import DropDownSelect from "../../../inputs/Select/DropDownSelect/DropDownSelect";
 import SimpleSelect from "../../../inputs/Select/SimpleSelect/SimpleSelect";
 import FormButton from "../../../Buttons/FormButton/FormButton";
-import {useFormik} from 'formik';
 
 const mockRoles = [
     {label: 'Role1', value: 'Role1'},
@@ -40,34 +39,11 @@ const mockTypes =  [
 ];
 
 function Step1(props) {
-    const {hidden, next, onSubmitStep} = props;
-
-    const formik = useFormik({
-        initialValues: {
-            jobTitle: '',
-            jobRoles: [],
-            jobSpecialities: [],
-            prefferedLocation: {
-                country: '',
-                city: ''
-            },
-            employmentType: ''
-
-        },
-        onSubmit: values => {
-            onSubmitStep(values);
-        },
-    });
-
-    const clickButton = () => {
-        formik.handleSubmit()
-        next();
-    }
+    const {hidden, next, profile, inputChange, onSelect} = props;
 
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__description'>All fields are required unless otherwise stated.</div>
-            <form onSubmit={formik.handleSubmit}>
                 <div className='profile-form__container'>
                     <div className='profile-form__column-left'>
                         <h2 className='profile-form__title'>position’s name</h2>
@@ -75,8 +51,8 @@ function Step1(props) {
                             label='Position'
                             name='jobTitle'
                             type='text'
-                            onChange={formik.handleChange}
-                            value={formik.values.jobTitle}
+                            onChange={inputChange}
+                            value={profile.jobTitle}
                         />
                         <DropDownSelect
                             label='Job Role'
@@ -85,8 +61,8 @@ function Step1(props) {
                             multi={true}
                             type='text'
                             placeholder='Role'
-                            onChange={value => formik.setFieldValue('jobRoles', value)}
-                            value={formik.values.jobRoles}
+                            onChange={value => onSelect('jobRoles', value)}
+                            value={profile.jobRoles}
                         />
                         <DropDownSelect
                             label='Select up to maximum 3 specialties'
@@ -94,8 +70,8 @@ function Step1(props) {
                             options={mockSpecialities}
                             multi={true}
                             placeholder='Specialties'
-                            onChange={value => formik.setFieldValue('jobSpecialities', value)}
-                            value={formik.values.jobSpecialities}
+                            onChange={value => onSelect('jobSpecialities', value)}
+                            value={profile.jobSpecialities}
                         />
                     </div>
                     <div className='profile-form__column-right'>
@@ -106,16 +82,16 @@ function Step1(props) {
                             options={mockCountries}
                             multi={false}
                             placeholder='Country'
-                            onChange={value => formik.setFieldValue('prefferedLocation.country', value)}
-                            value={formik.values.prefferedLocation.country}
+                            onChange={value => onSelect('prefferedLocation.country', value)}
+                            value={profile.prefferedLocation.country}
                         />
                         <DropDownSelect
                             name='prefferedLocation.city'
                             options={mockCities}
                             multi={false}
                             placeholder='City'
-                            onChange={value => formik.setFieldValue('prefferedLocation.city', value)}
-                            value={formik.values.prefferedLocation.city}
+                            onChange={value => onSelect('prefferedLocation.city', value)}
+                            value={profile.prefferedLocation.city}
                         />
                         <h2 className='profile-form__title'>type of employment</h2>
                         <SimpleSelect
@@ -123,20 +99,19 @@ function Step1(props) {
                             name='employmentType'
                             options={mockTypes}
                             multi={false}
-                            onChange={value => formik.setFieldValue('employmentType', value)}
-                            value={formik.values.employmentType}
+                            onChange={value => onSelect('employmentType', value)}
+                            value={profile.employmentType}
                         />
                     </div>
                     <div className='buttons-container'>
                         <FormButton
                             text='Next'
                             className='form-button--red'
-                            onClick={clickButton}
+                            onClick={next}
                             type='submit'
                         />
                     </div>
                  </div>
-            </form>
         </div>
     )
 }

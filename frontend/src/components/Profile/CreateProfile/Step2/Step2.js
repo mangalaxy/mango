@@ -1,9 +1,8 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import SimpleSelect from "../../../inputs/Select/SimpleSelect/SimpleSelect";
 import DropDownSelect from "../../../inputs/Select/DropDownSelect/DropDownSelect";
 import FormButton from "../../../Buttons/FormButton/FormButton";
 import TextInput from "../../../inputs/TextInput/TextInput";
-import {useFormik} from 'formik';
 
 const mockExpectations = [
     {label: 'Large project', value: 'Large project'},
@@ -27,28 +26,11 @@ const mockIndustries = [
 ];
 
 function Step2(props) {
-    const {hidden, next, prev, onSubmitStep} = props;
-    const formik = useFormik({
-        initialValues: {
-            typeOfCompany: '',
-            expectations: [],
-            salary: '',
-            industries: []
-
-        },
-        onSubmit: values => {
-            onSubmitStep(values);
-        },
-    });
-
-    const clickButton = () => {
-        formik.handleSubmit()
-        next();
-    }
+    const {hidden, next, prev, profile, inputChange, onSelect} = props;
 
     return (
         <div className='profile-form__item' hidden={hidden}>
-            <form className='profile-form__container'>
+            <div className='profile-form__container'>
                 <div className='profile-form__column-left'>
                     <h2 className='profile-form__title'>expectations</h2>
                     <SimpleSelect
@@ -58,8 +40,8 @@ function Step2(props) {
                         multi={false}
                         className='react-dropdown-select-dropdown--block'
                         directionTable={true}
-                        onChange={value => formik.setFieldValue('expectations', value)}
-                        value={formik.values.expectations}
+                        onChange={value => onSelect('expectations', value)}
+                        value={profile.expectations}
                     />
                     <h2 className='profile-form__title'>type of company</h2>
                     <SimpleSelect
@@ -67,8 +49,8 @@ function Step2(props) {
                         name='typeOfCompany'
                         options={mockCompaniTypes}
                         multi={false}
-                        onChange={value => formik.setFieldValue('typeOfCompany', value)}
-                        value={formik.values.typeOfCompany}
+                        onChange={value => onSelect('typeOfCompany', value)}
+                        value={profile.typeOfCompany}
                     />
                 </div>
                 <div className='profile-form__column-left'>
@@ -77,8 +59,8 @@ function Step2(props) {
                         label='What are your base salary expectations?'
                         name='salary'
                         type='number'
-                        onChange={formik.handleChange}
-                        value={formik.values.salary}
+                        onChange={inputChange}
+                        value={profile.salary}
                     />
                     <h2 className='profile-form__title'>Industry</h2>
                     <DropDownSelect
@@ -87,8 +69,8 @@ function Step2(props) {
                         options={mockIndustries}
                         multi={true}
                         placeholder='Industry'
-                        onChange={value => formik.setFieldValue('industries', value)}
-                        value={formik.values.industries}
+                        onChange={value => onSelect('industries', value)}
+                        value={profile.industries}
                     />
                 </div>
                 <div className='buttons-container'>
@@ -100,10 +82,10 @@ function Step2(props) {
                     <FormButton
                         text='Next'
                         className='form-button--red'
-                        onClick={clickButton}
+                        onClick={next}
                     />
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

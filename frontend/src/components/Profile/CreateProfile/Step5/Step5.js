@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 
 function Step5(props) {
-    const {hidden, onSubmitStep} = props;
+    const {hidden, onSubmit} = props;
     return (
         <div className='profile-form__item profile-form__item--last' hidden={hidden}>
             <div>
@@ -11,7 +11,7 @@ function Step5(props) {
                     text='Got it'
                     className='form-button--red'
                     type='submit'
-                    onClick={onSubmitStep}
+                    onClick={onSubmit}
                 />
             </div>
         </div>

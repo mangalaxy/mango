@@ -6,14 +6,47 @@ import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
 import Step4 from "./Step4/Step4";
 import Step5 from "./Step5/Step5";
+import {useFormik} from 'formik';
 
 function CreateProfile(props) {
     const [activeStep, setActiveStep] = useState(1);
-    const [profile, changeProfile] = useState({});
 
-    const submitForm = () => {
-        console.log(profile);
-    }
+    const formik = useFormik({
+        initialValues: {
+            jobTitle: '',
+            jobRoles: [],
+            jobSpecialities: [],
+            prefferedLocation: {
+                country: '',
+                city: ''
+            },
+            employmentType: '',
+            typeOfCompany: '',
+            expectations: [],
+            salary: '',
+            industries: [],
+            talent: {
+                fullName: '',
+                email: '',
+                location: '',
+            },
+            phone: '',
+            links: {
+                portfolio: '',
+                blog: '',
+                website: '',
+                linkedIn: '',
+            },
+            experience: [{}],
+            education: [{}],
+            languages: [{}]
+
+        },
+        onSubmit: values => {
+            console.log(values);
+        },
+    });
+
     return (
             <div className='profile'>
                 <div className='profile--filter'>
@@ -58,35 +91,43 @@ function CreateProfile(props) {
                                     5
                                 </li>
                             </ul>
-                        <div className='form-container'>
+                        <form className='form-container'>
                             <Step1
                                 hidden={activeStep !== 1}
                                 next={() => setActiveStep(2)}
-                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
                             />
                             <Step2
                                 hidden={activeStep !== 2}
                                 next={() => setActiveStep(3)}
                                 prev={() => setActiveStep(1)}
-                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
                             />
                             <Step3
                                 hidden={activeStep !== 3}
                                 next={() => setActiveStep(4)}
                                 prev={() => setActiveStep(2)}
-                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
                             />
                             <Step4
                                 hidden={activeStep !== 4}
                                 next={() => setActiveStep(5)}
                                 prev={() => setActiveStep(3)}
-                                onSubmitStep={value => changeProfile(Object.assign(profile, value))}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
                             />
                             <Step5
                                 hidden={activeStep !== 5}
-                                onSubmitStep={submitForm}
+                                onSubmit={formik.submitForm}
                             />
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
