@@ -3,24 +3,19 @@ import '../fieldStyles.scss';
 import {Dropdown} from 'primereact/dropdown';
 
 const FKDropdown = ({
-                          placeholder,
-                          containerClassName,
-                          options,
-                          field: {
-                            name,
-                            onBlur,
-                            value,
-                          },
-                          form: {
-                            errors,
-                            touched,
-                            setFieldValue,
-                          },
-                        }) => (
-    <div className={`${containerClassName} fkDropdown`}>
-        <span className="input-label">
-        <label htmlFor="in" className="dropdownLabel">{placeholder}</label>
-        </span>
+                      options,
+                      field: {
+                        name,
+                        onBlur,
+                        value,
+                      },
+                      form: {
+                        errors,
+                        touched,
+                        setFieldValue,
+                      },
+                    }) => (
+    <div className={`fieldDropdown`}>
       <Dropdown
           onChange={e => setFieldValue(name, e.value)}
           onBlur={onBlur(name)}

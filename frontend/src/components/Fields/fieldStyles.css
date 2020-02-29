@@ -64,6 +64,22 @@
   border-color: transparent !important;
   box-shadow: none !important; }
 
+.fieldDropdown .p-dropdown {
+  width: 100%; }
+
+.fieldDropdown:active, .fieldDropdown:focus {
+  border: none !important; }
+
+.fieldDropdown .p-focus {
+  box-shadow: none !important; }
+
+.fieldDropdown .p-dropdown-items-wrapper {
+  width: 100% !important;
+  margin-right: 0 !important; }
+
+.fieldDropdown .p-dropdown-items-wrapper ul {
+  width: 100% !important; }
+
 .errorLabel {
   font-size: 12px;
   font-family: "Montserrat", sans-serif;

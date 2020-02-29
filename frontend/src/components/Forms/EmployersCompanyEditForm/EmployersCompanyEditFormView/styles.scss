@@ -34,11 +34,11 @@
       width: 100%;
       .flex{
         display: flex;
-        :first-child{
+        .companySize{
           width: 40%;
           margin-right: 20px;
         }
-        :last-child{
+        .category{
           width: 60%;
         }
       }

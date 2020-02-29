@@ -49,7 +49,7 @@ const EmployersCompanyEditFormView = ({
               name='location'
           />
           <div className="flex">
-            <div>
+            <div className={'companySize'}>
               <label className='fieldLabel'>Company size</label>
               <Field
                   component={FKDropdown}
@@ -58,12 +58,13 @@ const EmployersCompanyEditFormView = ({
                   options={initialValues.employersRanges}
               />
             </div>
-            <div>
+            <div className={'category'}>
               <label className='fieldLabel'>Industry</label>
               <Field
                   component={FKDropdown}
                   disabled={isSubmitting}
                   name="category"
+                  options={initialValues.industries}
               />
             </div>
           </div>
