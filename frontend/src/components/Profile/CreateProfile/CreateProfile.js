@@ -91,7 +91,7 @@ function CreateProfile(props) {
                                     5
                                 </li>
                             </ul>
-                        <form className='form-container'>
+                        <form className='form-container' onSubmit={formik.submitForm}>
                             <Step1
                                 hidden={activeStep !== 1}
                                 next={() => setActiveStep(2)}

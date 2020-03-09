@@ -11,7 +11,7 @@ function Step5(props) {
                     text='Got it'
                     className='form-button--red'
                     type='submit'
-                    onClick={onSubmit}
+                    // onClick={onSubmit}
                 />
             </div>
         </div>
