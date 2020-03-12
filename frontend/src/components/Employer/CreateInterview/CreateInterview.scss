@@ -1,0 +1,84 @@
+@import '../../../styles/_variables.scss';
+
+.create-interview {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-family: Montserrat;
+
+  &__input {
+    margin-top: 0 !important;
+  }
+
+  &__select {
+    margin: 0 !important;
+  }
+
+  &__container {
+    width: 768px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    box-shadow: 4px 12px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  &__title {
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 28px;
+    color: $COLOR_GREEN;
+    text-transform: uppercase;
+  }
+
+  &__talent_name {
+    margin-top: 5px;
+    font-weight: 600;
+    font-size: 22px;
+    color: $COLOR_MENU_DARK;
+  }
+
+  &__form {
+    margin-top: 30px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &--margin-bottom {
+      margin-bottom: 10px;
+    }
+
+    &--margin-top {
+      margin-top: 10px;
+    }
+
+    &--textarea {
+      align-items: unset;
+    }
+  }
+
+  &__row-title {
+    width: 25%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 16px;
+    color: $primaryColor;
+
+    &--margin-top {
+      margin-top: 20px;
+    }
+  }
+
+  &__row-input {
+    width: 75%;
+  }
+
+  &__submit {
+    text-align: right;
+    margin: 50px 0 30px;
+  }
+}

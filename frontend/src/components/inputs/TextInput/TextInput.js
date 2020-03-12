@@ -1,5 +1,4 @@
 import React, {Fragment} from 'react';
-import {Field} from 'redux-form';
 import './TextInput.scss';
 import SvgIcon from '../../SvgIcon/SvgIcon'
 
