@@ -1,5 +1,6 @@
 package com.mangalaxy.mango;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  * @author Yuri Podolsky
  */
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class MangoApplicationTest {
