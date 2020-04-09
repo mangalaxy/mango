@@ -1,26 +1,47 @@
 import React, {useState} from 'react';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
-    const {name, label, type, input, placeholder, defaultValue, halfWidth, className} = props;
+    const {name, label, width, placeholder, time, halfWidth, className, onChange, selected} = props;
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
+        if (onChange) {
+            const res = moment(date).format().slice(0, 10);
+            onChange(res);
+        }
         setStartDate(date);
     };
     return (
-        <div className={`calendar ${halfWidth && 'calendar--half-width'}`}>
+        <div className={`calendar ${halfWidth && 'calendar--half-width'}`} style={{width: width + '%'}}>
             {label && <label className="control-label">{label}</label>}
-            <div className='calendar__wrapper'>
-                <DatePicker
-                    name={name}
-                    selected={startDate}
-                    onChange={handleChange}
-                    dateFormat="MMM yyyy"
-                    showMonthYearPicker
-                    placeholderText={placeholder || ''}
-                />
+            <div className={`calendar__wrapper ${className}`}>
+                {
+                    time ?
+                        <DatePicker
+                            name={name}
+                            selected={selected || startDate}
+                            onChange={handleChange}
+                            placeholderText={placeholder || ''}
+                            showTimeSelect
+                            timeFormat="HH:mm"
+                            timeIntervals={60}
+                            timeCaption="time"
+                            dateFormat="MMMM d, yyyy h:mm aa"
+                        />
+                        :
+                        <DatePicker
+                            name={name}
+                            selected={selected || startDate}
+                            onChange={handleChange}
+                            dateFormat="MMM yyyy"
+                            showMonthYearPicker
+                            placeholderText={placeholder || ''}
+                        />
+                }
+
                 <Down />
             </div>
         </div>

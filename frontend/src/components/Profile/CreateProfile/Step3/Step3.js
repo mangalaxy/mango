@@ -1,10 +1,11 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 import TextInput from "../../../inputs/TextInput/TextInput";
 import {name, email, phone, location, blog, website, portfolio, linkedIn} from "../../../../assets/icons";
 
 function Step3(props) {
-    const {hidden, prev, next} = props;
+    const {hidden, prev, next, profile, inputChange, onSelect} = props;
+
     return (
         <div className='profile-form__item' hidden={hidden}>
             <div className='profile-form__container'>
@@ -12,19 +13,23 @@ function Step3(props) {
                     <h2 className='profile-form__title'>contacts</h2>
                     <TextInput
                         label=''
-                        name='fullName'
+                        name='talent.fullName'
                         type='text'
                         placeholder='Full name'
                         withIcon
                         icon={name()}
+                        onChange={inputChange}
+                        value={profile.talent.fullName}
                     />
                     <TextInput
                         label=''
-                        name='email'
+                        name='talent.email'
                         type='text'
                         placeholder='E-mail'
                         withIcon
                         icon={email()}
+                        onChange={inputChange}
+                        value={profile.talent.email}
                     />
                     <TextInput
                         label=''
@@ -33,49 +38,61 @@ function Step3(props) {
                         placeholder='Phone number'
                         withIcon
                         icon={phone()}
+                        onChange={inputChange}
+                        value={profile.phone}
                     />
                     <TextInput
                         label=''
-                        name='location'
+                        name='talent.location'
                         type='text'
                         placeholder='Location'
                         withIcon
                         icon={location()}
+                        onChange={inputChange}
+                        value={profile.talent.location}
                     />
                 </div>
                 <div className='profile-form__column-right'>
                     <h2 className='profile-form__title'>links</h2>
                     <TextInput
                         label=''
-                        name='blog'
+                        name='links.blog'
                         type='text'
                         placeholder='Blog'
                         withIcon
                         icon={blog()}
+                        onChange={inputChange}
+                        value={profile.links.blog}
                     />
                     <TextInput
                         label=''
-                        name='website'
+                        name='links.website'
                         type='text'
                         placeholder='Personal website'
                         withIcon
                         icon={website()}
+                        onChange={inputChange}
+                        value={profile.links.website}
                     />
                     <TextInput
                         label=''
-                        name='portfolio'
+                        name='links.portfolio'
                         type='text'
                         placeholder='Portfolio'
                         withIcon
                         icon={portfolio()}
+                        onChange={inputChange}
+                        value={profile.links.portfolio}
                     />
                     <TextInput
                         label=''
-                        name='linkedIn'
+                        name='links.linkedIn'
                         type='text'
                         placeholder='LinkedIn'
                         withIcon
                         icon={linkedIn()}
+                        onChange={inputChange}
+                        value={profile.links.linkedIn}
                     />
                 </div>
                 <div className='buttons-container'>

@@ -1,6 +1,7 @@
 package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.util.SmtpServerRule;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+@Ignore
 @SpringBootTest
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)

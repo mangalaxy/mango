@@ -9,7 +9,7 @@ package com.mangalaxy.mango.domain;
 public enum CandidateStatus {
   SEARCHING("I'm looking for a new job"),
   OFFERING("Open for new job offers"),
-  EMPLOYED("Currently I'm not available for offers");
+  EMPLOYED("Currently, I'm not available for offers");
 
   private String definition;
 

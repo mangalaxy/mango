@@ -5,14 +5,14 @@ import Languages from './Languages/Languages';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 
 function Step4(props) {
-    const {hidden, prev, next} = props;
+    const {hidden, prev, next, profile, inputChange, onSelect} = props;
     const [experienceCount, setExperienceCount] = useState(1);
     const [educationCount, setEducationCount] = useState(1);
     const [languagesCount, setLanguagesCount] = useState(1);
 
-    const experiences = Array.apply(null, {length: experienceCount}).map(item => <Experience/>);
-    const educations = Array.apply(null, {length: educationCount}).map(item => <Education/>);
-    const languages = Array.apply(null, {length: languagesCount}).map(item => <Languages/>);
+    const experiences = Array.apply(null, {length: experienceCount}).map((item, index) => <Experience index={index} inputChage={inputChange} select={onSelect} value={profile} key={index}/>);
+    const educations = Array.apply(null, {length: educationCount}).map((item, index) => <Education index={index} inputChage={inputChange} select={onSelect} value={profile} key={index}/>);
+    const languages = Array.apply(null, {length: languagesCount}).map((item, index) => <Languages index={index} inputChage={inputChange} select={onSelect} value={profile} key={index}/>);
 
     return (
         <div className='profile-form__item' hidden={hidden}>
@@ -22,7 +22,10 @@ function Step4(props) {
                         <h2 className='profile-form__title'>Experience</h2>
                         <div
                             className='profile-form__add-icon'
-                            onClick={() => setExperienceCount(experienceCount + 1)}
+                            onClick={() => {
+                                setExperienceCount(experienceCount + 1);
+                                onSelect('experience', profile.experience.concat([{}]))
+                            }}
                         >
                             +
                         </div>
@@ -34,7 +37,10 @@ function Step4(props) {
                         <h2 className='profile-form__title'>Education</h2>
                         <div
                             className='profile-form__add-icon'
-                            onClick={() => setEducationCount(educationCount + 1)}
+                            onClick={() => {
+                                setEducationCount(educationCount + 1);
+                                onSelect('education', profile.education.concat([{}]));
+                            }}
                         >+</div>
                     </div>
                     {educations}
@@ -42,7 +48,10 @@ function Step4(props) {
                         <h2 className='profile-form__title profile-form__title--margin-bottom-none'>Languages</h2>
                         <div
                             className='profile-form__add-icon profile-form__add-icon--margin-top'
-                            onClick={() => setLanguagesCount(languagesCount + 1)}
+                            onClick={() => {
+                                setLanguagesCount(languagesCount + 1);
+                                onSelect('languages', profile.languages.concat([{}]));
+                            }}
                         >+</div>
                     </div>
                     {languages}

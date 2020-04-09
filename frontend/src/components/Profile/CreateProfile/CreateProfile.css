@@ -26,6 +26,8 @@
     width: 700px;
     min-height: 400px;
     display: flex;
+    padding-bottom: 30px;
+    box-sizing: border-box;
     margin: 0 auto; }
     .profile-form__row {
       margin-bottom: 30px; }

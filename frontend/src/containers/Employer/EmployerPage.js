@@ -18,6 +18,8 @@ import InterviewDashboard
 import './EmployerPage.scss';
 import EmployersCompany from './Company/CompanyPage';
 import {connect} from 'react-redux';
+import CreateInterview
+    from '../../components/Employer/CreateInterview/CreateInterview';
 
 type Props = {
   user: {
@@ -42,6 +44,8 @@ class Employer extends Component<Props> {
               theme={this.getMenuTheme()}
               currentPage={this.props.history.location.pathname}
           />
+          <Route exact path={routes.SHEDULE_INTERVIEW}
+                 component={CreateInterview}/>
           <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
           <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
                  component={EmployersPositions}/>

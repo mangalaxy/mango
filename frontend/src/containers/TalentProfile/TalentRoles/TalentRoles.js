@@ -12,9 +12,7 @@ const mockOptions = [
 ];
 
 function TalentRoles(props) {
-    const {user, edit} = props;
-    const {experienceAndRoles} = user;
-    const {jobRole, specialization} = experienceAndRoles;
+    const {user, edit, onSelect} = props;
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
@@ -26,12 +24,13 @@ function TalentRoles(props) {
                 {
                     edit ?
                         <DropDownSelect
-                            name='role'
+                            name='jobRole'
                             options={mockOptions}
                             multi={false}
+                            onChange={value => onSelect('jobRole', value)}
                         />
                         :
-                        <div className='section-row__value'>{jobRole}</div>
+                        <div className='section-row__value'>{user.jobRole}</div>
 
                 }
 
@@ -41,12 +40,14 @@ function TalentRoles(props) {
                 {
                     edit ?
                         <SimpleSelect
+                            name='jobTitle'
                             options={mockOptions}
                             multi={true}
                             directionTable
+                            onChange={value => onSelect('jobTitle', value)}
                         />
                         :
-                        <div className='section-row__value'>{specialization}</div>
+                        <div className='section-row__value'>{user.jobTitle}</div>
                 }
             </div>
         </div>

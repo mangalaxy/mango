@@ -45,7 +45,9 @@
     color: #4f4f4f;
     border: none;
     z-index: 9999;
-    box-shadow: none; }
+    box-shadow: none;
+    min-width: 100%;
+    top: 35px; }
   .dropdown-select .react-dropdown-select-item {
     position: relative;
     padding: 10px 10px 5px 27px;
