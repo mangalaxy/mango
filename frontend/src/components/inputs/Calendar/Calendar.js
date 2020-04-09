@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
-    const {name, label, width, placeholder, time, halfWidth, className, onChange, selected} = props;
+    const {name, label, placeholder, halfWidth, onChange, selected} = props;
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
         if (onChange) {
@@ -15,33 +15,17 @@ function Calendar(props) {
         setStartDate(date);
     };
     return (
-        <div className={`calendar ${halfWidth && 'calendar--half-width'}`} style={{width: width + '%'}}>
+        <div className={`calendar ${halfWidth && 'calendar--half-width'}`}>
             {label && <label className="control-label">{label}</label>}
-            <div className={`calendar__wrapper ${className}`}>
-                {
-                    time ?
-                        <DatePicker
-                            name={name}
-                            selected={selected || startDate}
-                            onChange={handleChange}
-                            placeholderText={placeholder || ''}
-                            showTimeSelect
-                            timeFormat="HH:mm"
-                            timeIntervals={60}
-                            timeCaption="time"
-                            dateFormat="MMMM d, yyyy h:mm aa"
-                        />
-                        :
-                        <DatePicker
-                            name={name}
-                            selected={selected || startDate}
-                            onChange={handleChange}
-                            dateFormat="MMM yyyy"
-                            showMonthYearPicker
-                            placeholderText={placeholder || ''}
-                        />
-                }
-
+            <div className='calendar__wrapper'>
+                <DatePicker
+                    name={name}
+                    selected={selected || startDate}
+                    onChange={handleChange}
+                    dateFormat="MMM yyyy"
+                    showMonthYearPicker
+                    placeholderText={placeholder || ''}
+                />
                 <Down />
             </div>
         </div>
