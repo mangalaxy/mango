@@ -11,13 +11,15 @@ const mockOptions = [
     {label: 'Option1', value: 'Option1'},
     {label: 'Option2', value: 'Option2'},
     {label: 'Option3', value: 'Option3'},
+    {label: 'Open for new job offers', value: 'Open for new job offers'},
 ];
 
 function TalentHeader(props) {
-    const {user, edit} = props;
+    const {user, edit, onСhange, onSelect} = props;
     const [newAvatar, setUserPhoto] = useState(null);
     const [avatarEditor, toggleAvatarEditor] = useState(false);
     const setEditorRef = useRef();
+    const status = mockOptions.filter(option => user.status === option.value);
 
     const uploadPhoto = (e) => {
         const file = e.target.files[0];
@@ -33,8 +35,8 @@ function TalentHeader(props) {
                     !avatarEditor &&
                     <label htmlFor={edit ? 'avatar' : ''}>
                         <Avatar
-                            img={user.avatarUrl}
-                            alt={user.name}
+                            img={user.photoURL}
+                            alt={user.talent.fullName}
                             size={200}
                             edit={edit}
                         />
@@ -61,31 +63,37 @@ function TalentHeader(props) {
                     {
                         edit ?
                             <TextInput
+                                name='talent.fullName'
                                 withIcon
                                 type='text'
-                                defaultValue={user.name}
+                                onChange={onСhange}
+                                value={user.talent.fullName}
+                                defaultValue={user.talent.fullName}
                                 className='text-input__field--strong-text'
                             />
                             :
-                            <div className='talent-profile__headers'>{user.name}</div>
+                            <div className='talent-profile__headers'>{user.talent.fullName}</div>
                     }
 
                     <div className='section-row__description'>
                         <SvgIcon type={location(colors.COLOR_PRIMERY)}/>
-                        <div className='section-row__text'>Kyiv, Ukraine</div>
+                        <div className='section-row__text'>{user.talent.location.city}, {user.talent.location.country}</div>
                     </div>
                 </div>
                 <div className='section-row section-row--margin-bottom'>
                     {
                         edit ?
                             <TextInput
+                                name='jobTitle'
                                 withIcon
                                 type='text'
-                                defaultValue={user.speciality}
+                                onChange={onСhange}
+                                value={user.jobTitle}
+                                defaultValue={user.jobTitle}
                                 className='text-input__field--strong-text'
                             />
                             :
-                            <div className='talent-profile__headers'>{user.speciality}</div>
+                            <div className='talent-profile__headers'>{user.jobTitle}</div>
                     }
 
                 </div>
@@ -94,13 +102,15 @@ function TalentHeader(props) {
                     {
                         edit ?
                             <DropDownSelect
-                                name='role'
+                                name='status'
                                 options={mockOptions}
                                 multi={false}
                                 placeholder='Open to new opportunities'
+                                onChange={value => onSelect('status', value)}
+                                values={status}
                             />
                             :
-                            <div className='talent-profile__headers--light'>{user.jobStatus}</div>
+                            <div className='talent-profile__headers--light'>{user.status}</div>
                     }
 
                 </div>

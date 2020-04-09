@@ -1,7 +1,6 @@
-import React, {Fragment, useState} from 'react';
+import React, {useState} from 'react';
 import './CreateProfile.scss'
 import TalentMenu from "../../Talent/TalentMenu/TalentMenu";
-import {reduxForm} from 'redux-form';
 import Step1 from "./Step1/Step1";
 import Step2 from "./Step2/Step2";
 import Step3 from "./Step3/Step3";
@@ -14,35 +13,34 @@ function CreateProfile(props) {
 
     const formik = useFormik({
         initialValues: {
-            position: '',
-            roles: '',
-            specialties: '',
-            country: '',
-            city: '',
-            type: '',
-            expectations: '',
-            companyType: '',
+            jobTitle: '',
+            jobRoles: [],
+            jobSpecialities: [],
+            prefferedLocation: {
+                country: '',
+                city: ''
+            },
+            employmentType: '',
+            typeOfCompany: '',
+            expectations: [],
             salary: '',
-            industry: '',
-            fullName: '',
-            email: '',
+            industries: [],
+            talent: {
+                fullName: '',
+                email: '',
+                location: '',
+            },
             phone: '',
-            location: '',
-            blog: '',
-            website: '',
-            portfolio: '',
-            linkedIn: '',
-            institute: '',
-            specialization: '',
-            degree: '',
-            uducationStart: '',
-            uducationFinished: '',
-            company: '',
-            companyPosition: '',
-            startedWork: '',
-            description: '',
-            language: '',
-            level: '',
+            links: {
+                portfolio: '',
+                blog: '',
+                website: '',
+                linkedIn: '',
+            },
+            experience: [{}],
+            education: [{}],
+            languages: [{}]
+
         },
         onSubmit: values => {
             console.log(values);
@@ -50,7 +48,6 @@ function CreateProfile(props) {
     });
 
     return (
-        <Fragment>
             <div className='profile'>
                 <div className='profile--filter'>
                 </div>
@@ -94,30 +91,47 @@ function CreateProfile(props) {
                                     5
                                 </li>
                             </ul>
-                        <form className='form-container'>
-                            <Step1 hidden={activeStep !== 1}
-                                   next={() => setActiveStep(2)}/>
-                            <Step2 hidden={activeStep !== 2}
-                                   next={() => setActiveStep(3)}
-                                   prev={() => setActiveStep(1)}/>
-                            <Step3 hidden={activeStep !== 3}
-                                   next={() => setActiveStep(4)}
-                                   prev={() => setActiveStep(2)}/>
-                            <Step4 hidden={activeStep !== 4}
-                                   next={() => setActiveStep(5)}
-                                   prev={() => setActiveStep(3)}/>
-                            <Step5 hidden={activeStep !== 5}/>
+                        <form className='form-container' onSubmit={formik.submitForm}>
+                            <Step1
+                                hidden={activeStep !== 1}
+                                next={() => setActiveStep(2)}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
+                            />
+                            <Step2
+                                hidden={activeStep !== 2}
+                                next={() => setActiveStep(3)}
+                                prev={() => setActiveStep(1)}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
+                            />
+                            <Step3
+                                hidden={activeStep !== 3}
+                                next={() => setActiveStep(4)}
+                                prev={() => setActiveStep(2)}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
+                            />
+                            <Step4
+                                hidden={activeStep !== 4}
+                                next={() => setActiveStep(5)}
+                                prev={() => setActiveStep(3)}
+                                profile={formik.values}
+                                inputChange={formik.handleChange}
+                                onSelect={formik.setFieldValue}
+                            />
+                            <Step5
+                                hidden={activeStep !== 5}
+                                onSubmit={formik.submitForm}
+                            />
                         </form>
                     </div>
                 </div>
             </div>
-        </Fragment>
     )
 }
-
-CreateProfile = reduxForm ({
-    form: 'profile',
-}) (CreateProfile);
-
 
 export default CreateProfile;

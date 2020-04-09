@@ -65,6 +65,8 @@
       border: none;
       z-index: 9999;
       box-shadow: none;
+      min-width: 100%;
+      top: 35px;
     }
 
     &-item {

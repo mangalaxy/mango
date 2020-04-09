@@ -8,38 +8,45 @@ const mockOptions = [
     {label: 'Option1', value: 'Option1'},
     {label: 'Option2', value: 'Option2'},
     {label: 'Option3', value: 'Option3'},
+    {label: 'english', value: 'english'},
+    {label: 'intermediate', value: 'intermediate'},
 ];
 
 
 function TalentLanguages(props) {
-    const {user, edit} = props;
-    const {userLanguages} = user;
-    const [languagesCount, setLanguagesCount] = useState(0);
-    const languagesList = userLanguages.map(item => <LenguageItem language={item} edit={edit} key={item.id} />)
-    const addedLanguagesList = Array.apply(null, {length: languagesCount}).map((item,index) => <LenguageItem key={index} edit={edit} />);
+    const {user, edit, onSelect} = props;
+    const languagesList = user.languages.map((item, index) => <LenguageItem user={user} key={index} language={item} edit={edit} onSelect={onSelect} index={index}/>)
+
+    const addNewLanguage = () => {
+        const {languages} = user;
+        onSelect('languages', languages.concat([{}]));
+    }
 
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
                 <SvgIcon type={languages(colors.COLOR_PRIMERY)}/>
                 <div className='section-title__text'>Languages
-                    {edit && <span onClick={() => setLanguagesCount(languagesCount+1)} className='section-title__text--clicked'>+</span>}
+                    {edit && <span onClick={addNewLanguage} className='section-title__text--clicked'>+</span>}
                 </div>
             </div>
             <div className='section-row talent-languages'>
                 {languagesList}
-                {addedLanguagesList}
             </div>
         </div>
     )
 }
 
 const LenguageItem = (props) => {
-    const {language = {}, edit} = props;
-    const {name, level} = language;
+    const {user, edit, onSelect, index} = props;
+    const {name, level} = user.languages[index];
+
+    const nameValue = mockOptions.filter(option => user.languages[index].name === option.value);
+    const levelValue = mockOptions.filter(option => user.languages[index].level === option.value);
 
     const deleteLanguage = (e) => {
-        e.target.parentNode.remove();
+        const languageList = user.languages.filter((language, i) => i !== index);
+        onSelect(onSelect('languages', languageList));
     }
 
     return (
@@ -48,10 +55,12 @@ const LenguageItem = (props) => {
             {
                 edit ?
                     <DropDownSelect
-                        name='role'
+                        name={`languages.${index}.name`}
                         options={mockOptions}
                         multi={false}
                         halfWidth
+                        onChange={value => onSelect(`languages.${index}.name`, value)}
+                        values={nameValue}
                     />
                     :
                     <div className='section-row__title'>{name}</div>
@@ -59,10 +68,12 @@ const LenguageItem = (props) => {
             {
                 edit ?
                     <DropDownSelect
-                        name='role'
+                        name={`languages.${index}.level`}
                         options={mockOptions}
                         multi={false}
+                        onChange={value => onSelect(`languages.${index}.level`, value)}
                         halfWidth
+                        values={levelValue}
                     />
                     :
                     <div className='section-row__value'>{level}</div>

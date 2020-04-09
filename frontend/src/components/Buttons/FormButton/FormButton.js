@@ -5,8 +5,8 @@ function FormButton(props) {
     const {text, className, onClick, type} = props;
 
     const handleClick = (e) => {
+        e.preventDefault();
         if (onClick) {
-            e.preventDefault();
             onClick(e);
         }
     };
