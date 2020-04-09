@@ -4,6 +4,7 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.util.EmployerNotFoundExeption;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class EmployerRepositoryTest {

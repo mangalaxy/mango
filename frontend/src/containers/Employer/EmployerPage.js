@@ -13,9 +13,13 @@ import BookmarkedTalents
   from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
 import TalentFullProfile
   from '../../components/Employer/TalentFullProfile/TalentFullProfile';
+import InterviewDashboard
+    from '../../components/Employer/InterviewDashboard/InterviewDashboard';
 import './EmployerPage.scss';
 import EmployersCompany from './Company/CompanyPage';
 import {connect} from 'react-redux';
+import CreateInterview
+    from '../../components/Employer/CreateInterview/CreateInterview';
 
 type Props = {
   user: {
@@ -40,6 +44,8 @@ class Employer extends Component<Props> {
               theme={this.getMenuTheme()}
               currentPage={this.props.history.location.pathname}
           />
+          <Route exact path={routes.SHEDULE_INTERVIEW}
+                 component={CreateInterview}/>
           <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
           <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
                  component={EmployersPositions}/>
@@ -52,6 +58,8 @@ class Employer extends Component<Props> {
                  component={EmployersCompany}/>
           <Route path={`${routes.EMPLOYERS_COMPANY}/:mode`}
                  component={EmployersCompany}/>
+          <Route path={routes.INTERVIEW_DASHBOARD}
+                 component={InterviewDashboard}/>
         </div>
     );
   }

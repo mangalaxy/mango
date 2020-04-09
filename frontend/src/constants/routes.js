@@ -22,6 +22,8 @@ export const routes = {
   "MATCHED_TALENTS_ID": "/employers/matched-talents/:id",
   "BOOKMARKED_TALENTS": "/employers/bookmarked-talents",
   "TALENT_FULL_PROFILE": "/employers/talent-full-profile/:id",
+  "INTERVIEW_DASHBOARD": '/employers/interview-dashboard',
+  "SHEDULE_INTERVIEW": "/employers/shedule-interview",
 
   "TALENT_HOME": "/talent",
   "PROFILE_CREATE": "/profile-create",
