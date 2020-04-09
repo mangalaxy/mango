@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './Calendar.scss';
 
 function Calendar(props) {
-    const {name, label, type, input, placeholder, defaultValue, halfWidth, className, onChange, selected} = props;
+    const {name, label, placeholder, halfWidth, onChange, selected} = props;
     const [startDate, setStartDate] = useState('');
     const handleChange = (date) => {
         if (onChange) {
