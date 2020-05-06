@@ -44,18 +44,15 @@ class Home extends Component {
       autoplay: true,
       autoplaySpeed: 4000,
     };
-    
+
     return (
         <Fragment>
           <section className='bannerContainer' id={'home-banner'}>
             <div className='bannerContent'>
-              <h1>
-                Truly changing
+              <h1 className='bannerContent__title'>
+                Truly changing the World for the better
               </h1>
-              <h1>
-                the World for the better
-              </h1>
-              <h4>
+              <h4 className='bannerContent__description'>
                 Connecting outstanding people with the world’s
                 most innovative companies
               </h4>
@@ -66,25 +63,22 @@ class Home extends Component {
             </div>
           </section>
 
-          <section id='mission'>
-            <div className="container">
+          <section className='about-us'>
+            <div className='container about-us__content'>
               <div className="contentRow">
-                <h3>Why choose us</h3>
-                <GreenDash/>
+                <h3 className='contentRow__title'>Why choose us</h3>
                 <p>The ultimate platform that connects the best talents in IT
                   with topnotch companies in the industry and provides a smooth
                   way for the ideal candidate to join the best organization </p>
               </div>
               <div className="contentRow">
-                <h3>Our mission</h3>
-                <GreenDash/>
+                <h3 className='contentRow__title'>Our mission</h3>
                 <p>Making our platform the final place for prompt acquisition of
                   talents by companies according to talent’s tech stack and
                   experience, considering location and market expectations </p>
               </div>
               <div className="contentRow">
-                <h3>What we do</h3>
-                <GreenDash/>
+                <h3 className='contentRow__title'>What we do</h3>
                 <p>For companies: We find the best candidates for your open
                   positions and provide convenient tools from talents’
                   application to taking them onboard
@@ -96,13 +90,11 @@ class Home extends Component {
               </div>
             </div>
           </section>
-
           <section id='steps'>
             <div className="container">
               <h2 className='mainHeaderH2'>
                 Five easy steps
               </h2>
-              <GreenDash/>
               <RenderStepsDiagram/>
             </div>
           </section>
@@ -118,9 +110,8 @@ class Home extends Component {
             </div>
           </section>
 
-          <section id='jobRoles'>
+          <section className='container' id='jobRoles'>
             <h2 className="mainHeaderH2">Job roles</h2>
-            <GreenDash/>
             <div className="cardContainer">
               {jobCardData && jobCardData.map((job, index) => <JobCard key={index} job={job}/>)}
             </div>
@@ -128,19 +119,19 @@ class Home extends Component {
           </section>
 
           <section id='techCenters'>
-            <h2 className="mainHeaderH2">Tech centers</h2>
-            <GreenDash/>
+            <h2 className="container mainHeaderH2">Tech centers</h2>
             <div className="citiesCarouselContainer">
-              <Slider {...settings}>
+              <Slider {...settings} className='large-slider'>
                 {cities.map((city, index) => <CityCard key={index} city={city}/>)}
               </Slider>
-
+                <Slider {...settings} slidesToShow={2} slidesToScroll={2} className='small-slider'>
+                    {cities.map((city, index) => <CityCard key={index} city={city}/>)}
+                </Slider>
             </div>
           </section>
 
-          <section id='partners'>
+          <section className='container' id='partners'>
             <h2 className="mainHeaderH2">Our partners</h2>
-            <GreenDash/>
             <Partners/>
           </section>
 
@@ -183,26 +174,30 @@ const RenderStepsDiagram = () => {
   ];
 
   return (
-      <div className='stepsDiagram'>
+      <div className='steps-diagram'>
 
         {steps.map((step, index) => {
-          const right = !(index % 2);
+          const even = (index + 1)%2 === 0;
           return (
-              <Fragment key = {index}>
-                <div className='outerCircle'>
-                  <div className='innerCircle'>
-                    <span className="index">{index + 1}</span>
+              <div className='steps-diagram__item' key={index}>
+                  <div className={`steps-diagram__item-container ${even && 'steps-diagram__item-container--reverse'}`}>
+                      <div className={`steps-diagram__text-block ${even && 'steps-diagram__text-block--reverse'}`}>
+                          <div className='steps-diagram__cicle'>
+                              <div className='steps-diagram__inner-cicle'>
+                                  {index+1}
+                              </div>
+                          </div>
+                          <div className='steps-diagram__line'>
+                              <div className={`steps-diagram__step-header ${even && 'steps-diagram__step-header--reverse'}`}>{step.header}</div>
+                              <div className={`steps-diagram__step-description ${even && 'steps-diagram__step-description--reverse'}`}>{step.text}</div>
+                          </div>
+                          <div className='steps-diagram__small-cicle'></div>
+                      </div>
+                      <div className={`steps-diagram__img-block ${even && 'steps-diagram__img-block--reverse'}`}>
+                          <img className='steps-diagram__img' src={step.picture}/>
+                      </div>
                   </div>
-
-                  <div className={right ? 'horizonLine' : 'horizonLine left'}>
-                    <div className="lineEnd"/>
-                    <h3 className="stepHeader">{step.header}</h3>
-                    <p className={right ? 'stepText' : 'stepText left'}>{step.text}</p>
-                    <img src={step.picture} alt="" className='stepImg'/>
-                  </div>
-                </div>
-                {index !== steps.length - 1 && <div className="flowLine"/>}
-              </Fragment>
+              </div>
           );
         })}
       </div>

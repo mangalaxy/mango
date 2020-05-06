@@ -2,14 +2,12 @@
 
 .menuContainer {
   position: absolute;
-  top: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   height: $MAIN_MENU_HEIGHT;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0 20px;
   box-sizing: border-box;
   z-index: 100;
 
@@ -36,10 +34,11 @@
   }
 
   .menuItemsContainer {
+    position: relative;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-right: 10px;
   }
 
   .menuItem {
@@ -74,7 +73,6 @@
   .authBlock {
     padding: 5px 9px;
     margin: 0;
-    position: relative;
     cursor: pointer;
 
     &:hover,
@@ -150,6 +148,14 @@
 
     &.left {
       border-right: solid 1px $COLOR_MENU_LIGHT;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .menuContainer {
+    .menuItemsContainer {
+      display: none;
     }
   }
 }

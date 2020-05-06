@@ -21,6 +21,9 @@ import Login from '../../components/Auth/Login/Login';
 import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
 import SignUpEmployer from '../../components/Auth/SignUpEmployer/SignUpEmployer';
 import Post from '../Post/Post';
+import MobileMenu from '../../components/Main/MobileMenu/MobileMenu';
+import {connect} from "react-redux";
+import {closeMobileMenu} from "../../actions/mobileMenu";
 
 type Props = {
   history: Object,
@@ -28,15 +31,26 @@ type Props = {
 }
 
 class MainPage extends Component<Props> {
+    
   render(): Node {
+    const {closeMobileMenu, mobileMenuOpen} = this.props;
+
     return (
-        <Fragment>
+        <div className={`main ${mobileMenuOpen && 'main--mobile-open'}`}>
           <MainMenu
               path={this.props.location.pathname}
               openLoginForm={this.openLoginForm}
               openSignUpTalent={this.openSignUpTalent}
               openSignUpEmployer={this.openSignUpEmployer}
           />
+          {mobileMenuOpen &&
+                <MobileMenu
+                    path={this.props.location.pathname}
+                    openLoginForm={this.openLoginForm}
+                    openSignUpTalent={this.openSignUpTalent}
+                    openSignUpEmployer={this.openSignUpEmployer}
+                />
+          }
           <div id='dialog-container'/>
           <div className="mainPageContent">
             <Switch>
@@ -56,7 +70,7 @@ class MainPage extends Component<Props> {
             </Switch>
           </div>
           <Footer/>
-        </Fragment>
+        </div>
     );
   }
 
@@ -77,4 +91,14 @@ class MainPage extends Component<Props> {
   );
 }
 
-export default MainPage;
+const mapStateToProps = ({mobileMenuReducer}) => {
+    return {
+        mobileMenuOpen: mobileMenuReducer.mobileMenuOpen
+    }
+};
+
+const mapDispatchToProps = dispatch => ({
+    closeMobileMenu: () => dispatch(closeMobileMenu())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
