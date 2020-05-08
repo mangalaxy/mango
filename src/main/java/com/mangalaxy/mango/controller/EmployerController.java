@@ -76,7 +76,7 @@ public class EmployerController {
   @DeleteMapping("{id}")
   @ApiOperation(value = "Delete an employer")
   @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
-  public ResponseEntity<Void> deleteEnployer(
+  public ResponseEntity<Void> deleteEmployer(
       @ApiParam(value = "Employer Id from which employee object will delete from database table", required = true)
       @PathVariable Long id) {
     employerService.deleteEmployer(id);
