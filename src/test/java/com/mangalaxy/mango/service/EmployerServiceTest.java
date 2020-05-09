@@ -10,7 +10,6 @@ import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.TalentRepository;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -30,7 +29,6 @@ import java.util.Set;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-@Ignore
 @SpringBootTest
 @RunWith(SpringRunner.class)
 public class EmployerServiceTest {

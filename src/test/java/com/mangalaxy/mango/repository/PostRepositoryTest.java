@@ -4,7 +4,6 @@ import com.mangalaxy.mango.domain.entity.Post;
 import com.mangalaxy.mango.domain.entity.Topic;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,80 +16,118 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.Month;
+import java.util.List;
+import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInRelativeOrder;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
-@Ignore
 @Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class PostRepositoryTest {
 
   @Autowired
-  private TestEntityManager manager;
+  private TestEntityManager entityManager;
 
   @Autowired
   private PostRepository postRepository;
 
+  private Topic topic;
+  private Post post1;
+  private Post post2;
+
   @Before
   public void setUp() {
     // given
-    Topic topic = new Topic();
-    topic.setTitle("Career");
-    log.info("Persisted topic with id: {}", manager.persistAndGetId(topic));
+    topic = new Topic();
+    topic.setTitle("Interviewing");
 
-    Post post1 = Post.builder()
-          .title("10 Tips for the best talent interviewing")
-          .body("Ten tips for the best talent interviewing...")
+    post1 = Post.builder()
+          .title("Ready to Shuffle Up Your Tired Interview Process?")
+          .description("When the top brass comes in to your HQ for a board meeting")
+          .body("When the top brass comes in to your HQ for a board meeting...")
           .topic(topic)
-          .tag("negotation")
-          .tag("tips")
-          .tag("interviews")
+          .tag("interview")
+          .author("Rob Stevenson")
+          .countViews(0)
+          .countLikes(0)
           .build();
-    post1.setCreatedDate(LocalDateTime.parse("2019-07-29T02:50:19.787"));
+    post1.setCreatedDate(LocalDateTime.of(2019, Month.DECEMBER, 12, 12, 45));
 
-    Post post2 = Post.builder()
-          .title("Are Product Managers the New Software Engineers?")
-          .body("We starting our stories how PM...")
+    post2 = Post.builder()
+          .title("5 Interview Questions Hiring Managers Need to Ask Before Making An Offer")
+          .description("Job interviews can be time consuming fact-finding missions that don't" +
+                " always yield the best results. Sometimes you find out six months…")
+          .body("Job interviews can be time consuming fact-finding missions that don’t always yield the best results.")
           .topic(topic)
-          .tag("promotion")
+          .tag("hiring")
+          .tag("interview")
+          .author("Whitney Ricketts")
+          .countViews(0)
+          .countLikes(0)
           .build();
-    post2.setCreatedDate(LocalDateTime.parse("2019-07-29T02:50:20.787"));
+    post2.setCreatedDate(LocalDateTime.of(2020, Month.JANUARY, 8, 9, 12));
 
-    Set<Post> posts = new HashSet<>();
-    posts.add(post1);
-    posts.add(post2);
-    topic.setPosts(posts);
-
-    log.info("Persisted post with id: {}", manager.persistAndGetId(post1));
-    log.info("Persisted post with id: {}", manager.persistAndGetId(post2));
-    manager.flush();
+    // Perform bidirectional synchronization
+    topic.addPost(post1);
+    topic.addPost(post2);
+    entityManager.persistAndFlush(topic);
   }
 
   @Test
-  public void shouldFindPostByTopicName_thenSuccess() {
-    String expectedTitle = "Are Product Managers the New Software Engineers?";
-    String topicTitle = "Career";
+  public void shouldFindPostsByTopicName_thenSuccess() {
+    String expectedPostTitle1 = "Ready to Shuffle Up Your Tired Interview Process?";
+    String expectedPostTitle2 = "5 Interview Questions Hiring Managers Need to Ask Before Making An Offer";
+    String topicTitle = "Interviewing";
     Pageable pageable = PageRequest.of(0, 20);
     // when
-    Page<Post> page = postRepository.findAllByTopic_Title(topicTitle, pageable);
-    Post post = page.getContent().get(1);
+    Page<Post> postPage = postRepository.findAllByTopic_Title(topicTitle, pageable);
     // then
-    assertThat(page).isNotEmpty();
-    assertEquals(expectedTitle, post.getTitle());
+    List<Post> actual = postPage.getContent();
+    assertThat(actual, hasSize(2));
+    assertThat(actual, contains(equalTo(post1), equalTo(post2)));
+    assertEquals(expectedPostTitle1, actual.get(0).getTitle());
+    assertEquals(expectedPostTitle2, actual.get(1).getTitle());
+    assertEquals(topicTitle, actual.get(0).getTopic().getTitle());
+    assertEquals(topicTitle, actual.get(1).getTopic().getTitle());
   }
 
   @Test
-  public void shouldFindByTopicNameAndSortedByCreatedDate_thenSuccess() {
-    String expectedTitle = "Are Product Managers the New Software Engineers?";
-    String topicName = "Career";
+  public void shouldFindPostsByTopicNameAndSortedDescByCreatedDate_thenSuccess() {
+    String topicName = "Interviewing";
+    Sort createdDateDesc = Sort.by(Sort.Direction.DESC, "createdDate");
+    Pageable pageRequest = PageRequest.of(0, 20, createdDateDesc);
+    // when
+    Page<Post> postPage = postRepository.findAllByTopic_Title(topicName, pageRequest);
+    // then
+    List<Post> actual = postPage.getContent();
+    assertThat(actual, hasSize(2));
+    assertThat(actual, containsInRelativeOrder(equalTo(post2), equalTo(post1)));
+    assertEquals(topicName, actual.get(0).getTopic().getTitle());
+  }
 
-    Pageable pageRequest = PageRequest.of(0, 20, Sort.by(Sort.Direction.DESC, "createdDate"));
-    Page<Post> posts = postRepository.findAllByTopic_Title(topicName, pageRequest);
-    assertEquals(expectedTitle, posts.getContent().get(0).getTitle());
+  @Test
+  public void whenPostNotFoundReturnEmptyOptional_thenSuccess() {
+    String postTitle = "Where to Begin When Opening a New Role";
+    Optional<Post> actualPost = postRepository.findByTitle(postTitle);
+    assertEquals(Optional.empty(), actualPost);
+  }
+
+  @Test
+  public void shouldFindPostByTitle_thenSuccess() {
+    String postTitle = "Ready to Shuffle Up Your Tired Interview Process?";
+    Optional<Post> actualPost = postRepository.findByTitle(postTitle);
+    assertNotEquals(Optional.empty(), actualPost);
+    assertEquals(postTitle, actualPost.get().getTitle());
+    assertNotNull(actualPost.get().getId());
   }
 
 }

@@ -1,10 +1,10 @@
 package com.mangalaxy.mango.repository;
 
+import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.util.EmployerNotFoundExeption;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Ignore
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class EmployerRepositoryTest {
@@ -30,14 +29,23 @@ public class EmployerRepositoryTest {
   @Before
   public void setUp() {
     // given
+    Location berlin = new Location("Berlin", "Germany");
+    entityManager.persistAndFlush(berlin);
+
     Employer employer = new Employer();
     employer.setFullName("Anna Fisher");
     employer.setEmail("anna.fisher2019@gmail.com");
     employer.setPassword("123AKYGCV72rett");
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
-    employer.setLocation(new Location("Berlin", "Germany"));
+    employer.setLocation(berlin);
     employer.setCreatedDate(LocalDateTime.now());
+
+    Company company = new Company();
+    company.setName("Siemens");
+    company.getEmployers().add(employer);
+    company.setCreatedDate(LocalDateTime.now());
+    employer.setCompany(company);
     entityManager.persistAndFlush(employer);
   }
 
@@ -49,6 +57,6 @@ public class EmployerRepositoryTest {
     Employer employer = employerRepository.findByEmail(emailAddress)
           .orElseThrow(EmployerNotFoundExeption::new);
     // then
-    assertThat(employer.getEmail()).isEqualTo(emailAddress);
+   assertThat(employer.getEmail()).isEqualTo(emailAddress);
   }
 }

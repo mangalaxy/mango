@@ -11,9 +11,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 @TestConfiguration
 public class TestMailConfiguration {
 
-  @Bean("mailSender")
+  @Bean
   @Primary
-  public JavaMailSender createMailSender() {
+  public JavaMailSender mailSender() {
     return new JavaMailSenderImpl();
   }
 }
