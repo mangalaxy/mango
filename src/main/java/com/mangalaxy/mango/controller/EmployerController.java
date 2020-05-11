@@ -3,6 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -25,18 +26,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(value = "employers", produces = "application/json",
+      consumes = "application/json", protocols = "http, https")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/employers")
-@Api(value = "Employer Data API", description = "List of methods that manage employers")
 public class EmployerController {
 
   private final EmployerService employerService;
+  private final EmployerRelationshipService employerRelationshipService;
 
+  @ApiOperation(value = "View a list of employers")
   @GetMapping
-  @ApiOperation(value = "View a list of employers by parameters")
-  public ResponseEntity<Page<EmployerResponse>> findEmployersByParams(Pageable pageable) {
-    Page<EmployerResponse> response = employerService.getEmployersByParams(pageable);
+  public ResponseEntity<Page<EmployerResponse>> getAllEmployers(Pageable pageable) {
+    Page<EmployerResponse> response = employerService.fetchAllEmployers(pageable);
     return ResponseEntity.ok(response);
   }
 
@@ -46,7 +49,7 @@ public class EmployerController {
   public ResponseEntity<EmployerResponse> getEmployerById(
       @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
       @PathVariable Long id) {
-    EmployerResponse response = employerService.getEmployerById(id);
+    EmployerResponse response = employerService.fetchEmployerById(id);
     return ResponseEntity.ok(response);
   }
 
@@ -68,7 +71,7 @@ public class EmployerController {
       @PathVariable Long id,
       @ApiParam(value = "Update employer object", required = true)
       @RequestBody EmployerRequest employerRequest) {
-    EmployerResponse response = employerService.updateEmployer(employerRequest, id);
+    EmployerResponse response = employerService.updateEmployer(id, employerRequest);
     return ResponseEntity.ok(response);
   }
 
@@ -79,7 +82,7 @@ public class EmployerController {
   public ResponseEntity<Void> deleteEmployer(
       @ApiParam(value = "Employer Id from which employee object will delete from database table", required = true)
       @PathVariable Long id) {
-    employerService.deleteEmployer(id);
+    employerService.deleteEmployerById(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
@@ -96,7 +99,7 @@ public class EmployerController {
       @PathVariable Long talentId,
       @ApiParam(value = "Flag defined to set association or delete the relationship")
       @RequestParam(name = "set") boolean set) {
-    EmployerResponse response = employerService.matchTalentToEmployer(employerId, talentId, set);
+    EmployerResponse response = employerRelationshipService.matchTalentToEmployer(employerId, talentId, set);
     return ResponseEntity.ok(response);
   }
 
@@ -107,7 +110,7 @@ public class EmployerController {
       @PathVariable Long employerId,
       @PathVariable Long jobId,
       Pageable pageable) {
-    Page<TalentResponse> response = employerService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
+    Page<TalentResponse> response = employerRelationshipService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
     return ResponseEntity.ok(response);
   }
 }

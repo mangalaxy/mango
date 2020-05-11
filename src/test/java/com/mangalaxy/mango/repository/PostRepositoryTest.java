@@ -2,7 +2,6 @@ package com.mangalaxy.mango.repository;
 
 import com.mangalaxy.mango.domain.entity.Post;
 import com.mangalaxy.mango.domain.entity.Topic;
-import lombok.extern.slf4j.Slf4j;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,7 +28,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-@Slf4j
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class PostRepositoryTest {
@@ -40,14 +38,13 @@ public class PostRepositoryTest {
   @Autowired
   private PostRepository postRepository;
 
-  private Topic topic;
   private Post post1;
   private Post post2;
 
   @Before
   public void setUp() {
     // given
-    topic = new Topic();
+    Topic topic = new Topic();
     topic.setTitle("Interviewing");
 
     post1 = Post.builder()

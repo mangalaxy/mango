@@ -2,15 +2,9 @@ package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
-import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
-import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.EmployerRepository;
-import com.mangalaxy.mango.repository.LocationRepository;
-import com.mangalaxy.mango.repository.TalentRepository;
-import com.mangalaxy.mango.util.EmployerNotFoundExeption;
-import com.mangalaxy.mango.util.TalentNotFoundException;
+import com.mangalaxy.mango.util.EmployerNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -18,81 +12,53 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Set;
-
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class EmployerServiceImpl implements EmployerService {
 
   private final EmployerRepository employerRepository;
   private final ModelMapper modelMapper;
-  private final LocationRepository locationRepository;
-  private final TalentRepository talentRepository;
 
+  @Transactional(readOnly = true)
   @Override
-  public Page<EmployerResponse> getEmployersByParams(Pageable pageable) {
-    Page<Employer> employersByParams = employerRepository.findAll(pageable);
-    return employersByParams.map(employer -> modelMapper.map(employer, EmployerResponse.class));
+  public Page<EmployerResponse> fetchAllEmployers(Pageable pageable) {
+    Page<Employer> employerPage = employerRepository.findAll(pageable);
+    return employerPage.map(employer -> modelMapper.map(employer, EmployerResponse.class));
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public EmployerResponse getEmployerById(Long id) {
-    Employer employer = employerRepository.findById(id).orElseThrow(EmployerNotFoundExeption::new);
+  public EmployerResponse fetchEmployerById(Long id) {
+    Employer employer = findEmployer(id);
     return modelMapper.map(employer, EmployerResponse.class);
   }
 
+  @Transactional
   @Override
-  public EmployerResponse createNewEmployer(EmployerRequest employerRequest) {
-    Employer employer = modelMapper.map(employerRequest, Employer.class);
-    Employer savedEmployer = employerRepository.save(employer);
+  public EmployerResponse createNewEmployer(EmployerRequest employer) {
+    Employer employerEntity = modelMapper.map(employer, Employer.class);
+    Employer savedEmployer = employerRepository.save(employerEntity);
     return modelMapper.map(savedEmployer, EmployerResponse.class);
   }
 
+  @Transactional
   @Override
-  public EmployerResponse updateEmployer(EmployerRequest employerRequest, Long id) {
-    Employer employerFromDataBase = employerRepository.findById(id).orElseThrow(EmployerNotFoundExeption::new);
-    Employer employer = modelMapper.map(employerRequest, Employer.class);
-    employer.setId(employerFromDataBase.getId());
-    Employer updatedEmployer = employerRepository.save(employer);
+  public EmployerResponse updateEmployer(Long id, EmployerRequest employer) {
+    Employer foundEmployer = findEmployer(id);
+    modelMapper.map(employer, foundEmployer);
+    Employer updatedEmployer = employerRepository.save(foundEmployer);
     return modelMapper.map(updatedEmployer, EmployerResponse.class);
   }
 
+  @Transactional
   @Override
-  public void deleteEmployer(Long id) {
-    Employer employer = employerRepository.findById(id).orElseThrow(EmployerNotFoundExeption::new);
-    Location location = locationRepository.findById(employer.getLocation().getId()).orElse(null);
-    Set<Employer> employers = location.getEmployers();
-    employers.remove(employer);
-    location.setEmployers(employers);
-    locationRepository.save(location);
+  public void deleteEmployerById(Long id) {
+    Employer employer = findEmployer(id);
     employerRepository.delete(employer);
   }
 
-  @Override
-  public EmployerResponse matchTalentToEmployer(Long employerId, Long talentId, boolean set) {
-    Employer employer = employerRepository.findById(employerId).orElseThrow(EmployerNotFoundExeption::new);
-    Talent talent = talentRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
-    Set<Talent> talents = employer.getBookmarkedTalents();
-    Set<Employer> employers = talent.getPotentialEmployers();
-
-    if (set) {
-      talents.add(talent);
-    } else {
-      talents.remove(talent);
-      employers.remove(employer);
-    }
-
-    employer.setBookmarkedTalents(talents);
-    talent.setPotentialEmployers(employers);
-    talentRepository.save(talent);
-    Employer updatedEmployer = employerRepository.save(employer);
-    return modelMapper.map(updatedEmployer, EmployerResponse.class);
-  }
-
-  @Override
-  public Page<TalentResponse> getMatchedTalentsForEmployerJob(Long employerId, Long jobId, Pageable pageable) {
-    //Here will be method for get suitable talents for certain job
-    return null;
+  // Shortcut method to find employer
+  private Employer findEmployer(Long id) {
+    return employerRepository.findById(id).orElseThrow(EmployerNotFoundException::new);
   }
 }

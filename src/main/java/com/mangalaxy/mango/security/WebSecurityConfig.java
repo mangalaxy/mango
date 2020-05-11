@@ -52,40 +52,41 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) {
-    web.ignoring()
-        .antMatchers("/favicon.ico",
+    web.ignoring().antMatchers("/favicon.ico",
             "/**/*.png",
             "/**/*.gif",
             "/**/*.svg",
             "/**/*.jpg",
             "/**/*.html",
             "/**/*.css",
-            "/**/*.js");
+            "/**/*.js"
+    );
   }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
     http
-        .cors().and().csrf().disable()
-        .exceptionHandling()
-          .authenticationEntryPoint(unauthorizedHandler)
-        .and()
+          .csrf().disable()
+          .exceptionHandling()
+            .authenticationEntryPoint(unauthorizedHandler)
+          .and()
           .sessionManagement()
-          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authorizeRequests()
-          .antMatchers("/api/v1/auth/**").permitAll()
-        .anyRequest()
-        .authenticated()
-        .and()
-          .formLogin()
-          .loginPage("/")
-          .permitAll()
-        .and()
-          .logout()
-          .logoutUrl("/api/v1/logout")
-          .permitAll();
-
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+          .and()
+          .authorizeRequests()
+            .antMatchers("/api/v1/auth/**").permitAll()
+            .anyRequest()
+            .authenticated()
+          .and()
+            .formLogin()
+            .loginPage("/")
+            .permitAll()
+          .and()
+            .logout()
+            .logoutUrl("/api/v1/logout")
+            .permitAll();
+    // @formatter:on
     http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
   }

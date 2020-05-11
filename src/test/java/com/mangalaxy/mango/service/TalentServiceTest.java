@@ -110,11 +110,7 @@ public class TalentServiceTest {
   @Test
   public void createTalentTest() {
     Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
+    LocationRequest locationRequest = new LocationRequest((short) 1, "Madrid", "Spain");
     TalentRequest talentRequest = TalentRequest.builder()
         .id(1L)
         .password("123456")
@@ -129,11 +125,8 @@ public class TalentServiceTest {
   @Test
   public void updateTalentTest() throws ResourceNotFoundException {
     firstMockTalent.setEmail("new-mail@gmail.com");
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
+    LocationRequest locationRequest = new LocationRequest((short) 1, "Madrid", "Spain");
+
     TalentRequest talentRequest = TalentRequest.builder()
         .id(1L)
         .password("123456")

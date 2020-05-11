@@ -3,7 +3,7 @@ package com.mangalaxy.mango.repository;
 import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.util.EmployerNotFoundExeption;
+import com.mangalaxy.mango.util.EmployerNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -55,7 +55,7 @@ public class EmployerRepositoryTest {
     String emailAddress = "anna.fisher2019@gmail.com";
     // when
     Employer employer = employerRepository.findByEmail(emailAddress)
-          .orElseThrow(EmployerNotFoundExeption::new);
+          .orElseThrow(EmployerNotFoundException::new);
     // then
    assertThat(employer.getEmail()).isEqualTo(emailAddress);
   }

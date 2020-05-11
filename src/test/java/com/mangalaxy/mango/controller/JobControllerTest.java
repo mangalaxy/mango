@@ -85,18 +85,13 @@ public class JobControllerTest {
 
   @Test
   public void createNewJob() throws Exception {
-    String expectedTitle = "Java Developer";
 
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
+    LocationRequest locationRequest = new LocationRequest((short) 1, "Moskow", "Russia");
     JobRequest jobRequest = JobRequest.builder()
-        .title(expectedTitle)
-        .jobRole("role2")
-        .location(locationRequest)
-        .build();
+          .title("Java Developer")
+          .jobRole("role2")
+          .location(locationRequest)
+          .build();
 
     String jobJson = objectMapper.writeValueAsString(jobRequest);
 
@@ -104,7 +99,7 @@ public class JobControllerTest {
     String responseBody = result.getResponse().getContentAsString();
     JobDto response = objectMapper.readValue(responseBody, JobDto.class);
 
-    Assert.assertEquals(expectedTitle, response.getTitle());
+    Assert.assertEquals("Java Developer", response.getTitle());
   }
 
   @Test
