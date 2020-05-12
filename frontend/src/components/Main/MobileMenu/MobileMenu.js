@@ -86,7 +86,7 @@ function ModbileMenu(props) {
     )
 }
 
-const mapStateToProps = ({}) => {
+const mapStateToProps = () => {
     return {
 
     }

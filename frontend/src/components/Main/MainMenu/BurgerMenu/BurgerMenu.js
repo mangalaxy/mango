@@ -17,7 +17,7 @@ function BurgerMenu(props) {
     )
 }
 
-const mapStateToProps = ({}) => {
+const mapStateToProps = () => {
     return {
     }
 };
