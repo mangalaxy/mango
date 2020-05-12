@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/api/v1")
 @RequiredArgsConstructor
 public class AuthController {
+
   private final CustomUserDetailsService customUserDetailsService;
 
   @PostMapping("/auth/login")
