@@ -7,8 +7,10 @@ export default class Footer extends PureComponent {
   render(){
     return (
         <div className='footer'>
-          <Link to={routes.HOME} className='logo'>Mango</Link>
-          <div>
+          <div className='footer__top-section'>
+            <div className='logo-container'>
+                <Link to={routes.HOME} className='logo'>Mango</Link>
+            </div>
             <ul className='menuItemsContainer'>
               <li>
                 <NavLink to={routes.FOR_TALENTS}
@@ -39,30 +41,29 @@ export default class Footer extends PureComponent {
                 </NavLink>
               </li>
             </ul>
-
+          </div>
             <ul className='itemsGroup'>
-              <li>
-                <Link to={routes.ABOUT} className='menuItem'>
-                  About us
-                </Link>
-              </li>
-              <li>
-                <Link to={routes.SUPPORT_CENTER} className='menuItem'>
-                  Support
-                </Link></li>
-              <li>
-                <Link to={routes.PRIVACY_POLICY} className='menuItem'>
-                  Privacy
-                </Link>
-              </li>
-              <li>
-                <Link to={routes.TERMS_OF_USE} className='menuItem'>
-                  Terms
-                </Link>
-              </li>
+                <li>
+                    <Link to={routes.ABOUT} className='menuItem'>
+                        About us
+                    </Link>
+                </li>
+                <li>
+                    <Link to={routes.SUPPORT_CENTER} className='menuItem'>
+                        Support
+                    </Link></li>
+                <li>
+                    <Link to={routes.PRIVACY_POLICY} className='menuItem'>
+                        Privacy
+                    </Link>
+                </li>
+                <li>
+                    <Link to={routes.TERMS_OF_USE} className='menuItem'>
+                        Terms
+                    </Link>
+                </li>
             </ul>
             <p className='copyright'>Mango &copy; 2019 All rights reserved</p>
-          </div>
         </div>
     );
   }

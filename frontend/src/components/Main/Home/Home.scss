@@ -13,25 +13,34 @@
   }
 }
 
-#mission {
+.about-us {
+  width: 100%;
   background-color: #fafafa;
+  padding-top: 30px;
 
-  .container {
-    margin: 0 20%;
+  &__content {
     display: flex;
-    flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
+  }
 
     .contentRow {
       width: 30%;
 
-      h3 {
+      &__title {
         font-family: $FONT_COMMON;
         font-weight: 600;
         text-align: center;
         font-size: 28px;
-        margin-top: 1em;
+
+        &::after {
+          content: '';
+          display: block;
+          margin: 10px auto;
+          width: 100px;
+          height: 2px;
+          background-color: $COLOR_GREEN;
+        }
       }
 
       p {
@@ -45,21 +54,18 @@
 
 
     }
-  }
 }
 
 #steps {
-  .container {
-    margin-top: 100px;
-  }
+  margin-top: 50px;
 }
 
 #section4 {
-  background-color: $COLOR_BG_LIGHT;
   display: flex;
 
   .image {
     width: 50%;
+    height: 200px;
     background-image: url("../../../assets/images/MainPage/section_4_bg.png");
     background-position: center;
     background-size: cover;
@@ -68,7 +74,10 @@
 
   .content {
     width: 50%;
-    padding: 3em 2em;
+    height: 200px;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    background-color: $COLOR_BG_LIGHT;
 
     p {
       font-size: 20px;
@@ -79,23 +88,24 @@
 }
 
 #jobRoles {
-  padding: 3em;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 
   .cardContainer {
-    padding: 3em;
+    margin: 20px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
   }
 }
 
 #techCenters {
+  padding-top: 20px;
+  margin-top: 30px;
   background-color: $COLOR_BG_LIGHT;
-  padding: 40px;
 
   .citiesCarouselContainer {
     width: 904px;
@@ -104,7 +114,6 @@
 }
 
 #partners {
-  padding: 3em;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,7 +127,7 @@
 
   img {
     width: 120px;
-    margin: 20px 30px;
+    margin: 10px;
     filter: grayscale(1);
     opacity: .8;
     transition: all 400ms;
@@ -129,6 +138,7 @@
     }
   }
 }
+
 .greenDash {
   margin-top: 1em;
   width: 100%;
@@ -137,133 +147,144 @@
   align-items: center;
 }
 
-.stepsDiagram {
-  margin: 50px auto;
-  max-width: 1260px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+.steps-diagram {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 40px 0;
 
-  .flowLine {
-    width: 0;
-    height: 54px;
-    border-right: $COLOR_GREEN dotted 4px;
+  &__item {
+    display: flex;
+
+    &:nth-child(odd) {
+      justify-content: flex-end;
+    }
+
+    &:last-child {
+      .steps-diagram__cicle {
+        &:after {
+          display: none;
+        }
+      }
+    }
   }
 
-  .outerCircle {
-    background-color: white;
-    height: 76px;
-    width: 76px;
-    box-sizing: border-box;
-    border: solid 2px $COLOR_GREEN;
-    border-radius: 50%;
+  &__item-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+    margin-top: -15px;
+
+    &--reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &__text-block {
+    display: flex;
+    align-items: center;
+    position: relative;
+    left: -33px;
+
+    &--reverse {
+      flex-direction: row-reverse;
+      left: 33px;
+    }
+  }
+
+  &__cicle {
     position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    width: 66px;
+    height: 66px;
+    border: 2px solid $COLOR_GREEN;
+    box-sizing: border-box;
+    border-radius: 50%;
 
-    .innerCircle {
-      width: 54px;
-      height: 54px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $COLOR_GREEN;
-      border-radius: 50%;
-
-      .index {
-        font-size: 24px;
-        color: white;
-      }
-    }
-
-    .horizonLine {
-      height: 0;
-      width: 300px;
+    &::after {
+      content: '';
       position: absolute;
-      border: solid 1px $COLOR_GREEN;
-      right: 0;
-      transform: translateX(100%);
-
-      .lineEnd {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        border: $COLOR_GREEN 2px solid;
-        box-sizing: border-box;
-        position: absolute;
-        right: 0;
-        transform: translateX(100%) translateY(-50%);
-      }
-
-      .stepHeader {
-        position: absolute;
-        top: -8px;
-        right: 5px;
-        transform: translateY(-100%);
-        text-align: right;
-        width: 100%;
-        font-size: 32px;
-        font-weight: 300;
-      }
-
-      .stepText {
-        font-size: 14px;
-        line-height: 1.5em;
-        width: 80%;
-        position: absolute;
-        top: .5em;
-        right: 5px;
-        color: #828282;
-        text-align: right;
-      }
-
-      .stepImg {
-        position: absolute;
-        top: 0;
-        transform: translateY(-50%) translateX(100%);
-        right: -50px;
-        border-radius: 20px;
-      }
-
-      &.left {
-        left: 0;
-        transform: translateX(-100%);
-
-        .lineEnd {
-          left: 0;
-          transform: translateX(-100%) translateY(-50%);
-        }
-
-        .stepHeader {
-          text-align: left;
-          left: 5px;
-        }
-
-        .stepText {
-          left: 5px;
-          text-align: left;
-        }
-
-        .stepImg {
-          transform: translateY(-50%) translateX(-100%);
-          left: -50px;
-        }
-      }
+      bottom: -42px;
+      left: 30px;
+      box-sizing: border-box;
+      height: 40px;
+      border-left: 4px dotted $COLOR_GREEN;
     }
+  }
+
+  &__inner-cicle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background-color: $COLOR_GREEN;
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+
+  &__line {
+    position: relative;
+    width: 290px;
+    height: 2px;
+    background-color: $COLOR_GREEN;
+  }
+
+  &__step-header {
+    position: absolute;
+    top: -30px;
+    right: 10px;
+    font-size: 24px;
+    color: $primaryColor;
+
+    &--reverse {
+      right: 0;
+      left: 10px;
+    }
+  }
+
+  &__step-description {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: right;
+    font-size: 14px;
+
+    &--reverse {
+      right: 0;
+      left: 10px;
+      text-align: left;
+    }
+  }
+
+  &__small-cicle {
+    width: 12px;
+    height: 12px;
+    border: 2px solid $COLOR_GREEN;
+    border-radius: 50%;
+  }
+
+  &__img {
+    width: 160px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 20px;
+  }
+
+  &__img-block {
+
   }
 }
 
 .jobCardMain {
   min-height: 300px;
-  width: 310px;
+  width: 30%;
   border: 1px solid #DCE4E2;
   box-sizing: border-box;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
-  overflow: hidden;
-  margin: 0 32px;
 
   h3 {
     font-size: 24px;
@@ -320,5 +341,352 @@
     &:hover {
       filter: brightness(1.2);
     }
+  }
+}
+
+@media (max-width: 1199px) {
+  .steps-diagram {
+    &__line {
+      width: 210px;
+    }
+
+    &__img-block {
+      margin-right: 30px;
+
+      &--reverse {
+        margin-left: 30px;
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .stepsDiagram {
+    display: block;
+
+    .flowLine {
+      display: none;
+    }
+
+    .outerCircle {
+      margin-bottom: 80px;
+
+      .horizonLine {
+        &.left {
+          left: unset;
+          transform: translateX(100%);
+
+          .lineEnd {
+            left: unset;
+            transform: translateX(100%) translateY(-50%);
+          }
+
+          .stepHeader {
+            text-align: center;
+          }
+
+          .stepText {
+            text-align: center;
+            width: 100%;
+          }
+
+          .stepImg {
+            left: unset;
+            transform: translateY(-50%) translateX(100%);
+          }
+        }
+
+        .stepHeader {
+          text-align: center;
+        }
+
+        .stepText {
+          text-align: center;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .steps-diagram {
+
+    &__item{
+      justify-content: center;
+
+      &:nth-child(odd) {
+        justify-content: center;
+      }
+    }
+
+    &__item-container {
+      width: 80%;
+      margin-top: 10px;
+      justify-content: space-around;
+
+      &--reverse {
+        flex-direction: row;
+      }
+    }
+
+    &__text-block {
+      left: 0;
+      &--reverse {
+        flex-direction: row;
+        left: 0;
+      }
+    }
+
+    &__img-block {
+      margin: 0;
+    }
+
+    &__step-header {
+      right: 0;
+      left: 10px;
+    }
+
+    &__step-description {
+      right: 0;
+      left: 10px;
+      text-align: left;
+    }
+
+    &__cicle {
+
+      &::after {
+        height: 60px;
+        bottom: -64px;
+      }
+    }
+
+    &__line {
+      width: 300px;
+    }
+  }
+
+  .about-us {
+    .contentRow {
+      &__title {
+        font-size: 26px;
+      }
+    }
+  }
+
+  .jobCardMain {
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+  .large-slider {
+    display: none;
+  }
+
+  #techCenters {
+    .citiesCarouselContainer {
+      width: 600px;
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #home-banner {
+    .buttonsContainer {
+      margin-top: 30px;
+    }
+  }
+
+  .steps-diagram {
+
+    &__item {
+      margin-top: 30px;
+    }
+
+    &__img-block {
+      display: none;
+    }
+
+    &__cicle {
+
+      &::after {
+        height: 40px;
+        bottom: -43px;
+      }
+    }
+  }
+
+  .about-us {
+    &__content {
+      flex-wrap: wrap;
+    }
+
+    .contentRow {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+
+  #section4 {
+
+    .image {
+      height: 160px;
+    }
+
+    .content {
+      height: 160px;
+      padding: 20px;
+
+      p {
+        font-size: 14px;
+        line-height: 18px;
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  #jobRoles {
+    .cardContainer {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  .jobCardMain {
+    width: 50%;
+    padding: 20px 0;
+    margin-top: 10px;
+  }
+
+  .partnersContainer {
+    flex-wrap: wrap;
+  }
+
+  .cityContainer {
+    width: 200px;
+    height: 200px;
+    font-size: 14px;
+  }
+
+  #techCenters {
+    .citiesCarouselContainer {
+      width: 400px;
+      margin: 40px auto;
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  #home-banner {
+    .buttonsContainer {
+      flex-direction: column;
+
+      button {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .steps-diagram {
+    &__line {
+      width: 150px;
+    }
+
+    &__item {
+      justify-content: unset;
+      margin-top: 40px;
+
+      &:nth-child(odd) {
+        justify-content: unset;
+      }
+    }
+
+    &__item-container {
+      justify-content: unset;
+    }
+
+    &__step-header {
+      right: 10px;
+      top: -20px;
+      font-size: 18px;
+    }
+
+    &__step-description {
+      right: 10px;
+      text-align: left;
+      font-size: 12px;
+    }
+
+    &__cicle {
+
+      &::after {
+        height: 50px;
+        bottom: -54px;
+      }
+    }
+  }
+
+  .about-us {
+
+    .contentRow {
+      width: 100%;
+      margin-bottom: 10px;
+
+      &__title {
+        text-align: left;
+
+        &::after {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  #section4 {
+    flex-wrap: wrap;
+
+    .image {
+      width: 100%;
+    }
+
+    .content {
+      width: 100%;
+
+    }
+  }
+
+  .jobCardMain {
+    width: 100%;
+  }
+
+  .mainHeaderH2 {
+    text-align: left;
+
+    &::after {
+      margin-left: 0;
+    }
+  }
+
+  .cityContainer {
+    width: 150px;
+    height: 150px;
+  }
+
+  #techCenters {
+    .citiesCarouselContainer {
+      width: 300px;
+    }
+  }
+
+  .footer {
+    .itemsGroup {
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .small-slider {
+    display: none;
   }
 }

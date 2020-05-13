@@ -3,6 +3,7 @@ import type {Node} from 'react';
 import React, {PureComponent} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import Down from "../../Down/Down";
+import BurgerMenu from './BurgerMenu/BurgerMenu'
 
 import {routes} from '../../../constants/routes';
 import './MainMenu.scss';
@@ -93,6 +94,11 @@ export default class MainMenu extends PureComponent<Props, State> {
               </span>
               </div>
             </div>
+            <BurgerMenu
+                openLoginForm={openLoginForm}
+                openSignUpTalent={openSignUpTalent}
+                openSignUpEmployer={openSignUpEmployer}
+            />
           </div>
     );
   }

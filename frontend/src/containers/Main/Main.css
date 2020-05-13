@@ -6,3 +6,6 @@
     left: 0;
     height: 0;
     width: 100vw; }
+
+.main--mobile-open {
+  position: fixed; }

@@ -8,3 +8,9 @@
     width: 100vw;
   }
 }
+
+.main {
+  &--mobile-open {
+    position: fixed;
+  }
+}
