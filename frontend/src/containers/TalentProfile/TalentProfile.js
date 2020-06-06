@@ -15,7 +15,7 @@ import TalentRoles from './TalentRoles/TalentRoles';
 import TalentSkills from './TalentSkills/TalentSkills';
 import TalentExperience from './TalentExperience/TalentExperience';
 import TalentEducation from './TalentEducation/TalentEducation';
-import TalentSertificates from './TalentCertificates/TalentSertificates';
+import TalentSertificates from './TalentCertificates/TalentCertificates';
 import TalentLanguages from './TalentLanguages/TalentLanguages';
 import TalentEditions from './TalentEditions/TalentEditions'
 import {useFormik} from 'formik';
@@ -34,6 +34,7 @@ const mockProfile = {
   },
   photoURL: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
   jobRole: "Software Engineering",
+  specialization: "Backend Software Engineering",
   jobTitle: "Senior Python Developer",
   status: "Open for new job offers",
   phone: "+49 30 462988844",
@@ -58,7 +59,7 @@ const mockProfile = {
       description: 'Experienced in various technologies including .NET, JavaScript(front-end & back-end), Python, Java, SQL & NoSQL...',
     }
   ],
-  skills: ['Java', 'Spring Boot', 'Posgres'],
+  skills: ['Java', 'Spring Boot', 'Postgres'],
   certificates: 'Lorem ipsum of designing production-ready business solution for B2B segment',
   headline: 'Experienced in various technologies including .NET, JavaScript(front-end & back-end), Python, Java, SQL & NoSQL...',
   objectives: 'Experienced in various technologies including .NET, JavaScript(front-end & back-end), Python, Java, SQL & NoSQL...',

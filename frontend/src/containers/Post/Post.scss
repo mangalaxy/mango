@@ -1,8 +1,8 @@
 @import '../../styles/_variables.scss';
 
 .info {
-  padding-top: $MAIN_MENU_HEIGHT;
-  font-family: $FONT_COMMON;
+  padding-top: $main-menu-height;
+  font-family: $base-font-family;
 
   &__container {
     width: 1100px;
@@ -10,25 +10,25 @@
   }
 
   &__bread-crumbs {
-    color: #000000;
+    color: $primary-color;
     font-size: 14px;
   }
 
   &__title {
     margin-top: 30px;
-    color: $primaryColor;
+    color: $primary-color;
     font-weight: 600;
     font-size: 48px;
   }
 
   &__description {
     margin-top: 20px;
-    color: $COLOR_PRIMERY_GREY;
+    color: $COLOR_PRIMARY_GREY;
     font-size: 12px;
     text-transform: uppercase;
 
     .info-description-link {
-      color: $primaryColor;
+      color: $primary-color;
       font-weight: 600;
       text-decoration: underline;
       cursor: pointer;
@@ -66,7 +66,7 @@
   }
 
   &__text {
-    color: $COLOR_PRIMERY_GREY;
+    color: $COLOR_PRIMARY_GREY;
     font-size: 18px;
     line-height: 29px;
 
@@ -86,7 +86,7 @@
 
   &__list-description {
     margin-bottom: 20px;
-    color: rgba(0, 0, 0, 0.5);
+    color: $black-50-color;
     font-size: 22px;
     font-weight: 500;
   }
@@ -103,6 +103,7 @@
 
       .info-photo {
         height: 200px;
+
         &__img {
           width: 100%;
           height: inherit;
@@ -116,7 +117,7 @@
     margin-top: 20px;
     padding: 0 20px;
     font-size: 16px;
-    color: rgba(0, 0, 0, 0.7);
+    color: $black-70-color;
   }
 
   &__subtitle {
@@ -125,6 +126,6 @@
     font-weight: 500;
     font-size: 22px;
     line-height: 27px;
-    color: rgba(54, 179, 168, 0.9);
+    color: $teal-90-color;
   }
 }

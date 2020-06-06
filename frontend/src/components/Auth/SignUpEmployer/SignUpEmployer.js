@@ -9,7 +9,7 @@ const SignUpEmployer = ({handleSignIn}) => {
         <div className="signUpEmployerContainer">
           <div className='infoContainer'>
             <div className="content">
-              <img src={rocket} alt="Rocket image"/>
+              <img src={rocket} alt="Rocket"/>
               <h2>Sign Up</h2>
               <div>
               <span className='description'>Lorem ipsum dolor sit amet, consectetur adipisicing elit.

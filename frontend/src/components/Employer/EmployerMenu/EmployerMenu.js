@@ -1,18 +1,10 @@
-//@flow
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes';
+
 import './EmloyerMenu.scss';
 
-type Props = {
-  currentPage: string,
-};
-type State = {
-  dropdownVisible: boolean
-}
-
-const EmployerMenu = ({user, theme = null}) => {
-
+const EmployerMenu = ({ user, theme = null }) => {
   return (
       <div className={`employerMenuContainer ${theme === 'white' && 'white'}`}>
         <div>
@@ -56,7 +48,7 @@ const EmployerMenu = ({user, theme = null}) => {
                 'USER'}</span>
           </div>
           <div>
-            <span className='menuItem authBlock '>Sign out </span>
+            <span className='menuItem authBlock'>Sign out</span>
           </div>
         </div>
       </div>

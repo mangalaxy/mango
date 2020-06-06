@@ -13,7 +13,7 @@ const JobRoleCard = ((props: { role: any }) => (
             <h4>{props.role.name}</h4>
           </div>
           <div className="itemImage">
-            <img src={props.role.image}/>
+            <img src={props.role.image} alt="Job Role"/>
           </div>
         </div>
 ))

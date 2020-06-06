@@ -1,14 +1,12 @@
 @import '../../../styles/_variables.scss';
+@import "../../../styles/mixins.scss";
 
 .profile {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url("../../../assets/images/profile-background.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  font-family: $FONT_COMMON;
+  @include cover-background("../assets/images/profile-background.png");
+  font-family: $base-font-family;
 
   &-header {
     position: relative;
@@ -30,12 +28,12 @@
   }
 
   &-form {
+    display: flex;
     width: 700px;
     min-height: 400px;
-    display: flex;
+    margin: 0 auto;
     padding-bottom: 30px;
     box-sizing: border-box;
-    margin: 0 auto;
 
     &__row {
       margin-bottom: 30px;
@@ -65,7 +63,7 @@
       border-radius: 15px;
       font-size: 18px;
       text-align: center;
-      color: $COLOR_LABEL_GRAY;
+      color: $label-color;
       cursor: pointer;
 
       &--margin-top {
@@ -81,7 +79,7 @@
       font-weight: 600;
 
       &--margin-bottom-none {
-        margin-bottom: 0px;
+        margin-bottom: 0;
       }
     }
 
@@ -116,7 +114,7 @@
     &__description {
       padding: 0 20px;
       margin-top: 20px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       font-size: 12px;
       font-weight: 300;
     }
@@ -132,9 +130,9 @@
     &__item {
       width: 35px;
       height: 35px;
-      color: $COLOR_MENU_LIGHT;
+      color: $light-menu-color;
       font-size: 18px;
-      border: 1px solid $COLOR_MENU_LIGHT;
+      border: 1px solid $light-menu-color;
       border-radius: 40px;
       text-align: center;
       line-height: 35px;
@@ -143,23 +141,23 @@
       box-sizing: border-box;
 
       &--active {
-        color: #fff;
-        border: 2px solid #ffffff;
+        color: $background-color;
+        border: 2px solid $background-color;
       }
 
       &--checked {
         position: relative;
         border: none;
-        background-color: $secondaryColor;
+        background-color: $secondary-color;
         font-size: 22px;
-        color: $secondaryColor;
+        color: $secondary-color;
 
         &::before {
           content: '\2713';
           position: absolute;
           top: 0;
           left: 10px;
-          color: #fff;
+          color: $background-color;
         }
 
       }
@@ -171,7 +169,7 @@
         height: 40px;
         margin: 0 auto;
         box-sizing: border-box;
-        border-left: 2px dotted #ffffff;
+        border-left: 2px dotted $background-color;
       }
 
       &:last-child:after {
@@ -182,7 +180,7 @@
 
   .form-container {
     width: 650px;
-    background-color: #ffffff;
+    background-color: $background-color;
   }
 
   .buttons-container {

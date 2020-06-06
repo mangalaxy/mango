@@ -4,7 +4,7 @@ import {certificates} from "../../../assets/icons";
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 import TextArea from '../../../components/inputs/TextArea/TextArea';
 
-function TalentSertificates(props) {
+const TalentCertificates = props => {
     const {user, edit} = props;
     return (
         <div className='talent-form__section'>
@@ -28,4 +28,4 @@ function TalentSertificates(props) {
     )
 }
 
-export default TalentSertificates;
+export default TalentCertificates;

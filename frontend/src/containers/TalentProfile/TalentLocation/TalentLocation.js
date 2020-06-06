@@ -12,7 +12,7 @@ const mockOptions = [
 
 function TalentLocation(props) {
     const {user, edit} = props;
-    const {country, city} = user.location;
+    const {country, city} = user.talent.location;
 
     return (
         <div className='talent-form__section'>

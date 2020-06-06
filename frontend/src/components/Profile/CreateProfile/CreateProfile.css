@@ -1,14 +1,29 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
+/*
+@mixin cover-background ()
+Creates a full width background image on an element.
+
+-Parameters:
+--Required:
+$img-uri: URI of image you want to use as the background
+
+--Optional:
+$background-top:  Defaults to "center - sets the "top" value of the background position
+$background-left: Defaults to "center - sets the "left" value of the background position.
+$background-attachment: Defaults to "fixed" - allows you to specify background attachment.
+
+*/
 .profile {
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-image: url("../../../assets/images/profile-background.png");
-  background-position: center;
+  background: url("../assets/images/profile-background.png") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
-  font-family: "Montserrat", sans-serif; }
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
 
 .profile-header {
   position: relative;
@@ -27,12 +42,12 @@
   margin-top: 40px; }
 
 .profile-form {
+  display: flex;
   width: 700px;
   min-height: 400px;
-  display: flex;
+  margin: 0 auto;
   padding-bottom: 30px;
-  box-sizing: border-box;
-  margin: 0 auto; }
+  box-sizing: border-box; }
 
 .profile-form__row {
   margin-bottom: 30px; }
@@ -58,7 +73,7 @@
   border-radius: 15px;
   font-size: 18px;
   text-align: center;
-  color: #BDBDBD;
+  color: #bdbdbd;
   cursor: pointer; }
 
 .profile-form__add-icon--margin-top {
@@ -112,9 +127,9 @@
 .profile-menu__item {
   width: 35px;
   height: 35px;
-  color: #f2f2f2;
+  color: #f5f5f5;
   font-size: 18px;
-  border: 1px solid #f2f2f2;
+  border: 1px solid #f5f5f5;
   border-radius: 40px;
   text-align: center;
   line-height: 35px;
@@ -124,7 +139,7 @@
 
 .profile-menu__item--active {
   color: #fff;
-  border: 2px solid #ffffff; }
+  border: 2px solid #fff; }
 
 .profile-menu__item--checked {
   position: relative;
@@ -147,14 +162,14 @@
   height: 40px;
   margin: 0 auto;
   box-sizing: border-box;
-  border-left: 2px dotted #ffffff; }
+  border-left: 2px dotted #fff; }
 
 .profile-menu__item:last-child:after {
   content: none; }
 
 .profile .form-container {
   width: 650px;
-  background-color: #ffffff; }
+  background-color: #fff; }
 
 .profile .buttons-container {
   width: 100%;

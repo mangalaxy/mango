@@ -1,19 +1,20 @@
 @import '../../../../styles/_variables.scss';
 
 .job-role {
+
   &__content {
     max-width: 1200px;
     margin: 0 auto 20px;
     padding: 0 10px;
     box-sizing: border-box;
-    font-family: $FONT_MENU;
+    font-family: $menu-font-family;
   }
 
   &__tags {
     margin-top: 100px;
     display: flex;
-    color: $COLOR_PRIMERY_GREY;
-    font-size: 16px;
+    color: $COLOR_PRIMARY_GREY;
+    font-size: $base-font-size;
   }
 
   &__tag {
@@ -25,7 +26,7 @@
       top: -2px;
       right: -20px;
       content: '\003E';
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       display: block;
       font-size: 20px;
     }
@@ -38,15 +39,20 @@
   }
 
   &__description {
-    margin-top: 2em;
     display: flex;
-    margin-bottom: 30px;
+    margin: {
+      top: 2em;
+      bottom: 30px
+    }
+
     p {
       width: 50%;
       text-align: justify;
+
       &:first-child{
         padding-right: 15px;
       }
+
       &:last-child{
         padding-left: 15px;
       }
@@ -70,13 +76,13 @@
     width: 320px;
     height: 80px;
     text-align: left;
-    color: $COLOR_MENU_DARK;
+    color: $dark-menu-color;
     font-size: 24px;
     margin: 0 10px 10px 0;
     padding: 0 10px;
-    border: 1px solid $COLOR_SECONDARY_GREY;
+    border: 1px solid $gray-300;
     border-radius: 4px;
-    background-color: #ffffff;
+    background-color: $background-color;
     cursor: pointer;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
@@ -93,13 +99,13 @@
       background-color: $COLOR_MENU_LIGHT;
       text-align: center;
       line-height: 40px;
-      color: $COLOR_SECONDARY_GREY;
+      color: $gray-300;
     }
 
     &--selected {
       &:after {
-        color: $secondaryColor;
-        background-color: #EDF7ED;;
+        color: $secondary-color;
+        background-color: $green-50;
       }
     }
   }
@@ -111,7 +117,7 @@
   }
 
   &__filter {
-    color: $primaryColor;
+    color: $primary-color;
     font-size: 12px;
     font-weight: 700;
 
@@ -180,13 +186,13 @@
         }
 
         &-selected {
-          background-color: #FBFBFB !important;
-          color: $COLOR_MENU_DARK !important;
+          background-color: $COLOR_LIGHT !important;
+          color: $dark-menu-color !important;
           border: none !important;
 
           &::before {
             content: '\2713';
-            color: #fff;
+            color: $background-color;
             background-color: $COLOR_GREEN;
             border: none;
           }
@@ -201,14 +207,14 @@
       display: flex;
       margin-top: 20px;
       padding: 10px;
-      border: 1px solid $COLOR_SECONDARY_GREY;
+      border: $light-border;
       box-sizing: border-box;
       border-radius: 4px;
 
       &__photo {
         width: 100px;
         height: 100px;
-        border: 1px solid $COLOR_SECONDARY_GREY;
+        border: $light-border;
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;
@@ -219,7 +225,7 @@
       }
 
       &__title {
-        color: $primaryColor;
+        color: $primary-color;
         font-size: 24px;
       }
     }
@@ -230,13 +236,16 @@
 
       .company-title {
         margin-right: 20px;
-        color: $COLOR_MENU_DARK;
-        font-size: 18px;
-        font-weight: 600;
+        color: $dark-menu-color;
+        font: {
+          size: 18px;
+          weight: 600;
+        }
       }
+
       .company-employers, .company-location, .company-category {
         display: flex;
-        color: $COLOR_PRIMERY_GREY;
+        color: $COLOR_PRIMARY_GREY;
         font-size: 18px;
         margin: 0 20px;
       }
@@ -248,7 +257,7 @@
 
     .company-description {
       margin-top: 10px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       font-size: 16px;
     }
   }
@@ -267,12 +276,12 @@
     }
 
     &__link {
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
 
       &--next {
         &::after {
           content: '\003E';
-          color: $COLOR_PRIMERY_GREY;
+          color: $COLOR_PRIMARY_GREY;
           display: block;
           font-size: 20px;
         }
@@ -281,14 +290,14 @@
       &--prev {
         &::after {
           content: '\003C';
-          color: $COLOR_PRIMERY_GREY;
+          color: $COLOR_PRIMARY_GREY;
           display: block;
           font-size: 20px;
         }
       }
 
       &--active {
-        color: $primaryColor;
+        color: $primary-color;
         position: relative;
         top: 2px;
       }

@@ -13,8 +13,7 @@ const mockOptions = [
 
 function TalentRoles(props) {
     const {user, edit} = props;
-    const {experienceAndRoles} = user;
-    const {jobRole, specialization} = experienceAndRoles;
+    const {jobRole, specialization} = user;
     return (
         <div className='talent-form__section'>
             <div className='section-title'>

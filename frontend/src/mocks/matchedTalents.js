@@ -1,4 +1,4 @@
-export const testTalents = '[\
+export const matchedTalents = '[\
 {"id":1,\
 "bookmarked":false,\
 "fullName":"Arthur van Hoff",\
