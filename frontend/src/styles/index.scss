@@ -6,6 +6,12 @@ body {
   font-family: $FONT_COMMON;
 }
 
+.container {
+  max-width: 1160px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
 h3 {
   color: $onBackgroundColor;
 }
@@ -15,12 +21,22 @@ p {
 }
 
 .mainHeaderH2 {
+  width: 100%;
   font-family: $FONT_COMMON;
   color: $primaryColor;
   font-weight: 600;
   font-size: 40px;
   text-align: center;
   text-transform: uppercase;
+
+  &::after {
+    content: '';
+    display: block;
+    margin: 10px auto;
+    width: 120px;
+    height: 3px;
+    background-color: $COLOR_GREEN;
+  }
 }
 
 .mainHeaderH3 {
@@ -43,9 +59,12 @@ p {
 
   .bannerContent {
     color: #FDFDFD;
-    padding: 200px 50px 200px;
+    margin: 200px auto;
+    padding: 0 20px;
 
-    h1 {
+    &__title {
+      max-width: 700px;
+      margin: 0 auto;
       font-family: $FONT_COMMON;
       font-style: normal;
       font-weight: 600;
@@ -55,7 +74,7 @@ p {
       text-transform: uppercase;
     }
 
-    h4 {
+    &__description {
       font-family: $FONT_COMMON;
       font-style: normal;
       font-weight: 600;
@@ -89,12 +108,14 @@ p {
 }
 
 .actionButton {
+  width: 190px;
+  display: block;
   background-color: $COLOR_CORAL;
   border: $COLOR_CORAL 2px solid;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 18px;
-  padding: 12px 30px;
+  padding: 12px 0px;
   text-transform: uppercase;
 
   &:active,
@@ -108,13 +129,15 @@ p {
 }
 
 .actionButtonTransparent {
+  width: 190px;
+  display: block;
   background-color: transparent;
   box-sizing: border-box;
   border: solid 2px #FFFFFF;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 18px;
-  padding: 12px 30px;
+  padding: 12px 0;
   text-transform: uppercase;
 
   &:active,
@@ -167,3 +190,63 @@ p {
 .xs-6of12, .md-6of12 {
   width: 50% !important;
 }
+
+@media (max-width: 991px) {
+  .bannerContainer {
+
+    .bannerContent {
+
+      &__description {
+        width: 100%;
+        margin: 20px auto;
+      }
+    }
+  }
+
+}
+
+@media (max-width: 767px) {
+  .bannerContainer {
+
+    .bannerContent {
+      margin-bottom: 100px;
+
+      h1 {
+        font-size: 36px;
+      }
+    }
+  }
+}
+
+@media (max-width: 479px) {
+  .bannerContainer {
+    .bannerContent {
+      margin: 100px auto 50px;
+
+      &__title {
+        font-size: 34px;
+        text-align: left;
+      }
+
+      &__description {
+        font-size: 18px;
+        line-height: 22px;
+        text-align: left;
+        font-weight: normal;
+      }
+    }
+  }
+
+  .actionButton {
+    width: 100%;
+  }
+
+  .actionButtonTransparent {
+    width: 100%;
+  }
+
+  .mainHeaderH2 {
+    font-size: 26px;
+  }
+}
+

@@ -2,13 +2,12 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .menuContainer {
   position: absolute;
-  top: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
+  height: 70px;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0 20px;
   box-sizing: border-box;
   z-index: 100; }
 
@@ -30,10 +29,11 @@
   outline: none; }
 
 .menuContainer .menuItemsContainer {
+  position: relative;
   display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center; }
+  align-items: center;
+  padding-right: 10px; }
 
 .menuContainer .menuItem {
   display: inline-block;
@@ -61,7 +61,6 @@
 .menuContainer .authBlock {
   padding: 5px 9px;
   margin: 0;
-  position: relative;
   cursor: pointer; }
 
 .menuContainer .authBlock:hover, .menuContainer .authBlock:active {
@@ -76,16 +75,6 @@
 
 .menuContainer .authBlock.gray .down path {
   fill: #4f4f4f; }
-
-.menuContainer .authBlock .down {
-  position: absolute;
-  top: 50%;
-  right: -17px;
-  transform: translateY(-50%);
-  transition: all 0.5s; }
-
-.menuContainer .authBlock .down.active {
-  transform: translateY(-50%) rotateZ(180deg); }
 
 .menuContainer .authBlock .dropdownMenu {
   position: absolute;
@@ -120,3 +109,7 @@
 
 .menuContainer .authBlock.left {
   border-right: solid 1px #f2f2f2; }
+
+@media (max-width: 991px) {
+  .menuContainer .menuItemsContainer {
+    display: none; } }

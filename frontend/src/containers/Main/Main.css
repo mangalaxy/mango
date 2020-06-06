@@ -1,8 +1,9 @@
 .mainPageContent {
   min-height: calc(100vh - 202px); }
-  .mainPageContent #dialog-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 0;
-    width: 100vw; }
+
+.mainPageContent #dialog-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 0;
+  width: 100vw; }

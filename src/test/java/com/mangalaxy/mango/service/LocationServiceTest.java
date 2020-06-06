@@ -5,6 +5,7 @@ import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.LocationRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,6 +17,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+@Ignore
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class LocationServiceTest {
@@ -25,8 +27,8 @@ public class LocationServiceTest {
   @MockBean
   private LocationRepository locationRepository;
 
-  private static Location firstMockLocation = new Location();
-  private static Location secondMockLocation = new Location();
+  private static final Location firstMockLocation = new Location();
+  private static final Location secondMockLocation = new Location();
 
   @Before
   public void setUp() {

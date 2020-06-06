@@ -15,7 +15,8 @@
   box-sizing: border-box;
   color: #333333;
   font-size: 12px;
-  outline: none; }
+  outline: none;
+  z-index: 9000; }
 
 .simple-select .react-dropdown-select-content {
   display: none; }

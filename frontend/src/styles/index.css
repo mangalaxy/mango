@@ -5,6 +5,11 @@ body {
   line-height: 1.5;
   font-family: "Montserrat", sans-serif; }
 
+.container {
+  max-width: 1160px;
+  padding: 0 20px;
+  margin: 0 auto; }
+
 h3 {
   color: #000; }
 
@@ -12,12 +17,21 @@ p {
   color: #333333; }
 
 .mainHeaderH2 {
+  width: 100%;
   font-family: "Montserrat", sans-serif;
   color: #333333;
   font-weight: 600;
   font-size: 40px;
   text-align: center;
   text-transform: uppercase; }
+
+.mainHeaderH2::after {
+  content: '';
+  display: block;
+  margin: 10px auto;
+  width: 120px;
+  height: 3px;
+  background-color: rgba(54, 179, 168, 0.9); }
 
 .mainHeaderH3 {
   font-family: "Montserrat", sans-serif;
@@ -37,9 +51,12 @@ p {
 
 .bannerContainer .bannerContent {
   color: #FDFDFD;
-  padding: 200px 50px 200px; }
+  margin: 200px auto;
+  padding: 0 20px; }
 
-.bannerContainer .bannerContent h1 {
+.bannerContainer .bannerContent__title {
+  max-width: 700px;
+  margin: 0 auto;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -48,7 +65,7 @@ p {
   text-align: center;
   text-transform: uppercase; }
 
-.bannerContainer .bannerContent h4 {
+.bannerContainer .bannerContent__description {
   font-family: "Montserrat", sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -77,12 +94,14 @@ p {
   transform: translateY(-50%); }
 
 .actionButton {
+  width: 190px;
+  display: block;
   background-color: #FF8080;
   border: #FF8080 2px solid;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 18px;
-  padding: 12px 30px;
+  padding: 12px 0px;
   text-transform: uppercase; }
 
 .actionButton:active, .actionButton:focus {
@@ -92,13 +111,15 @@ p {
   transform: translateY(1px); }
 
 .actionButtonTransparent {
+  width: 190px;
+  display: block;
   background-color: transparent;
   box-sizing: border-box;
   border: solid 2px #FFFFFF;
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 18px;
-  padding: 12px 30px;
+  padding: 12px 0;
   text-transform: uppercase; }
 
 .actionButtonTransparent:active, .actionButtonTransparent:focus {
@@ -139,3 +160,32 @@ p {
 
 .xs-6of12, .md-6of12 {
   width: 50% !important; }
+
+@media (max-width: 991px) {
+  .bannerContainer .bannerContent__description {
+    width: 100%;
+    margin: 20px auto; } }
+
+@media (max-width: 767px) {
+  .bannerContainer .bannerContent {
+    margin-bottom: 100px; }
+  .bannerContainer .bannerContent h1 {
+    font-size: 36px; } }
+
+@media (max-width: 479px) {
+  .bannerContainer .bannerContent {
+    margin: 100px auto 50px; }
+  .bannerContainer .bannerContent__title {
+    font-size: 34px;
+    text-align: left; }
+  .bannerContainer .bannerContent__description {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    font-weight: normal; }
+  .actionButton {
+    width: 100%; }
+  .actionButtonTransparent {
+    width: 100%; }
+  .mainHeaderH2 {
+    font-size: 26px; } }

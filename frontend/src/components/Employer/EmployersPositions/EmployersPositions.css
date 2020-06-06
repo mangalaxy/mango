@@ -47,7 +47,8 @@
   box-sizing: border-box;
   border-radius: 4px;
   margin-bottom: 15px;
-  padding: 17px 20px 11px 20px; }
+  padding: 17px 20px 11px 20px;
+  cursor: pointer; }
 
 .employersPositions-item-icon {
   width: 10%;
@@ -73,7 +74,7 @@
   line-height: 29px;
   text-transform: capitalize; }
 
-.employersPositions-item-swith {
+.employersPositions-item-control {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -83,3 +84,18 @@
   color: #828282;
   font-family: "Montserrat", sans-serif;
   font-size: 16px; }
+
+.employersPositions-item-control-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 22px;
+  background: #F2F2F2;
+  cursor: pointer; }
+
+.employersPositions-item-control-close:hover {
+  border: 1px solid gray;
+  transform: scale(1.05);
+  transition: 0.4s; }

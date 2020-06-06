@@ -1,12 +1,14 @@
 import {combineReducers} from 'redux';
 import {routerReducer} from 'react-router-redux';
 import user from './user';
-import jobReducer from './jobReducer';
-import {reducer as formReducer} from 'redux-form';
+import jobsReducer from './jobsReducer';
+import talentsReducer from './talentsReducer';
+import mobileMenuReducer from './mobileMenuReducer'
 
 export default combineReducers({
   routing: routerReducer,
   user,
-  jobReducer,
-  form: formReducer
+  jobsReducer,
+  talentsReducer,
+  mobileMenuReducer
 });

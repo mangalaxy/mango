@@ -1,29 +1,29 @@
-import React, {useState, Fragment} from 'react';
+import React from 'react';
 import './SimpleSelect.scss';
-import {Field} from 'redux-form';
 import Select from "react-dropdown-select";
 
 function SimpleSelect(props) {
     const {input, name, onChange, options, values, className, multi, placeholder, label, directionTable} = props
-    
+    const onSelect = (selected) => {
+        if (onChange) {
+            const values = selected.map(value => value.value);
+            onChange(multi ? values : values[0]);
+        }
+    };
     return (
         <div className={`simple-select ${directionTable && 'simple-select--direction-table'}`}>
             {label && <label className="control-label">{label}</label>}
-            <Field
+            <Select
                 name={name}
                 options={options}
-                component={() => {
-                    return <Select
-                        options={options}
-                        onChange={onChange}
-                        className={`${className}`}
-                        multi={multi}
-                        placeholder={''}
-                        dropdownHandle={false}
-                        keepOpen={true}
-                        dropdownPosition="auto"
-                    />
-                }}
+                onChange={onSelect}
+                className={`${className}`}
+                multi={multi}
+                placeholder={''}
+                dropdownHandle={false}
+                keepOpen={true}
+                dropdownPosition="auto"
+                values={values}
             />
         </div>
     )

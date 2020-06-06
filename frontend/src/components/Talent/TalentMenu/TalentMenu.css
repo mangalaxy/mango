@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .talent-menu {
-  position: fixed;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

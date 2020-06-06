@@ -1,9 +1,23 @@
 package com.mangalaxy.mango.domain.entity;
 
 import com.mangalaxy.mango.domain.Role;
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +25,6 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(doNotUseGetters = true)
-@NoArgsConstructor
 @Entity
 @Table(name = "users")
 public class User extends AuditEntity {
@@ -25,6 +38,7 @@ public class User extends AuditEntity {
   private String email;
 
   private String password;
+  private boolean enabled;
 
   @ElementCollection
   @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
@@ -32,5 +46,9 @@ public class User extends AuditEntity {
   @Enumerated(EnumType.STRING)
   private Set<Role> roles = new HashSet<>();
 
+  public User() {
+    super();
+    this.enabled=false;
+  }
 }
 

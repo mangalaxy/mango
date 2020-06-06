@@ -8,15 +8,20 @@
   color: #333333; }
 
 .dropdown-select .react-dropdown-select {
-  width: 250px;
+  width: 100%;
   min-height: 28px !important;
   margin: 10px 0;
+  padding: 0 5px;
   border: 1px solid #BDBDBD;
   box-sizing: border-box;
   border-radius: 5px;
   color: #333333;
   font-size: 12px;
-  outline: none; }
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+.dropdown-select .react-dropdown-select:focus-within {
+  box-shadow: none; }
 
 .dropdown-select .react-dropdown-select-option {
   margin: 0;
@@ -24,22 +29,22 @@
   color: #333333; }
 
 .dropdown-select .react-dropdown-select-input::placeholder {
-  color: #BDBDBD !important;
+  color: #BDBDBD;
   font-size: 12px; }
 
 .dropdown-select .react-dropdown-select:hover {
-  border: 1px solid #BDBDBD !important; }
+  border: 1px solid #BDBDBD; }
 
 .dropdown-select .react-dropdown-select:focus {
   outline: none !important;
   box-shadow: none !important;
-  border: 1px solid #BDBDBD !important;
+  border: 1px solid #BDBDBD;
   min-height: 28px !important; }
 
 .dropdown-select .react-dropdown-select:focus-within {
   outline: none !important;
   box-shadow: none !important;
-  border: 1px solid #BDBDBD !important; }
+  border: 1px solid #BDBDBD; }
 
 .dropdown-select .react-dropdown-select-dropdown {
   background-color: #FBFBFB;
@@ -47,7 +52,9 @@
   color: #4f4f4f;
   border: none;
   z-index: 9999;
-  box-shadow: none; }
+  box-shadow: none;
+  min-width: 100%;
+  top: 35px; }
 
 .dropdown-select .react-dropdown-select-item {
   position: relative;
@@ -79,6 +86,9 @@
   color: #fff;
   background-color: rgba(54, 179, 168, 0.9);
   border: none; }
+
+.dropdown-select .react-dropdown-select-content {
+  width: 200px; }
 
 .dropdown-select--half-width .react-dropdown-select {
   width: 130px; }

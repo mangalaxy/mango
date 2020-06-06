@@ -1,32 +1,39 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
+import com.mangalaxy.mango.domain.dto.response.ApiResponse;
+import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
 import com.mangalaxy.mango.domain.entity.User;
-import com.mangalaxy.mango.repository.UserRepository;
-import com.mangalaxy.mango.security.UserPrincipal;
-import lombok.RequiredArgsConstructor;
+import com.mangalaxy.mango.domain.entity.VerificationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.web.context.request.WebRequest;
 
-@RequiredArgsConstructor
-@Service
-public class CustomUserDetailsService implements UserDetailsService {
+import javax.servlet.http.HttpServletRequest;
 
-  private final UserRepository userRepository;
+public interface CustomUserDetailsService extends UserDetailsService {
+  UserDetails loadUserById(Long id);
 
-  @Override
-  @Transactional
-  public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    User user = userRepository.findByEmail(email);
-    return UserPrincipal.create(user);
-  }
+  ApiResponse registerNewUser(LoginRequest loginRequest,
+                              BindingResult result,
+                              WebRequest request,
+                              Errors errors);
 
-  @Transactional
-  public UserDetails loadUserById(Long id) {
-    User user = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("User not found with id : " + id));
-    return UserPrincipal.create(user);
-  }
 
+  ApiResponse confirmRegistration(WebRequest request, String token);
+
+  User getUser(String verificationToken);
+
+  void saveRegisteredUser(User user);
+
+  void createVerificationToken(User user, String token);
+
+  VerificationToken getVerificationToken(String VerificationToken);
+  JwtAuthenticationResponse signIn(LoginRequest request);
+  ApiResponse resetPassword(HttpServletRequest request, String userEmail);
+  JwtAuthenticationResponse changePassword(long id, String token);
+  ApiResponse savePassword(PasswordRequest password);
 }

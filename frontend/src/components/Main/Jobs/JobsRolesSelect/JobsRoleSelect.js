@@ -2,7 +2,7 @@
 import React from 'react';
 import {GreenDash} from '../../Home/Home';
 import {Link} from 'react-router-dom';
-import routes from '../../../../constants/routes';
+import {routes} from '../../../../constants/routes';
 import jobRolesData from '../../../../constants/jobRolesData';
 
 import './jobsRoleSelect.scss';
