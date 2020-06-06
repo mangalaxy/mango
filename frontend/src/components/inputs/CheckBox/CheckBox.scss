@@ -1,0 +1,39 @@
+@import '../../../styles/_variables.scss';
+
+.check-box {
+  position: relative;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid $COLOR_GREY;
+    box-sizing: border-box;
+    position: absolute;
+    top: 11px;
+  }
+
+  &--selected {
+    &::before {
+      content: '\2713';
+      color: #fff;
+      background-color: $COLOR_GREEN;
+      border: none;
+    }
+  }
+
+  &__label {
+    color: $COLOR_GREY;
+    font-weight: 600;
+    font-size: 18px;
+    text-align: left;
+    padding-left: 30px;
+    margin-top: 10px;
+
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+}
