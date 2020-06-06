@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 body {
-  margin: 0;
-  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
   font-family: "Montserrat", sans-serif; }
 
 .container {
@@ -24,13 +24,14 @@ p {
   font-size: 40px;
   text-align: center;
   text-transform: uppercase; }
-  .mainHeaderH2::after {
-    content: '';
-    display: block;
-    margin: 10px auto;
-    width: 120px;
-    height: 3px;
-    background-color: rgba(54, 179, 168, 0.9); }
+
+.mainHeaderH2::after {
+  content: '';
+  display: block;
+  margin: 10px auto;
+  width: 120px;
+  height: 3px;
+  background-color: rgba(54, 179, 168, 0.9); }
 
 .mainHeaderH3 {
   font-family: "Montserrat", sans-serif;
@@ -47,45 +48,50 @@ p {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center; }
-  .bannerContainer .bannerContent {
-    color: #FDFDFD;
-    margin: 200px auto;
-    padding: 0 20px; }
-    .bannerContainer .bannerContent__title {
-      max-width: 700px;
-      margin: 0 auto;
-      font-family: "Montserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 46px;
-      line-height: 50px;
-      text-align: center;
-      text-transform: uppercase; }
-    .bannerContainer .bannerContent__description {
-      font-family: "Montserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 39px;
-      text-align: center;
-      width: 50%;
-      margin: 40px auto; }
-    .bannerContainer .bannerContent li {
-      color: #f2f2f2;
-      margin: 1em 0 1em 1em;
-      position: relative;
-      font-size: 20px;
-      line-height: 1.1em; }
-      .bannerContainer .bannerContent li:before {
-        content: ' ';
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        display: inline-block;
-        background-color: #f2f2f2;
-        left: -1em;
-        top: 0.5em;
-        transform: translateY(-50%); }
+
+.bannerContainer .bannerContent {
+  color: #FDFDFD;
+  margin: 200px auto;
+  padding: 0 20px; }
+
+.bannerContainer .bannerContent__title {
+  max-width: 700px;
+  margin: 0 auto;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 46px;
+  line-height: 50px;
+  text-align: center;
+  text-transform: uppercase; }
+
+.bannerContainer .bannerContent__description {
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: center;
+  width: 50%;
+  margin: 40px auto; }
+
+.bannerContainer .bannerContent li {
+  color: #f2f2f2;
+  margin: 1em 0 1em 1em;
+  position: relative;
+  font-size: 20px;
+  line-height: 1.1em; }
+
+.bannerContainer .bannerContent li:before {
+  content: ' ';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  background-color: #f2f2f2;
+  left: -1em;
+  top: 0.5em;
+  transform: translateY(-50%); }
 
 .actionButton {
   width: 190px;
@@ -97,10 +103,12 @@ p {
   font-size: 18px;
   padding: 12px 0px;
   text-transform: uppercase; }
-  .actionButton:active, .actionButton:focus {
-    outline: none; }
-  .actionButton:active {
-    transform: translateY(1px); }
+
+.actionButton:active, .actionButton:focus {
+  outline: none; }
+
+.actionButton:active {
+  transform: translateY(1px); }
 
 .actionButtonTransparent {
   width: 190px;
@@ -113,10 +121,12 @@ p {
   font-size: 18px;
   padding: 12px 0;
   text-transform: uppercase; }
-  .actionButtonTransparent:active, .actionButtonTransparent:focus {
-    outline: none; }
-  .actionButtonTransparent:active {
-    transform: translateY(1px); }
+
+.actionButtonTransparent:active, .actionButtonTransparent:focus {
+  outline: none; }
+
+.actionButtonTransparent:active {
+  transform: translateY(1px); }
 
 .dialogContainer {
   position: fixed;
@@ -130,6 +140,27 @@ p {
   align-items: center;
   justify-content: center; }
 
+.flex {
+  display: flex; }
+
+.md-12of12 {
+  width: 100% !important; }
+
+.xs-8of12, .md-8of12 {
+  width: 66.6666666666% !important; }
+
+.xs-4of12, .md-4of12 {
+  width: 33.3333333333% !important; }
+
+.xs-7of12, .md-7of12 {
+  width: 58.3333333333% !important; }
+
+.xs-4of12, .md-4of12 {
+  width: 33.3333333333% !important; }
+
+.xs-6of12, .md-6of12 {
+  width: 50% !important; }
+
 @media (max-width: 991px) {
   .bannerContainer .bannerContent__description {
     width: 100%;
@@ -138,20 +169,20 @@ p {
 @media (max-width: 767px) {
   .bannerContainer .bannerContent {
     margin-bottom: 100px; }
-    .bannerContainer .bannerContent h1 {
-      font-size: 36px; } }
+  .bannerContainer .bannerContent h1 {
+    font-size: 36px; } }
 
 @media (max-width: 479px) {
   .bannerContainer .bannerContent {
     margin: 100px auto 50px; }
-    .bannerContainer .bannerContent__title {
-      font-size: 34px;
-      text-align: left; }
-    .bannerContainer .bannerContent__description {
-      font-size: 18px;
-      line-height: 22px;
-      text-align: left;
-      font-weight: normal; }
+  .bannerContainer .bannerContent__title {
+    font-size: 34px;
+    text-align: left; }
+  .bannerContainer .bannerContent__description {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    font-weight: normal; }
   .actionButton {
     width: 100%; }
   .actionButtonTransparent {

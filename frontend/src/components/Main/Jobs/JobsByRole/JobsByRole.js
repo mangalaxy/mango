@@ -1,8 +1,8 @@
 //@flow
+import type {Node} from 'react';
 import React, {Component} from 'react';
 import {GreenDash} from '../../Home/Home';
 import './jobsByRole.scss';
-import type {Node} from 'react';
 import {reduxForm} from 'redux-form';
 import jobRolesData from '../../../../constants/jobRolesData';
 import RoleCategory from './RoleCategory/RoleCategory';

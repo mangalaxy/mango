@@ -1,6 +1,6 @@
 //@flow
 import React from 'react';
-import './styles/reset.css';
+import './styles/reset.scss';
 import './styles/index.scss';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';

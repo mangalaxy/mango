@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Carter+One&display=swap');
 
 $primaryColor: #333333;
@@ -18,6 +18,7 @@ $COLOR_BG_LIGHT: #fafafa;
 $COLOR_GREY: #808080;
 $COLOR_LINK:  #008489;
 $COLOR_LABEL_GRAY: #BDBDBD;
+$COLOR_LABEL_GRAY: #BDBDBD;
 $COLOR_LIGHT: #FBFBFB;
 $COLOR_PRIMERY_GREY: #828282;
 $COLOR_SECONDARY_GREY: #E0E0E0;
@@ -28,5 +29,7 @@ $FONT_COMMON: 'Montserrat', sans-serif;
 $MAIN_MENU_HEIGHT: 70px;
 $FOOTER_HEIGHT: 170px;
 
+// Material palette
+$gray-500: #757575;
 
 

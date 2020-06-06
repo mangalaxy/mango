@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 
 function Step5(props) {

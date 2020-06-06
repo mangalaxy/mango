@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .dropdown-select .control-label {
   display: block;
@@ -19,64 +19,76 @@
   font-size: 12px;
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
-  .dropdown-select .react-dropdown-select:focus-within {
-    box-shadow: none; }
-  .dropdown-select .react-dropdown-select-option {
-    margin: 0;
-    background-color: #fff;
-    color: #333333; }
-  .dropdown-select .react-dropdown-select-input::placeholder {
-    color: #BDBDBD;
-    font-size: 12px; }
-  .dropdown-select .react-dropdown-select:hover {
-    border: 1px solid #BDBDBD; }
-  .dropdown-select .react-dropdown-select:focus {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 1px solid #BDBDBD;
-    min-height: 28px !important; }
-  .dropdown-select .react-dropdown-select:focus-within {
-    outline: none !important;
-    box-shadow: none !important;
-    border: 1px solid #BDBDBD; }
-  .dropdown-select .react-dropdown-select-dropdown {
-    background-color: #FBFBFB;
-    padding: 5px 0;
-    color: #4f4f4f;
-    border: none;
-    z-index: 9999;
-    box-shadow: none;
-    min-width: 100%;
-    top: 35px; }
-  .dropdown-select .react-dropdown-select-item {
-    position: relative;
-    padding: 10px 10px 5px 27px;
-    border: none; }
-    .dropdown-select .react-dropdown-select-item::before {
-      position: absolute;
-      top: 8px;
-      left: 7px;
-      content: '';
-      display: block;
-      width: 14px;
-      height: 14px;
-      border: 1px solid #BDBDBD;
-      border-radius: 1px;
-      box-sizing: border-box;
-      text-align: center;
-      line-height: 14px;
-      font-size: 14px; }
-    .dropdown-select .react-dropdown-select-item-selected {
-      background-color: #FBFBFB !important;
-      color: #4f4f4f !important;
-      border: none !important; }
-      .dropdown-select .react-dropdown-select-item-selected::before {
-        content: '\2713';
-        color: #fff;
-        background-color: rgba(54, 179, 168, 0.9);
-        border: none; }
-  .dropdown-select .react-dropdown-select-content {
-    width: 200px; }
+
+.dropdown-select .react-dropdown-select:focus-within {
+  box-shadow: none; }
+
+.dropdown-select .react-dropdown-select-option {
+  margin: 0;
+  background-color: #fff;
+  color: #333333; }
+
+.dropdown-select .react-dropdown-select-input::placeholder {
+  color: #BDBDBD;
+  font-size: 12px; }
+
+.dropdown-select .react-dropdown-select:hover {
+  border: 1px solid #BDBDBD; }
+
+.dropdown-select .react-dropdown-select:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid #BDBDBD;
+  min-height: 28px !important; }
+
+.dropdown-select .react-dropdown-select:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  border: 1px solid #BDBDBD; }
+
+.dropdown-select .react-dropdown-select-dropdown {
+  background-color: #FBFBFB;
+  padding: 5px 0;
+  color: #4f4f4f;
+  border: none;
+  z-index: 9999;
+  box-shadow: none;
+  min-width: 100%;
+  top: 35px; }
+
+.dropdown-select .react-dropdown-select-item {
+  position: relative;
+  padding: 10px 10px 5px 27px;
+  border: none; }
+
+.dropdown-select .react-dropdown-select-item::before {
+  position: absolute;
+  top: 8px;
+  left: 7px;
+  content: '';
+  display: block;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #BDBDBD;
+  border-radius: 1px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 14px;
+  font-size: 14px; }
+
+.dropdown-select .react-dropdown-select-item-selected {
+  background-color: #FBFBFB !important;
+  color: #4f4f4f !important;
+  border: none !important; }
+
+.dropdown-select .react-dropdown-select-item-selected::before {
+  content: '\2713';
+  color: #fff;
+  background-color: rgba(54, 179, 168, 0.9);
+  border: none; }
+
+.dropdown-select .react-dropdown-select-content {
+  width: 200px; }
 
 .dropdown-select--half-width .react-dropdown-select {
   width: 130px; }

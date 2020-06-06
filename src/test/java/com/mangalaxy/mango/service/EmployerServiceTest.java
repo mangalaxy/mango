@@ -47,10 +47,10 @@ public class EmployerServiceTest {
   @Autowired
   private ModelMapper modelMapper;
 
-  private Employer firstMockEmployer = new Employer();
-  private Employer secondMockEmployer = new Employer();
-  private Employer thirdMockEmployer = new Employer();
-  private Talent mockTalent = new Talent();
+  private final Employer firstMockEmployer = new Employer();
+  private final Employer secondMockEmployer = new Employer();
+  private final Employer thirdMockEmployer = new Employer();
+  private final Talent mockTalent = new Talent();
 
   @Before
   public void setUp() {

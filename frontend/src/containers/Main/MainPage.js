@@ -1,6 +1,6 @@
 // @flow
 import type {Node} from 'react';
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import {Route, Switch} from 'react-router-dom';
 import {routes} from '../../constants/routes';

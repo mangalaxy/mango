@@ -27,8 +27,8 @@ public class LocationServiceTest {
   @MockBean
   private LocationRepository locationRepository;
 
-  private static Location firstMockLocation = new Location();
-  private static Location secondMockLocation = new Location();
+  private static final Location firstMockLocation = new Location();
+  private static final Location secondMockLocation = new Location();
 
   @Before
   public void setUp() {

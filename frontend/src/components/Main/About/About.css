@@ -1,66 +1,78 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 #about-banner {
   background-image: url("../../../assets/images/main_about_bg.png");
   position: relative;
   font-family: "Montserrat", sans-serif; }
-  #about-banner .imageFilter {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    box-sizing: border-box; }
-  #about-banner .bannerContent {
-    margin-left: 20%;
-    padding: 100px; }
-  #about-banner h1 {
-    text-align: left;
-    color: #f2f2f2;
-    transform: translateZ(0); }
+
+#about-banner .imageFilter {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  box-sizing: border-box; }
+
+#about-banner .bannerContent {
+  margin-left: 20%;
+  padding: 100px; }
+
+#about-banner h1 {
+  text-align: left;
+  color: #f2f2f2;
+  transform: translateZ(0); }
 
 #what-we-do,
 #mission {
   font-family: "Montserrat", sans-serif; }
-  #what-we-do .contentContainer,
-  #mission .contentContainer {
-    width: 50%; }
-    #what-we-do .contentContainer .greenDash,
-    #mission .contentContainer .greenDash {
-      margin-bottom: 2em; }
-    #what-we-do .contentContainer .row,
-    #mission .contentContainer .row {
-      display: flex;
-      width: 100%; }
-      #what-we-do .contentContainer .row .iconContainer,
-      #mission .contentContainer .row .iconContainer {
-        width: 60px;
-        min-width: 60px; }
-        #what-we-do .contentContainer .row .iconContainer img,
-        #mission .contentContainer .row .iconContainer img {
-          max-height: 40px; }
-      #what-we-do .contentContainer .row .rowContent h4,
-      #mission .contentContainer .row .rowContent h4 {
-        font-size: 16px;
-        font-weight: 700;
-        font-family: "Montserrat", sans-serif; }
-      #what-we-do .contentContainer .row .rowContent p,
-      #mission .contentContainer .row .rowContent p {
-        padding: 1em 0 2em;
-        font-size: 16px;
-        font-family: "Montserrat", sans-serif; }
-  #what-we-do .imageContainer,
-  #mission .imageContainer {
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end; }
-    #what-we-do .imageContainer img,
-    #mission .imageContainer img {
-      height: auto;
-      max-width: 500px;
-      width: 100%; }
+
+#what-we-do .contentContainer,
+#mission .contentContainer {
+  width: 50%; }
+
+#what-we-do .contentContainer .greenDash,
+#mission .contentContainer .greenDash {
+  margin-bottom: 2em; }
+
+#what-we-do .contentContainer .row,
+#mission .contentContainer .row {
+  display: flex;
+  width: 100%; }
+
+#what-we-do .contentContainer .row .iconContainer,
+#mission .contentContainer .row .iconContainer {
+  width: 60px;
+  min-width: 60px; }
+
+#what-we-do .contentContainer .row .iconContainer img,
+#mission .contentContainer .row .iconContainer img {
+  max-height: 40px; }
+
+#what-we-do .contentContainer .row .rowContent h4,
+#mission .contentContainer .row .rowContent h4 {
+  font-size: 16px;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif; }
+
+#what-we-do .contentContainer .row .rowContent p,
+#mission .contentContainer .row .rowContent p {
+  padding: 1em 0 2em;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif; }
+
+#what-we-do .imageContainer,
+#mission .imageContainer {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end; }
+
+#what-we-do .imageContainer img,
+#mission .imageContainer img {
+  height: auto;
+  max-width: 500px;
+  width: 100%; }
 
 #numbers .container,
 #what-we-do .container,
@@ -77,85 +89,102 @@
   padding-top: 1em;
   padding-bottom: 4em;
   font-family: "Montserrat", sans-serif; }
-  #numbers .column {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: rgba(54, 179, 168, 0.9); }
-    #numbers .column .iconContainer {
-      height: 60px; }
-      #numbers .column .iconContainer img {
-        max-height: 40px; }
-    #numbers .column h3 {
-      font-weight: bold;
-      font-size: 58px;
-      line-height: 72px;
-      color: rgba(54, 179, 168, 0.9); }
-    #numbers .column span {
-      font-size: 22px;
-      text-align: center; }
+
+#numbers .column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(54, 179, 168, 0.9); }
+
+#numbers .column .iconContainer {
+  height: 60px; }
+
+#numbers .column .iconContainer img {
+  max-height: 40px; }
+
+#numbers .column h3 {
+  font-weight: bold;
+  font-size: 58px;
+  line-height: 72px;
+  color: rgba(54, 179, 168, 0.9); }
+
+#numbers .column span {
+  font-size: 22px;
+  text-align: center; }
 
 #mission {
   background-color: #fff;
   font-family: "Montserrat", sans-serif; }
-  #mission .imageContainer {
-    align-items: center; }
-    #mission .imageContainer img {
-      height: auto;
-      max-width: 320px;
-      width: 100%; }
+
+#mission .imageContainer {
+  align-items: center; }
+
+#mission .imageContainer img {
+  height: auto;
+  max-width: 320px;
+  width: 100%; }
 
 #new-jobs {
   background-color: #fafafa;
   padding: 2em;
   font-family: "Montserrat", sans-serif; }
-  #new-jobs h4 {
-    text-align: center;
-    font-size: 26px;
-    color: #4f4f4f; }
-  #new-jobs .actionButton {
-    margin: 20px auto;
-    display: block; }
+
+#new-jobs h4 {
+  text-align: center;
+  font-size: 26px;
+  color: #4f4f4f; }
+
+#new-jobs .actionButton {
+  margin: 20px auto;
+  display: block; }
 
 #team {
   padding: 2em 0 4em;
   font-family: "Montserrat", sans-serif; }
-  #team .teamMembersContainer {
-    display: flex;
-    max-width: 1200px;
-    margin: 3em auto 0;
-    padding: 0 20px;
-    justify-content: space-between; }
-    #team .teamMembersContainer .memberCard {
-      position: relative;
-      margin: 15px;
-      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); }
-      #team .teamMembersContainer .memberCard .imageContainer {
-        width: 12vw;
-        height: 15vw;
-        overflow: hidden; }
-        #team .teamMembersContainer .memberCard .imageContainer img {
-          width: 100%; }
-      #team .teamMembersContainer .memberCard .memberInfo {
-        position: absolute;
-        left: 50%;
-        bottom: 0;
-        transform: translateX(-50%) translateY(50%);
-        width: 80%;
-        background-color: #1f1f1f;
-        text-align: center; }
-        #team .teamMembersContainer .memberCard .memberInfo h3 {
-          color: white;
-          font-size: 24px;
-          margin-top: 10px; }
-        #team .teamMembersContainer .memberCard .memberInfo .greenDash {
-          margin-top: 10px; }
-        #team .teamMembersContainer .memberCard .memberInfo span {
-          display: block;
-          color: white;
-          text-transform: uppercase;
-          font-size: 12px;
-          margin: 10px; }
+
+#team .teamMembersContainer {
+  display: flex;
+  max-width: 1200px;
+  margin: 3em auto 0;
+  padding: 0 20px;
+  justify-content: space-between; }
+
+#team .teamMembersContainer .memberCard {
+  position: relative;
+  margin: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25); }
+
+#team .teamMembersContainer .memberCard .imageContainer {
+  width: 12vw;
+  height: 15vw;
+  overflow: hidden; }
+
+#team .teamMembersContainer .memberCard .imageContainer img {
+  width: 100%; }
+
+#team .teamMembersContainer .memberCard .memberInfo {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%) translateY(50%);
+  width: 80%;
+  background-color: #1f1f1f;
+  text-align: center; }
+
+#team .teamMembersContainer .memberCard .memberInfo h3 {
+  color: white;
+  font-size: 24px;
+  margin-top: 10px; }
+
+#team .teamMembersContainer .memberCard .memberInfo .greenDash {
+  margin-top: 10px; }
+
+#team .teamMembersContainer .memberCard .memberInfo span {
+  display: block;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 10px; }
 
 #partners-about {
   margin: 3em;
@@ -167,22 +196,25 @@
   background-position: center;
   position: relative;
   font-family: "Montserrat", sans-serif; }
-  #feedback .content {
-    padding: 2em; }
-    #feedback .content .feedbackContainer {
-      padding-top: 25vw;
-      display: flex;
-      align-items: center;
-      justify-content: space-around;
-      max-width: 1250px;
-      margin: 0 auto; }
-  #feedback .imageFilter {
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.25);
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    box-sizing: border-box; }
+
+#feedback .content {
+  padding: 2em; }
+
+#feedback .content .feedbackContainer {
+  padding-top: 25vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 1250px;
+  margin: 0 auto; }
+
+#feedback .imageFilter {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  box-sizing: border-box; }
 
 .feedbackBlock {
   width: 470px;
@@ -197,58 +229,72 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between; }
-  .feedbackBlock .quotes {
-    position: absolute;
-    top: -15px;
-    left: 25px; }
-  .feedbackBlock h4 {
-    font-family: Segoe UI, sans-serif;
-    font-size: 22px;
-    line-height: 29px;
-    margin-bottom: 1em; }
-  .feedbackBlock p {
-    font-family: "Montserrat", sans-serif;
-    font-size: 14px;
-    line-height: 17px; }
-  .feedbackBlock .personData {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center; }
-    .feedbackBlock .personData div .personName {
-      font-size: 18px;
-      line-height: 22px; }
-    .feedbackBlock .personData div .personPosition {
-      font-size: 14px;
-      font-style: italic; }
-    .feedbackBlock .personData .imageContainer {
-      margin-left: 20px; }
-      .feedbackBlock .personData .imageContainer img {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        overflow: hidden; }
+
+.feedbackBlock .quotes {
+  position: absolute;
+  top: -15px;
+  left: 25px; }
+
+.feedbackBlock h4 {
+  font-family: Segoe UI, sans-serif;
+  font-size: 22px;
+  line-height: 29px;
+  margin-bottom: 1em; }
+
+.feedbackBlock p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 17px; }
+
+.feedbackBlock .personData {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+
+.feedbackBlock .personData div .personName {
+  font-size: 18px;
+  line-height: 22px; }
+
+.feedbackBlock .personData div .personPosition {
+  font-size: 14px;
+  font-style: italic; }
+
+.feedbackBlock .personData .imageContainer {
+  margin-left: 20px; }
+
+.feedbackBlock .personData .imageContainer img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden; }
 
 #contact {
   font-family: "Montserrat", sans-serif; }
-  #contact .content {
-    max-width: 1200px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    margin: 3em auto; }
-    #contact .content .leftCol, #contact .content .rightCol {
-      width: 40%; }
-      #contact .content .leftCol .headerBlock, #contact .content .rightCol .headerBlock {
-        display: inline-block; }
-    #contact .content .rightCol p {
-      margin: 3em 0;
-      font-size: 14px;
-      line-height: 20px;
-      font-family: "Montserrat", sans-serif;
-      color: #828282; }
-    #contact .content .rightCol .contactData {
-      margin: 0;
-      padding: 0;
-      font-size: 16px; }
-      #contact .content .rightCol .contactData span {
-        font-weight: 600; }
+
+#contact .content {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 3em auto; }
+
+#contact .content .leftCol, #contact .content .rightCol {
+  width: 40%; }
+
+#contact .content .leftCol .headerBlock, #contact .content .rightCol .headerBlock {
+  display: inline-block; }
+
+#contact .content .rightCol p {
+  margin: 3em 0;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Montserrat", sans-serif;
+  color: #828282; }
+
+#contact .content .rightCol .contactData {
+  margin: 0;
+  padding: 0;
+  font-size: 16px; }
+
+#contact .content .rightCol .contactData span {
+  font-weight: 600; }

@@ -70,13 +70,36 @@
 .fkDropdown {
   .p-inputtext {
     border: none !important;
-    &:active, &:focus{
-      border: none!important;
+
+    &:active, &:focus {
+      border: none !important;
     }
   }
-.p-focus{
-  border-color: transparent!important;
-  box-shadow: none!important;
+
+  .p-focus {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+}
+
+.fieldDropdown {
+  .p-dropdown{
+    width: 100%;
+  }
+  &:active, &:focus {
+    border: none !important;
+  }
+
+
+  .p-focus {
+    box-shadow: none !important;
+  }
+.p-dropdown-items-wrapper{
+  width: 100%!important;
+  margin-right: 0!important;
+  ul{
+    width: 100% !important;
+  }
 }
 }
 
@@ -99,15 +122,17 @@
   }
 
 }
-.textInput{
-  .p-label{
-    label{
+
+.textInput {
+  .p-label {
+    label {
       display: block;
       margin-bottom: 7px;
       font-weight: 600;
       color: #4F4F4F;
     }
   }
+
   .p-inputtext {
     width: 100% !important;
     font-size: 16px;

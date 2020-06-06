@@ -1,74 +1,87 @@
 @import '../../../styles/_variables';
 
-.companyPage {
-  width: 100%;
+.company-profile-page {
   background-color: white;
   min-height: calc(100vh - 70px);
 
-  .header {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  .company-header {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
   }
 
-  .contentContainer {
-    margin: 0 auto;
-    padding: 40px 50px;
+  .container {
     max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 0;
     display: flex;
     justify-content: space-between;
 
-    .content {
+    .company {
       display: flex;
 
-      .logoContainer {
-        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-        margin-right: 40px;
+      &-logo {
+        padding: 0 40px;
 
         img {
-          max-height: 200px;
+          width: 200px;
         }
       }
 
-      .label {
-        font-size: 12px;
+      &-info {
+        padding-left: 1rem;
+      }
+
+      &-title {
+        font-size: 1rem;
         text-transform: capitalize;
         color: $COLOR_LABEL_GRAY;
       }
 
-      .companyName {
+      &-name {
         color: $COLOR_MENU_DARK;
-        font-family: $FONT_COMMON;
-        font-weight: 600;
-        font-size: 20px;
+        font: {
+          size: 1.2rem;
+          family: $FONT_COMMON;
+          weight: 600;
+        }
         line-height: 2em;
         text-transform: uppercase;
       }
 
-      .slogan {
-        font-size: 20px;
-        font-family: $FONT_COMMON;
-        font-weight: 400;
+      &-headline {
+        font: {
+          size: 1.4rem;
+          family: $FONT_COMMON;
+          weight: normal;
+        }
         line-height: 2em;
       }
 
-      .companyLocation {
-        color: rgba(54, 179, 168, 0.9);
-        font-size: 20px;
-        font-family: $FONT_COMMON;
-        font-weight: 400;
+      &-location {
+        font: {
+          size: 1.2rem;
+          family: $FONT_COMMON;
+          weight: normal;
+        }
+        color: $COLOR_GREEN;
       }
 
       .line {
         justify-content: flex-start;
-        margin-top: 0;
-        margin-bottom: 1.5em;
+        margin: {
+          top: 0;
+          bottom: 1.5rem;
+        }
       }
     }
 
     .editButton {
       cursor: pointer;
+      width: 32px;
+      height: 32px;
 
       &:hover {
-        opacity: .8;
+        opacity: 0.8;
       }
 
       &:active {
@@ -76,50 +89,77 @@
       }
     }
 
+    .company-details {
+      margin: 0 auto;
 
-    .companyInfo {
-      width: 70%;
+      .video-card {
+        margin: 0;
+      }
 
-      .mainImage {
-        width: 100%;
+      .flex-embed {
+        display: block;
+        overflow: hidden;
+        position: relative;
+
+        &__ratio {
+          display: block;
+          padding-bottom: 100%;
+          width: 100%;
+
+          &--16by9 {
+            padding-bottom: 56.25%;
+          }
+        }
+
+        &__content {
+          bottom: 0;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
       }
 
       .companyName {
         color: $COLOR_MENU_DARK;
-        font-family: $FONT_COMMON;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 2em;
+        font: {
+          size: 1.4rem;
+          family: $FONT_COMMON;
+          weight: 600;
+        }
+        line-height: 1.5;
         text-transform: uppercase;
-        margin-top: 1em;
+        margin: {
+          top: 1.2rem;
+          bottom: 1.5rem;
+        }
       }
 
       p {
-        font-size: 20px;
-        line-height: 28px;
-        color: #828282;
+        font-size: 1.2rem;
+        line-height: 1.5;
+        color: $gray-500;
         text-align: justify;
       }
 
-      .companyImages {
+      .gallery {
         display: flex;
         flex-wrap: wrap;
-        margin: 10px 0px;
-        width: 100%;
+        padding: 2rem 0;
         overflow: hidden;
 
-        .imageContainer {
-          width: 50%;
-          padding: 15px;
+        .photo-container {
+          margin-bottom: 2rem;
           overflow: hidden;
           height: 400px;
 
           &.left {
-            padding-left: 0;
+            padding-right: 1rem;
           }
 
           &.right {
-            padding-right: 0;
+            padding-left: 1rem;
           }
 
           span {
@@ -137,28 +177,30 @@
       }
     }
 
-    .companySummary {
+    .company-sidebar {
       width: 30%;
-      display: block;
       padding-left: 50px;
 
-
-      .blockHeader {
-        width: 100%;
+      h3 {
         padding-bottom: 15px;
-        border-bottom: 2px solid $COLOR_LABEL_GRAY;
+        border-bottom: 1px solid $COLOR_LABEL_GRAY;
         color: $COLOR_MENU_DARK;
         font-family: $FONT_COMMON;
         font-weight: 600;
         font-size: 20px;
         text-transform: uppercase;
-        margin-bottom: .5em;
+        margin-bottom: 0.5rem;
         margin-top: 2em;
       }
 
-      .blockItem {
+      .feature-card {
+        margin-bottom: 2rem;
+      }
+
+      .item {
         display: flex;
         align-items: center;
+        margin-bottom: 0.5rem;
 
         svg {
           margin-right: 10px;
@@ -166,8 +208,8 @@
 
         span {
           color: #828282;
-          font-size: 16px;
-          line-height: 22px;
+          font-size: 1rem;
+          line-height: 1.5;
         }
       }
 

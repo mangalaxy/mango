@@ -29,8 +29,8 @@ public class ProfileServiceTest {
   @Autowired
   private ProfileService profileService;
 
-  private Talent firstMockTalent = new Talent();
-  private Profile mockProfile = new Profile();
+  private final Talent firstMockTalent = new Talent();
+  private final Profile mockProfile = new Profile();
 
   @Before
   public void setUp() {

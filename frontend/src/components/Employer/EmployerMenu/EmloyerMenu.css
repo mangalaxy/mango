@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .employerMenuContainer {
   display: flex;
@@ -8,83 +8,102 @@
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box; }
-  .employerMenuContainer.white {
-    background-color: white; }
-  .employerMenuContainer.gray {
-    background-color: #F7F7F7; }
-  .employerMenuContainer .logo {
-    text-transform: uppercase;
-    font-size: 48px;
-    letter-spacing: .1em;
-    font-family: "Carter One", cursive;
-    color: #FF8080;
-    text-decoration: none; }
-    .employerMenuContainer .logo:active, .employerMenuContainer .logo:focus {
-      outline: none; }
-  .employerMenuContainer .menuItemsContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center; }
-  .employerMenuContainer .menuItem {
-    display: inline-block;
-    text-decoration: none;
-    text-transform: uppercase;
-    color: #4f4f4f;
-    font-family: "Montserrat", sans-serif;
-    font-size: 18px;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0 18px; }
-    .employerMenuContainer .menuItem.active {
-      color: #FF8080; }
-    .employerMenuContainer .menuItem:active, .employerMenuContainer .menuItem:focus {
-      outline: none; }
-    .employerMenuContainer .menuItem:hover {
-      transform: scaleX(1.02) scaleY(1.04); }
-  .employerMenuContainer .authBlock {
-    padding: 5px 9px;
-    margin: 0;
-    position: relative;
-    cursor: pointer; }
-    .employerMenuContainer .authBlock:hover, .employerMenuContainer .authBlock:active {
-      transform: none;
-      color: #FF8080; }
-      .employerMenuContainer .authBlock:hover .down path, .employerMenuContainer .authBlock:active .down path {
-        fill: #FF8080; }
-    .employerMenuContainer .authBlock .down {
-      position: absolute;
-      top: 50%;
-      right: 5px;
-      transform: translateY(-50%);
-      transition: all 0.5s; }
-      .employerMenuContainer .authBlock .down.active {
-        transform: translateY(-50%) rotateZ(180deg); }
-    .employerMenuContainer .authBlock .dropdownMenu {
-      position: absolute;
-      left: 0;
-      bottom: -5px;
-      transform: translateY(100%);
-      background-color: #FFFFFF;
-      padding: 0 70px 0 0;
-      color: #4f4f4f;
-      text-transform: capitalize;
-      transition: all .4s;
-      box-shadow: #8a8a8a 2px 2px 5px; }
-      .employerMenuContainer .authBlock .dropdownMenu li, .employerMenuContainer .authBlock .dropdownMenu a {
-        padding: 5px 5px;
-        margin: 7px 0;
-        border-left: 2px solid transparent;
-        transition: all .5s;
-        color: #4f4f4f; }
-        .employerMenuContainer .authBlock .dropdownMenu li:hover, .employerMenuContainer .authBlock .dropdownMenu a:hover {
-          border-left: 2px solid #FF8080;
-          color: black; }
-      .employerMenuContainer .authBlock .dropdownMenu.hidden {
-        transform: rotateX(90deg) translateY(100%);
-        bottom: -50px;
-        opacity: 0; }
-    .employerMenuContainer .authBlock.left {
-      padding: 5px 29px 5px 9px;
-      border-right: solid 1px #4f4f4f;
-      text-transform: none; }
+
+.employerMenuContainer.white {
+  background-color: white; }
+
+.employerMenuContainer.gray {
+  background-color: #F7F7F7; }
+
+.employerMenuContainer .logo {
+  text-transform: uppercase;
+  font-size: 48px;
+  letter-spacing: .1em;
+  font-family: "Carter One", cursive;
+  color: #FF8080;
+  text-decoration: none; }
+
+.employerMenuContainer .logo:active, .employerMenuContainer .logo:focus {
+  outline: none; }
+
+.employerMenuContainer .menuItemsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+
+.employerMenuContainer .menuItem {
+  display: inline-block;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #4f4f4f;
+  font-family: "Montserrat", sans-serif;
+  font-size: 18px;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0 18px; }
+
+.employerMenuContainer .menuItem.active {
+  color: #FF8080; }
+
+.employerMenuContainer .menuItem:active, .employerMenuContainer .menuItem:focus {
+  outline: none; }
+
+.employerMenuContainer .menuItem:hover {
+  transform: scaleX(1.02) scaleY(1.04); }
+
+.employerMenuContainer .authBlock {
+  padding: 5px 9px;
+  margin: 0;
+  position: relative;
+  cursor: pointer; }
+
+.employerMenuContainer .authBlock:hover, .employerMenuContainer .authBlock:active {
+  transform: none;
+  color: #FF8080; }
+
+.employerMenuContainer .authBlock:hover .down path, .employerMenuContainer .authBlock:active .down path {
+  fill: #FF8080; }
+
+.employerMenuContainer .authBlock .down {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  transition: all 0.5s; }
+
+.employerMenuContainer .authBlock .down.active {
+  transform: translateY(-50%) rotateZ(180deg); }
+
+.employerMenuContainer .authBlock .dropdownMenu {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  transform: translateY(100%);
+  background-color: #FFFFFF;
+  padding: 0 70px 0 0;
+  color: #4f4f4f;
+  text-transform: capitalize;
+  transition: all .4s;
+  box-shadow: #8a8a8a 2px 2px 5px; }
+
+.employerMenuContainer .authBlock .dropdownMenu li, .employerMenuContainer .authBlock .dropdownMenu a {
+  padding: 5px 5px;
+  margin: 7px 0;
+  border-left: 2px solid transparent;
+  transition: all .5s;
+  color: #4f4f4f; }
+
+.employerMenuContainer .authBlock .dropdownMenu li:hover, .employerMenuContainer .authBlock .dropdownMenu a:hover {
+  border-left: 2px solid #FF8080;
+  color: black; }
+
+.employerMenuContainer .authBlock .dropdownMenu.hidden {
+  transform: rotateX(90deg) translateY(100%);
+  bottom: -50px;
+  opacity: 0; }
+
+.employerMenuContainer .authBlock.left {
+  padding: 5px 29px 5px 9px;
+  border-right: solid 1px #4f4f4f;
+  text-transform: none; }
