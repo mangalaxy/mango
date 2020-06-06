@@ -1,18 +1,19 @@
 //@flow
 import React from 'react';
-import './styles/reset.scss';
-import './styles/index.scss';
 import 'primereact/resources/themes/nova-light/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {routes} from './constants/routes';
+import routes from './constants/routes';
 import MainPage from './containers/Main/MainPage';
 import Talent from './containers/Talent/TalentHome';
 import Employer from './containers/Employer/EmployerPage';
 import CreateProfile from "./components/Profile/CreateProfile/CreateProfile";
 import ProfileInterview from './components/ProfileInterview/ProfileInterview'
 import TalentProfile from "./containers/TalentProfile/TalentProfile";
+
+import './styles/reset.scss';
+import './styles/index.scss';
 
 type Props = {};
 type State = {};

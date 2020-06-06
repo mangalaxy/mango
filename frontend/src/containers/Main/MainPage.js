@@ -3,12 +3,11 @@ import type {Node} from 'react';
 import React, {Component} from 'react';
 import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import {Route, Switch} from 'react-router-dom';
-import {routes} from '../../constants/routes';
+import routes from '../../constants/routes';
 import ForTalents from '../../components/Main/ForTalents/ForTalents';
 import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
 import Home from '../../components/Main/Home/Home';
 import Footer from '../../components/Main/Footer/Footer';
-import './Main.scss';
 import About from '../../components/Main/About/About';
 import JobsRolesSelect from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
 import JobsByRole from '../../components/Main/Jobs/JobsByRole/JobsByRole';
@@ -24,6 +23,8 @@ import Post from '../Post/Post';
 import MobileMenu from '../../components/Main/MobileMenu/MobileMenu';
 import {connect} from "react-redux";
 import {closeMobileMenu} from "../../actions/mobileMenu";
+
+import './Main.scss';
 
 type Props = {
   history: Object,

@@ -5,7 +5,7 @@ import {Link, NavLink} from 'react-router-dom';
 import Down from "../../Down/Down";
 import BurgerMenu from './BurgerMenu/BurgerMenu'
 
-import {routes} from '../../../constants/routes';
+import routes from '../../../constants/routes';
 import './MainMenu.scss';
 
 type Props = {

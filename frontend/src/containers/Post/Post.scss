@@ -1,0 +1,130 @@
+@import '../../styles/_variables.scss';
+
+.info {
+  padding-top: $MAIN_MENU_HEIGHT;
+  font-family: $FONT_COMMON;
+
+  &__container {
+    width: 1100px;
+    margin: 30px auto 0;
+  }
+
+  &__bread-crumbs {
+    color: #000000;
+    font-size: 14px;
+  }
+
+  &__title {
+    margin-top: 30px;
+    color: $primaryColor;
+    font-weight: 600;
+    font-size: 48px;
+  }
+
+  &__description {
+    margin-top: 20px;
+    color: $COLOR_PRIMERY_GREY;
+    font-size: 12px;
+    text-transform: uppercase;
+
+    .info-description-link {
+      color: $primaryColor;
+      font-weight: 600;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  &__main-photo {
+    width: 100%;
+    height: 400px;
+    margin-top: 10px;
+
+    .info-main-img {
+      display: block;
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    display: flex;
+    margin-top: 30px;
+  }
+
+  &__left-sidebar {
+    width: 20%;
+  }
+
+  &__sidebar-item {
+    margin-top: 15px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+
+  &__text {
+    color: $COLOR_PRIMERY_GREY;
+    font-size: 18px;
+    line-height: 29px;
+
+    p {
+      margin-bottom: 20px;
+    }
+  }
+
+  &__bottom-sidebar {
+    display: flex;
+    margin-bottom: 30px;
+  }
+
+  &__bottom-item {
+    margin-right: 15px;
+  }
+
+  &__list-description {
+    margin-bottom: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .info-list {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+
+    &__item {
+      width: 350px;
+      box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.1), -1px 0px 0px rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+
+      .info-photo {
+        height: 200px;
+        &__img {
+          width: 100%;
+          height: inherit;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  &__tag {
+    margin-top: 20px;
+    padding: 0 20px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  &__subtitle {
+    margin-top: 20px;
+    padding: 0 20px 30px;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 27px;
+    color: rgba(54, 179, 168, 0.9);
+  }
+}

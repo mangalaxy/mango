@@ -101,7 +101,7 @@ p {
   border-radius: 8px;
   color: #FFFFFF;
   font-size: 18px;
-  padding: 12px 0px;
+  padding: 12px 0;
   text-transform: uppercase; }
 
 .actionButton:active, .actionButton:focus {

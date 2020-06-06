@@ -72,7 +72,7 @@
   font-weight: 600; }
 
 .profile-form__title--margin-bottom-none {
-  margin-bottom: 0px; }
+  margin-bottom: 0; }
 
 .profile-form__container {
   display: flex;

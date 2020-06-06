@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "formik": "^2.0.3",
+    "moment": "^2.26.0",
     "primeicons": "^1.0.0",
     "primereact": "^3.1.7",
     "react": "^16.10.2",
@@ -30,7 +31,10 @@
     "flow-runtime": "^0.17.0",
     "flow-typed": "^2.5.1",
     "node-sass": "^4.12.0",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "react-avatar-editor": "^11.0.9",
+    "react-datepicker": "^3.0.0",
+    "react-paginate": "^6.3.2"
   },
   "scripts": {
     "build-css": "node-sass --include-path ./src --include-path ./node_modules src/ -o src/",

@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
-import {routes} from '../../../constants/routes';
+import routes from '../../../constants/routes';
 import './TalentMenu.scss';
 
 export default class TalentMenu extends PureComponent {

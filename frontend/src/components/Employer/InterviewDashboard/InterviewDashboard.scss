@@ -1,0 +1,280 @@
+@import '../../../styles/_variables.scss';
+
+.inreview-dashboard {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+
+  &__left-side {
+
+    .upcoming-interviews, .inreview-offers {
+      width: 340px;
+      min-height: 300px;
+      margin-right: 20px;
+      background-color: #fff;
+      padding: 20px;
+      font-family: $FONT_COMMON;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &__right-side {
+    width: 768px;
+    min-height: 700px;
+  }
+
+  &__talent-list {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 20px 20px 0;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  &__subtitle {
+    color: #4F4F4F;
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: uppercase;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 10px;
+      background-color: $COLOR_LABEL_GRAY;
+    }
+  }
+
+  &__shedule-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .shedule-talent-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &__text {
+      margin-left: 20px;
+    }
+
+    &__name {
+      color: $COLOR_MENU_DARK;
+      font-weight: 600;
+      font-size: 24px;
+    }
+
+    &__position {
+      margin-top: 5px;
+      font-size: 18px;
+      color: $COLOR_PRIMERY_GREY;
+    }
+  }
+
+  .shedule-talent-status {
+    font-size: 18px;
+    color: $COLOR_PRIMERY_GREY;
+  }
+
+  .jobs-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+
+    &__item {
+      margin: 0 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    &__link {
+      color: $COLOR_PRIMERY_GREY;
+
+      &--next {
+        &::after {
+          content: '\003E';
+          color: $COLOR_PRIMERY_GREY;
+          display: block;
+          font-size: 20px;
+        }
+      }
+
+      &--prev {
+        &::after {
+          content: '\003C';
+          color: $COLOR_PRIMERY_GREY;
+          display: block;
+          font-size: 20px;
+        }
+      }
+
+      &--active {
+        color: $primaryColor;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+
+  .upcomings-info {
+
+    &__item {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    &__text {
+      margin-left: 20px;
+    }
+
+    &__name {
+      font-weight: 600;
+      font-size: 18px;
+      color: $COLOR_MENU_DARK;
+    }
+
+    &__position {
+      font-size: 16px;
+      color: $COLOR_PRIMERY_GREY;
+      margin-top: 5px;
+    }
+
+    &__date {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      color: $COLOR_STRONG_CORAL;
+      font-size: 16px;
+    }
+
+    &__cicle {
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: $COLOR_STRONG_CORAL;
+      margin: 0 5px;
+    }
+
+    &__time {
+      color: $COLOR_CORAL;
+    }
+
+    &__description {
+      font-size: 16px;
+      color: $COLOR_PRIMERY_GREY;
+      margin-top: 10px;
+    }
+  }
+
+  .inreview-offers {
+    margin-top: 20px;
+
+    &__item {
+      margin-top: 10px;
+    }
+
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .offer-talent-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    &__text {
+      margin-left: 10px;
+    }
+
+    &__name {
+      font-weight: 600;
+      font-size: 18px;
+      color: $COLOR_MENU_DARK;
+    }
+
+    &__position {
+      font-size: 16px;
+      color: $COLOR_PRIMERY_GREY;
+      margin-top: 5px;
+    }
+  }
+
+  .offer-talent-description {
+    font-size: 16px;
+    color: $COLOR_PRIMERY_GREY;
+    margin-top: 10px;
+  }
+
+  .interview-burger-menu {
+    position: relative;
+
+    &--active {
+      &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 30px;
+        height: 30px;
+        background-color: $COLOR_MENU_LIGHT;
+        left: 4px;
+        top: 18px;
+        transform: rotate(45deg);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+
+    &__list {
+      display: flex;
+      align-items: center;
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    &__item {
+      width: 5px;
+      height: 5px;
+      border-radius: 5px;
+      background-color: $COLOR_LABEL_GRAY;
+
+      &:nth-child(odd) {
+        margin: 0 3px;
+      }
+    }
+
+    .interviews-menu {
+      position: absolute;
+      z-index: 10;
+      top: 20px;
+      left: -110px;
+      width: 225px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      background-color: #fff;
+
+      &__item {
+        padding: 10px 26px;
+        font-weight: 600;
+        font-size: 16px;
+        color: $COLOR_PRIMERY_GREY;
+        cursor: pointer;
+
+        &:hover {
+          background-color: $COLOR_MENU_LIGHT;
+        }
+      }
+    }
+  }
+}
