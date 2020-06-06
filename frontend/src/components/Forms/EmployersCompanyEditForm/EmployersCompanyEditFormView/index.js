@@ -1,25 +1,22 @@
 import React, {useRef} from 'react';
 import {Field, FieldArray} from 'formik';
-import './styles.scss';
 import FKTextAreaInput from '../../../Fields/FKTextAreaInput/FKTextAreaInput';
 import TextInput from '../../../Fields/CommonTextInput/TextInput';
 import FKDropdown from '../../../Fields/FKDropdown/FKDropdown';
 
-const EmployersCompanyEditFormView = ({
-                                        handleSubmit,
-                                        isSubmitting,
-                                        isValid,
-                                        values,
-                                        initialValues,
-                                      }) => {
+import './styles.scss';
+
+const EmployersCompanyEditFormView = props => {
+  const { handleSubmit, isSubmitting, isValid, values, initialValues } = props;
   const logoRef = useRef(null);
   const imageRef = useRef(null);
-  return(
+
+  return (
     <div className='employersCompanyEditForm'>
       <div className="headSection">
         <label htmlFor="logo">
           <div className="logoContainer">
-            {values.logo ? <img src={values.logo}/> :
+            {values.logo ? <img src={values.logo} alt="Company logo" /> :
                 <div className='logoPlaceholder'>
                   <svg width="110" height="100" viewBox="0 0 110 100" fill="none"
                        xmlns="http://www.w3.org/2000/svg">
@@ -31,8 +28,7 @@ const EmployersCompanyEditFormView = ({
                 </div>}
           </div>
         </label>
-        <input type="file"  style={{display: 'none'}} accept="image/*" id='logo' ref={logoRef}/>
-
+        <input type="file" style={{display: 'none'}} accept="image/*" id='logo' ref={logoRef}/>
         <div className="fieldContainer">
           <label className='fieldLabel'>Company name</label>
           <Field
@@ -54,8 +50,8 @@ const EmployersCompanyEditFormView = ({
               disabled={isSubmitting}
               name='location'
           />
-          <div className="flex">
-            <div className={'companySize'}>
+          <div className="flex-container">
+            <div className="companySize">
               <label className='fieldLabel'>Company size</label>
               <Field
                   component={FKDropdown}
@@ -64,7 +60,7 @@ const EmployersCompanyEditFormView = ({
                   options={initialValues.employersRanges}
               />
             </div>
-            <div className={'category'}>
+            <div className="category">
               <label className='fieldLabel'>Industry</label>
               <Field
                   component={FKDropdown}
@@ -75,21 +71,11 @@ const EmployersCompanyEditFormView = ({
             </div>
           </div>
         </div>
-
-      </div>
-
-
-      <div className='buttonsContainer'>
-        <button className='actionButton' type='submit'
-                disabled={!isValid || isSubmitting}
-                onClick={handleSubmit}>
-          Save changes
-        </button>
       </div>
       <div className="line"/>
       <div className="companyDetail">
         <div className='leftCol'>
-          <img className='mainImage' src={values?.images[0]} alt=""/>
+          <img className='mainImage' src={values.images[0]} alt=""/>
           <label className='fieldLabel'>About</label>
           <Field
               component={FKTextAreaInput}
@@ -100,7 +86,7 @@ const EmployersCompanyEditFormView = ({
           <label className='fieldLabel'>Gallery</label>
           <div className="line"/>
           <div className='imageGallery'>
-            {values?.images?.map((img, index) => <div className='mini'
+            {values.images.map((img, index) => <div className='mini'
                                                       key={index}
                                                       style={{
                                                         background: `url(${img})`,
@@ -123,7 +109,7 @@ const EmployersCompanyEditFormView = ({
               <label className='fieldLabel'>Tech stack</label>
               <span className='add'>+</span>
             </div>
-            {values?.techStack?.map((stack, index) => (
+            {values.techStack.map((stack, index) => (
                 <div className='row' key={index}>
                   <span className='stackName'>{stack}</span>
                   <div className='remove'><span>-</span></div>
@@ -131,7 +117,6 @@ const EmployersCompanyEditFormView = ({
             ))}
           </div>
           <div className='inputsBlock'>
-
             <FieldArray name='perks'
                         render={arrayHelpers => (<>
                               <div className="row">
@@ -140,7 +125,7 @@ const EmployersCompanyEditFormView = ({
                                       onClick={() => arrayHelpers.push('')}
                                 >+</span>
                               </div>
-                              {values?.perks?.map((perk, index) =>
+                              {values.perks.map((perk, index) =>
                                   <Field name={`perks.${index}`} key={index}
                                          component={TextInput}
                                          disabled={isSubmitting}
@@ -151,6 +136,14 @@ const EmployersCompanyEditFormView = ({
             />
           </div>
         </div>
+      </div>
+      <div className='buttonsContainer'>
+        <button type='submit'
+                disabled={!isValid || isSubmitting}
+                onClick={handleSubmit}
+                className='actionButton'>
+          Save changes
+        </button>
       </div>
     </div>
 )};

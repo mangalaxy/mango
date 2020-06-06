@@ -4,6 +4,13 @@
   margin: 0 auto;
   padding: 40px 50px;
   max-width: 1200px;
+  background-color: white;
+
+  .flex-container {
+    display: flex;
+    align-content: space-between;
+    flex-flow: nowrap;
+  }
 
   .headSection {
     display: flex;
@@ -40,10 +47,8 @@
     .fieldContainer {
       width: 100%;
 
-      .flex {
-        display: flex;
-
         .companySize {
+          flex: 1 1 auto;
           width: 40%;
           margin-right: 20px;
         }
@@ -52,7 +57,7 @@
           width: 60%;
         }
       }
-    }
+
   }
 
   .fieldLabel {
@@ -73,6 +78,7 @@
   .companyDetail {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 2rem;
 
     .leftCol {
       width: 65%;

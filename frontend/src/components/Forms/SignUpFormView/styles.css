@@ -2,28 +2,32 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .signUpTalentForm {
   margin: 3em 0; }
-  .signUpTalentForm .fieldContainer {
-    display: flex;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    flex-direction: column; }
-  .signUpTalentForm .field {
-    width: 100%;
-    padding: 0 5px; }
-  .signUpTalentForm .buttonsContainer {
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px; }
-    .signUpTalentForm .buttonsContainer button {
-      margin: 0 5px;
-      display: block;
-      width: 100%;
-      letter-spacing: 1px; }
-    .signUpTalentForm .buttonsContainer .link {
-      color: #FF8080;
-      cursor: pointer;
-      margin-left: 7px; }
+
+.signUpTalentForm .fieldContainer {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-direction: column; }
+
+.signUpTalentForm .field {
+  width: 100%;
+  padding: 0 5px; }
+
+.signUpTalentForm .buttonsContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+.signUpTalentForm .buttonsContainer button {
+  margin: 0 5px;
+  display: block;
+  width: 100%;
+  letter-spacing: 1px; }
+
+.signUpTalentForm .buttonsContainer .link {
+  color: #FF8080;
+  cursor: pointer;
+  margin-left: 7px; }

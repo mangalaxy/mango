@@ -2,30 +2,35 @@
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .text-input {
   position: relative; }
-  .text-input .icon-container {
-    position: absolute;
-    top: 10px;
-    right: 10px; }
-  .text-input__field {
-    font-family: Montserrat, 'sans-serif';
-    width: 100%;
-    min-width: 130px;
-    margin-top: 10px;
-    border: 1px solid #BDBDBD;
-    box-sizing: border-box;
-    border-radius: 5px;
-    padding: 6px 5px;
-    color: #4f4f4f;
-    font-size: 12px; }
-    .text-input__field--big-height {
-      height: 70px; }
-    .text-input__field--border-none {
-      border-radius: unset;
-      border: none;
-      border-bottom: 1px solid #BDBDBD;
-      box-shadow: none; }
-  .text-input--half-width .text-input__field {
-    width: 130px; }
+
+.text-input .icon-container {
+  position: absolute;
+  top: 10px;
+  right: 10px; }
+
+.text-input__field {
+  font-family: Montserrat, 'sans-serif';
+  width: 100%;
+  min-width: 130px;
+  margin-top: 10px;
+  border: 1px solid #BDBDBD;
+  box-sizing: border-box;
+  border-radius: 5px;
+  padding: 6px 5px;
+  color: #4f4f4f;
+  font-size: 12px; }
+
+.text-input__field--big-height {
+  height: 70px; }
+
+.text-input__field--border-none {
+  border-radius: unset;
+  border: none;
+  border-bottom: 1px solid #BDBDBD;
+  box-shadow: none; }
+
+.text-input--half-width .text-input__field {
+  width: 130px; }
 
 .control-label {
   display: block;
