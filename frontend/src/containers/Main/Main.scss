@@ -1,5 +1,5 @@
 .mainPageContent{
-  min-height: calc(100vh - 202px);
+  min-height: calc(100vh - 170px);
   #dialog-container{
     position: fixed;
     top: 0;
@@ -13,4 +13,9 @@
   &--mobile-open {
     position: fixed;
   }
+}
+
+.commonContent{
+  padding-top: 70px;
+
 }

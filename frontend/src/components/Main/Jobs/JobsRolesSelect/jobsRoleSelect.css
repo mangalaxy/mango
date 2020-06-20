@@ -5,65 +5,53 @@
   margin: 0 auto;
   padding: 70px 2em 0;
   box-sizing: border-box; }
-
-#main-job-role-select .contentContainer .descriptionHeader {
-  font-size: 32px;
-  font-weight: 600;
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  margin: 2em 0 1em; }
-
-#main-job-role-select .contentContainer .description {
-  display: flex;
-  margin-bottom: 3em; }
-
-#main-job-role-select .contentContainer .description p {
-  width: 50%;
-  text-align: justify; }
-
-#main-job-role-select .contentContainer .description p:first-child {
-  padding-right: 15px; }
-
-#main-job-role-select .contentContainer .description p:last-child {
-  padding-left: 15px; }
-
-#main-job-role-select .contentContainer .rolesContainer {
-  margin: 2em 0;
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  justify-content: space-between; }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem {
-  width: 30%;
-  min-width: 320px;
-  height: 300px;
-  background: #FFFFFF;
-  border: 1px solid #DCE4E2;
-  box-sizing: border-box;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
-  margin-bottom: 5%; }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem .itemHeader {
-  display: flex;
-  align-items: center;
-  height: 20%;
-  padding: 5px 20px; }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem .itemHeader h4 {
-  font-size: 24px;
-  color: #212121; }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem .itemImage {
-  width: 100%;
-  height: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem:hover {
-  box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.18); }
-
-#main-job-role-select .contentContainer .rolesContainer .roleItem:hover .itemHeader h4 {
-  color: rgba(54, 179, 168, 0.9); }
+  #main-job-role-select .contentContainer .descriptionHeader {
+    font-size: 32px;
+    font-weight: 600;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    margin: 2em 0 1em; }
+  #main-job-role-select .contentContainer .description {
+    display: flex;
+    margin-bottom: 3em; }
+    #main-job-role-select .contentContainer .description p {
+      width: 50%;
+      text-align: justify; }
+      #main-job-role-select .contentContainer .description p:first-child {
+        padding-right: 15px; }
+      #main-job-role-select .contentContainer .description p:last-child {
+        padding-left: 15px; }
+  #main-job-role-select .contentContainer .rolesContainer {
+    margin: 2em 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between; }
+    #main-job-role-select .contentContainer .rolesContainer .roleItem {
+      width: 30%;
+      min-width: 320px;
+      height: 300px;
+      background: #FFFFFF;
+      border: 1px solid #DCE4E2;
+      box-sizing: border-box;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.23);
+      margin-bottom: 5%; }
+      #main-job-role-select .contentContainer .rolesContainer .roleItem .itemHeader {
+        display: flex;
+        align-items: center;
+        height: 20%;
+        padding: 5px 20px; }
+        #main-job-role-select .contentContainer .rolesContainer .roleItem .itemHeader h4 {
+          font-size: 24px;
+          color: #212121; }
+      #main-job-role-select .contentContainer .rolesContainer .roleItem .itemImage {
+        width: 100%;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden; }
+      #main-job-role-select .contentContainer .rolesContainer .roleItem:hover {
+        box-shadow: 3px 4px 7px rgba(0, 0, 0, 0.18); }
+        #main-job-role-select .contentContainer .rolesContainer .roleItem:hover .itemHeader h4 {
+          color: rgba(54, 179, 168, 0.9); }

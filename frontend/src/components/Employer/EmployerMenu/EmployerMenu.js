@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import routes from '../../../constants/routes';
+import routes from '../../../constants/routes.json';
 
 import './EmloyerMenu.scss';
 

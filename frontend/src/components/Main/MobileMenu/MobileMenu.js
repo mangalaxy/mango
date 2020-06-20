@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import './MobileMenu.scss';
-import routes from "../../../constants/routes";
+import routes from "../../../constants/routes.json";
 import Down from "../../Down/Down";
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 import {close} from "../../../assets/icons";

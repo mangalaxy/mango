@@ -2,7 +2,7 @@ import React from 'react';
 import './company.scss';
 import EditIcon from '../../elements/icons/EditIcon';
 import GreenDash from '../../elements/GreenLine/greenLine';
-import routes from '../../../constants/routes';
+import routes from '../../../constants/routes.json';
 import {Link} from 'react-router-dom';
 
 const VideoCard = (props: { src: string }) => {
