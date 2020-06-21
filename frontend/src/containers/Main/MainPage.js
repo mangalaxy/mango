@@ -20,7 +20,7 @@ import Login from '../../components/Auth/Login/Login';
 import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
 import SignUpEmployer
   from '../../components/Auth/SignUpEmployer/SignUpEmployer';
-import Post from '../Post/Post';
+import Post from '../../components/Main/Post/Post';
 import MobileMenu from '../../components/Main/MobileMenu/MobileMenu';
 import './Main.scss';
 
