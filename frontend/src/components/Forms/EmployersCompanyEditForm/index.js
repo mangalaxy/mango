@@ -17,6 +17,8 @@ const EmployersCompanyEditForm = ({companyProfile, onSuccess, employersRanges, i
               setStatus({});
               try {
                 let data = {values};
+                // Stub here
+                console.log(data)
                 // TODO: do query to API
                 onSuccess(values);
               } catch (err) {

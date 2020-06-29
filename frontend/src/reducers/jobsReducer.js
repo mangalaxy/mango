@@ -1,28 +1,28 @@
 import {DELETE_JOB, TOGGLE_JOB_STATUS} from '../actions/action_types';
-// json for test:
-import {testPositions} from './testPositions.js';
+import {employerJobs} from '../mocks/employerJobs.js';
 
-const initialState = testPositions;
-export default function (state = JSON.parse(initialState), action) {
+const initialState = employerJobs;
+
+const jobsReducer = (state = initialState, action) => {
+
   switch(action.type) {
     case TOGGLE_JOB_STATUS: {
-      const newState = state.map(item => {
-        if (item.id === action.payload.id
-          && item.isChecked !== action.payload.isChecked) {          
-          return { ...item, isChecked: !item.isChecked} ;          
-        }
-        else return item;
-      });      
-      return newState;
+      return state.map(item => {
+        if (item.id === action.payload.id && item.isChecked !== action.payload.isChecked) {
+          return {
+            ...item,
+            isChecked: !item.isChecked
+          };
+        } else
+          return item;
+      })
     }
-
     case DELETE_JOB: {
-      const newState = state.filter(item => 
-          item.id !== action.payload
-        );
-      return newState;
+      return state.filter(item => item.id !== action.payload);
     }
-
-    default: return state;      
+    default:
+      return state;
   }  
 }
+
+export default jobsReducer;

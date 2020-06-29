@@ -1,56 +1,50 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .switch {
   position: relative;
   display: block;
   width: 40px;
   height: 20px; }
-
-.switch .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 20px;
-  background-color: #BDBDBD;
-  opacity: 0.8;
-  -webkit-transition: .4s;
-  transition: .4s; }
-
-.switch .slider::after {
-  display: block;
-  content: "off";
-  font-weight: 600;
-  color: white;
-  text-align: right;
-  font-size: 12px;
-  line-height: 19px;
-  padding: 0 3px 0 3px; }
-
-.switch input:checked + .slider:after {
-  content: "on";
-  text-align: left; }
-
-.switch .slider:before {
-  content: "";
-  position: absolute;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: #7e7c7c;
-  -webkit-transition: .3s;
-  transition: .3s; }
-
-.switch input:checked + .slider {
-  background-color: #FF6E41; }
-
-.switch input:checked + .slider:before {
-  -webkit-transform: translateX(20px);
-  -ms-transform: translateX(20px);
-  transform: translateX(20px);
-  background-color: #FF3D00; }
+  .switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background-color: #BDBDBD;
+    opacity: 0.8;
+    -webkit-transition: .4s;
+    transition: .4s; }
+  .switch .slider::after {
+    display: block;
+    content: "off";
+    font-weight: 600;
+    color: white;
+    text-align: right;
+    font-size: 12px;
+    line-height: 19px;
+    padding: 0 3px 0 3px; }
+  .switch input:checked + .slider:after {
+    content: "on";
+    text-align: left; }
+  .switch .slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    background-color: #7e7c7c;
+    -webkit-transition: .3s;
+    transition: .3s; }
+  .switch input:checked + .slider {
+    background-color: #FF6E41; }
+  .switch input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+    background-color: #FF3D00; }
 
 .switch input {
   display: none; }

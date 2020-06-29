@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .form-button {
   color: #fff;
@@ -9,12 +9,10 @@
   border: none;
   border-radius: 10px;
   text-transform: uppercase; }
-
-.form-button--white {
-  margin-right: 30px;
-  background-color: #fff;
-  color: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(0, 0, 0, 0.4); }
-
-.form-button--red {
-  background: #FF8080; }
+  .form-button--white {
+    margin-right: 30px;
+    background-color: #fff;
+    color: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 0, 0, 0.4); }
+  .form-button--red {
+    background: #FF8080; }

@@ -1,58 +1,49 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .signUpTalentContainer {
   display: flex;
   flex-direction: row;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.4) 10px 10px 20px; }
-
-.signUpTalentContainer .infoContainer {
-  background: linear-gradient(104.35deg, rgba(82, 200, 205, 0.8) 8.08%, #008489 77.55%), #008489;
-  border-radius: 15px 0 0 15px; }
-
-.signUpTalentContainer .infoContainer .content {
-  color: white;
-  margin: 90px 70px 50px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
-
-.signUpTalentContainer .infoContainer .content img {
-  width: 120px; }
-
-.signUpTalentContainer .infoContainer .content h2 {
-  font-size: 32px;
-  font-weight: 500;
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  margin-top: 2em; }
-
-.signUpTalentContainer .infoContainer .content .description {
-  color: white;
-  display: block;
-  margin-top: 2em;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: justify; }
-
-.signUpTalentContainer .formContainer {
-  background-color: white;
-  border-radius: 0 15px 15px 0; }
-
-.signUpTalentContainer .formContainer .content {
-  color: white;
-  margin: 90px 70px 50px;
-  min-width: 300px; }
-
-.signUpTalentContainer .formContainer .content p {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 16px;
-  font-weight: 300; }
-
-.signUpTalentContainer .formContainer .content p span {
-  color: #FF8080;
-  cursor: pointer; }
+  .signUpTalentContainer .infoContainer {
+    background: linear-gradient(104.35deg, rgba(82, 200, 205, 0.8) 8.08%, #008489 77.55%), #008489;
+    border-radius: 15px 0 0 15px; }
+    .signUpTalentContainer .infoContainer .content {
+      color: white;
+      margin: 90px 70px 50px;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
+      .signUpTalentContainer .infoContainer .content img {
+        width: 120px; }
+      .signUpTalentContainer .infoContainer .content h2 {
+        font-size: 32px;
+        font-weight: 500;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        margin-top: 2em; }
+      .signUpTalentContainer .infoContainer .content .description {
+        color: white;
+        display: block;
+        margin-top: 2em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: justify; }
+  .signUpTalentContainer .formContainer {
+    background-color: white;
+    border-radius: 0 15px 15px 0; }
+    .signUpTalentContainer .formContainer .content {
+      color: white;
+      margin: 90px 70px 50px;
+      min-width: 300px; }
+      .signUpTalentContainer .formContainer .content p {
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 16px;
+        font-weight: 300; }
+        .signUpTalentContainer .formContainer .content p span {
+          color: #FF8080;
+          cursor: pointer; }

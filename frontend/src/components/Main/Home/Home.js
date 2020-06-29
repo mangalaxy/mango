@@ -1,34 +1,15 @@
 import React, {Component, Fragment} from 'react';
 import './Home.scss';
 import Slider from 'react-slick';
+import {top3Jobs} from "../../../mocks/top3JobsOnHomePage";
 
 class Home extends Component {
 
-  state = {
-    jobCardData: [
-      {
-        name: 'UX Designer',
-        city: 'Linz',
-        country: 'Austria',
-        daysToApply: 12,
-        imageUrl: '/images/job1.png',
-      },
-      {
-        name: 'Senior Data Scientist',
-        city: 'Berlin',
-        country: 'Germany',
-        daysToApply: 1,
-        imageUrl: '/images/job2.png',
-      },
-      {
-        name: 'AR/VR Engineer',
-        city: 'Linz',
-        country: 'Austria',
-        daysToApply: 12,
-        imageUrl: '/images/job3.png',
-      },
-    ],
-  };
+  state = { jobCardData: [] };
+
+  componentDidMount() {
+    this.setState({jobCardData: [...top3Jobs]})
+  }
 
   render() {
     const {jobCardData} = this.state;
@@ -113,7 +94,9 @@ class Home extends Component {
           <section className='container' id='jobRoles'>
             <h2 className="mainHeaderH2">Job roles</h2>
             <div className="cardContainer">
-              {jobCardData && jobCardData.map((job, index) => <JobCard key={index} job={job}/>)}
+              {jobCardData && jobCardData.map((job, index) =>
+                    <JobCard key={index} job={job}/>)
+              }
             </div>
             <button className='actionButton'>Apply now</button>
           </section>

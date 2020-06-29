@@ -1,32 +1,14 @@
 import React from 'react';
 import './Post.scss'
-import {facebook, like, twitter} from "../../assets/icons";
-import SvgIcon from '../../components/SvgIcon/SvgIcon';
+import {facebook, like, twitter} from "../../../assets/icons";
+import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 import PostItem from './PostItem/PostItem'
+import {mockPosts} from '../../../mocks/posts';
 
-const mockPosts = [
-    {
-        id: 1,
-        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
-        tag: 'Design',
-        title: 'Principles For Designing Better Products'
-    },
-    {
-        id: 1,
-        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
-        tag: 'Design',
-        title: 'Principles For Designing Better Products'
-    },
-    {
-        id: 1,
-        img: 'https://nashagazeta.ch/sites/default/files/graphic-design.jpg',
-        tag: 'Design',
-        title: 'Principles For Designing Better Products'
-    }
-];
 
-function Post(props) {
-    const id = props.match.params.id;
+
+const Post=({match}) => {
+    const id = match.params.id;
     const postsList = mockPosts.map(post => <PostItem key={post.id} post={post} />)
     return (
         <div className='info'>

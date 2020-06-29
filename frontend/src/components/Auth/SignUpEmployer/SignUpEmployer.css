@@ -1,58 +1,49 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .signUpEmployerContainer {
   display: flex;
   flex-direction: row;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.4) 10px 10px 20px; }
-
-.signUpEmployerContainer .infoContainer {
-  background: linear-gradient(157.01deg, #FFF503 -144.41%, #FC7171 75.73%);
-  border-radius: 15px 0 0 15px; }
-
-.signUpEmployerContainer .infoContainer .content {
-  color: white;
-  margin: 90px 70px 50px;
-  width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; }
-
-.signUpEmployerContainer .infoContainer .content img {
-  width: 120px; }
-
-.signUpEmployerContainer .infoContainer .content h2 {
-  font-size: 32px;
-  font-weight: 500;
-  font-family: "Montserrat", sans-serif;
-  text-align: center;
-  margin-top: 2em; }
-
-.signUpEmployerContainer .infoContainer .content .description {
-  color: white;
-  display: block;
-  margin-top: 2em;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: justify; }
-
-.signUpEmployerContainer .formContainer {
-  background-color: white;
-  border-radius: 0 15px 15px 0; }
-
-.signUpEmployerContainer .formContainer .content {
-  color: white;
-  margin: 90px 70px 50px;
-  min-width: 300px; }
-
-.signUpEmployerContainer .formContainer .content p {
-  color: rgba(0, 0, 0, 0.4);
-  font-size: 16px;
-  font-weight: 300; }
-
-.signUpEmployerContainer .formContainer .content p span {
-  color: #FF8080;
-  cursor: pointer; }
+  .signUpEmployerContainer .infoContainer {
+    background: linear-gradient(157.01deg, #FFF503 -144.41%, #FC7171 75.73%);
+    border-radius: 15px 0 0 15px; }
+    .signUpEmployerContainer .infoContainer .content {
+      color: white;
+      margin: 90px 70px 50px;
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center; }
+      .signUpEmployerContainer .infoContainer .content img {
+        width: 120px; }
+      .signUpEmployerContainer .infoContainer .content h2 {
+        font-size: 32px;
+        font-weight: 500;
+        font-family: "Montserrat", sans-serif;
+        text-align: center;
+        margin-top: 2em; }
+      .signUpEmployerContainer .infoContainer .content .description {
+        color: white;
+        display: block;
+        margin-top: 2em;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 22px;
+        text-align: justify; }
+  .signUpEmployerContainer .formContainer {
+    background-color: white;
+    border-radius: 0 15px 15px 0; }
+    .signUpEmployerContainer .formContainer .content {
+      color: white;
+      margin: 90px 70px 50px;
+      min-width: 300px; }
+      .signUpEmployerContainer .formContainer .content p {
+        color: rgba(0, 0, 0, 0.4);
+        font-size: 16px;
+        font-weight: 300; }
+        .signUpEmployerContainer .formContainer .content p span {
+          color: #FF8080;
+          cursor: pointer; }

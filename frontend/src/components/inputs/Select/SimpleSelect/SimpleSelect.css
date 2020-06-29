@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .simple-select .control-label {
   display: block;
   margin: 0 0 10px 0;
   font-size: 12px;
   font-weight: bold;
-  color: #333333; }
+  color: #212121; }
 
 .simple-select .react-dropdown-select {
   width: 100%;
@@ -13,83 +13,72 @@
   margin: 10px 0;
   border: none;
   box-sizing: border-box;
-  color: #333333;
+  color: #212121;
   font-size: 12px;
   outline: none;
   z-index: 9000; }
-
-.simple-select .react-dropdown-select-content {
-  display: none; }
-
-.simple-select .react-dropdown-select-option {
-  margin: 0;
-  background-color: #fff;
-  color: #333333; }
-
-.simple-select .react-dropdown-select-input::placeholder {
-  color: #BDBDBD !important;
-  font-size: 12px; }
-
-.simple-select .react-dropdown-select:hover {
-  border: none !important; }
-
-.simple-select .react-dropdown-select:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important;
-  min-height: 28px !important; }
-
-.simple-select .react-dropdown-select:focus-within {
-  outline: none !important;
-  box-shadow: none !important;
-  border: none !important; }
-
-.simple-select .react-dropdown-select-dropdown {
-  position: relative;
-  top: 0;
-  left: 0;
-  width: 80%;
-  padding: 5px 0;
-  color: #4f4f4f;
-  border: none;
-  z-index: 9999;
-  box-shadow: none;
-  flex-direction: unset;
-  flex-wrap: wrap;
-  justify-content: space-between; }
-
-.simple-select .react-dropdown-select-item {
-  position: relative;
-  padding: 10px 10px 5px 27px;
-  border: none;
-  min-width: 50%;
-  box-sizing: border-box; }
-
-.simple-select .react-dropdown-select-item::before {
-  position: absolute;
-  top: 8px;
-  left: 7px;
-  content: '';
-  display: block;
-  width: 14px;
-  height: 14px;
-  border: 1px solid #BDBDBD;
-  border-radius: 1px;
-  box-sizing: border-box;
-  text-align: center;
-  line-height: 14px;
-  font-size: 14px; }
-
-.simple-select .react-dropdown-select-item-selected {
-  background-color: #FBFBFB !important;
-  color: #4f4f4f !important;
-  border: none !important; }
-
-.simple-select .react-dropdown-select-item-selected::before {
-  content: '\2713';
-  color: #fff;
-  background-color: rgba(54, 179, 168, 0.9);
-  border: none; }
+  .simple-select .react-dropdown-select-content {
+    display: none; }
+  .simple-select .react-dropdown-select-option {
+    margin: 0;
+    background-color: #fff;
+    color: #212121; }
+  .simple-select .react-dropdown-select-input::placeholder {
+    color: #BDBDBD !important;
+    font-size: 12px; }
+  .simple-select .react-dropdown-select:hover {
+    border: none !important; }
+  .simple-select .react-dropdown-select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+    min-height: 28px !important; }
+  .simple-select .react-dropdown-select:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important; }
+  .simple-select .react-dropdown-select-dropdown {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 80%;
+    padding: 5px 0;
+    color: #4f4f4f;
+    border: none;
+    z-index: 9999;
+    box-shadow: none;
+    flex-direction: unset;
+    flex-wrap: wrap;
+    justify-content: space-between; }
+  .simple-select .react-dropdown-select-item {
+    position: relative;
+    padding: 10px 10px 5px 27px;
+    border: none;
+    min-width: 50%;
+    box-sizing: border-box; }
+    .simple-select .react-dropdown-select-item::before {
+      position: absolute;
+      top: 8px;
+      left: 7px;
+      content: '';
+      display: block;
+      width: 14px;
+      height: 14px;
+      border: 1px solid #BDBDBD;
+      border-radius: 1px;
+      box-sizing: border-box;
+      text-align: center;
+      line-height: 14px;
+      font-size: 14px; }
+    .simple-select .react-dropdown-select-item-selected {
+      background-color: #FBFBFB !important;
+      color: #4f4f4f !important;
+      border: none !important; }
+      .simple-select .react-dropdown-select-item-selected::before {
+        content: '\2713';
+        color: #fff;
+        background-color: rgba(54, 179, 168, 0.9);
+        border: none; }
 
 .simple-select--direction-table .react-dropdown-select-dropdown {
   flex-direction: column; }
