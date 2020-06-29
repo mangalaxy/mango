@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import './Footer.scss';
 import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes.json';

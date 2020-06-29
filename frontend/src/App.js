@@ -24,11 +24,12 @@ const App = () => {
       <Router>
         <Route component={ScrollToTop}/>
         <Switch>
-          <Route path={routes.COMMON.HOME} component={MainPage}/>
+          <Route exact path={routes.COMMON.HOME} component={MainPage}/>
+          <Route path={routes.EMPLOYERS.HOME} component={Employer}/>
+          <Route path={routes.TALENT_HOME} component={Talent}/>
+
           <Route path={routes.TALENT_HOME + '/:id/interviews'}
                  component={ProfileInterview}/>
-          <Route path={routes.TALENT_HOME} component={Talent}/>
-          <Route path={routes.EMPLOYERS_HOME} component={Employer}/>
           <Route path={routes.PROFILE_CREATE} component={CreateProfile}/>
           <Route path={routes.TALENT_PROFILE} component={TalentProfile}/>
         </Switch>

@@ -1,9 +1,4 @@
-import React, {Component} from 'react';
-import Company from '../../../components/Employer/Company/Company';
-import CompanyEdit from '../../../components/Employer/Company/CompanyEdit';
-import routes from '../../../constants/routes.json';
-
-const mockCompanyProfile = {
+export const mockCompanyProfile = {
   logo: 'https://dynamic.brandcrowd.com/asset/logo/baaa7dd7-2811-4603-9a8a-bd2f6d79f312/logo?v=4',
   name: 'Dragon innovation',
   headline: 'Leading the hardware revolution',
@@ -39,30 +34,3 @@ const mockCompanyProfile = {
   ],
   links: ['dragoninnovation.com'],
 };
-
-class EmployersCompany extends Component {
-  state = {
-    companyProfile: mockCompanyProfile,
-  };
-
-  render() {
-    const {companyProfile} = this.state;
-    const editMode = this.props.match.params.mode === 'edit';
-    return (
-          <>
-            {editMode ? <CompanyEdit companyProfile={companyProfile}
-                                     onSubmit={() => this.handleChange()} />
-                      : <Company profile={companyProfile} />
-            }
-          </>
-    );
-  }
-
-  handleChange = (profile) => {
-    console.log('SAVED!');
-    this.setState({companyProfile: profile})
-    this.props.history.push(routes.EMPLOYERS_COMPANY)
-  }
-}
-
-export default EmployersCompany;

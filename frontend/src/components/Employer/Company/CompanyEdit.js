@@ -1,6 +1,7 @@
 import React from 'react';
 import EmployersCompanyEditForm from '../../Forms/EmployersCompanyEditForm';
-import './company.scss'
+import './company.scss';
+import routes from '../../../constants/routes.json';
 
 const employersRanges = [
   {label: '0-20', value: '0-20'},
@@ -18,17 +19,25 @@ const industries = [
   {label: 'Platform', value: 'Platform'},
   {label: 'Sales and Marketing', value: 'Sales and Marketing'},
   {label: 'Telecommunications', value: 'Telecommunications'},
-]
+];
 
-const CompanyEdit = ({companyProfile, onSubmit}) => (
-    <div className="company">
-      <EmployersCompanyEditForm
-          companyProfile={companyProfile}
-          onSuccess={onSubmit}
-          employersRanges={employersRanges}
-          industries={industries}
-      />
-    </div>
-);
+const CompanyEdit = ({companyProfile, history}) => {
+  const handleSave = (profile) => {
+    console.log('SAVED!');
+   //TODO: send company data to backend
+    history.push(routes.EMPLOYERS.COMPANY);
+  };
+
+  return (
+      <div className="company">
+        <EmployersCompanyEditForm
+            companyProfile={companyProfile}
+            onSuccess={handleSave}
+            employersRanges={employersRanges}
+            industries={industries}
+        />
+      </div>
+  );
+};
 
 export default CompanyEdit;

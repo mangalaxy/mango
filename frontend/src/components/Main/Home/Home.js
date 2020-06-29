@@ -174,10 +174,10 @@ const RenderStepsDiagram = () => {
                               <div className={`steps-diagram__step-header ${even && 'steps-diagram__step-header--reverse'}`}>{step.header}</div>
                               <div className={`steps-diagram__step-description ${even && 'steps-diagram__step-description--reverse'}`}>{step.text}</div>
                           </div>
-                          <div className='steps-diagram__small-cicle'></div>
+                          <div className='steps-diagram__small-cicle'/>
                       </div>
                       <div className={`steps-diagram__img-block ${even && 'steps-diagram__img-block--reverse'}`}>
-                          <img className='steps-diagram__img' src={step.picture}/>
+                          <img className='steps-diagram__img' src={step.picture} alt=''/>
                       </div>
                   </div>
               </div>

@@ -8,33 +8,33 @@ const EmployerMenu = ({ user, theme = null }) => {
   return (
       <div className={`employerMenuContainer ${theme === 'white' && 'white'}`}>
         <div>
-          <Link to={routes.EMPLOYERS_HOME} className='logo'>
+          <Link to={routes.EMPLOYERS.HOME} className='logo'>
             Mango
           </Link>
         </div>
         <ul className='menuItemsContainer'>
           <li>
-            <NavLink to={routes.EMPLOYERS_OPEN_POSITIONS}
+            <NavLink to={routes.EMPLOYERS.OPEN_POSITIONS}
                      className={'menuItem'}
                      activeClassName={'menuItem active'}
             >Positions</NavLink>
           </li>
           <li>
-            <NavLink to={routes.EMPLOYERS_FIND_TALENT}
+            <NavLink to={routes.EMPLOYERS.FIND_TALENT}
                      className={'menuItem'}
                      activeClassName={'menuItem active'}>
               Find talent
             </NavLink>
           </li>
           <li>
-            <NavLink to={routes.EMPLOYERS_BOOKMARKED}
+            <NavLink to={routes.EMPLOYERS.BOOKMARKED}
                      className={'menuItem'}
                      activeClassName={'menuItem active'}>
               Bookmarked
             </NavLink>
           </li>
           <li>
-            <NavLink to={routes.EMPLOYERS_INTERVIEWS}
+            <NavLink to={routes.EMPLOYERS.INTERVIEWS}
                      className={'menuItem'}
                      activeClassName={'menuItem active'}>
               Interviews
