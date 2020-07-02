@@ -80,6 +80,7 @@ const MainPage = ({mobileMenuOpen, location}) => {
                    component={Support}/>
             <Route exact path={routes.COMMON.BLOG} component={Blog}/>
             <Route exact path={routes.COMMON.POST} component={Post}/>
+
             {/*<Route path={'/*'} component={() => (*/}
             {/*    <div className={'commonContent'}>404</div>)}/>*/}
           </Switch>

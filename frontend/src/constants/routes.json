@@ -15,7 +15,7 @@
     "POST": "/post"
   },
   "EMPLOYERS": {
-    "HOME": "/employers",
+    "HOME": "/employers/",
     "WELCOME": "/employers/welcome",
     "OPEN_POSITIONS": "/employers/open-positions",
     "COMPANY": "/employers/company",
