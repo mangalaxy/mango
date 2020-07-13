@@ -6,8 +6,7 @@ import FKDropdown from '../../../Fields/FKDropdown/FKDropdown';
 
 import './styles.scss';
 
-const EmployersCompanyEditFormView = props => {
-  const { handleSubmit, isSubmitting, isValid, values, initialValues } = props;
+const EmployersCompanyEditFormView =({ handleSubmit, isSubmitting, isValid, values, initialValues })=> {
   const logoRef = useRef(null);
   const imageRef = useRef(null);
 
@@ -75,7 +74,7 @@ const EmployersCompanyEditFormView = props => {
       <div className="line"/>
       <div className="companyDetail">
         <div className='leftCol'>
-          <img className='mainImage' src={values.images[0]} alt=""/>
+          <img className='mainImage' src={values.images && values.images[0]} alt=""/>
           <label className='fieldLabel'>About</label>
           <Field
               component={FKTextAreaInput}
@@ -86,7 +85,7 @@ const EmployersCompanyEditFormView = props => {
           <label className='fieldLabel'>Gallery</label>
           <div className="line"/>
           <div className='imageGallery'>
-            {values.images.map((img, index) => <div className='mini'
+            {values.images && values.images.map((img, index) => <div className='mini'
                                                       key={index}
                                                       style={{
                                                         background: `url(${img})`,
@@ -109,7 +108,7 @@ const EmployersCompanyEditFormView = props => {
               <label className='fieldLabel'>Tech stack</label>
               <span className='add'>+</span>
             </div>
-            {values.techStack.map((stack, index) => (
+            {values.techStack && values.techStack.map((stack, index) => (
                 <div className='row' key={index}>
                   <span className='stackName'>{stack}</span>
                   <div className='remove'><span>-</span></div>
@@ -125,7 +124,7 @@ const EmployersCompanyEditFormView = props => {
                                       onClick={() => arrayHelpers.push('')}
                                 >+</span>
                               </div>
-                              {values.perks.map((perk, index) =>
+                              {values.perks && values.perks.map((perk, index) =>
                                   <Field name={`perks.${index}`} key={index}
                                          component={TextInput}
                                          disabled={isSubmitting}

@@ -1,15 +1,8 @@
-//@flow
-import React, {Component, Fragment} from 'react';
-import type {Node} from 'react';
+import React, {Fragment} from 'react';
 import './ForTalents.scss';
 import {GreenDash, Partners} from '../Home/Home';
 
-type Props = {}
-
-class ForTalents extends Component <Props>{
-  props:Props;
-
-  render(): Node {
+const ForTalents = () =>{
     return (
         <Fragment>
           <div className='bannerContainer' id='for-talent-banner'>
@@ -108,7 +101,6 @@ class ForTalents extends Component <Props>{
           </section>
         </Fragment>
     );
-  }
 }
 
 export default ForTalents;

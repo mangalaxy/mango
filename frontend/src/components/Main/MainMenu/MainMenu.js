@@ -10,11 +10,10 @@ const MainMenu = ({path, grey, dark, openLoginForm, openSignUpTalent, openSignUp
   const showMenu = () => setDropdownVisible(true);
   const hideMenu = () => setDropdownVisible(false);
 
-  let grayMode = !(path === routes.COMMON.HOME || path ===
-      routes.COMMON.FOR_TALENTS ||
+  let grayMode = !(path === routes.COMMON.HOME ||
+      path === routes.COMMON.FOR_TALENTS ||
       path === routes.COMMON.FOR_EMPLOYERS || path === routes.COMMON.ABOUT ||
-      path ===
-      routes.COMMON.BLOG);
+      path === routes.COMMON.BLOG);
 
   return (
       <div className={`menuContainer ${grayMode || grey && 'gray'}`}>

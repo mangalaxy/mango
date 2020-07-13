@@ -1,6 +1,5 @@
-//@flow
-import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import routes from '../../constants/routes.json';
 import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
 import EmployerWelcome
@@ -8,41 +7,50 @@ import EmployerWelcome
 import EmployersPositions
   from '../../components/Employer/EmployersPositions/EmployersPositions';
 import './EmployerPage.scss';
-import EmployersCompany from './Company/CompanyPage';
 import {connect} from 'react-redux';
+import CompanyEdit from '../../components/Employer/Company/CompanyEdit';
+import Company from '../../components/Employer/Company/Company';
+import {mockCompanyProfile} from '../../mocks/companyProfile';
+import BookmarkedTalents
+  from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
+import InterviewDashboard
+  from '../../components/Employer/InterviewDashboard/InterviewDashboard';
+import MatchedTalents
+  from '../../components/Employer/MatchedTalents/MatchedTalents';
 
-type Props = {
-  user: {
-    fullName: string
-  }
-}
-
-class Employer extends Component<Props> {
-  getMenuTheme = () => {
-    const path = this.props.location.pathname;
-    if (path.startsWith(routes.EMPLOYERS_COMPANY)) return 'white';
+const Employer = ({user, location, history}) => {
+  const getMenuTheme = () => {
+    const path = location.pathname;
+    if (path.startsWith(routes.EMPLOYERS.COMPANY)) return 'white';
     return null;
   };
 
-  render() {
-    const {user} = this.props;
-    return (
-        <div className="employer-bg">
-          <EmployerMenu
-              user={user}
-              theme={this.getMenuTheme()}
-          />
-          <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
-          <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
+  return (
+      <div className="employer-bg">
+        <EmployerMenu
+            user={user}
+            theme={getMenuTheme()}
+        />
+        <Switch>
+          <Route exact path={routes.EMPLOYERS.HOME}
+                 component={EmployerWelcome}/>
+          <Route exact path={routes.EMPLOYERS.OPEN_POSITIONS}
                  component={EmployersPositions}/>
-          <Route exact path={routes.EMPLOYERS_COMPANY}
-                 component={EmployersCompany}/>
-          <Route path={`${routes.EMPLOYERS_COMPANY}/:mode`}
-                 component={EmployersCompany}/>
-        </div>
-    );
-  }
-}
+          <Route exact path={routes.EMPLOYERS.COMPANY}
+                 component={() => <Company profile={mockCompanyProfile}/>}/>
+          <Route exact path={routes.EMPLOYERS.COMPANY_EDIT}
+                 component={() => <CompanyEdit
+                     companyProfile={mockCompanyProfile} history={history}/>}/>
+          <Route exact path={routes.EMPLOYERS.FIND_TALENT}
+                 component={()=><div/>}/>
+          <Route exact path={routes.EMPLOYERS.BOOKMARKED}
+                 component={BookmarkedTalents}/>
+          <Route exact path={routes.EMPLOYERS.INTERVIEWS}
+                 component={InterviewDashboard}/>
+        </Switch>
+      </div>
+  );
+};
 
 const mapStateToProps = state => ({
   user: state.user.user,
@@ -50,4 +58,4 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({});
 
-export default connect(mapStateToProps)(Employer);
+export default connect(mapStateToProps, mapDispatchToProps)(Employer);
