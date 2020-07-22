@@ -2,10 +2,13 @@ import React, {Component, Fragment} from 'react';
 import './Home.scss';
 import Slider from 'react-slick';
 import {top3Jobs} from "../../../mocks/top3JobsOnHomePage";
+import {keys} from "../../../constants/en.json";
 
 class Home extends Component {
 
-  state = { jobCardData: [] };
+  state = {
+    jobCardData: []
+  }
 
   componentDidMount() {
     this.setState({jobCardData: [...top3Jobs]})
@@ -26,99 +29,83 @@ class Home extends Component {
       autoplaySpeed: 4000,
     };
 
+    // Get our translate keys from home dictionary,
+    // then inject them in appropriate places by keys.
+    // 't' is shorthand for word 'translation'
+    const t = keys.home;
     return (
-        <Fragment>
-          <section className='bannerContainer' id={'home-banner'}>
-            <div className='bannerContent'>
-              <h1 className='bannerContent__title'>
-                Truly changing the World for the better
-              </h1>
-              <h4 className='bannerContent__description'>
-                Connecting outstanding people with the world’s
-                most innovative companies
-              </h4>
-              <div className="buttonsContainer">
-                <button className='actionButton'>Apply now</button>
-                <button className='actionButtonTransparent'>learn more</button>
+          <>
+            <section className='bannerContainer' id={'home-banner'}>
+              <div className="bannerContent">
+                <h1 className="bannerContent-title">{t["banner.title"]}</h1>
+                <h4 className="bannerContent-description">{t["banner.description"]}</h4>
+                <div className="buttonsContainer">
+                  <button className="accent-btn">{t["btn.apply-now"]}</button>
+                  <button className="accent-btn__inverted">{t["btn.learn-more"]}</button>
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
 
-          <section className='about-us'>
-            <div className='container about-us__content'>
-              <div className="contentRow">
-                <h3 className='contentRow__title'>Why choose us</h3>
-                <p>The ultimate platform that connects the best talents in IT
-                  with topnotch companies in the industry and provides a smooth
-                  way for the ideal candidate to join the best organization </p>
+            <section className='about-us'>
+              <div className='container about-us__content'>
+                <div className="contentRow">
+                  <h3 className='contentRow__title'>{t["features.why-choose-us"]}</h3>
+                  <p>{t["features.why-choose-us.text"]} </p>
+                </div>
+                <div className="contentRow">
+                  <h3 className='contentRow__title'>{t["features.our-mission"]}</h3>
+                  <p>{t["features.our-mission.text"]}</p>
+                </div>
+                <div className="contentRow">
+                  <h3 className='contentRow__title'>{t["features.what-we-do"]}</h3>
+                  <p>{t["features.what-we-do.text1"]}</p>
+                  <p>{t["features.what-we-do.text2"]}</p>
+                </div>
               </div>
-              <div className="contentRow">
-                <h3 className='contentRow__title'>Our mission</h3>
-                <p>Making our platform the final place for prompt acquisition of
-                  talents by companies according to talent’s tech stack and
-                  experience, considering location and market expectations </p>
+            </section>
+
+            <section id="steps">
+              <div className="container">
+                <h2 className='mainHeaderH2'>{t["figure.title"]}</h2>
+                <RenderStepsDiagram/>
               </div>
-              <div className="contentRow">
-                <h3 className='contentRow__title'>What we do</h3>
-                <p>For companies: We find the best candidates for your open
-                  positions and provide convenient tools from talents’
-                  application to taking them onboard
-                </p>
-                <p>
-                  For talents: We deliver the one and only platform for your
-                  next successful career move in IT
-                </p>
+            </section>
+
+            <section id="pathfinder">
+              <div className='image'/>
+              <div className='content'>
+                <p>{t["pathfinder.action-call"]}</p>
+                <button className='accent-btn'>{t["btn.apply-now"]}</button>
               </div>
-            </div>
-          </section>
-          <section id='steps'>
-            <div className="container">
-              <h2 className='mainHeaderH2'>
-                Five easy steps
-              </h2>
-              <RenderStepsDiagram/>
-            </div>
-          </section>
+            </section>
 
-          <section id='section4'>
-            <div className='image'/>
-            <div className='content'>
-              <p>
-                New interesting projects and teams <br/>
-                are waiting for you!
-              </p>
-              <button className='actionButton'>Apply now</button>
-            </div>
-          </section>
+            <section className='container' id='jobRoles'>
+              <h2 className="mainHeaderH2">{t["job-roles.title"]}</h2>
+              <div className="cardContainer">
+                {jobCardData && jobCardData.map((job, index) =>
+                      <JobCard key={index} job={job}/>)
+                }
+              </div>
+              <button className='accent-btn'>{t["btn.apply-now"]}</button>
+            </section>
 
-          <section className='container' id='jobRoles'>
-            <h2 className="mainHeaderH2">Job roles</h2>
-            <div className="cardContainer">
-              {jobCardData && jobCardData.map((job, index) =>
-                    <JobCard key={index} job={job}/>)
-              }
-            </div>
-            <button className='actionButton'>Apply now</button>
-          </section>
-
-          <section id='techCenters'>
-            <h2 className="container mainHeaderH2">Tech centers</h2>
-            <div className="citiesCarouselContainer">
-              <Slider {...settings} className='large-slider'>
-                {cities.map((city, index) => <CityCard key={index} city={city}/>)}
-              </Slider>
-                <Slider {...settings} slidesToShow={2} slidesToScroll={2} className='small-slider'>
-                    {cities.map((city, index) => <CityCard key={index} city={city}/>)}
+            <section id='techCenters'>
+              <h2 className="container mainHeaderH2">{t["tech-centers.title"]}</h2>
+              <div className="citiesCarouselContainer">
+                <Slider {...settings} className='large-slider'>
+                  {cities.map((city, index) => <CityCard key={index} city={city}/>)}
                 </Slider>
-            </div>
-          </section>
+                <Slider {...settings} slidesToShow={2} slidesToScroll={2} className='small-slider'>
+                  {cities.map((city, index) => <CityCard key={index} city={city}/>)}
+                </Slider>
+              </div>
+            </section>
 
-          <section className='container' id='partners'>
-            <h2 className="mainHeaderH2">Our partners</h2>
-            <Partners/>
-          </section>
-
-        </Fragment>
+            <section className='container' id='partners'>
+              <h2 className="mainHeaderH2">{t["partners.title"]}</h2>
+              <Partners/>
+            </section>
+          </>
     );
   }
 }
@@ -157,47 +144,47 @@ const RenderStepsDiagram = () => {
   ];
 
   return (
-      <div className='steps-diagram'>
+        <div className='steps-diagram'>
 
-        {steps.map((step, index) => {
-          const even = (index + 1)%2 === 0;
-          return (
-              <div className='steps-diagram__item' key={index}>
-                  <div className={`steps-diagram__item-container ${even && 'steps-diagram__item-container--reverse'}`}>
+          {steps.map((step, index) => {
+            const even = (index + 1) % 2 === 0;
+            return (
+                  <div className='steps-diagram__item' key={index}>
+                    <div className={`steps-diagram__item-container ${even && 'steps-diagram__item-container--reverse'}`}>
                       <div className={`steps-diagram__text-block ${even && 'steps-diagram__text-block--reverse'}`}>
-                          <div className='steps-diagram__cicle'>
-                              <div className='steps-diagram__inner-cicle'>
-                                  {index+1}
-                              </div>
+                        <div className='steps-diagram__cicle'>
+                          <div className='steps-diagram__inner-cicle'>
+                            {index + 1}
                           </div>
-                          <div className='steps-diagram__line'>
-                              <div className={`steps-diagram__step-header ${even && 'steps-diagram__step-header--reverse'}`}>{step.header}</div>
-                              <div className={`steps-diagram__step-description ${even && 'steps-diagram__step-description--reverse'}`}>{step.text}</div>
-                          </div>
-                          <div className='steps-diagram__small-cicle'/>
+                        </div>
+                        <div className='steps-diagram__line'>
+                          <div className={`steps-diagram__step-header ${even && 'steps-diagram__step-header--reverse'}`}>{step.header}</div>
+                          <div className={`steps-diagram__step-description ${even && 'steps-diagram__step-description--reverse'}`}>{step.text}</div>
+                        </div>
+                        <div className='steps-diagram__small-cicle'/>
                       </div>
                       <div className={`steps-diagram__img-block ${even && 'steps-diagram__img-block--reverse'}`}>
-                          <img className='steps-diagram__img' src={step.picture} alt=''/>
+                        <img className='steps-diagram__img' src={step.picture} alt=''/>
                       </div>
+                    </div>
                   </div>
-              </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
   );
 };
 
 const JobCard = (props) => {
   const {job} = props;
   return (
-      <div className='jobCardMain'>
-        <h3>{job.name}</h3>
-        <span>{job.city}, {job.country}</span>
-        <div className="imageContainer">
-          <img src={job.imageUrl} alt=""/>
+        <div className='jobCardMain'>
+          <h3>{job.name}</h3>
+          <span>{job.city}, {job.country}</span>
+          <div className="imageContainer">
+            <img src={job.imageUrl} alt=""/>
+          </div>
+          {job.daysToApply && <span>{job.daysToApply} {job.daysToApply === 1 ? 'day' : 'days'} to apply</span>}
         </div>
-        {job.daysToApply && <span>{job.daysToApply} {job.daysToApply === 1 ? 'day' : 'days'} to apply</span>}
-      </div>
   );
 };
 
@@ -207,10 +194,10 @@ const cities = [
   {name: 'San francisco', image: '/images/cities/san-francisco.png'},
   {name: 'Hong Kong', image: '/images/cities/hong-kong.png'},
   {name: 'Kyiv', image: '/images/cities/kyiv.png'},
-  {name: 'Singapure', image: '/images/cities/singapure.png'},
+  {name: 'Singapore', image: '/images/cities/singapure.png'},
   {name: 'Los Angeles', image: '/images/cities/los-angeles.png'},
   {name: 'Boston', image: '/images/cities/boston.png'},
-  {name: 'Tel Aviv', image: '/images/cities/tel-aviv.png'},
+  {name: 'Tel-Aviv', image: '/images/cities/tel-aviv.png'},
   {name: 'Berlin', image: '/images/cities/berlin.png'},
   {name: 'Chicago', image: '/images/cities/chicago.png'},
   {name: 'Seattle', image: '/images/cities/seattle.png'},
@@ -225,7 +212,7 @@ const cities = [
   {name: 'Stockholm', image: '/images/cities/stockholm.png'},
   {name: 'Vancouver', image: '/images/cities/vancouver.png'},
   {name: 'San Diego', image: '/images/cities/san-diego.png'},
-  {name: 'Barselona', image: '/images/cities/barselona.png'},
+  {name: 'Barcelona', image: '/images/cities/barselona.png'},
 ];
 
 const partnersImages = [
@@ -235,20 +222,20 @@ const partnersImages = [
   '/images/partners/webelect.png',
 ];
 
-export const Partners = () =>(
-    <div className="partnersContainer">
-      {partnersImages.map((path, index) => <img key={index} src={path} alt=""/>)}
-    </div>
+export const Partners = () => (
+      <div className="partnersContainer">
+        {partnersImages.map((path, index) => <img key={index} src={path} alt=""/>)}
+      </div>
 );
 
-const CityCard = (props) => {
-  const {city} = props;
+const CityCard = ({city}) => {
   return (
-      <div className="cityContainer">
-        {city && <Fragment>
-          <img src={city.image} alt=""/>
-          <h3>{city.name}</h3>
-        </Fragment>}
-      </div>
+        <div className="cityContainer">
+          {city &&
+          <Fragment>
+            <img src={city.image} alt=""/>
+            <h3>{city.name}</h3>
+          </Fragment>}
+        </div>
   );
 };
