@@ -10,7 +10,7 @@
 
   &-header {
     position: relative;
-    z-index: 99999;
+    z-index: 100;
   }
 
   &--filter {
@@ -85,8 +85,8 @@
 
     &__container {
       display: flex;
+      flex-flow: row wrap;
       justify-content: space-between;
-      flex-wrap: wrap;
 
       .inputs-container {
         display: flex;

@@ -2,6 +2,7 @@
 
 #home-banner {
   background-image: url("../../../assets/images/MainPage/homeBG.png");
+
   .buttonsContainer {
     display: flex;
     align-items: center;
@@ -60,7 +61,7 @@
   margin-top: 50px;
 }
 
-#section4 {
+#pathfinder {
   display: flex;
 
   .image {
@@ -642,7 +643,7 @@
     }
   }
 
-  #section4 {
+  #pathfinder {
     flex-wrap: wrap;
 
     .image {

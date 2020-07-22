@@ -1,0 +1,30 @@
+{
+  "language": "en",
+  "last_updated": "17-07-2020",
+  "version": 1.0,
+  "keys": {
+    "home": {
+      "banner.title": "Truly changing the world for the better",
+      "banner.description": "Connecting outstanding people with the world’s most innovative companies.",
+      "btn.apply-now": "Apply now",
+      "btn.learn-more": "Learn more",
+      "features.why-choose-us": "Why choose us",
+      "features.why-choose-us.text": "The ultimate platform that connects the best talents in IT with topnotch companies in the industry and provides a smooth way for the ideal candidate to join the best organization.",
+      "features.our-mission": "Our mission",
+      "features.our-mission.text": "Making our platform the final place for prompt acquisition of talents by companies according to talent’s tech stack and experience, considering location and market expectations.",
+      "features.what-we-do": "What we do",
+      "features.what-we-do.text1": "For companies: We find the best candidates for your open positions and provide convenient tools from talent's application to taking them onboard",
+      "features.what-we-do.text2": "For talents: We deliver the one and only platform for your next successful career move in IT.",
+      "figure.title": "Five easy steps",
+      "figure.step.name1": "Registration",
+      "figure.step.name2": "Application",
+      "figure.step.name3": "Invitation",
+      "figure.step.name4": "Negotiation",
+      "figure.step.name5": "Presentation",
+      "pathfinder.action-call": "New interesting projects and teams are waiting for you!",
+      "job-roles.title": "Job roles",
+      "tech-centers.title": "Tech centers",
+      "partners.title": "Our partners"
+    }
+  }
+}
