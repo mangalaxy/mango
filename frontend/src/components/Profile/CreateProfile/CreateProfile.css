@@ -26,7 +26,7 @@ $background-attachment: Defaults to "fixed" - allows you to specify background a
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
   .profile-header {
     position: relative;
-    z-index: 99999; }
+    z-index: 100; }
   .profile--filter {
     position: absolute;
     top: 0;
@@ -78,8 +78,8 @@ $background-attachment: Defaults to "fixed" - allows you to specify background a
         margin-bottom: 0; }
     .profile-form__container {
       display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap; }
+      flex-flow: row wrap;
+      justify-content: space-between; }
       .profile-form__container .inputs-container {
         display: flex;
         justify-content: space-between;

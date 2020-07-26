@@ -1,29 +1,14 @@
 import React from 'react';
-import './BurgerMenu.scss'
-import {connect} from "react-redux";
-import {openMobileMenu} from "../../../../actions/mobileMenu";
+import './BurgerMenu.scss';
 
-function BurgerMenu(props) {
-    const {openMobileMenu} = props;
+const BurgerMenu = ({onClick}) => (
+    <div className='burger-container' onClick={onClick}>
+      <div className='menu-button'>
+        <div className='menu-button__line'/>
+        <div className='menu-button__line'/>
+        <div className='menu-button__line'/>
+      </div>
+    </div>
+);
 
-    return (
-        <div className='burger-container'>
-           <div className='menu-button' onClick={openMobileMenu}>
-               <div className='menu-button__line'></div>
-               <div className='menu-button__line'></div>
-               <div className='menu-button__line'></div>
-           </div>
-        </div>
-    )
-}
-
-const mapStateToProps = () => {
-    return {
-    }
-};
-
-const mapDispatchToProps = dispatch => ({
-    openMobileMenu: () => dispatch(openMobileMenu())
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(BurgerMenu);
+export default BurgerMenu;

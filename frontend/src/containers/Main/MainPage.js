@@ -1,7 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import routes from '../../constants/routes.json';
-import {connect} from 'react-redux';
 import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import ForTalents from '../../components/Main/ForTalents/ForTalents';
 import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
@@ -21,10 +20,9 @@ import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
 import SignUpEmployer
   from '../../components/Auth/SignUpEmployer/SignUpEmployer';
 import Post from '../../components/Main/Post/Post';
-import MobileMenu from '../../components/Main/MobileMenu/MobileMenu';
 import './Main.scss';
 
-const MainPage = ({mobileMenuOpen, location}) => {
+const MainPage = ({location}) => {
 
   const openLoginForm = () => {
     renderModal(
@@ -44,21 +42,14 @@ const MainPage = ({mobileMenuOpen, location}) => {
   );
 
   return (
-      <div className={`main ${mobileMenuOpen && 'main--mobile-open'}`}>
+      <div className={`main`}>
         <MainMenu
             path={location.pathname}
             openLoginForm={openLoginForm}
             openSignUpTalent={openSignUpTalent}
             openSignUpEmployer={openSignUpEmployer}
         />
-        {mobileMenuOpen &&
-        <MobileMenu
-            path={location.pathname}
-            openLoginForm={openLoginForm}
-            openSignUpTalent={openSignUpTalent}
-            openSignUpEmployer={openSignUpEmployer}
-        />
-        }
+
         <div id='dialog-container'/>
         <div className="mainPageContent">
           <Switch>
@@ -80,9 +71,6 @@ const MainPage = ({mobileMenuOpen, location}) => {
                    component={Support}/>
             <Route exact path={routes.COMMON.BLOG} component={Blog}/>
             <Route exact path={routes.COMMON.POST} component={Post}/>
-
-            {/*<Route path={'/*'} component={() => (*/}
-            {/*    <div className={'commonContent'}>404</div>)}/>*/}
           </Switch>
         </div>
         <Footer/>
@@ -90,10 +78,4 @@ const MainPage = ({mobileMenuOpen, location}) => {
   );
 };
 
-const mapStateToProps = ({mobileMenuReducer}) => {
-  return {
-    mobileMenuOpen: mobileMenuReducer.mobileMenuOpen,
-  };
-};
-
-export default connect(mapStateToProps, null)(MainPage);
+export default MainPage;

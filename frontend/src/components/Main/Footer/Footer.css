@@ -16,9 +16,13 @@
     text-decoration: none;
     color: #FF8080;
     font-family: "Carter One", cursive;
+    text-transform: uppercase;
     font-size: 40px;
     line-height: 20px;
     width: 25%; }
+    @media (max-width: 800px) {
+      .footer .logo {
+        font-size: 32px; } }
   .footer .menuItem {
     font-family: "Montserrat", sans-serif;
     font-size: 18px;

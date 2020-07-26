@@ -1,10 +1,9 @@
 import React from "react";
 import './Down.scss';
 
-const Down = (props) => {
-  const { active, grayMode } = props;
+const Down = ({ active, grayMode, className }) => {
   return (
-        <svg className={`down ${active && 'active'} ${grayMode && 'gray'}`}
+        <svg className={`down ${active && 'active'} ${grayMode && 'gray'} ${className}`}
              width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16.8301 1.03084L15.9785 0.171877C15.865 0.057172 15.7343 0 15.5865 0C15.4391 0 15.3084 0.057172
           15.1949 0.171877L8.50009 6.92438L1.80555 0.172058C1.69201 0.0573527 1.56135 0.000180444 1.41374

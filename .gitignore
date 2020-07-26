@@ -50,4 +50,4 @@ yarn-debug.log*
 yarn-error.log*
 
 #css files
-frontend/src/**/*.css
+/frontend/src/**/*.css

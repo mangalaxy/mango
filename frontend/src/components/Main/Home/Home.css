@@ -42,22 +42,22 @@
 #steps {
   margin-top: 50px; }
 
-#section4 {
+#pathfinder {
   display: flex; }
-  #section4 .image {
+  #pathfinder .image {
     width: 50%;
     height: 200px;
     background-image: url("../../../assets/images/MainPage/section_4_bg.png");
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat; }
-  #section4 .content {
+  #pathfinder .content {
     width: 50%;
     height: 200px;
     box-sizing: border-box;
     padding: 30px 20px;
     background-color: #fafafa; }
-    #section4 .content p {
+    #pathfinder .content p {
       font-size: 20px;
       line-height: 30px;
       margin-bottom: 1em; }
@@ -393,11 +393,11 @@
       text-align: left; }
       .about-us .contentRow__title::after {
         margin-left: 0; }
-  #section4 {
+  #pathfinder {
     flex-wrap: wrap; }
-    #section4 .image {
+    #pathfinder .image {
       width: 100%; }
-    #section4 .content {
+    #pathfinder .content {
       width: 100%; }
   .jobCardMain {
     width: 100%; }
