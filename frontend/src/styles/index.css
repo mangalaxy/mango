@@ -1,9 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 body {
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: "Montserrat", sans-serif; }
+  font: 16px "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5; }
 
 .container {
   max-width: 1160px;
@@ -11,17 +10,15 @@ body {
   margin: 0 auto; }
 
 h3 {
-  color: #000; }
+  color: #000000; }
 
 p {
   color: #212121; }
 
 .mainHeaderH2 {
   width: 100%;
-  font-family: "Montserrat", sans-serif;
+  font: 600 40px "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #212121;
-  font-weight: 600;
-  font-size: 40px;
   text-align: center;
   text-transform: uppercase; }
   .mainHeaderH2::after {
@@ -33,49 +30,38 @@ p {
     background-color: rgba(54, 179, 168, 0.9); }
 
 .mainHeaderH3 {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  text-transform: uppercase;
+  font: 600 26px "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #212121;
   text-align: center;
-  font-size: 26px; }
+  text-transform: uppercase; }
 
 .bannerContainer {
   min-height: 100px;
   overflow: hidden;
-  background-color: #4f4f4f;
+  background: #4f4f4f no-repeat center;
   background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; }
+  height: 100vh; }
   .bannerContainer .bannerContent {
-    color: #FDFDFD;
-    margin: 200px auto;
-    padding: 0 20px; }
-    .bannerContainer .bannerContent__title {
+    color: #fbfbfb;
+    margin-top: 200px;
+    padding-right: 40px; }
+    .bannerContainer .bannerContent-title {
       max-width: 700px;
       margin: 0 auto;
-      font-family: "Montserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 46px;
-      line-height: 50px;
+      font: 600 3rem/3.7rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       text-align: center;
       text-transform: uppercase; }
-    .bannerContainer .bannerContent__description {
-      font-family: "Montserrat", sans-serif;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 32px;
-      line-height: 39px;
+    .bannerContainer .bannerContent-description {
+      font: 600 1.8rem/2.5rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       text-align: center;
       width: 50%;
       margin: 40px auto; }
     .bannerContainer .bannerContent li {
       color: #f2f2f2;
-      margin: 1em 0 1em 1em;
+      margin: 1.5rem 0;
       position: relative;
-      font-size: 20px;
-      line-height: 1.1em; }
+      font-size: 1.4rem;
+      line-height: 1.8rem; }
       .bannerContainer .bannerContent li:before {
         content: ' ';
         position: absolute;
@@ -87,36 +73,32 @@ p {
         top: 0.5em;
         transform: translateY(-50%); }
 
-.actionButton {
-  width: 190px;
-  display: block;
-  background-color: #FF8080;
-  border: #FF8080 2px solid;
-  border-radius: 8px;
-  color: #FFFFFF;
-  font-size: 18px;
-  padding: 12px 0px;
+.accent-btn {
+  background: #FF8080;
+  border: 2px solid #FF8080;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.9rem 2rem;
   text-transform: uppercase; }
-  .actionButton:active, .actionButton:focus {
+  .accent-btn:active, .accent-btn:focus {
     outline: none; }
-  .actionButton:active {
-    transform: translateY(1px); }
+  .accent-btn:active {
+    transform: translateY(2px); }
 
-.actionButtonTransparent {
-  width: 190px;
-  display: block;
-  background-color: transparent;
+.accent-btn__inverted {
+  background: transparent;
   box-sizing: border-box;
-  border: solid 2px #FFFFFF;
-  border-radius: 8px;
-  color: #FFFFFF;
-  font-size: 18px;
-  padding: 12px 0;
+  border: 2px solid #fff;
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 1.1rem;
+  padding: 0.9rem 2rem;
   text-transform: uppercase; }
-  .actionButtonTransparent:active, .actionButtonTransparent:focus {
+  .accent-btn__inverted:active, .accent-btn__inverted:focus {
     outline: none; }
-  .actionButtonTransparent:active {
-    transform: translateY(1px); }
+  .accent-btn__inverted:active {
+    transform: translateY(2px); }
 
 .dialogContainer {
   position: fixed;
@@ -132,6 +114,10 @@ p {
 
 .flex {
   display: flex; }
+
+.responsive {
+  width: 100%;
+  height: auto; }
 
 .md-12of12 {
   width: 100% !important; }
@@ -150,6 +136,9 @@ p {
 
 .xs-6of12, .md-6of12 {
   width: 50% !important; }
+
+.md-6-offset {
+  margin-left: 50%; }
 
 @media (max-width: 991px) {
   .bannerContainer .bannerContent__description {

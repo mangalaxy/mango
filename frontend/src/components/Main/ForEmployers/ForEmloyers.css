@@ -4,8 +4,7 @@
   background-image: url("../../../assets/images/main_employers_bg.png");
   position: relative; }
   #for-employers-banner .bannerContent {
-    margin-left: 40%;
-    max-width: 40%; }
+    margin-left: 50%; }
   #for-employers-banner h1 {
     text-align: left; }
 
@@ -27,7 +26,7 @@
     text-align: center;
     font-size: 26px;
     color: #4f4f4f; }
-  #market .actionButton {
+  #market .accent-btn {
     margin: 1em auto;
     display: block; }
 
@@ -96,12 +95,15 @@
     margin-top: 1em;
     line-height: 1.2em; }
 
-#say-hello {
+.say-hello {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
   padding: 2em; }
-  #say-hello h4 {
-    text-align: center;
-    font-size: 26px;
-    color: #4f4f4f; }
-  #say-hello .actionButton {
-    margin: 20px auto;
-    display: block; }
+  .say-hello h4 {
+    font-size: 1.6rem;
+    color: #4f4f4f;
+    margin-bottom: 1.5rem; }
+  .say-hello .accent-btn {
+    display: inline-block; }

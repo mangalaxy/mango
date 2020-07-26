@@ -1,5 +1,3 @@
-//@flow
-import type {Node} from 'react';
 import React, {Component} from 'react';
 import {GreenDash} from '../../Home/Home';
 import './jobsByRole.scss';
@@ -10,7 +8,6 @@ import DropDownSelect from '../../../inputs/Select/DropDownSelect/DropDownSelect
 import JobItem from "./JobItem/JobItem";
 import ReactPaginate from 'react-paginate';
 
-type Props = {}
 
 const mockRoleData = {
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat',
@@ -88,9 +85,9 @@ const mockJobs = [
 
 ]
 
-class JobsByRole extends Component<Props> {
+class JobsByRole extends Component {
 
-  render(): Node {
+  render(){
     const role = this.props.match.params.jobRole;
     const roleData = jobRolesData.find(el => el.link === role);
 

@@ -112,7 +112,7 @@
       box-shadow: none !important;
       border: none !important; }
     .job-role__filter .react-dropdown-select-dropdown {
-      background-color: #FBFBFB;
+      background-color: #fbfbfb;
       padding: 5px 0;
       color: #4f4f4f;
       border: none;
@@ -137,7 +137,7 @@
         line-height: 14px;
         font-size: 14px; }
       .job-role__filter .react-dropdown-select-item-selected {
-        background-color: #FBFBFB !important;
+        background-color: #fbfbfb !important;
         color: #4f4f4f !important;
         border: none !important; }
         .job-role__filter .react-dropdown-select-item-selected::before {

@@ -7,7 +7,7 @@ const Footer = () => (
     <div className='footer'>
       <div className='footer__top-section'>
         <div className='logo-container'>
-          <Link to={routes.COMMON.HOME} className='logo'>Mango</Link>
+          <Link to={routes.COMMON.HOME} className='logo'>Mangostart</Link>
         </div>
         <ul className='menuItemsContainer'>
           <li>

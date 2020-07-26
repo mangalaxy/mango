@@ -21,6 +21,9 @@
     font-family: "Carter One", cursive;
     color: #FF8080;
     text-decoration: none; }
+    @media (max-width: 1280px) {
+      .menuContainer .logo {
+        font-size: 36px; } }
     .menuContainer .logo:active, .menuContainer .logo:focus {
       outline: none; }
   .menuContainer .menuItemsContainer {

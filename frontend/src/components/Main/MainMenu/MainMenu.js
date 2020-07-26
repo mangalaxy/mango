@@ -4,9 +4,11 @@ import Down from '../../Down/Down';
 import BurgerMenu from './BurgerMenu/BurgerMenu';
 import routes from '../../../constants/routes.json';
 import './MainMenu.scss';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 const MainMenu = ({path, grey, dark, openLoginForm, openSignUpTalent, openSignUpEmployer}) => {
   const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [mobileMenuVisible, setMobileMenuVisible] = useState(false);
   const showMenu = () => setDropdownVisible(true);
   const hideMenu = () => setDropdownVisible(false);
 
@@ -16,10 +18,16 @@ const MainMenu = ({path, grey, dark, openLoginForm, openSignUpTalent, openSignUp
       path === routes.COMMON.BLOG);
 
   return (
-      <div className={`menuContainer ${grayMode || grey && 'gray'}`}>
+      <div className={`menuContainer ${grayMode || grey ? 'gray' : ''}`}>
+        {mobileMenuVisible && <MobileMenu
+            openLoginForm={openLoginForm}
+            openSignUpTalent={openSignUpTalent}
+            openSignUpEmployer={openSignUpEmployer}
+            closeMobileMenu={()=>setMobileMenuVisible(false)}
+        />}
         <div className='logoContainer'>
           <Link to={routes.COMMON.HOME} className='logo'>
-            Mango
+            Mangostart
           </Link>
         </div>
         <ul className='menuItemsContainer'>
@@ -73,11 +81,7 @@ const MainMenu = ({path, grey, dark, openLoginForm, openSignUpTalent, openSignUp
               </span>
           </div>
         </div>
-        <BurgerMenu
-            openLoginForm={openLoginForm}
-            openSignUpTalent={openSignUpTalent}
-            openSignUpEmployer={openSignUpEmployer}
-        />
+        <BurgerMenu onClick={() => setMobileMenuVisible(!mobileMenuVisible)}/>
       </div>
   );
 };

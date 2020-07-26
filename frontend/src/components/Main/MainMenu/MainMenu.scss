@@ -26,6 +26,9 @@
     font-family: $FONT_LOGO;
     color: $COLOR_CORAL;
     text-decoration: none;
+    @media (max-width: 1280px) {
+      font-size: 36px;
+    }
 
     &:active,
     &:focus {

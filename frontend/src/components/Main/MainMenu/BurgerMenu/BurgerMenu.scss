@@ -3,15 +3,17 @@
 .burger-container {
   display: none;
   position: relative;
+  cursor: pointer;
 
   .menu-button {
     &__line {
-      width: 50px;
-      height: 2px;
+      width: 30px;
+      height: 3px;
       background-color: $COLOR_SECONDARY_GREY;
+      border-right: 2px;
 
       &:nth-child(2n) {
-        margin: 8px 0;
+        margin: 7px 0;
       }
     }
   }
