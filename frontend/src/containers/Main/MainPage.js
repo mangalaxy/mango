@@ -61,7 +61,7 @@ const MainPage = ({location}) => {
             <Route exact path={routes.COMMON.FIND_JOB}
                    component={JobsRolesSelect}/>
             <Route exact path={routes.COMMON.FIND_JOB + '/:jobRole'}
-                   component={JobsByRole} url={routes.FIND_JOB}/>
+                   component={JobsByRole} url={routes.COMMON.FIND_JOB}/>
             <Route exact path={routes.COMMON.ABOUT} component={About}/>
             <Route exact path={routes.COMMON.PRIVACY_POLICY}
                    component={PrivacyPolicy}/>

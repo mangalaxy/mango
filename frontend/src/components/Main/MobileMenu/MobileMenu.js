@@ -4,8 +4,6 @@ import routes from '../../../constants/routes.json';
 import Down from '../../Down/Down';
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 import {close} from '../../../assets/icons';
-import {connect} from 'react-redux';
-import {closeMobileMenu} from '../../../actions/mobileMenu';
 import {Link, NavLink} from 'react-router-dom';
 
 const MobileMenu = ({openLoginForm, openSignUpTalent, openSignUpEmployer, closeMobileMenu}) => {
