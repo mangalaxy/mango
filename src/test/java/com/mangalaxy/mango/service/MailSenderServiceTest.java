@@ -2,24 +2,21 @@ package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.util.SmtpServerRule;
 import org.junit.Rule;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@SpringBootTest
-@ActiveProfiles("test")
-@RunWith(SpringRunner.class)
-public class MailSenderServiceTest {
+@SpringBootTest(classes = { MailSenderImpl.class, JavaMailSenderImpl.class})
+class MailSenderServiceTest {
 
   @Autowired
   private MailSenderService mailSenderService;
@@ -27,9 +24,10 @@ public class MailSenderServiceTest {
   @Rule
   public SmtpServerRule smtpServerRule;
 
+  @Disabled("Not working for JUnit Jupiter")
   @Test
   public void shouldSendMailTest() throws MessagingException, IOException {
-    String text = "Test";
+    String text = "Test message";
     String mailTo = "nikolai.blashchuk@gmail.com";
     String subject = "Test Mail";
     mailSenderService.send(text, subject, mailTo);
@@ -44,3 +42,4 @@ public class MailSenderServiceTest {
     assertTrue(String.valueOf(current.getContent()).contains(text));
   }
 }
+
