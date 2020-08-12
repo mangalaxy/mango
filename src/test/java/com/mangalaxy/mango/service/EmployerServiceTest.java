@@ -35,10 +35,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class EmployerServiceTest {
-
   @Mock
   private EmployerRepository employerRepository;
-
   private EmployerService employerService;
 
   private Location location1;

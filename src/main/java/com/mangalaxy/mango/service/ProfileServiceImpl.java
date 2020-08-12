@@ -15,27 +15,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class ProfileServiceImpl implements ProfileService {
-
   private final ProfileRepository profileRepository;
   private final ModelMapper modelMapper;
   private final TalentService talentService;
 
-  @Transactional(readOnly = true)
   @Override
-  public ProfileResponse getProfileByTalent(Long id) {
-    Profile profile = profileRepository.findById(id).orElseThrow(TalentNotFoundException::new);
+  @Transactional(readOnly = true)
+  public ProfileResponse fetchTalentProfile(Long talentId) {
+    Profile profile = profileRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
     return modelMapper.map(profile, ProfileResponse.class);
   }
 
   @Override
-  public ProfileResponse getCurrentTalentProfile() {
+  public ProfileResponse fetchAuthorizedTalentProfile() {
     Talent currentTalent = talentService.getPrincipalTalent();
     Profile profile = profileRepository.findById(currentTalent.getId()).orElseThrow(TalentNotFoundException::new);
     return modelMapper.map(profile, ProfileResponse.class);
   }
 
   @Override
-  public ProfileResponse updateCurrentProfile(ProfileRequest profileRequest) {
+  public ProfileResponse updateAuthorizedTalentProfile(ProfileRequest profileRequest) {
     Talent currentTalent = talentService.getPrincipalTalent();
     Profile profile = modelMapper.map(profileRequest, Profile.class);
     profile.setId(currentTalent.getId());

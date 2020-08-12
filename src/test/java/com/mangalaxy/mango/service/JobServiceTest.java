@@ -44,7 +44,6 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class JobServiceTest {
-
   @Mock
   private JobRepository jobRepository;
   @Mock
@@ -53,7 +52,6 @@ class JobServiceTest {
   private EmployerRepository employerRepository;
   @Mock
   private LocationRepository locationRepository;
-
   private JobService jobService;
 
   private Job job1;

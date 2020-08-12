@@ -26,6 +26,6 @@ public interface TalentService {
 
   void deleteCurrentTalent();
 
-  public Talent getPrincipalTalent();
+  Talent getPrincipalTalent();
 
 }

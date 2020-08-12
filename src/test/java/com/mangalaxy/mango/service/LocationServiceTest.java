@@ -21,10 +21,8 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class LocationServiceTest {
-
   @Mock
   private LocationRepository locationRepository;
-
   private LocationService locationService;
 
   private Location location1;

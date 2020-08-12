@@ -18,33 +18,33 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/talents")
 @Api(value = "Profile Data API")
 public class ProfileController {
   private final ProfileService profileService;
 
-  @GetMapping("talents/{talentId}/profile")
+  @GetMapping("/{talentId}/profile")
   @ApiOperation(value = "Get talent by profile id")
   public ResponseEntity<ProfileResponse> getProfileByOwner(
       @ApiParam(value = "Talent id from which Profile object will retrieve", required = true)
       @PathVariable Long talentId) {
-    ProfileResponse profileResponse = profileService.getProfileByTalent(talentId);
+    ProfileResponse profileResponse = profileService.fetchTalentProfile(talentId);
     return ResponseEntity.ok(profileResponse);
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @GetMapping("me/profile")
+  @GetMapping("/me/profile")
   @ApiOperation(value = "Get profile for current authorized user")
-  public ResponseEntity<ProfileResponse> getCurretnTalentProfile() {
-    ProfileResponse profileResponse = profileService.getCurrentTalentProfile();
+  public ResponseEntity<ProfileResponse> getCurrentTalentProfile() {
+    ProfileResponse profileResponse = profileService.fetchAuthorizedTalentProfile();
     return ResponseEntity.ok(profileResponse);
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @PutMapping("me/profile")
+  @PutMapping("/me/profile")
   @ApiOperation(value = "Update profile for current authorized user")
   public ResponseEntity<ProfileResponse> updateCurrentProfile(@RequestBody ProfileRequest profileRequest) {
-    ProfileResponse profileResponse = profileService.updateCurrentProfile(profileRequest);
+    ProfileResponse profileResponse = profileService.updateAuthorizedTalentProfile(profileRequest);
     return ResponseEntity.ok(profileResponse);
   }
 }
