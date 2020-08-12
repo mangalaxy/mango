@@ -9,14 +9,14 @@ const ForTalents = () =>{
           <div className="bannerContainer" id='for-talent-banner'>
             <div className="image-filter"/>
             <div className="bannerContent md-6of12">
-              <h1>Our advantages</h1>
+              <h1 className="bannerContent-title left">Our advantages</h1>
               <ul>
-                <li>The best companies in the world are looking for you.</li>
-                <li>Speedy job search.</li>
-                <li> The whole process of hiring is under control (feedback,
+                <li className="bannerContent-description">The best companies in the world are looking for you.</li>
+                <li className="bannerContent-description">Speedy job search.</li>
+                <li className="bannerContent-description"> The whole process of hiring is under control (feedback,
                   interview results, time management).
                 </li>
-                <li>Job search process is fully under your control.</li>
+                <li className="bannerContent-description">Job search process is fully under your control.</li>
               </ul>
             </div>
           </div>

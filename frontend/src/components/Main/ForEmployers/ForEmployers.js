@@ -8,16 +8,16 @@ const ForEmployers = () => {
         <Fragment>
           <div className="bannerContainer" id='for-employers-banner'>
             <div className="bannerContent md-6of12">
-              <h1>Our advantages</h1>
+              <h1 className="bannerContent-title left">Our advantages</h1>
               <ul>
-                <li>The best technical talents from around the world.</li>
-                <li>Fast search for appropriate candidates on average saves five
+                <li className="bannerContent-description">The best technical talents from around the world.</li>
+                <li className="bannerContent-description">Fast search for appropriate candidates on average saves five
                   working days.
                 </li>
-                <li>Exceptional opportunity to replenish your team with worthy
+                <li className="bannerContent-description">Exceptional opportunity to replenish your team with worthy
                   candidates.
                 </li>
-                <li>Excellent feedback and assistance of career advocates in
+                <li className="bannerContent-description">Excellent feedback and assistance of career advocates in
                   finding the necessary candidates.
                 </li>
               </ul>
