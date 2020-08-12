@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.config;
+package com.mangalaxy.mango.config.mapping;
 
 import com.github.jmnarloch.spring.boot.modelmapper.ModelMapperConfigurer;
 import org.modelmapper.ModelMapper;

@@ -2,21 +2,19 @@ package com.mangalaxy.mango.util;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 
 import java.util.List;
 
-@Data
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiError {
 
-  private HttpStatus httpStatus;
-  private String message;
-  private List<FieldError> fieldErrors;
+  private final HttpStatus httpStatus;
+  private final String message;
+  private final List<FieldError> fieldErrors;
 
 }

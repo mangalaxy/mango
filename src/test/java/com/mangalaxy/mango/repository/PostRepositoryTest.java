@@ -2,8 +2,9 @@ package com.mangalaxy.mango.repository;
 
 import com.mangalaxy.mango.domain.entity.Post;
 import com.mangalaxy.mango.domain.entity.Topic;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -30,7 +31,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-public class PostRepositoryTest {
+class PostRepositoryTest {
 
   @Autowired
   private TestEntityManager entityManager;
@@ -41,8 +42,8 @@ public class PostRepositoryTest {
   private Post post1;
   private Post post2;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     // given
     Topic topic = new Topic();
     topic.setTitle("Interviewing");
@@ -67,7 +68,7 @@ public class PostRepositoryTest {
           .topic(topic)
           .tag("hiring")
           .tag("interview")
-          .author("Whitney Ricketts")
+          .author("Melanie Warren")
           .countViews(0)
           .countLikes(0)
           .build();
@@ -80,7 +81,7 @@ public class PostRepositoryTest {
   }
 
   @Test
-  public void shouldFindPostsByTopicName_thenSuccess() {
+  void shouldFindPostsByTopicName_thenSuccess() {
     String expectedPostTitle1 = "Ready to Shuffle Up Your Tired Interview Process?";
     String expectedPostTitle2 = "5 Interview Questions Hiring Managers Need to Ask Before Making An Offer";
     String topicTitle = "Interviewing";
@@ -98,7 +99,8 @@ public class PostRepositoryTest {
   }
 
   @Test
-  public void shouldFindPostsByTopicNameAndSortedDescByCreatedDate_thenSuccess() {
+  @DisplayName("Find posts by the topic name")
+  void shouldFindPostsByTopicNameAndSortedDescByCreatedDate_thenSuccess() {
     String topicName = "Interviewing";
     Sort createdDateDesc = Sort.by(Sort.Direction.DESC, "createdDate");
     Pageable pageRequest = PageRequest.of(0, 20, createdDateDesc);
@@ -112,14 +114,14 @@ public class PostRepositoryTest {
   }
 
   @Test
-  public void whenPostNotFoundReturnEmptyOptional_thenSuccess() {
+  void whenPostNotFoundReturnEmptyOptional_thenSuccess() {
     String postTitle = "Where to Begin When Opening a New Role";
     Optional<Post> actualPost = postRepository.findByTitle(postTitle);
     assertEquals(Optional.empty(), actualPost);
   }
 
   @Test
-  public void shouldFindPostByTitle_thenSuccess() {
+  void shouldFindPostByTitle_thenSuccess() {
     String postTitle = "Ready to Shuffle Up Your Tired Interview Process?";
     Optional<Post> actualPost = postRepository.findByTitle(postTitle);
     assertNotEquals(Optional.empty(), actualPost);

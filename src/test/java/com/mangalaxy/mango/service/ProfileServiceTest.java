@@ -27,8 +27,8 @@ public class ProfileServiceTest {
   @Autowired
   private ProfileService profileService;
 
-  private Talent firstMockTalent = new Talent();
-  private Profile mockProfile = new Profile();
+  private Talent talent;
+  private Profile profile;
 
   @Before
   public void setUp() {
@@ -37,21 +37,23 @@ public class ProfileServiceTest {
     location.setCity("Austin");
     location.setCountry("USA");
 
-    firstMockTalent.setId(1L);
-    firstMockTalent.setEmail("test@gmai.com");
-    firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("John Doe");
-    firstMockTalent.setLocation(location);
+    talent = new Talent();
+    talent.setId(1L);
+    talent.setEmail("test@gmai.com");
+    talent.setPassword("123456");
+    talent.setFullName("John Doe");
+    talent.setLocation(location);
 
-    mockProfile.setId(1L);
-    mockProfile.setOwner(firstMockTalent);
+    profile = new Profile();
+    profile.setId(1L);
+    profile.setOwner(talent);
   }
 
   @Test
   public void getProfileTest() {
     Long expectedId = 1L;
 
-    Mockito.when(profileRepository.findById(1L)).thenReturn(Optional.of(mockProfile));
+    Mockito.when(profileRepository.findById(1L)).thenReturn(Optional.of(profile));
 
     ProfileResponse profile = profileService.getProfileByTalent(1L);
 

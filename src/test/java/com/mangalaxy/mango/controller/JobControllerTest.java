@@ -106,7 +106,7 @@ public class JobControllerTest {
   public void updateJob() throws Exception {
     String expectedTitle = "New Title";
     Long expectedId = 1L;
-    JobDto job = jobService.getEmployerJob(expectedId, 1L);
+    JobDto job = jobService.fetchEmployerJob(expectedId, 1L);
     job.setTitle(expectedTitle);
 
     String jobJson = objectMapper.writeValueAsString(job);

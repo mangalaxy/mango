@@ -24,7 +24,7 @@ public class LocationController {
     return ResponseEntity.ok(locations);
   }
 
-  @GetMapping("{id}")
+  @GetMapping("/{id}")
   public ResponseEntity<LocationResponse> getLocationById(@PathVariable Short id) {
     LocationResponse location = locationService.getLocationById(id);
     return ResponseEntity.ok(location);

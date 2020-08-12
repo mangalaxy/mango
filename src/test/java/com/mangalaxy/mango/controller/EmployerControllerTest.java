@@ -7,7 +7,7 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.service.EmployerService;
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @Transactional
 @WithMockUser(username = "test@gmail.com")
-public class EmployerControllerTest {
+class EmployerControllerTest {
 
   @Autowired
   private MockMvc mockMvc;
@@ -57,7 +57,7 @@ public class EmployerControllerTest {
   }
 
   @Test
-  public void shouldFindEmployerById() throws Exception {
+  void shouldFindEmployerById() throws Exception {
     Long expectedId = 1L;
     String expectedMail = "elon@gmail.com";
 
@@ -70,7 +70,7 @@ public class EmployerControllerTest {
   }
 
   @Test
-  public void shouldCreateEmployer() throws Exception {
+  void shouldCreateEmployer() throws Exception {
     Employer employer = new Employer();
     employer.setEmail("testMail@com");
     employer.setFullName("Test Name");
@@ -88,7 +88,7 @@ public class EmployerControllerTest {
   }
 
   @Test
-  public void shouldUpdateEmployer() throws Exception {
+  void shouldUpdateEmployer() throws Exception {
     Long employerId = 1L;
     String expectedMail = "changed@mail.com";
     EmployerResponse employer = employerService.fetchEmployerById(employerId);
@@ -108,12 +108,12 @@ public class EmployerControllerTest {
   }
 
   @Test
-  public void shouldDeleteEmployer() throws Exception {
+  void shouldDeleteEmployer() throws Exception {
     mockMvc.perform(delete("/api/v1/employers/1")).andExpect(status().is(204));
   }
 
   @Test
-  public void shouldMatchTalent() throws Exception {
+  void shouldMatchTalent() throws Exception {
     int expectedSize = 1;
 
     MvcResult result = mockMvc.perform(put("/api/v1/employers/1/bookmarked/1?set=true")).andReturn();

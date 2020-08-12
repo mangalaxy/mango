@@ -9,12 +9,11 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -34,8 +33,8 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
-public class EmployerServiceTest {
+@ExtendWith(MockitoExtension.class)
+class EmployerServiceTest {
 
   @Mock
   private EmployerRepository employerRepository;
@@ -48,8 +47,8 @@ public class EmployerServiceTest {
   private Employer employer2;
   private Employer employer3;
 
-  @Before
-  public void setUp() {
+  @BeforeEach
+  void setUp() {
     ModelMapper modelMapper = new ModelMapper();
     employerService = new EmployerServiceImpl(employerRepository, modelMapper);
 
@@ -88,11 +87,11 @@ public class EmployerServiceTest {
   }
 
   @Test
-  public void shouldFindEmployerFirstPage_thenSuccess() {
+  void shouldFindEmployerFirstPage_thenSuccess() {
     // given
     Pageable pageable = PageRequest.of(0, 20);
     Page<Employer> employerPage = new PageImpl<>(Lists.newArrayList(employer1, employer2, employer3));
-    when(employerRepository.findAll(any(Pageable.class))).thenReturn(employerPage);
+    when(employerRepository.findAll(pageable)).thenReturn(employerPage);
     // when
     Page<EmployerResponse> page = employerService.fetchAllEmployers(pageable);
     // then
@@ -107,7 +106,7 @@ public class EmployerServiceTest {
   }
 
   @Test
-  public void shouldFindEmployerById_thenSuccess() {
+  void shouldFindEmployerById_thenSuccess() {
     // given
     Long id = 1L;
     EmployerResponse expected = new EmployerResponse(1L, "Cortney Swiss", "cort.sw@yahoo.com",
@@ -123,7 +122,7 @@ public class EmployerServiceTest {
   }
 
   @Test
-  public void whenEmployerNotFoundThrowException() {
+  void whenEmployerNotFoundThrowException() {
     Long id = 1L;
     assertThrows(EmployerNotFoundException.class,
           () -> employerService.fetchEmployerById(id),
@@ -133,7 +132,7 @@ public class EmployerServiceTest {
 
 
   @Test
-  public void employerMustBeCreated_thenSuccess() {
+  void employerMustBeCreated_thenSuccess() {
     Long expectedId = 4L;
 
     LocationRequest locationRequest = new LocationRequest(
@@ -158,14 +157,14 @@ public class EmployerServiceTest {
 
     EmployerResponse response = employerService.createNewEmployer(newEmployer);
 
-    Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals("mark.ostich@gmail.com", response.getEmail());
-    Assert.assertEquals("Mark Ostich", response.getFullName());
+    assertEquals(expectedId, response.getId());
+    assertEquals("mark.ostich@gmail.com", response.getEmail());
+    assertEquals("Mark Ostich", response.getFullName());
     verify(employerRepository).save(any(Employer.class));
   }
 
   @Test
-  public void shouldUpdateEmployerById_thenSuccess() {
+  void shouldUpdateEmployerById_thenSuccess() {
     Long id = 3L;
 
     EmployerRequest employerRequest = EmployerRequest.builder()
@@ -175,7 +174,7 @@ public class EmployerServiceTest {
           .location(new LocationRequest((short) 2, "Barcelona", "Spain"))
           .build();
 
-    when(employerRepository.findById(3L)).thenReturn(Optional.of(employer3));
+    when(employerRepository.findById(id)).thenReturn(Optional.of(employer3));
     when(employerRepository.save(any(Employer.class)))
           .thenReturn(Employer.builder()
                 .id(id)
@@ -197,7 +196,7 @@ public class EmployerServiceTest {
   }
 
   @Test
-  public void employerMustBeDeleted_throwExceptionIfFail() {
+  void employerMustBeDeleted_throwExceptionIfFail() {
     when(employerRepository.findById(1L)).thenReturn(Optional.of(employer1));
     employerService.deleteEmployerById(1L);
     verify(employerRepository).findById(1L);

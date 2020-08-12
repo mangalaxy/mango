@@ -10,7 +10,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
@@ -32,14 +40,14 @@ public class JobController {
   @ApiOperation(value = "View a list of jobs by employer id")
   @GetMapping("/employers/{employerId}/jobs")
   public ResponseEntity<Page<JobDto>> getOpenEmployersJobs(@PathVariable Long employerId, Pageable pageable) {
-    Page<JobDto> jobs = jobService.getEmployerAllJobs(employerId, pageable);
+    Page<JobDto> jobs = jobService.fetchEmployerAllJobs(employerId, pageable);
     return ResponseEntity.ok(jobs);
   }
 
   @ApiOperation(value = "Get specified job of specified employer")
   @GetMapping("/employers/{employerId}/jobs/{jobId}")
   public ResponseEntity<JobDto> getJobForEmployer(@PathVariable Long employerId, @PathVariable Long jobId) {
-    JobDto jobDto = jobService.getEmployerJob(employerId, jobId);
+    JobDto jobDto = jobService.fetchEmployerJob(employerId, jobId);
     return ResponseEntity.ok(jobDto);
   }
 
@@ -61,7 +69,7 @@ public class JobController {
   @ApiOperation(value = "Delete specified job of specified employer")
   @DeleteMapping("/employers/{employerId}/jobs/{jobId}")
   public ResponseEntity<Void> deleteJob(@PathVariable Long employerId, @PathVariable Long jobId) {
-    jobService.removeEmployerJob(employerId, jobId);
+    jobService.deleteEmployerJob(employerId, jobId);
     return ResponseEntity.noContent().build();
   }
 
