@@ -4,19 +4,17 @@ import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 class EmployerRepositoryTest {
 
@@ -28,14 +26,13 @@ class EmployerRepositoryTest {
 
   @BeforeEach
   void setUp() {
-    // given
     Location berlin = new Location("Berlin", "Germany");
     entityManager.persistAndFlush(berlin);
 
     Employer employer = new Employer();
     employer.setFullName("Anna Fisher");
     employer.setEmail("anna.fisher2019@gmail.com");
-    employer.setPassword("123AKYGCV72rett");
+    employer.setPassword("123AK72retry");
     employer.setJobTitle("IT Executive Search Specialist");
     employer.setPhoneNumber("+49-89-636-48018");
     employer.setLocation(berlin);
@@ -49,14 +46,18 @@ class EmployerRepositoryTest {
     entityManager.persistAndFlush(employer);
   }
 
+  @AfterEach
+  void tearDown() {
+    entityManager.clear();
+  }
+
   @Test
   void shouldFindEmployerByEmail_thenSuccess() {
     // given
-    String emailAddress = "anna.fisher2019@gmail.com";
+    String email = "anna.fisher2019@gmail.com";
     // when
-    Employer employer = employerRepository.findByEmail(emailAddress)
-          .orElseThrow(EmployerNotFoundException::new);
+    Employer employer = employerRepository.findByEmail(email).orElseThrow(EmployerNotFoundException::new);
     // then
-   assertThat(employer.getEmail()).isEqualTo(emailAddress);
+   assertEquals(email, employer.getEmail());
   }
 }

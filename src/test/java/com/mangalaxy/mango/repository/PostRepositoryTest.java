@@ -2,10 +2,10 @@ package com.mangalaxy.mango.repository;
 
 import com.mangalaxy.mango.domain.entity.Post;
 import com.mangalaxy.mango.domain.entity.Topic;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -13,7 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -29,7 +28,6 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
-@RunWith(SpringRunner.class)
 @DataJpaTest
 class PostRepositoryTest {
 
@@ -78,6 +76,13 @@ class PostRepositoryTest {
     topic.addPost(post1);
     topic.addPost(post2);
     entityManager.persistAndFlush(topic);
+  }
+
+  @AfterEach
+  void tearDown() {
+    entityManager.remove(post1);
+    entityManager.remove(post2);
+    entityManager.clear();
   }
 
   @Test
