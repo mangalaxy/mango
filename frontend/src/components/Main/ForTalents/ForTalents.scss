@@ -13,45 +13,68 @@
     height: 100%;
   }
 
-  .bannerContent {
-    margin-left: 50%;
-  }
-
-  h1 {
-    text-align: left;
-    color: $light-menu-color;
-    transform: translateZ(0);
-  }
 }
 
 .our-help {
   padding-top: 3rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap-reverse;
 
   .contentContainer {
-    padding-left: 100px;
+    width: 50%;
 
     ul {
-      padding-right: 20px;
+      padding-bottom: 25px;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
     }
   }
 
   .imageContainer {
-    padding-left: 100px;
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: relative;
 
     img {
-      max-width: 450px;
+      display: block;
+      width: 80%;
     }
   }
 }
 
 .goal {
   display: flex;
+  flex-wrap: wrap;
+
+  .halfBanner {
+    width: 50%;
+    background: url("/images/goal.png");
+    background-size: cover;
+    @media (max-width: 800px) {
+      width: 100%;
+      height: 50vw;
+    }
+  }
 
   .contentContainer {
+    width: 50%;
     background-color: $gray-100;
     padding: 4em 3em;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 200px;
+      @media (max-width: 480px) {
+        width: 100%;
+      }
+    }
 
     h4 {
       font-size: 1.6rem;
@@ -60,18 +83,26 @@
       color: $base-color;
       text-transform: uppercase;
     }
+
+    @media (max-width: 800px) {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+    }
   }
 }
 
-.how-it-works {
+.how-it-works, .why-trusted {
   padding: 2rem 1rem;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 
   .contentContainer {
     padding: 0 2rem;
+    width: 50%;
 
     p {
       margin: 2rem 0;
@@ -79,26 +110,65 @@
       line-height: 1.7rem;
       color: $COLOR_PRIMARY_GREY;
     }
+
+    @media (max-width: 800px) {
+      width: 100%;
+      p {
+        font-size: 1rem;
+        line-height: 1.4rem;
+      }
+    }
+
+  }
+
+  @media (max-width: 800px) {
+    &.wide {
+      display: none;
+    }
   }
 
   .imageContainer {
-    padding-left: 2rem;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    position: relative;
 
+    &.mobile {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      width: 100%;
+      &.wide {
+        display: none;
+      }
+      &.mobile {
+        display: flex;
+        margin-bottom: 30px;
+
+        .contentContainer {
+          position: absolute;
+          width: 250px;
+          box-sizing: border-box;
+          top: 20px;
+          padding: 30px;
+        }
+      }
+    }
   }
-}
 
-.why-trusted {
-  padding: 1.2rem 0;
-
-  ul {
-    width: 500px;
-    margin: 0 auto;
+  .comp {
+    @media (max-width: 800px) {
+      display: none;
+    }
   }
+
 }
 
 .our-help, .why-trusted {
   ul {
-
     li {
       font-size: 1.1rem;
       line-height: 1.5rem;

@@ -145,7 +145,6 @@ const RenderStepsDiagram = () => {
 
   return (
         <div className='steps-diagram'>
-
           {steps.map((step, index) => {
             const even = (index + 1) % 2 === 0;
             return (

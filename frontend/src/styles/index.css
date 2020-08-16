@@ -21,13 +21,31 @@ p {
   color: #212121;
   text-align: center;
   text-transform: uppercase; }
+
+.mainHeaderH2::after {
+  content: '';
+  display: block;
+  margin: 10px auto;
+  width: 120px;
+  height: 3px;
+  background-color: rgba(54, 179, 168, 0.9); }
+
+@media (max-width: 1280px) {
+  .mainHeaderH2 {
+    font-size: 32px; } }
+
+@media (max-width: 800px) {
+  .mainHeaderH2 {
+    text-transform: none;
+    font-size: 28px;
+    text-align: left; }
   .mainHeaderH2::after {
-    content: '';
-    display: block;
-    margin: 10px auto;
-    width: 120px;
-    height: 3px;
-    background-color: rgba(54, 179, 168, 0.9); }
+    width: 75px;
+    margin: 7px 0; } }
+
+@media (max-width: 480px) {
+  .mainHeaderH2 {
+    font-size: 24px; } }
 
 .mainHeaderH3 {
   font: 600 26px "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -41,64 +59,131 @@ p {
   background: #4f4f4f no-repeat center;
   background-size: cover;
   height: 100vh; }
-  .bannerContainer .bannerContent {
-    color: #fbfbfb;
-    margin-top: 200px;
-    padding-right: 40px; }
-    .bannerContainer .bannerContent-title {
-      max-width: 700px;
-      margin: 0 auto;
-      font: 600 3rem/3.7rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      text-align: center;
-      text-transform: uppercase; }
-    .bannerContainer .bannerContent-description {
-      font: 600 1.8rem/2.5rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      text-align: center;
-      width: 50%;
-      margin: 40px auto; }
-    .bannerContainer .bannerContent li {
-      color: #f2f2f2;
-      margin: 1.5rem 0;
-      position: relative;
-      font-size: 1.4rem;
-      line-height: 1.8rem; }
-      .bannerContainer .bannerContent li:before {
-        content: ' ';
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        display: inline-block;
-        background-color: #f2f2f2;
-        left: -1em;
-        top: 0.5em;
-        transform: translateY(-50%); }
 
-.accent-btn {
-  background: #FF8080;
-  border: 2px solid #FF8080;
+@media (max-width: 1024px) {
+  .bannerContainer {
+    height: fit-content; } }
+
+.bannerContainer .bannerContent {
+  color: #fbfbfb;
+  margin: 200px 40px 40px; }
+
+.bannerContainer .bannerContent.md-6of12 {
+  margin: 200px 40px 40px 50%; }
+
+@media (max-width: 767px) {
+  .bannerContainer .bannerContent {
+    margin: 150px 20px 100px; }
+  .bannerContainer .bannerContent.md-6of12 {
+    margin: 150px 20px 100px 40px; } }
+
+@media (max-width: 479px) {
+  .bannerContainer .bannerContent {
+    margin: 100px 16px 50px; } }
+
+.bannerContainer .bannerContent-title {
+  max-width: 700px;
+  margin: 0 auto;
+  font: 600 3rem/3.7rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  transform: translateZ(0); }
+
+.bannerContainer .bannerContent-title.left {
+  text-align: left; }
+
+@media (max-width: 1024px) {
+  .bannerContainer .bannerContent-title {
+    font-size: 40px; } }
+
+@media (max-width: 767px) {
+  .bannerContainer .bannerContent-title {
+    font-size: 36px;
+    line-height: 41px; } }
+
+@media (max-width: 479px) {
+  .bannerContainer .bannerContent-title {
+    font-size: 34px;
+    text-align: left; } }
+
+.bannerContainer .bannerContent-description {
+  font: 600 1.8rem/2.5rem "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  text-align: center;
+  width: 50%;
+  margin: 40px auto; }
+
+@media (max-width: 991px) {
+  .bannerContainer .bannerContent-description {
+    width: 100%;
+    margin: 20px auto; } }
+
+@media (max-width: 479px) {
+  .bannerContainer .bannerContent-description {
+    font-size: 18px;
+    line-height: 22px;
+    text-align: left;
+    font-weight: normal; } }
+
+.bannerContainer .bannerContent li {
+  color: #f2f2f2;
+  margin: 1.5rem 0;
+  position: relative;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.8rem;
+  text-align: left;
+  padding-right: 25px; }
+
+@media (max-width: 479px) {
+  .bannerContainer .bannerContent li {
+    font-size: 18px;
+    line-height: 22px; } }
+
+.bannerContainer .bannerContent li.bannerContent-description {
+  width: 100%; }
+
+.bannerContainer .bannerContent li:before {
+  content: ' ';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  display: inline-block;
+  background-color: #f2f2f2;
+  left: -1em;
+  top: 0.5em;
+  transform: translateY(-50%); }
+
+.accent-btn, .accent-btn__inverted {
   border-radius: 0.5rem;
   color: #fff;
   font-size: 1.1rem;
   padding: 0.9rem 2rem;
-  text-transform: uppercase; }
-  .accent-btn:active, .accent-btn:focus {
-    outline: none; }
-  .accent-btn:active {
-    transform: translateY(2px); }
+  text-transform: uppercase;
+  min-width: 160px; }
+
+.accent-btn:active, .accent-btn:focus, .accent-btn__inverted:active, .accent-btn__inverted:focus {
+  outline: none; }
+
+.accent-btn:active, .accent-btn__inverted:active {
+  transform: translateY(2px); }
+
+@media (max-width: 767px) {
+  .accent-btn, .accent-btn__inverted {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem; } }
+
+@media (max-width: 479px) {
+  .accent-btn, .accent-btn__inverted {
+    width: 100%; } }
+
+.accent-btn {
+  background: #FF8080;
+  border: 2px solid #FF8080; }
 
 .accent-btn__inverted {
   background: transparent;
   box-sizing: border-box;
-  border: 2px solid #fff;
-  border-radius: 0.5rem;
-  color: #fff;
-  font-size: 1.1rem;
-  padding: 0.9rem 2rem;
-  text-transform: uppercase; }
-  .accent-btn__inverted:active, .accent-btn__inverted:focus {
-    outline: none; }
-  .accent-btn__inverted:active {
-    transform: translateY(2px); }
+  border: 2px solid #fff; }
 
 .dialogContainer {
   position: fixed;
@@ -134,37 +219,5 @@ p {
 .xs-4of12, .md-4of12 {
   width: 33.3333333333% !important; }
 
-.xs-6of12, .md-6of12 {
-  width: 50% !important; }
-
 .md-6-offset {
   margin-left: 50%; }
-
-@media (max-width: 991px) {
-  .bannerContainer .bannerContent__description {
-    width: 100%;
-    margin: 20px auto; } }
-
-@media (max-width: 767px) {
-  .bannerContainer .bannerContent {
-    margin-bottom: 100px; }
-    .bannerContainer .bannerContent h1 {
-      font-size: 36px; } }
-
-@media (max-width: 479px) {
-  .bannerContainer .bannerContent {
-    margin: 100px auto 50px; }
-    .bannerContainer .bannerContent__title {
-      font-size: 34px;
-      text-align: left; }
-    .bannerContainer .bannerContent__description {
-      font-size: 18px;
-      line-height: 22px;
-      text-align: left;
-      font-weight: normal; }
-  .actionButton {
-    width: 100%; }
-  .actionButtonTransparent {
-    width: 100%; }
-  .mainHeaderH2 {
-    font-size: 26px; } }
