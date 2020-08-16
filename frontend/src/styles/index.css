@@ -30,9 +30,22 @@ p {
   height: 3px;
   background-color: rgba(54, 179, 168, 0.9); }
 
-@media (max-width: 479px) {
+@media (max-width: 1280px) {
   .mainHeaderH2 {
-    font-size: 26px; } }
+    font-size: 32px; } }
+
+@media (max-width: 800px) {
+  .mainHeaderH2 {
+    text-transform: none;
+    font-size: 28px;
+    text-align: left; }
+  .mainHeaderH2::after {
+    width: 75px;
+    margin: 7px 0; } }
+
+@media (max-width: 480px) {
+  .mainHeaderH2 {
+    font-size: 24px; } }
 
 .mainHeaderH3 {
   font: 600 26px "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;

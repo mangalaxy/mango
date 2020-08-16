@@ -34,9 +34,20 @@ p {
     height: 3px;
     background-color: $COLOR_GREEN;
   }
-
-  @media (max-width: 479px) {
-    font-size: 26px;
+  @media (max-width: 1280px) {
+    font-size: 32px;
+  }
+  @media (max-width: 800px) {
+    text-transform: none;
+    font-size: 28px;
+    text-align: left;
+    &::after {
+      width: 75px;
+      margin: 7px 0;
+    }
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
   }
 }
 
@@ -57,12 +68,6 @@ p {
   @media (max-width: 1024px) {
     height: fit-content;
   //height: 700px;
-  }
-  @media (max-width: 800px) {
-
-  }
-  @media (max-width: 600px) {
-
   }
 
   .bannerContent {
