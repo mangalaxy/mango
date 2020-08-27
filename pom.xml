@@ -120,11 +120,6 @@
       </dependency>
 
       <dependency>
-         <groupId>com.fasterxml.jackson.datatype</groupId>
-         <artifactId>jackson-datatype-jsr310</artifactId>
-      </dependency>
-
-      <dependency>
          <groupId>org.modelmapper</groupId>
          <artifactId>modelmapper</artifactId>
          <version>${modelmapper.version}</version>
@@ -253,7 +248,6 @@
                </execution>
             </executions>
          </plugin>
-
       </plugins>
    </build>
 </project>
