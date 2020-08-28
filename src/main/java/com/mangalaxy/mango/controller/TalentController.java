@@ -4,11 +4,9 @@ import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.TalentService;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,37 +15,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@RestController
-@RequestMapping("/api/v1/talents")
+import java.net.URI;
+
 @RequiredArgsConstructor
+@RestController
 public class TalentController {
-
   private final TalentService talentService;
 
-  @GetMapping("/{talentId}")
-  public ResponseEntity<TalentResponse> getTalentById(@PathVariable Long talentId)
-        throws ResourceNotFoundException {
+  @GetMapping(value = "/api/v1/talents/{talentId}")
+  public ResponseEntity<TalentResponse> getTalentById(@PathVariable Long talentId) {
     TalentResponse talent = talentService.getTalentById(talentId);
     return ResponseEntity.ok(talent);
   }
 
-  @GetMapping
-  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable) throws ResourceNotFoundException {
+  @GetMapping("/api/v1/talents")
+  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable)
+        throws ResourceNotFoundException {
     Page<TalentResponse> talents = talentService.findAll(pageable);
     return ResponseEntity.ok(talents);
   }
 
-  @PostMapping
+  @PostMapping("/api/v1/talents")
   public ResponseEntity<TalentResponse> createTalent(@RequestBody TalentRequest talentRequest) {
     TalentResponse talent = talentService.createNewTalent(talentRequest);
-    return new ResponseEntity<>(talent, HttpStatus.CREATED);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+          .path("/{id}")
+          .buildAndExpand(talent.getId())
+          .toUri();
+    return ResponseEntity.created(location).build();
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @PutMapping("/talents/{talentId}")
+  @PutMapping("/api/v1/talents/{talentId}")
   public ResponseEntity<TalentResponse> updateTalent(@PathVariable Long talentId,
                                                      @RequestBody TalentRequest talentRequest) {
     TalentResponse response = talentService.updateTalent(talentRequest, talentId);
@@ -55,29 +57,32 @@ public class TalentController {
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @DeleteMapping("/talents/{talentId}")
+  @DeleteMapping("/api/v1/talents/{talentId}")
   public ResponseEntity<Void> deleteTalent(@PathVariable Long talentId) {
     talentService.deleteTalent(talentId);
     return ResponseEntity.noContent().build();
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @GetMapping("/talents/me")
-  @ApiOperation(value = "Get authenticated talent")
+  @GetMapping("/api/v1/talents/me")
   public ResponseEntity<TalentResponse> getCurrentTalent() {
     TalentResponse talentResponse = talentService.getCurrentTalent();
     return ResponseEntity.ok(talentResponse);
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
-  @PutMapping("/talents/me")
+  @PutMapping("/api/v1/talents/me")
   public ResponseEntity<TalentResponse> updateCurrentTalent(@RequestBody TalentRequest talentRequest) {
     TalentResponse talentResponse = talentService.updateCurrentTalent(talentRequest);
     return ResponseEntity.ok(talentResponse);
   }
 
+  // TODO: This is a highly controversial and dangerous endpoint,
+  //  it needs to be reviewed in the REST API and how it should be
+  //  used by the client side.
+  //  If it turns out that the client side is not using it, then delete it.
   @PreAuthorize("hasAuthority('TALENT')")
-  @DeleteMapping("/talents/me")
+  @DeleteMapping("/api/v1/talents/me")
   public ResponseEntity<Void> deleteCurrentTalent() {
     talentService.deleteCurrentTalent();
     return ResponseEntity.noContent().build();
