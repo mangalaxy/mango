@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,11 +26,10 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
@@ -84,39 +82,34 @@ class TalentControllerTest {
 
   @Test
   @DisplayName("Find the talent with ID: 1")
-  void whenEnterTalentId_thenReturnsSerializedTalentResponseAndStatusOk()
-        throws Exception {
+  void whenEnterTalentId_thenReturnsSerializedTalentResponseAndStatusOk() throws Exception {
     // stubbing mock method
     given(talentService.getTalentById(anyLong())).willReturn(talentResponse1);
-    String expectedBody = objectMapper.writeValueAsString(talentResponse1);
-
-    MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents/1")
+    String expectedJson = objectMapper.writeValueAsString(talentResponse1);
+    mockMvc.perform(get("/api/v1/talents/1")
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isOk())
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andReturn();
+          .andExpect(content().json(expectedJson));
 
     verify(talentService).getTalentById(anyLong());
-    JSONAssert.assertEquals(expectedBody, mvcResult.getResponse().getContentAsString(), false);
   }
 
   @Test
   @DisplayName("Returns the first page with two talents")
   void shouldReturnsTwoTalentsAndStatusOk() throws Exception {
     Page<TalentResponse> talentPage = new PageImpl<>(talentResponseList);
-    String expectedBody = objectMapper.writeValueAsString(talentPage);
+    String expectedJson = objectMapper.writeValueAsString(talentPage);
     given(talentService.findAll(any(Pageable.class))).willReturn(talentPage);
-
-    MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents?page=0&limit=20")
+    mockMvc.perform(get("/api/v1/talents?page=0&limit=20")
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isOk())
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andReturn();
+          .andExpect(content().json(expectedJson, false));
 
     verify(talentService).findAll(any(Pageable.class));
-    JSONAssert.assertEquals(expectedBody, mvcResult.getResponse().getContentAsString(), false);
   }
 
   @Test
@@ -128,21 +121,19 @@ class TalentControllerTest {
           "12g27gd2",
           new LocationRequest((short) 1, "Berlin", "Germany")
     );
-    String newTalentJson = objectMapper.writeValueAsString(newTalent);
     TalentResponse mockTalent = new TalentResponse(
           1L,
           "Anna Fisher",
           "anna_fisher@gmail.com",
           new LocationResponse((short) 1, "Berlin", "Germany"));
     given(talentService.createNewTalent(any(TalentRequest.class))).willReturn(mockTalent);
-
     mockMvc.perform(post("/api/v1/talents")
-          .content(newTalentJson)
-          .contentType(MediaType.APPLICATION_JSON_UTF8))
+          .content(objectMapper.writeValueAsString(newTalent))
+          .contentType(MediaType.APPLICATION_JSON)
+          .characterEncoding(StandardCharsets.UTF_8.displayName()))
           .andDo(print())
           .andExpect(status().isCreated())
-          .andExpect(header().string(HttpHeaders.LOCATION, "http://localhost/api/v1/talents/1"))
-          .andReturn();
+          .andExpect(header().string(HttpHeaders.LOCATION, "http://localhost/api/v1/talents/1"));
 
     ArgumentCaptor<TalentRequest> talentCaptor = ArgumentCaptor.forClass(TalentRequest.class);
     verify(talentService).createNewTalent(talentCaptor.capture());
@@ -161,28 +152,26 @@ class TalentControllerTest {
           "12g27gd2",
           new LocationRequest((short) 1, "Berlin", "Germany")
     );
-    String talentJson = objectMapper.writeValueAsString(updatedTalent);
     TalentResponse mockTalent = new TalentResponse(
           1L,
           "Anna Fisher",
           updatedEmail,
           new LocationResponse((short) 1, "Berlin", "Germany"));
-    String expectedBody = objectMapper.writeValueAsString(mockTalent);
+    String expectedJson = objectMapper.writeValueAsString(mockTalent);
     given(talentService.updateTalent(any(TalentRequest.class), anyLong())).willReturn(mockTalent);
-
-    MvcResult mvcResult = mockMvc.perform(put("/api/v1/talents/1")
-          .contentType(MediaType.APPLICATION_JSON_UTF8)
-          .content(talentJson))
+    mockMvc.perform(put("/api/v1/talents/1")
+          .contentType(MediaType.APPLICATION_JSON)
+          .content(objectMapper.writeValueAsString(updatedTalent))
+          .characterEncoding(StandardCharsets.UTF_8.displayName()))
           .andDo(print())
           .andExpect(status().isOk())
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andReturn();
+          .andExpect(content().json(expectedJson));
 
     ArgumentCaptor<TalentRequest> talentCaptor = ArgumentCaptor.forClass(TalentRequest.class);
     verify(talentService).updateTalent(talentCaptor.capture(), anyLong());
     assertThat(talentCaptor.getValue().getFullName()).isEqualTo("Anna Fisher");
     assertThat(talentCaptor.getValue().getEmail()).isEqualTo(updatedEmail);
-    JSONAssert.assertEquals(expectedBody, mvcResult.getResponse().getContentAsString(), false);
   }
 
   @Test
@@ -190,16 +179,14 @@ class TalentControllerTest {
   void shouldReturnsStatus404WhenTalentDoesntExist() throws Exception {
     Long talentId = 1L;
     willThrow(new ResourceNotFoundException()).given(talentService).getTalentById(talentId);
-
     MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents/{talentId}", talentId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isNotFound())
           .andReturn();
-    Exception resolvedExc = mvcResult.getResolvedException();
     verify(talentService).getTalentById(talentId);
-    assertTrue(resolvedExc instanceof ResourceNotFoundException);
-    assertEquals("Resource with specified ID not found", resolvedExc.getMessage());
+    assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
+    assertThat(mvcResult.getResolvedException()).hasMessage("Resource with specified ID not found");
   }
 
   @Test

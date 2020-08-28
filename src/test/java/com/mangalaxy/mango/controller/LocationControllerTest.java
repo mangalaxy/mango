@@ -1,55 +1,88 @@
 package com.mangalaxy.mango.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import com.mangalaxy.mango.service.LocationService;
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.anyShort;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@AutoConfigureMockMvc
-@WithMockUser(username = "test@gmail.com")
-public class LocationControllerTest {
+@WebMvcTest(value = LocationController.class,
+      useDefaultFilters = false,
+      includeFilters = {
+            @ComponentScan.Filter(
+                  type = FilterType.ASSIGNABLE_TYPE,
+                  value = LocationController.class)
+      })
+@AutoConfigureMockMvc(addFilters = false)
+class LocationControllerTest {
+
   @Autowired
   private MockMvc mockMvc;
 
   @Autowired
   private ObjectMapper objectMapper;
 
-  @Test
-  public void shouldFindLocationById() throws Exception {
-    Short expectedId = 1;
-    String expectedCountry = "Ukraine";
+  @MockBean
+  private LocationService locationService;
 
-    MvcResult result = mockMvc.perform(get("/api/v1/locations/1")).andReturn();
-    String response = result.getResponse().getContentAsString();
-    LocationResponse locationResponse = objectMapper.readValue(response, LocationResponse.class);
+  private LocationResponse locationResponse1;
+  private LocationResponse locationResponse2;
+  private List<LocationResponse> locationList;
 
-    Assert.assertEquals(expectedId, locationResponse.getId());
-    Assert.assertEquals(expectedCountry, locationResponse.getCountry());
+  @BeforeEach
+  void setUp() {
+    locationResponse1 = new LocationResponse((short) 1, "Austin", "USA");
+    locationResponse2 = new LocationResponse((short) 2, "Boston", "USA");
+    locationList = Lists.newArrayList(locationResponse1, locationResponse2);
   }
 
   @Test
-  public void shouldGetAllLocations() throws Exception {
-    int expectedSize = 2;
+  @DisplayName("Find the location resource with ID: 1")
+  void shouldReturnLocationResponseAndStatusOk() throws Exception {
+    Short id = 1;
+    String expectedBody = objectMapper.writeValueAsString(locationResponse1);
+    given(locationService.getLocationById(anyShort())).willReturn(locationResponse1);
+    mockMvc.perform(get("/api/v1/locations/{id}", id)
+          .accept(MediaType.APPLICATION_JSON))
+          .andDo(print())
+          .andExpect(status().isOk())
+          .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+          .andExpect(content().json(expectedBody));
+    verify(locationService).getLocationById(anyShort());
+  }
 
-    MvcResult result = mockMvc.perform(get("/api/v1/locations")).andReturn();
-    String response = result.getResponse().getContentAsString();
-    List<LocationResponse> locations = objectMapper.readValue(response, new TypeReference<List<LocationResponse>>(){});
+  @Test
+  @DisplayName("Returns location list with size 2")
+  void shouldReturnAllLocationsAndStatusOk() throws Exception {
+    String expectedBody = objectMapper.writeValueAsString(locationList);
+    given(locationService.getAllLocations()).willReturn(locationList);
+    mockMvc.perform(get("/api/v1/locations")
+          .accept(MediaType.APPLICATION_JSON))
+          .andDo(print())
+          .andExpect(status().isOk())
+          .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+          .andExpect(content().json(expectedBody));
 
-    Assert.assertEquals(expectedSize, locations.size());
+    verify(locationService).getAllLocations();
   }
 }
