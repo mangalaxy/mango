@@ -40,10 +40,10 @@ public class TalentController {
 
   @PostMapping("/api/v1/talents")
   public ResponseEntity<TalentResponse> createTalent(@RequestBody TalentRequest talentRequest) {
-    TalentResponse talent = talentService.createNewTalent(talentRequest);
+    TalentResponse createdTalent = talentService.createNewTalent(talentRequest);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
           .path("/{id}")
-          .buildAndExpand(talent.getId())
+          .buildAndExpand(createdTalent.getId())
           .toUri();
     return ResponseEntity.created(location).build();
   }

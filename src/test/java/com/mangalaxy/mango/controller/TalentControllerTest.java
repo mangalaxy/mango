@@ -107,7 +107,7 @@ class TalentControllerTest {
           .andDo(print())
           .andExpect(status().isOk())
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-          .andExpect(content().json(expectedJson, false));
+          .andExpect(content().json(expectedJson));
 
     verify(talentService).findAll(any(Pageable.class));
   }

@@ -6,9 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class EmployerRequest {
-
   private final String fullName;
   private final String email;
   private final String phoneNumber;
@@ -17,6 +15,7 @@ public class EmployerRequest {
   private final String photoUrl;
   private final LocationRequest location;
 
+  @Builder
   @JsonCreator
   public EmployerRequest(@JsonProperty("fullName") String fullName,
                          @JsonProperty("email") String email,

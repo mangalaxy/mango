@@ -109,7 +109,7 @@ class EmployerServiceTest {
     Long id = 1L;
     EmployerResponse expected = new EmployerResponse(1L, "Cortney Swiss", "cort.sw@yahoo.com",
           null, null, "IT Acquisition recruiter", null, null,
-          null);
+          null, null);
     when(employerRepository.findById(id)).thenReturn(Optional.of(employer1));
     // when
     EmployerResponse actual = employerService.fetchEmployerById(id);

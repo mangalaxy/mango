@@ -18,53 +18,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-@RestController
-@RequestMapping("/api/v1/employers")
+import java.net.URI;
+
 @RequiredArgsConstructor
+@RestController
 public class EmployerController {
   private final EmployerService employerService;
   private final EmployerRelationshipService employerRelationshipService;
 
-  @GetMapping
+  @GetMapping("/api/v1/employers")
   public ResponseEntity<Page<EmployerResponse>> getAllEmployers(Pageable pageable) {
     Page<EmployerResponse> response = employerService.fetchAllEmployers(pageable);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/{id}")
-  public ResponseEntity<EmployerResponse> getEmployerById(
-      @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
-      @PathVariable Long id) {
-    EmployerResponse response = employerService.fetchEmployerById(id);
+  @GetMapping("/api/v1/employers/{employerId}")
+  public ResponseEntity<EmployerResponse> getEmployerById(@PathVariable Long employerId) {
+    EmployerResponse response = employerService.fetchEmployerById(employerId);
     return ResponseEntity.ok(response);
   }
 
-  @PostMapping
+  @PostMapping("/api/v1/employers")
   public ResponseEntity<EmployerResponse> createNewEmployer(@RequestBody EmployerRequest employerRequest) {
-    EmployerResponse response = employerService.createNewEmployer(employerRequest);
-    return new ResponseEntity<>(response, HttpStatus.CREATED);
+    EmployerResponse createdEmployer = employerService.createNewEmployer(employerRequest);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+          .path("/{id}")
+          .buildAndExpand(createdEmployer.getId())
+          .toUri();
+    return ResponseEntity.created(location).build();
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("/{id}")
+  @PutMapping("/api/v1/employers/{id}")
   public ResponseEntity<EmployerResponse> updateEmployer(@PathVariable Long id, @RequestBody EmployerRequest employerRequest) {
     EmployerResponse response = employerService.updateEmployer(id, employerRequest);
     return ResponseEntity.ok(response);
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @DeleteMapping("/{id}")
+  @DeleteMapping("/api/v1/employers/{id}")
   public ResponseEntity<Void> deleteEmployer(@PathVariable Long id) {
     employerService.deleteEmployerById(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("{employerId}/bookmarked/{talentId}")
+  @PutMapping("/api/v1/employers/{employerId}/bookmarked/{talentId}")
   public ResponseEntity<EmployerResponse> matchTalentToEmployer(
       @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
       @PathVariable Long employerId,
@@ -77,7 +80,7 @@ public class EmployerController {
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("{employerId}/jobs/{jobId}/matched")
+  @PutMapping("/api/v1/employers/{employerId}/jobs/{jobId}/matched")
   public ResponseEntity<Page<TalentResponse>> getMatchedTalentsForJob(
       @PathVariable Long employerId,
       @PathVariable Long jobId,
