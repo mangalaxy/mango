@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class SkillResponse {
-
-  private Long id;
-  private String name;
+  private final Long id;
+  private final String name;
 }

@@ -24,7 +24,6 @@ public class ProfileController {
   private final ProfileService profileService;
 
   @GetMapping("/{talentId}/profile")
-  @ApiOperation(value = "Get talent by profile id")
   public ResponseEntity<ProfileResponse> getProfileByOwner(
       @ApiParam(value = "Talent id from which Profile object will retrieve", required = true)
       @PathVariable Long talentId) {
