@@ -1,6 +1,7 @@
 package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
@@ -29,6 +30,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -91,6 +93,7 @@ class EmployerControllerTest {
           .createdDate(LocalDateTime.now())
           .build();
     employerResponseList = Lists.newArrayList(employerResponse1, employerResponse2);
+    objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
   }
 
   @Test
@@ -179,7 +182,8 @@ class EmployerControllerTest {
           .jobTitle(updatedJobTitle)
           .companyName("Okta c.l.")
           .location(new LocationResponse((short) 67, "San Diego", "USA"))
-          .createdDate(LocalDateTime.now())
+          .createdDate(LocalDateTime.now().minusDays(17).truncatedTo(ChronoUnit.SECONDS))
+          .lastModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
           .build();
     String expectedJson = objectMapper.writeValueAsString(mockEmployer);
     given(employerService.updateEmployer(anyLong(), any(EmployerRequest.class))).willReturn(mockEmployer);
@@ -200,7 +204,7 @@ class EmployerControllerTest {
   }
 
   @Test
-  @DisplayName("Check status 404 when employer not found")
+  @DisplayName("Return status 404 when employer not found")
   void shouldReturnsStatus404WhenEmployerDoesntExist() throws Exception {
     Long employerId = 1L;
     willThrow(new ResourceNotFoundException()).given(employerService).fetchEmployerById(employerId);
@@ -215,7 +219,7 @@ class EmployerControllerTest {
   }
 
   @Test
-  @DisplayName("Delete specified employer and check status 204")
+  @DisplayName("Delete specified employer and return status 204")
   void shouldDeleteEmployerByIdAndReturnsStatus204() throws Exception {
     Long employerId = 1L;
     doNothing().when(employerService).deleteEmployerById(employerId);

@@ -15,6 +15,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.NamingConventions;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -35,6 +36,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class EmployerServiceTest {
+
   @Mock
   private EmployerRepository employerRepository;
   private EmployerService employerService;
@@ -48,6 +50,9 @@ class EmployerServiceTest {
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
+    modelMapper.getConfiguration()
+          .setSourceNamingConvention(NamingConventions.NONE)
+          .setDestinationNamingConvention(NamingConventions.NONE);
     employerService = new EmployerServiceImpl(employerRepository, modelMapper);
 
     location1 = new Location();

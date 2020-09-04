@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 public class EmployerServiceImpl implements EmployerService {
-
   private final EmployerRepository employerRepository;
   private final ModelMapper modelMapper;
 
@@ -23,14 +22,15 @@ public class EmployerServiceImpl implements EmployerService {
   @Override
   public Page<EmployerResponse> fetchAllEmployers(Pageable pageable) {
     Page<Employer> employerPage = employerRepository.findAll(pageable);
-    return employerPage.map(employer -> modelMapper.map(employer, EmployerResponse.class));
+    return employerPage.map(employer ->
+          modelMapper.map(employer, EmployerResponse.EmployerResponseBuilder.class).build());
   }
 
   @Transactional(readOnly = true)
   @Override
   public EmployerResponse fetchEmployerById(Long id) {
     Employer employer = findEmployer(id);
-    return modelMapper.map(employer, EmployerResponse.class);
+    return modelMapper.map(employer, EmployerResponse.EmployerResponseBuilder.class).build();
   }
 
   @Transactional
@@ -38,7 +38,7 @@ public class EmployerServiceImpl implements EmployerService {
   public EmployerResponse createNewEmployer(EmployerRequest employer) {
     Employer employerEntity = modelMapper.map(employer, Employer.class);
     Employer savedEmployer = employerRepository.save(employerEntity);
-    return modelMapper.map(savedEmployer, EmployerResponse.class);
+    return modelMapper.map(savedEmployer, EmployerResponse.EmployerResponseBuilder.class).build();
   }
 
   @Transactional
@@ -47,7 +47,7 @@ public class EmployerServiceImpl implements EmployerService {
     Employer foundEmployer = findEmployer(id);
     modelMapper.map(employer, foundEmployer);
     Employer updatedEmployer = employerRepository.save(foundEmployer);
-    return modelMapper.map(updatedEmployer, EmployerResponse.class);
+    return modelMapper.map(updatedEmployer, EmployerResponse.EmployerResponseBuilder.class).build();
   }
 
   @Transactional

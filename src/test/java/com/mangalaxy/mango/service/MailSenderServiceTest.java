@@ -24,9 +24,9 @@ class MailSenderServiceTest {
   @Rule
   public SmtpServerRule smtpServerRule;
 
-  @Disabled("Not working for JUnit Jupiter")
+  @Disabled("Doesn't work because mail server not configured")
   @Test
-  public void shouldSendMailTest() throws MessagingException, IOException {
+  void shouldSendMailTest() throws MessagingException, IOException {
     String text = "Test message";
     String mailTo = "nikolai.blashchuk@gmail.com";
     String subject = "Test Mail";

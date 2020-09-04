@@ -19,14 +19,14 @@ import java.time.Month;
 import java.util.List;
 import java.util.Optional;
 
-import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.containsInRelativeOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @DataJpaTest
 class PostRepositoryTest {
@@ -96,9 +96,7 @@ class PostRepositoryTest {
     // then
     List<Post> actual = postPage.getContent();
     assertThat(actual, hasSize(2));
-    assertThat(actual, contains(equalTo(post1), equalTo(post2)));
-    assertEquals(expectedPostTitle1, actual.get(0).getTitle());
-    assertEquals(expectedPostTitle2, actual.get(1).getTitle());
+    assertThat(actual, containsInAnyOrder(equalTo(post1), equalTo(post2)));
     assertEquals(topicTitle, actual.get(0).getTopic().getTitle());
     assertEquals(topicTitle, actual.get(1).getTopic().getTitle());
   }

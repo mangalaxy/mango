@@ -6,6 +6,7 @@ import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -52,6 +53,7 @@ class EmployerRepositoryTest {
   }
 
   @Test
+  @DisplayName("Find an employer by email")
   void shouldFindEmployerByEmail_thenSuccess() {
     // given
     String email = "anna.fisher2019@gmail.com";

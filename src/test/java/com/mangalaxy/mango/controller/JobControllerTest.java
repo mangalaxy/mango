@@ -32,6 +32,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -319,7 +320,8 @@ class JobControllerTest {
     jobResponse.setLocationCity(jobRequest.getLocation().getCity());
     jobResponse.setLocationCountry(jobRequest.getLocation().getCountry());
     jobResponse.setSkills(skillResponses);
-    jobResponse.setCreatedDate(LocalDateTime.now());
+    jobResponse.setCreatedDate(LocalDateTime.parse("2019-12-18T16:35:48"));
+    jobResponse.setModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
 
     String expectedJson = objectMapper.writeValueAsString(jobResponse);
     given(jobService.updateEmployerJob(anyLong(), anyLong(), any(JobRequest.class))).willReturn(jobResponse);

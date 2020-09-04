@@ -1,6 +1,7 @@
 package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
@@ -78,11 +79,12 @@ class TalentControllerTest {
     talentResponse3 = new TalentResponse(3L, "Joanna Denver",
           "jd_denver1983@mail.uk", null);
     talentResponseList = Lists.newArrayList(talentResponse1, talentResponse2, talentResponse3);
+    objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
   }
 
   @Test
   @DisplayName("Find the talent with ID: 1")
-  void whenEnterTalentId_thenReturnsSerializedTalentResponseAndStatusOk() throws Exception {
+  void shouldReturnTalentResponseByIdAndStatusOk() throws Exception {
     // stubbing mock method
     given(talentService.getTalentById(anyLong())).willReturn(talentResponse1);
     String expectedJson = objectMapper.writeValueAsString(talentResponse1);
@@ -97,8 +99,8 @@ class TalentControllerTest {
   }
 
   @Test
-  @DisplayName("Returns the first page with two talents")
-  void shouldReturnsTwoTalentsAndStatusOk() throws Exception {
+  @DisplayName("Return the first page with two talents")
+  void shouldReturnTwoTalentsAndStatusOk() throws Exception {
     Page<TalentResponse> talentPage = new PageImpl<>(talentResponseList);
     String expectedJson = objectMapper.writeValueAsString(talentPage);
     given(talentService.findAll(any(Pageable.class))).willReturn(talentPage);
@@ -114,7 +116,7 @@ class TalentControllerTest {
 
   @Test
   @DisplayName("Create a new talent and check status 201")
-  void shouldCreateNewTalentAndReturnsStatusCreated() throws Exception {
+  void shouldCreateNewTalentAndReturnStatus201() throws Exception {
     TalentRequest newTalent = new TalentRequest(
           "Anna Fisher",
           "anna_fisher@gmail.com",
