@@ -1,14 +1,22 @@
 package com.mangalaxy.mango.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.*;
+import com.mangalaxy.mango.domain.dto.response.SkillResponse;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString(doNotUseGetters = true)
 public class JobDto {
 
@@ -41,6 +49,9 @@ public class JobDto {
 
   @JsonProperty("requiredExperience")
   private String requiredExperience;
+
+  @JsonProperty("skills")
+  private Set<SkillResponse> skills;
 
   @JsonProperty("createdDate")
   private LocalDateTime createdDate;

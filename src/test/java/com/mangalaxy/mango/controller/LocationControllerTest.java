@@ -57,12 +57,12 @@ class LocationControllerTest {
   }
 
   @Test
-  @DisplayName("Find the location resource with ID: 1")
+  @DisplayName("Find the location with ID: 1")
   void shouldReturnLocationResponseAndStatusOk() throws Exception {
-    Short id = 1;
+    Short locationId = 1;
     String expectedBody = objectMapper.writeValueAsString(locationResponse1);
     given(locationService.getLocationById(anyShort())).willReturn(locationResponse1);
-    mockMvc.perform(get("/api/v1/locations/{id}", id)
+    mockMvc.perform(get("/api/v1/locations/{locationId}", locationId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isOk())
@@ -72,7 +72,7 @@ class LocationControllerTest {
   }
 
   @Test
-  @DisplayName("Returns location list with size 2")
+  @DisplayName("Find a list of locations with two elements")
   void shouldReturnAllLocationsAndStatusOk() throws Exception {
     String expectedBody = objectMapper.writeValueAsString(locationList);
     given(locationService.getAllLocations()).willReturn(locationList);

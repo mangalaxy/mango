@@ -176,7 +176,7 @@ class JobServiceTest {
   }
 
   @Test
-  void whenJobDontExistThrowException() {
+  void shouldThrowException_whenJobNotFound() {
     assertThrows(ResourceNotFoundException.class,
           () -> jobService.fetchEmployerJob(1L, 5L),
           "An exception was not thrown");

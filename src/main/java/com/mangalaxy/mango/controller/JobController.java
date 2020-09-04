@@ -8,7 +8,6 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
@@ -51,11 +53,14 @@ public class JobController {
     return ResponseEntity.ok(jobDto);
   }
 
-  @ApiOperation(value = "Create a ne job for specified employer")
   @PostMapping("/employers/{id}/jobs")
   public ResponseEntity<JobDto> createNewJob(@PathVariable Long id, @RequestBody JobRequest jobReq) {
-    final JobDto jobDto = jobService.createEmployerJob(id, jobReq);
-    return ResponseEntity.status(HttpStatus.CREATED).body(jobDto);
+    JobDto savedJob = jobService.createEmployerJob(id, jobReq);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+          .path("/{id}")
+          .buildAndExpand(savedJob.getId())
+          .toUri();
+    return ResponseEntity.created(location).build();
   }
 
   @ApiOperation(value = "Update specified job of specified employer")
