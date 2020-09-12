@@ -21,7 +21,7 @@ const JobsRolesSelect = () => {
   return (
       <div id='main-job-role-select'>
         <div className='contentContainer'>
-          <h3 className="descriptionHeader">Find a job</h3>
+          <h2 className="mainHeaderH2">Find a job</h2>
           <div className="description">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Distinctio esse facilis libero minus molestiae qui suscipit!
@@ -37,7 +37,6 @@ const JobsRolesSelect = () => {
             </p>
           </div>
           <h2 className="mainHeaderH2">Job roles</h2>
-          <GreenDash/>
           <div className="rolesContainer">
             {jobRolesData.map((role, index) => (
                 <Link key={index} to={`${routes.FIND_JOB}/${role.link}`}>
