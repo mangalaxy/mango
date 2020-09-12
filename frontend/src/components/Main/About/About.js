@@ -1,8 +1,6 @@
-//@flow
-import React, {Component, Fragment} from 'react';
-import type {Node} from 'react';
+import React, {useRef, useState} from 'react';
 import './About.scss';
-import {GreenDash, Partners} from '../Home/Home';
+import {Partners} from '../Home/Home';
 import globe from '../../../assets/icons/globe.svg';
 import planet from '../../../assets/icons/planet-earth.svg';
 import city from '../../../assets/icons/city.svg';
@@ -10,121 +8,97 @@ import briefcase from '../../../assets/icons/case.svg';
 import quotes from '../../../assets/icons/quotes.svg';
 import {Growl} from 'primereact/growl';
 import AboutContactForm from '../../Forms/AboutContactForm';
+import company from '../../../mocks/companyInfo';
 
-type Props = {}
+const About = () => {
 
-const teamMembers = [
-  {image: '/images/team/photo1.jpg', name: 'Angel Lee', position: 'Cmo'},
-  {image: '/images/team/photo2.png', name: 'Bill  Brown', position: 'fOUNDER'},
-  {image: '/images/team/photo3.jpg', name: 'Kelly Rose', position: 'cfo'},
-  {
-    image: '/images/team/photo4.jpg',
-    name: 'Mike Stone ',
-    position: 'co-founder',
-  },
-];
+  const [messageSent, setMessageSent] = useState(false);
+  const growl = useRef(null);
 
-const feedback = [
-  {
-    header: 'Very professional team',
-    text: 'Lorem ipsum dolor sit amet. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-    name: 'Emily Lewiz',
-    position: 'Top Manager',
-    image: '/images/face1.png',
-  },
-  {
-    header: 'Quickly and efficiently',
-    text: 'Lorem ipsum dolor sit amet, consectetur adig elit, sed do eiusmod tempor ididunt ut labore et dolore magnased do eiusmod tempor ididunt ut labore et dolore magna. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. ',
-    name: 'David McGee',
-    position: 'Lead Java Software Engineer',
-    image: '/images/face2.png',
-  },
-];
-
-class About extends Component <Props> {
-  props: Props;
-
-  showSuccess = () => {
-    this.growl.show({
+  const showSuccess = () => {
+    growl.current.show({
       severity: 'success',
       summary: 'Success!',
       detail: 'Message submitted',
     });
+    setTimeout(() => setMessageSent(true), 700);
   };
 
-  showError = () => {
-    this.growl.show({
+  const showError = () => {
+    growl.current.show({
       severity: 'error',
       summary: 'Error!',
       detail: 'Message submit failed',
     });
   };
 
-  render(): Node {
-    return (
-        <Fragment>
-          <Growl ref={(el) => this.growl = el}/>
-          <div className='bannerContainer' id='about-banner'>
-            <div className="imageFilter"/>
+  return (
+      <>
+        <Growl ref={growl}/>
+        <div className='bannerContainer fit-content' id='about-banner'>
+          <div className="imageFilter"/>
+          <div className="container">
             <div className='bannerContent'>
-              <h1>About us</h1>
+              <h1 className="bannerContent-title left">About us</h1>
             </div>
           </div>
+        </div>
 
-          <section id='what-we-do'>
-            <div className="container">
-              <div className="contentContainer">
-                <h2 className='mainHeaderH2'>What we do?</h2>
-                <GreenDash/>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={globe} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Expedita fuga modi nisi obcaecati
-                      sapiente. Accusamus deleniti dolorum harum illum vero?</p>
-                  </div>
+        <section id='what-we-do'>
+          <div className="container">
+            <div className="contentContainer">
+              <h2 className='mainHeaderH2'>What we do?</h2>
+
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={globe} alt=""/>
                 </div>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={city} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Blanditiis doloremque ducimus fugiat
-                      incidunt ipsum labore pariatur quaerat quidem ratione
-                      sunt!
-                      Blanditiis, error id impedit inventore optio quae
-                      recusandae
-                      repellat sapiente!</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={briefcase} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Expedita fuga modi nisi obcaecati
-                      sapiente. Accusamus deleniti dolorum harum illum vero?</p>
-                  </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Expedita fuga modi nisi obcaecati
+                    sapiente. Accusamus deleniti dolorum harum illum vero?</p>
                 </div>
               </div>
-              <div className="imageContainer">
-                <img src="/images/men-hand-up.png" alt=""/>
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={city} alt=""/>
+                </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Blanditiis doloremque ducimus fugiat
+                    incidunt ipsum labore pariatur quaerat quidem ratione
+                    sunt!
+                    Blanditiis, error id impedit inventore optio quae
+                    recusandae
+                    repellat sapiente!</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={briefcase} alt=""/>
+                </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Expedita fuga modi nisi obcaecati
+                    sapiente. Accusamus deleniti dolorum harum illum vero?</p>
+                </div>
               </div>
             </div>
-          </section>
+            <div className="imageContainer">
+              <img src="/images/men-hand-up.png" alt=""/>
+            </div>
+          </div>
+        </section>
 
-          <section id='numbers'>
-            <div className="container">
+        <section id='numbers'>
+          <div className="container">
+            <div className="semiCol">
               <div className="column">
                 <div className="iconContainer">
                   <img src={city} alt=""/>
@@ -139,7 +113,9 @@ class About extends Component <Props> {
                 <h3>20</h3>
                 <span>Startup ecosystems</span>
               </div>
+            </div>
 
+            <div className="semiCol">
               <div className="column">
                 <div className="iconContainer">
                   <img src={globe} alt=""/>
@@ -156,111 +132,113 @@ class About extends Component <Props> {
                 <span>Continents</span>
               </div>
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section id='mission'>
-            <div className="container">
-              <div className="imageContainer">
-                <img src="/images/woman.png" alt=""/>
-              </div>
-              <div className="contentContainer">
-                <h2 className='mainHeaderH2'>Our mission</h2>
-                <GreenDash/>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={planet} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Expedita fuga modi nisi obcaecati
-                      sapiente. Accusamus deleniti dolorum harum illum vero?</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={planet} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Blanditiis doloremque ducimus fugiat
-                      incidunt ipsum labore pariatur quaerat quidem ratione
-                      sunt!
-                      Blanditiis, error id impedit inventore optio quae
-                      recusandae
-                      repellat sapiente!</p>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="iconContainer">
-                    <img src={planet} alt=""/>
-                  </div>
-                  <div className='rowContent'>
-                    <h4 className="rowHeader">Lorem ipsum 1</h4>
-                    <p className="rowText">Lorem ipsum dolor sit amet,
-                      consectetur
-                      adipisicing elit. Expedita fuga modi nisi obcaecati
-                      sapiente. Accusamus deleniti dolorum harum illum vero?</p>
-                  </div>
-                </div>
-              </div>
-
+        <section id='mission'>
+          <div className="container">
+            <div className="imageContainer">
+              <img src="/images/woman.png" alt=""/>
             </div>
-          </section>
+            <div className="contentContainer">
+              <h2 className='mainHeaderH2'>Our mission</h2>
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={planet} alt=""/>
+                </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Expedita fuga modi nisi obcaecati
+                    sapiente. Accusamus deleniti dolorum harum illum vero?</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={planet} alt=""/>
+                </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Blanditiis doloremque ducimus fugiat
+                    incidunt ipsum labore pariatur quaerat quidem ratione
+                    sunt!
+                    Blanditiis, error id impedit inventore optio quae
+                    recusandae
+                    repellat sapiente!</p>
+                </div>
+              </div>
+              <div className="row">
+                <div className="iconContainer">
+                  <img src={planet} alt=""/>
+                </div>
+                <div className='rowContent'>
+                  <h4 className="rowHeader">Lorem ipsum 1</h4>
+                  <p className="rowText">Lorem ipsum dolor sit amet,
+                    consectetur
+                    adipisicing elit. Expedita fuga modi nisi obcaecati
+                    sapiente. Accusamus deleniti dolorum harum illum vero?</p>
+                </div>
+              </div>
+            </div>
 
-          <section id='new-jobs'>
-            <h4>New interesting jobs and teams are waiting for you!</h4>
-            <button className='actionButton'>Apply now</button>
-          </section>
+          </div>
+        </section>
 
-          <section id='team'>
+        <section id='new-jobs'>
+          <h4>New interesting jobs and teams are waiting for you!</h4>
+          <button className='accent-btn'>Apply now</button>
+        </section>
+
+        <section id='team'>
+          <div className="container">
             <h2 className="mainHeaderH2">
               Our team
             </h2>
-            <GreenDash/>
             <div className='teamMembersContainer'>
-              {teamMembers.map(
+              {company.teamMembers.map(
                   (item, i) => <TeamMemberCard key={i} data={item}/>)}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section id='partners-about'>
+        <section id='partners-about'>
+          <div className="container">
             <h2 className="mainHeaderH2">Our partners</h2>
-            <GreenDash/>
             <Partners/>
-          </section>
+          </div>
 
-          <section id='feedback'>
-            <div className='imageFilter'/>
+        </section>
 
-            <div className="content">
-              <h2 className="mainHeaderH2">what clients say</h2>
-              <GreenDash/>
-              <div className='feedbackContainer'>
-                {feedback.map((item, index) => <Feedback data={item} key={index}/>)}
-              </div>
+        <section id='feedback'>
+          <div className='imageFilter'/>
+          <div className="content">
+            <h2 className="mainHeaderH2">What clients say</h2>
+            <div className='feedbackContainer'>
+              {company.feedback.map(
+                  (item, index) => <Feedback data={item} key={index}/>)}
             </div>
-          </section>
+          </div>
+        </section>
 
-          <section id='contact'>
+        <section id='contact'>
+          <div className="container">
             <div className="content">
-              <div className='leftCol'>
+              <div className='leftCol'
+                   style={messageSent ? {display: 'none'} : {}}>
                 <div className='headerBlock'>
-                  <h2 className="mainHeaderH2">get in touch</h2>
-                  <GreenDash/>
+                  <h2 className="mainHeaderH2">Get in touch</h2>
                 </div>
                 <AboutContactForm
-                    onSuccess={this.showSuccess.bind(this)}
-                    onError={this.showError.bind(this)}/>
+                    onSuccess={showSuccess}
+                    onError={showError}/>
               </div>
 
               <div className='rightCol'>
                 <div className='headerBlock'>
-                  <h2 className="mainHeaderH2">how to find us</h2>
-                  <GreenDash/>
+                  <h2 className="mainHeaderH2">How to find us</h2>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adig elit, sed do
                   eiusmod tempor ididunt ut labore et dolore
@@ -274,48 +252,42 @@ class About extends Component <Props> {
                 </p>
               </div>
             </div>
-          </section>
-        </Fragment>
-    );
-  }
-}
+          </div>
+        </section>
+      </>
+  );
+};
 
 export default About;
 
-const TeamMemberCard = (props) => {
-  const {data} = props;
-  return (
-      <div className='memberCard'>
-        <div className="imageContainer">
-          <img src={data.image} alt={data.name}/>
-        </div>
-        <div className='memberInfo'>
-          <h3>{data.name}</h3>
-          <GreenDash/>
-          <span>{data.position}</span>
-        </div>
+const TeamMemberCard = ({data}) => (
+    <div className='memberCard'>
+      <div className="imageContainer">
+        <img src={data.image} alt={data.name}/>
       </div>
-  );
-};
+      <div className='memberInfo'>
+        <h3>{data.name}</h3>
+        <span>{data.position}</span>
+      </div>
+    </div>
+);
 
-const Feedback = (props) => {
-  const {data} = props;
-  return (
-      <div className='feedbackBlock'>
-        <img className='quotes' src={quotes} alt=""/>
+const Feedback = ({data}) => (
+    <div className='feedbackBlock'>
+      <img className='quotes' src={quotes} alt=""/>
+      <div>
+        <h4>{data.header}</h4>
+        <p>{data.text}</p>
+      </div>
+      <div className='personData'>
         <div>
-          <h4>{data.header}</h4>
-          <p>{data.text}</p>
+          <p className='personName'>{data.name}</p>
+          <p className='personPosition'>{data.position}</p>
         </div>
-        <div className='personData'>
-          <div>
-            <p className='personName'>{data.name}</p>
-            <p className='personPosition'>{data.position}</p>
-          </div>
-          <div className='imageContainer'>
-            <img src={data.image} alt=""/>
-          </div>
+        <div className='imageContainer'>
+          <img src={data.image} alt=""/>
         </div>
       </div>
-  );
-};
+    </div>
+);
+

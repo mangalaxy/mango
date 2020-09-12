@@ -165,8 +165,11 @@ p {
     }
   }
 }
+.fit-content{
+  height: fit-content;
+}
 
-.accent-btn, .accent-btn__inverted {
+.accent-btn, .accent-btn__inverted , .accent-btn__transparent{
   border-radius: 0.5rem;
   color: $background-color;
   font-size: 1.1rem;
@@ -201,6 +204,11 @@ p {
   background: transparent;
   box-sizing: border-box;
   border: 2px solid $background-color;
+}
+.accent-btn__transparent{
+  background: transparent;
+  border: 2px solid $brand-color;
+  color: $brand-color;
 }
 
 .dialogContainer {
