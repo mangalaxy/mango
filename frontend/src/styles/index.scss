@@ -1,4 +1,5 @@
 @import "variables";
+@import "docWithMenu";
 
 body {
   font: $base-font-size $base-font-family;
@@ -34,6 +35,7 @@ p {
     height: 3px;
     background-color: $COLOR_GREEN;
   }
+
   @media (max-width: 1280px) {
     font-size: 32px;
   }
@@ -58,6 +60,38 @@ p {
   text-transform: uppercase;
 }
 
+.document-page {
+  &__header {
+    font-size: 32px;
+    font-weight: 600;
+    color: $COLOR_MENU_DARK;
+    text-transform: uppercase;
+    padding: 50px 0;
+  }
+
+  &__sub-header {
+    font-size: 28px;
+    color: #333333;
+    margin-bottom: 1em;
+    font-weight: 600;
+    @media (max-width: 800px) {
+      font-size: 24px;
+    }
+  }
+
+  &__content {
+    font-size: 16px;
+    line-height: 21px;
+    text-align: justify;
+    p{
+      margin-bottom: 3em;
+      &:last-child{
+        margin-bottom: 4em;
+      }
+    }
+  }
+}
+
 .bannerContainer {
   min-height: 100px;
   overflow: hidden;
@@ -67,7 +101,7 @@ p {
 
   @media (max-width: 1024px) {
     height: fit-content;
-  //height: 700px;
+    //height: 700px;
   }
 
   .bannerContent {
@@ -96,7 +130,8 @@ p {
       text-align: center;
       text-transform: uppercase;
       transform: translateZ(0);
-      &.left{
+
+      &.left {
         text-align: left;
       }
 
@@ -165,11 +200,12 @@ p {
     }
   }
 }
-.fit-content{
+
+.fit-content {
   height: fit-content;
 }
 
-.accent-btn, .accent-btn__inverted , .accent-btn__transparent{
+.accent-btn, .accent-btn__inverted, .accent-btn__transparent {
   border-radius: 0.5rem;
   color: $background-color;
   font-size: 1.1rem;
@@ -205,7 +241,8 @@ p {
   box-sizing: border-box;
   border: 2px solid $background-color;
 }
-.accent-btn__transparent{
+
+.accent-btn__transparent {
   background: transparent;
   border: 2px solid $brand-color;
   color: $brand-color;

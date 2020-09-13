@@ -4,7 +4,7 @@ import {Link, NavLink} from 'react-router-dom';
 import routes from '../../../constants/routes.json';
 
 const Footer = () => (
-    <div className='footer'>
+    <div className='footer'  ref={(el) => {window.footer = el;}} >
       <div className='footer__top-section'>
         <div className='logo-container'>
           <Link to={routes.COMMON.HOME} className='logo'>Mangostart</Link>

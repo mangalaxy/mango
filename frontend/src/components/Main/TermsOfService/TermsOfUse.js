@@ -1,73 +1,63 @@
-import React from 'react';
-import {Link} from 'react-scroll';
-import './TermsOfUse.scss';
+import React, {useRef} from 'react';
+import {SideLink} from '../PrivacyPolicy/PrivacyPolicy';
 
 const TermsOfUse = () => {
+
+  const doc = useRef(null);
+
   return (
-      <div className='terms-of-use'>
-        <div className='terms-of-use__container'>
-          <h1 className='terms-of-use__header'>Terms of service</h1>
-          <div className='terms-of-use__content'>
+      <div className='doc-with-menu'>
+        <div className='container'>
+          <h1 className='document-page__header'>Terms of service</h1>
+          <div className='document-page__content'>
             <div className='side-menu'>
               <ul className='side-menu__nav'>
-                <Link
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section1"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Introduction</li>
-                </Link>
-                <Link
+                </SideLink>
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section2"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Services</li>
-                </Link>
-                <Link
+                </SideLink>
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section3"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Registration</li>
-                </Link>
-                <Link
+                </SideLink>
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section4"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Responsibilities</li>
-                </Link>
-                <Link
+                </SideLink>
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section5"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Your content</li>
-                </Link>
-                <Link
+                </SideLink>
+                <SideLink
+                    target={doc}
                     activeClass='item-active'
                     to="section5"
-                    spy={true}
-                    smooth={true}
-                    duration={1000}
                 >
                   <li className="side-menu__item">Licensing to Mango</li>
-                </Link>
+                </SideLink>
               </ul>
             </div>
-            <div className='terms-of-use__text'>
-              <h2 className='terms-of-use__sub-header'
+            <div ref={doc}  className='doc-with-menu-text'>
+              <h2 className='document-page__sub-header'
                   id='section1'>Introduction</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
@@ -79,7 +69,7 @@ const TermsOfUse = () => {
                 Letraset sheets containing Lorem Ipsum passages, and more
                 recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
-              <h2 className='terms-of-use__sub-header'
+              <h2 className='document-page__sub-header'
                   id='section2'>Services</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
@@ -91,7 +81,7 @@ const TermsOfUse = () => {
                 Letraset sheets containing Lorem Ipsum passages, and more
                 recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
-              <h2 className='terms-of-use__sub-header'
+              <h2 className='document-page__sub-header'
                   id='section3'>Registration</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
@@ -103,7 +93,7 @@ const TermsOfUse = () => {
                 Letraset sheets containing Lorem Ipsum passages, and more
                 recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
-              <h2 className='terms-of-use__sub-header'
+              <h2 className='document-page__sub-header'
                   id='section4'>Responsibilities</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
@@ -115,7 +105,7 @@ const TermsOfUse = () => {
                 Letraset sheets containing Lorem Ipsum passages, and more
                 recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
-              <h2 className='terms-of-use__sub-header' id='section5'>Your
+              <h2 className='document-page__sub-header' id='section5'>Your
                 content</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
@@ -127,7 +117,7 @@ const TermsOfUse = () => {
                 Letraset sheets containing Lorem Ipsum passages, and more
                 recently with desktop publishing software like Aldus PageMaker
                 including versions of Lorem Ipsum.</p>
-              <h2 className='terms-of-use__sub-header' id='section6'>Licensing
+              <h2 className='document-page__sub-header' id='section6'>Licensing
                 to Mango</h2>
               <p>Lorem Ipsum is simply dummy text of the printing and
                 typesetting industry. Lorem Ipsum has been the industry's
