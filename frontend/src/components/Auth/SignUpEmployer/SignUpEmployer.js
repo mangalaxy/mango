@@ -2,12 +2,12 @@ import React from 'react';
 import rocket from '../../../assets/icons/rocket.svg';
 import SignUpEmployerForm from '../../Forms/SignUpEmployerForm';
 
-import './SignUpEmployer.scss';
+import '../Auth.scss';
 
 const SignUpEmployer = ({handleSignIn}) => {
   return (
-        <div className="signUpEmployerContainer">
-          <div className='infoContainer'>
+        <div className="authContainer">
+          <div className='infoContainer employerSignUp'>
             <div className="content">
               <img src={rocket} alt="Rocket"/>
               <h2>Sign Up</h2>

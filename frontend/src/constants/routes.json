@@ -12,7 +12,9 @@
     "FIND_JOB_BY_ROLE": "/job-by-role/",
     "FOB_WITH_DETAILS": "/job-details",
     "BLOG": "/blog",
-    "POST": "/post"
+    "POST": "/post",
+    "SIGNUP_TALENT": "/signup-talent",
+    "SIGNUP_EMPLOYER": "/signup-employer"
   },
   "EMPLOYERS": {
     "HOME": "/employers/",

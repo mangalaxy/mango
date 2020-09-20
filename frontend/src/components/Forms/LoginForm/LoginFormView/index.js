@@ -40,7 +40,7 @@ const LoginFormView = ({
         <span className='link'>Forgot password?</span>
       </div>
       <div className='buttonsContainer'>
-        <button className='actionButton'
+        <button className='accent-btn'
                 disabled={!isValid || isSubmitting}
                 onClick={handleSubmit}>
           Login

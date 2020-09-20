@@ -1,12 +1,12 @@
 import React from 'react';
-import './Login.scss';
+import '../Auth.scss';
 import rocket from '../../../assets/icons/rocket.svg';
 import LoginForm from '../../Forms/LoginForm';
 
 const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer}) => {
   return (
-      <div className="loginContainer">
-        <div className='infoContainer'>
+      <div className="authContainer">
+        <div className='infoContainer login'>
           <div className="content">
             <img src={rocket} alt=""/>
             <h2>Sign In</h2>

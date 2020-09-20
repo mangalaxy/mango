@@ -25,21 +25,48 @@ import './Main.scss';
 const MainPage = ({location}) => {
 
   const openLoginForm = () => {
-    renderModal(
-        <Login handleSignUpTalent={openSignUpTalent}
-               handleSingUpEmployer={openSignUpEmployer}
-        />,
-    );
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+
+    if (width > 800 && height > 600) {
+      renderModal(
+          <Login handleSignUpTalent={openSignUpTalent}
+                 handleSingUpEmployer={openSignUpEmployer}
+          />,
+      );
+    } else document.location.href = routes.COMMON.LOGIN;
   };
 
-  const openSignUpTalent = () => renderModal(
-      <SignUpTalent handleSignIn={openLoginForm}
-      />,
-  );
-  const openSignUpEmployer = () => renderModal(
-      <SignUpEmployer handleSignIn={openLoginForm}
-      />,
-  );
+  const openSignUpTalent = () => {
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+    if (width > 800 && height > 600) {
+      renderModal(
+          <SignUpTalent handleSignIn={openLoginForm}
+          />,
+      );
+    } else document.location.href = routes.COMMON.SIGNUP_TALENT;
+  };
+
+  const openSignUpEmployer = () => {
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+    if (width > 800 && height > 600) {
+      renderModal(
+          <SignUpEmployer handleSignIn={openLoginForm}
+          />,
+      );
+    } else document.location.href = routes.COMMON.SIGNUP_EMPLOYER;
+  };
 
   return (
       <div className={`main`}>
@@ -71,6 +98,17 @@ const MainPage = ({location}) => {
                    component={Support}/>
             <Route exact path={routes.COMMON.BLOG} component={Blog}/>
             <Route exact path={routes.COMMON.POST} component={Post}/>
+            <Route exact path={routes.COMMON.LOGIN} component={() => <Login
+                handleSignUpTalent={openSignUpTalent}
+                handleSingUpEmployer={openSignUpEmployer}
+            />}/>
+            <Route exact path={routes.COMMON.SIGNUP_EMPLOYER}
+                   component={() => <SignUpEmployer
+                       handleSignIn={openLoginForm}
+                   />}/>
+            <Route exact path={routes.COMMON.SIGNUP_TALENT}
+                   component={() => <SignUpTalent
+                       handleSignIn={openLoginForm}/>}/>
           </Switch>
         </div>
         <Footer/>
