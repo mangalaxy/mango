@@ -1,71 +1,71 @@
 package com.mangalaxy.mango.service;
 
+import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.LocationRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-@Ignore
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class LocationServiceTest {
-  @Autowired
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+class LocationServiceTest {
+  @Mock
+  private LocationRepository locationRepository;
   private LocationService locationService;
 
-  @MockBean
-  private LocationRepository locationRepository;
+  private Location location1;
+  private Location location2;
 
-  private static final Location firstMockLocation = new Location();
-  private static final Location secondMockLocation = new Location();
+  @BeforeEach
+  void setUp() {
+    ModelMapper modelMapper = new ModelMapper();
+    locationService = new LocationServiceImpl(locationRepository, modelMapper);
 
-  @Before
-  public void setUp() {
-    firstMockLocation.setId((short) 1);
-    firstMockLocation.setCity("Frankfurt");
-    firstMockLocation.setCountry("Germany");
+    location1 = new Location();
+    location1.setId(Shorts.checkedCast(1L));
+    location1.setCity("Frankfurt");
+    location1.setCountry("Germany");
 
-    secondMockLocation.setId((short) 2);
-    secondMockLocation.setCity("Kyiv");
-    secondMockLocation.setCountry("Ukraine");
+    location2 = new Location();
+    location2.setId(Shorts.checkedCast(2L));
+    location2.setCity("Kyiv");
+    location2.setCountry("Ukraine");
   }
 
   @Test
-  public void getLocationByIdTest() {
+  void shouldFindLocationById_thenSuccess() {
+    // given
     Short expectedId = 1;
-    String expectedCountry = "Germany";
-
-    Mockito.when(locationRepository.findById(expectedId)).thenReturn(java.util.Optional.of(firstMockLocation));
+    when(locationRepository.findById(expectedId)).thenReturn(Optional.of(location1));
+    // when
     LocationResponse response = locationService.getLocationById(expectedId);
-
-    Mockito.verify(locationRepository).findById(expectedId);
-    Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedCountry, response.getCountry());
+    // then
+    verify(locationRepository).findById(expectedId);
+    assertEquals(expectedId, response.getId());
+    assertEquals("Germany", response.getCountry());
   }
 
   @Test
-  public void getAllLocations() {
-    int expectedSize = 2;
-    List<Location> locations = new ArrayList<>();
-    locations.add(firstMockLocation);
-    locations.add(secondMockLocation);
-
-    Mockito.when(locationRepository.findAll()).thenReturn(locations);
-    List<LocationResponse> responses = locationService.getAllLocations();
-
-    Mockito.verify(locationRepository).findAll();
-    Assert.assertEquals(expectedSize, responses.size());
+  void shouldFindAllLocations_thenSuccess() {
+    // given
+    when(locationRepository.findAll()).thenReturn(Lists.newArrayList(location1, location2));
+    // when
+    List<LocationResponse> locationList = locationService.getAllLocations();
+    // then
+    verify(locationRepository).findAll();
+    assertEquals(2, locationList.size());
 
   }
 }

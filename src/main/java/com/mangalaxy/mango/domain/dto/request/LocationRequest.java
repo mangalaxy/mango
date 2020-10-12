@@ -2,11 +2,9 @@ package com.mangalaxy.mango.domain.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
-@Builder
 public class LocationRequest {
   private final Short id;
   private final String city;

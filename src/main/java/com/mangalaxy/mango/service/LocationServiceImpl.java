@@ -9,7 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,8 @@ public class LocationServiceImpl implements LocationService {
   @Override
   public List<LocationResponse> getAllLocations() {
     List<Location> locations = (List<Location>) locationRepository.findAll();
-    return locations.stream().map(location -> modelMapper.map(location, LocationResponse.class)).collect(Collectors.toList());
+    return locations.stream().map(location -> modelMapper.map(location, LocationResponse.class))
+          .collect(toList());
   }
 
   @Override

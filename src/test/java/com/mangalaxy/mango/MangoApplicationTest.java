@@ -1,28 +1,23 @@
 package com.mangalaxy.mango;
 
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.web.server.LocalServerPort;
 
 /**
  * Integration test for Spring Boot Web.
  *
  * @author Yuri Podolsky
  */
-@Ignore
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class MangoApplicationTest {
+//@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+class MangoApplicationTest {
 
-  @Value("${local.server.port}")
+  @LocalServerPort
   private int localServerPort;
 
   @Test
-  public void contextLoads() {
+  @Disabled("Doesn't work due to circular dependency, fix it later")
+  void contextLoads() {
   }
 
 }

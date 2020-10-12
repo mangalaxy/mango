@@ -3,12 +3,9 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,74 +18,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/employers")
-@Api(value = "Employer Data API", description = "List of methods that manage employers")
 public class EmployerController {
-
   private final EmployerService employerService;
+  private final EmployerRelationshipService employerRelationshipService;
 
-  @GetMapping
-  @ApiOperation(value = "View a list of employers by parameters")
-  public ResponseEntity<Page<EmployerResponse>> findEmployersByParams(Pageable pageable) {
-    Page<EmployerResponse> response = employerService.getEmployersByParams(pageable);
+  @GetMapping("/api/v1/employers")
+  public ResponseEntity<Page<EmployerResponse>> getAllEmployers(Pageable pageable) {
+    Page<EmployerResponse> response = employerService.fetchAllEmployers(pageable);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("{id}")
-  @ApiOperation(value = "Get employer by id")
-  @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
-  public ResponseEntity<EmployerResponse> getEmployerById(
-      @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
-      @PathVariable Long id) {
-    EmployerResponse response = employerService.getEmployerById(id);
+  @GetMapping("/api/v1/employers/{employerId}")
+  public ResponseEntity<EmployerResponse> getEmployerById(@PathVariable Long employerId) {
+    EmployerResponse response = employerService.fetchEmployerById(employerId);
     return ResponseEntity.ok(response);
   }
 
-  @PostMapping
-  @ApiOperation(value = "Create new employer")
-  public ResponseEntity<EmployerResponse> createNewEmployer(
-      @ApiParam(value = "Employer object store in database table", required = true)
-      @RequestBody EmployerRequest employerRequest) {
-    EmployerResponse response = employerService.createNewEmployer(employerRequest);
-    return new ResponseEntity<>(response, HttpStatus.CREATED);
+  @PostMapping("/api/v1/employers")
+  public ResponseEntity<EmployerResponse> createNewEmployer(@RequestBody EmployerRequest employerRequest) {
+    EmployerResponse createdEmployer = employerService.createNewEmployer(employerRequest);
+    URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+          .path("/{id}")
+          .buildAndExpand(createdEmployer.getId())
+          .toUri();
+    return ResponseEntity.created(location).build();
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("{id}")
-  @ApiOperation(value = "Update employer")
-  @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
-  public ResponseEntity<EmployerResponse> updateEmployer(
-      @ApiParam(value = "Employer Id to update employer object", required = true)
-      @PathVariable Long id,
-      @ApiParam(value = "Update employer object", required = true)
-      @RequestBody EmployerRequest employerRequest) {
-    EmployerResponse response = employerService.updateEmployer(employerRequest, id);
+  @PutMapping("/api/v1/employers/{id}")
+  public ResponseEntity<EmployerResponse> updateEmployer(@PathVariable Long id, @RequestBody EmployerRequest employerRequest) {
+    EmployerResponse response = employerService.updateEmployer(id, employerRequest);
     return ResponseEntity.ok(response);
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @DeleteMapping("{id}")
-  @ApiOperation(value = "Delete an employer")
-  @ApiResponses(value = {@ApiResponse(code = 404, message = "Employer with given id not found")})
-  public ResponseEntity<Void> deleteEmployer(
-      @ApiParam(value = "Employer Id from which employee object will delete from database table", required = true)
-      @PathVariable Long id) {
-    employerService.deleteEmployer(id);
+  @DeleteMapping("/api/v1/employers/{id}")
+  public ResponseEntity<Void> deleteEmployer(@PathVariable Long id) {
+    employerService.deleteEmployerById(id);
     return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("{employerId}/bookmarked/{talentId}")
-  @ApiOperation(value = "Math employer with talent")
-  @ApiResponses(value = {
-      @ApiResponse(code = 404, message = "Employer with given id not found"),
-      @ApiResponse(code = 404, message = "Talent with given id not found")})
+  @PutMapping("/api/v1/employers/{employerId}/bookmarked/{talentId}")
   public ResponseEntity<EmployerResponse> matchTalentToEmployer(
       @ApiParam(value = "Employer id from which employer object will retrieve", required = true)
       @PathVariable Long employerId,
@@ -96,18 +75,17 @@ public class EmployerController {
       @PathVariable Long talentId,
       @ApiParam(value = "Flag defined to set association or delete the relationship")
       @RequestParam(name = "set") boolean set) {
-    EmployerResponse response = employerService.matchTalentToEmployer(employerId, talentId, set);
+    EmployerResponse response = employerRelationshipService.matchTalentToEmployer(employerId, talentId, set);
     return ResponseEntity.ok(response);
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("{employerId}/jobs/{jobId}/matched")
-  @ApiOperation(value = "Get list of matched talents for job")
+  @PutMapping("/api/v1/employers/{employerId}/jobs/{jobId}/matched")
   public ResponseEntity<Page<TalentResponse>> getMatchedTalentsForJob(
       @PathVariable Long employerId,
       @PathVariable Long jobId,
       Pageable pageable) {
-    Page<TalentResponse> response = employerService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
+    Page<TalentResponse> response = employerRelationshipService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
     return ResponseEntity.ok(response);
   }
 }

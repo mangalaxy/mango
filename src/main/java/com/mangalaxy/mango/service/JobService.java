@@ -10,16 +10,16 @@ import org.springframework.data.domain.Pageable;
  */
 public interface JobService {
 
-  Page<JobDto> selectJobsByParams(String jobRole, String city, Pageable pagination);
+  Page<JobDto> selectJobsByParams(String jobRole, String city, Pageable pageable);
 
-  JobDto createEmployerJob(Long employerId, JobRequest newJobInfo);
+  JobDto createEmployerJob(Long employerId, JobRequest jobRequest);
 
-  Page<JobDto> getEmployerAllJobs(Long employerId, Pageable pagination);
+  Page<JobDto> fetchEmployerAllJobs(Long employerId, Pageable pageable);
 
-  JobDto getEmployerJob(Long employerId, Long jobId);
+  JobDto fetchEmployerJob(Long employerId, Long jobId);
 
-  JobDto updateEmployerJob(Long employerId, Long jobId, JobRequest jobUpdate);
+  JobDto updateEmployerJob(Long employerId, Long jobId, JobRequest jobRequest);
 
-  void removeEmployerJob(Long employerId, Long jobId);
+  void deleteEmployerJob(Long employerId, Long jobId);
 
 }

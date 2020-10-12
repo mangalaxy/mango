@@ -1,199 +1,209 @@
 package com.mangalaxy.mango.service;
 
+import com.google.common.collect.Lists;
+import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.EmployerRepository;
-import com.mangalaxy.mango.repository.TalentRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import com.mangalaxy.mango.util.EmployerNotFoundException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.modelmapper.convention.NamingConventions;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.Optional;
 
-import static org.mockito.Mockito.mock;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@Ignore
-@SpringBootTest
-@RunWith(SpringRunner.class)
-public class EmployerServiceTest {
+@ExtendWith(MockitoExtension.class)
+class EmployerServiceTest {
 
-  @MockBean
+  @Mock
   private EmployerRepository employerRepository;
-
-  @MockBean
-  private TalentRepository talentRepository;
-
-  @Autowired
   private EmployerService employerService;
 
-  @Autowired
-  private ModelMapper modelMapper;
+  private Location location1;
+  private Location location2;
+  private Employer employer1;
+  private Employer employer2;
+  private Employer employer3;
 
-  private final Employer firstMockEmployer = new Employer();
-  private final Employer secondMockEmployer = new Employer();
-  private final Employer thirdMockEmployer = new Employer();
-  private final Talent mockTalent = new Talent();
+  @BeforeEach
+  void setUp() {
+    ModelMapper modelMapper = new ModelMapper();
+    modelMapper.getConfiguration()
+          .setSourceNamingConvention(NamingConventions.NONE)
+          .setDestinationNamingConvention(NamingConventions.NONE);
+    employerService = new EmployerServiceImpl(employerRepository, modelMapper);
 
-  @Before
-  public void setUp() {
-    Location firstLocation = new Location();
-    firstLocation.setId((short)1);
-    firstLocation.setCity("Kyiv");
-    firstLocation.setCountry("UA");
+    location1 = new Location();
+    location1.setId(Shorts.checkedCast(1L));
+    location1.setCity("Toronto");
+    location1.setCountry("Canada");
 
-    mockTalent.setId(1L);
-    mockTalent.setEmail("test@gmai.com");
-    mockTalent.setPassword("123456");
-    mockTalent.setFullName("Ilon Mask");
-    mockTalent.setLocation(firstLocation);
+    location2 = new Location();
+    location2.setId(Shorts.checkedCast(2L));
+    location2.setCity("Barcelona");
+    location2.setCountry("Spain");
 
-    Location secondLocation = new Location();
-    secondLocation.setId((short)2);
-    secondLocation.setCity("Lviv");
-    secondLocation.setCountry("UA");
+    employer1 = new Employer();
+    employer1.setId(1L);
+    employer1.setFullName("Cortney Swiss");
+    employer1.setEmail("cort.sw@yahoo.com");
+    employer1.setPassword("skAS%fj67se32388");
+    employer1.setJobTitle("IT Acquisition recruiter");
+    employer1.setLocation(location1);
 
-    firstMockEmployer.setId(1L);
-    firstMockEmployer.setFullName("Elon Mask");
-    firstMockEmployer.setEmail("elon@gmail.com");
-    firstMockEmployer.setPassword("123456");
-    firstMockEmployer.setLocation(firstLocation);
+    employer2 = new Employer();
+    employer2.setId(2L);
+    employer2.setFullName("Mark Darton");
+    employer2.setEmail("mark12@gmail.com");
+    employer2.setPassword("Jaj1138%4SNxsj");
+    employer2.setLocation(location1);
 
-    secondMockEmployer.setId(2L);
-    secondMockEmployer.setFullName("Mark Zuckerberg");
-    secondMockEmployer.setEmail("mark@gmail.com");
-    secondMockEmployer.setPassword("123456");
-    secondMockEmployer.setLocation(firstLocation);
-
-    thirdMockEmployer.setId(3L);
-    thirdMockEmployer.setFullName("Bill Gates");
-    thirdMockEmployer.setEmail("bill@gmail.com");
-    thirdMockEmployer.setPassword("123456");
-    thirdMockEmployer.setLocation(secondLocation);
+    employer3 = new Employer();
+    employer3.setId(3L);
+    employer3.setFullName("Adelina Veliz");
+    employer3.setEmail("velizAFA@gmail.com");
+    employer3.setPassword("skd*8391dhjj56");
+    employer3.setJobTitle("Staff Executive Manager");
+    employer3.setLocation(location2);
   }
 
   @Test
-  public void shouldFindEmployersByParams() {
-    int expectedSize = 3;
-    List<Employer> employers = new ArrayList<>();
-    employers.add(firstMockEmployer);
-    employers.add(secondMockEmployer);
-    employers.add(thirdMockEmployer);
-
-    Pageable pageable = mock(Pageable.class);
-
-    Page<Employer> employersSet = new PageImpl<>(employers);
-    Mockito.when(employerRepository.findAll(pageable)).thenReturn(employersSet);
-
-    Page<EmployerResponse> response = employerService.getEmployersByParams(pageable);
-
-    Assert.assertEquals(3, response.getContent().size());
+  void shouldFindEmployerFirstPage_thenSuccess() {
+    // given
+    Pageable pageable = PageRequest.of(0, 20);
+    Page<Employer> employerPage = new PageImpl<>(Lists.newArrayList(employer1, employer2, employer3));
+    when(employerRepository.findAll(pageable)).thenReturn(employerPage);
+    // when
+    Page<EmployerResponse> page = employerService.fetchAllEmployers(pageable);
+    // then
+    assertTrue(page.hasContent(), "No content");
+    assertEquals(1, page.getTotalPages());
+    assertEquals(3L, page.getTotalElements());
+    List<EmployerResponse> content = page.getContent();
+    assertEquals(Long.valueOf(1), content.get(0).getId());
+    assertEquals(Long.valueOf(2), content.get(1).getId());
+    assertEquals(Long.valueOf(3), content.get(2).getId());
+    verify(employerRepository).findAll(pageable);
   }
 
   @Test
-  public void shouldFindEmployerById() {
-    Long expectedId = 1L;
-    String expectedMail = "elon@gmail.com";
-
-    Mockito.when(employerRepository.findById(expectedId)).thenReturn(java.util.Optional.of(firstMockEmployer));
-
-    EmployerResponse response = employerService.getEmployerById(expectedId);
-
-    Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedMail, response.getEmail());
+  void shouldFindEmployerById_thenSuccess() {
+    // given
+    Long id = 1L;
+    EmployerResponse expected = new EmployerResponse(1L, "Cortney Swiss", "cort.sw@yahoo.com",
+          null, null, "IT Acquisition recruiter", null, null,
+          null, null);
+    when(employerRepository.findById(id)).thenReturn(Optional.of(employer1));
+    // when
+    EmployerResponse actual = employerService.fetchEmployerById(id);
+    // then
+    assertNotNull(actual);
+    assertEquals(expected, actual);
+    verify(employerRepository).findById(id);
   }
 
   @Test
-  public void shouldCreateEmployer() {
-    Long expectedId = 1L;
-    String expectedMail = "elon@gmail.com";
+  void whenEmployerNotFoundThrowException() {
+    Long id = 1L;
+    assertThrows(EmployerNotFoundException.class,
+          () -> employerService.fetchEmployerById(id),
+          "An exception was not thrown");
+    verify(employerRepository).findById(anyLong());
+  }
 
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
+
+  @Test
+  void employerMustBeCreated_thenSuccess() {
+    Long expectedId = 4L;
+
+    LocationRequest locationRequest = new LocationRequest(
+          Shorts.checkedCast(1L), "Toronto", "Canada");
+
+    EmployerRequest newEmployer = EmployerRequest.builder()
+          .fullName("Mark Ostich")
+          .email("mark.ostich@gmail.com")
+          .jobTitle("HR generalist")
+          .location(locationRequest)
+          .build();
+
+    when(employerRepository.save(any(Employer.class)))
+          .thenReturn(Employer.builder()
+                .id(4L)
+                .fullName("Mark Ostich")
+                .password("Uedu$%12893hd")
+                .email("mark.ostich@gmail.com")
+                .jobTitle("HR generalist")
+                .location(location1)
+                .build());
+
+    EmployerResponse response = employerService.createNewEmployer(newEmployer);
+
+    assertEquals(expectedId, response.getId());
+    assertEquals("mark.ostich@gmail.com", response.getEmail());
+    assertEquals("Mark Ostich", response.getFullName());
+    verify(employerRepository).save(any(Employer.class));
+  }
+
+  @Test
+  void shouldUpdateEmployerById_thenSuccess() {
+    Long id = 3L;
+
     EmployerRequest employerRequest = EmployerRequest.builder()
-        .id(expectedId)
-        .email(expectedMail)
-        .password("123456")
-        .fullName("Elon Mask")
-        .location(locationRequest)
-        .build();
+          .fullName("Delfina Olmos")
+          .email("velizAFA@gmail.com")
+          .jobTitle("Staff Executive Manager")
+          .location(new LocationRequest((short) 2, "Barcelona", "Spain"))
+          .build();
 
-    Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
-    EmployerResponse response = employerService.createNewEmployer(employerRequest);
+    when(employerRepository.findById(id)).thenReturn(Optional.of(employer3));
+    when(employerRepository.save(any(Employer.class)))
+          .thenReturn(Employer.builder()
+                .id(id)
+                .fullName("Delfina Olmos")
+                .email("velizAFA@gmail.com")
+                .password("skd*8391dhjj56")
+                .jobTitle("Staff Executive Manager")
+                .location(location2)
+                .build());
+    EmployerResponse actual = employerService.updateEmployer(id, employerRequest);
 
-    verify(employerRepository).save(firstMockEmployer);
-    Assert.assertEquals(expectedId, response.getId());
-    Assert.assertEquals(expectedMail, response.getEmail());
+    assertThat(actual.getId()).isEqualTo(3L);
+    assertThat(actual.getFullName()).isEqualTo("Delfina Olmos");
+    assertThat(actual.getEmail()).isEqualTo("velizAFA@gmail.com");
+    assertThat(actual.getJobTitle()).isEqualTo("Staff Executive Manager");
+
+    verify(employerRepository).findById(id);
+    verify(employerRepository).save(any(Employer.class));
   }
 
   @Test
-  public void shouldUpdateEmployer() {
-    Long expectedId = 1L;
-    String expectedMail = "changed@gmail.com";
-    firstMockEmployer.setEmail(expectedMail);
-
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1)
-        .country("UA")
-        .city("Kyiv")
-        .build();
-    EmployerRequest employerRequest = EmployerRequest.builder()
-        .id(expectedId)
-        .email(expectedMail)
-        .password("123456")
-        .fullName("Elon Mask")
-        .location(locationRequest)
-        .build();
-
-    Mockito.when(employerRepository.findById(expectedId)).thenReturn(java.util.Optional.of(firstMockEmployer));
-    Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
-    EmployerResponse response = employerService.updateEmployer(employerRequest, expectedId);
-
-    verify(employerRepository).save(firstMockEmployer);
-    verify(employerRepository).findById(expectedId);
+  void employerMustBeDeleted_throwExceptionIfFail() {
+    when(employerRepository.findById(1L)).thenReturn(Optional.of(employer1));
+    employerService.deleteEmployerById(1L);
+    verify(employerRepository).findById(1L);
+    verify(employerRepository).delete(any(Employer.class));
   }
 
-  @Test
-  public void shouldDeleteEmployerTest() {
-    Mockito.when(employerRepository.findById(1L)).thenReturn(java.util.Optional.of(firstMockEmployer));
-    employerService.deleteEmployer(1L);
-    verify(employerRepository).delete(firstMockEmployer);
-  }
-
-  @Test
-  public void shouldMathTalentToEmployer() {
-    int expectedSize = 1;
-
-    Set<Talent> talents = firstMockEmployer.getBookmarkedTalents();
-    talents.add(mockTalent);
-    firstMockEmployer.setBookmarkedTalents(talents);
-    Mockito.when(employerRepository.findById(1L)).thenReturn(java.util.Optional.of(firstMockEmployer));
-    Mockito.when(talentRepository.findById(1L)).thenReturn(java.util.Optional.of(mockTalent));
-    Mockito.when(employerRepository.save(firstMockEmployer)).thenReturn(firstMockEmployer);
-
-    EmployerResponse response = employerService.matchTalentToEmployer(1L, 1L, true);
-
-    Assert.assertEquals(expectedSize, response.getTalents().size());
-
-  }
 }

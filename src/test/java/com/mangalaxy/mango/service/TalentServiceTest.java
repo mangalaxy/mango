@@ -1,162 +1,179 @@
 package com.mangalaxy.mango.service;
 
+import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.domain.entity.Profile;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import com.mangalaxy.mango.util.Samples;
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@Ignore
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class TalentServiceTest {
+@ExtendWith(MockitoExtension.class)
+class TalentServiceTest {
 
-  @Autowired
-  private TalentService talentService;
-
-  @Autowired
-  private ModelMapper modelMapper;
-
-  @MockBean
+  @Mock
   private TalentRepository talentRepository;
 
-  private static Talent firstMockTalent = new Talent();
-  private static Talent secondMockTalent = new Talent();
+  private TalentService talentService;
 
-  @Before
-  public void setUp() {
-    Location location = new Location();
-    location.setId((short) 1);
-    location.setCity("Frankfurt");
-    location.setCountry("Germany");
+  private Location location;
+  private Talent talent1;
+  private Talent talent2;
+//  private Profile profile1;
+//  private Profile profile2;
 
-    firstMockTalent = new Talent();
-    firstMockTalent.setId(1L);
-    firstMockTalent.setEmail("test@gmai.com");
-    firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("Mark Schmidt");
-    firstMockTalent.setLocation(location);
+  @BeforeEach
+  void setUp() {
+    ModelMapper modelMapper = new ModelMapper();
+    talentService = new TalentServiceImpl(talentRepository, modelMapper);
 
-    secondMockTalent = new Talent();
-    secondMockTalent.setId(2L);
-    secondMockTalent.setEmail("test2@gmai.com");
-    secondMockTalent.setPassword("123456");
-    secondMockTalent.setFullName("Leo Miller");
-    secondMockTalent.setLocation(location);
+    location = Samples.createLocation();
 
-    Profile profile = new Profile();
-    profile.setId(1L);
-    profile.setOwner(firstMockTalent);
+    talent1 = Talent.builder()
+          .id(1L)
+          .fullName("John Doe")
+          .email("john.doe12@gmail.com")
+          .password("#12hdk$573hdGH")
+          .location(location)
+          .build();
+
+    talent2 = Talent.builder()
+          .id(2L)
+          .fullName("Thomas Miller")
+          .email("t.miller@yahoo.com")
+          .password("jsb2j4h3rbu4%")
+          .location(location)
+          .build();
+
+    /*profile1 = Profile.builder()
+          .id(talent1.getId())
+          .owner(talent1)
+          .preferredLocation(new Location("Boston", "USA"))
+          .preferredSalary(new Salary("USD", BigDecimal.valueOf(150000L)))
+          .preferredLanguages(Lists.newArrayList(new Language(Language.Level.FLUENT, "English")))
+          .build();
+
+    profile2 = Profile.builder()
+          .id(talent2.getId())
+          .owner(talent2)
+          .preferredLocation(new Location("Los Angeles", "USA"))
+          .preferredSalary(new Salary("USD", BigDecimal.valueOf(200000L)))
+          .preferredLanguages(Lists.newArrayList(new Language(Language.Level.FLUENT, "English")))
+          .build();*/
 
   }
 
   @Test
-  public void getTalentByIdTest() throws ResourceNotFoundException {
+  void shouldFindFirstTalent_thenSuccess() {
+    // given
     Long expectedId = 1L;
-    String expectedEmail = "test@gmai.com";
-
-    Mockito.when(talentRepository.findById(expectedId)).thenReturn(Optional.of(firstMockTalent));
-    TalentResponse talent = talentService.getTalentById(expectedId);
+    when(talentRepository.findById(expectedId)).thenReturn(Optional.of(talent1));
+    // when
+    TalentResponse talentResponse = talentService.getTalentById(expectedId);
+    // then
     verify(talentRepository).findById(expectedId);
-
-    Assert.assertEquals(expectedEmail, talent.getEmail());
+    assertNotNull(talentResponse);
+    assertEquals(expectedId, talentResponse.getId());
+    assertEquals("john.doe12@gmail.com", talentResponse.getEmail());
   }
 
   @Test
-  public void getAllTalentsTest() throws ResourceNotFoundException {
+  void shouldFindAllTalents_thenSuccess() {
+    // given
     int expectedSize = 2;
-
-    List<Talent> talents = new ArrayList<>();
-    talents.add(firstMockTalent);
-    talents.add(secondMockTalent);
-
-    Pageable pageable = mock(Pageable.class);
-
-    Page<Talent> talentList = new PageImpl<>(talents);
-
-    Mockito.when(talentRepository.findAll(pageable)).thenReturn(talentList);
-
-    Page<TalentResponse> allTalents = talentService.findAll(pageable);
+    Pageable pageable = PageRequest.of(0, 20);
+    Page<Talent> talentPage = new PageImpl<>(Lists.newArrayList(talent1, talent2));
+    when(talentRepository.findAll(pageable)).thenReturn(talentPage);
+    // when
+    Page<TalentResponse> foundTalents = talentService.findAll(pageable);
+    // then
     verify(talentRepository).findAll(pageable);
-
-    Assert.assertEquals(expectedSize, allTalents.getContent().size());
-    Assert.assertEquals(firstMockTalent.getEmail(), allTalents.getContent().get(0).getEmail());
+    assertEquals(expectedSize, foundTalents.getSize());
+    List<TalentResponse> content = foundTalents.getContent();
+    assertEquals(1L, content.get(0).getId());
+    assertEquals(2L, content.get(1).getId());
   }
 
   @Test
-  public void createTalentTest() {
-    Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
+  void talentMustBeCreated_thenSuccess() {
+    // given
+    Long expectedId = 3L;
+    LocationRequest location = new LocationRequest(
+          Shorts.checkedCast(1L), "Toronto", "Canada");
+    TalentRequest newTalent = TalentRequest.builder()
+          .fullName("Jordan Enrich")
+          .email("iam_rich@gmail.com")
+          .password("83-def%24jdjK")
+          .location(location)
+          .build();
+    when(talentRepository.save(any(Talent.class)))
+          .thenReturn(Talent.builder()
+                .id(3L)
+                .fullName("Jordan Enrich")
+                .email("iam_rich@gmail.com")
+                .password("83-def%24jdjK")
+                .build());
+    // when
+    TalentResponse talentResponse = talentService.createNewTalent(newTalent);
+    // then
+    verify(talentRepository).save(any(Talent.class));
+    assertNotNull(talentResponse);
+    assertEquals(expectedId, talentResponse.getId());
+  }
+
+  @Test
+  void shouldUpdateTalentWithEmail_thenSuccess() {
     TalentRequest talentRequest = TalentRequest.builder()
-        .id(1L)
-        .password("123456")
-        .email("test@gmai.com")
-        .fullName("Ilon Mask")
-        .location(locationRequest)
-        .build();
-    talentService.createNewTalent(talentRequest);
-    verify(talentRepository).save(firstMockTalent);
+          .email("john.doe_updated@gmail.com")
+          .build();
+
+    when(talentRepository.findById(anyLong())).thenReturn(Optional.of(talent1));
+    when(talentRepository.save(any(Talent.class)))
+          .thenReturn(Talent.builder()
+                .id(1L)
+                .fullName("John Doe")
+                .email("john.doe_updated@gmail.com")
+                .password("#12hdk$573hdGH")
+                .location(location)
+                .build());
+
+    TalentResponse actual = talentService.updateTalent(talentRequest, 1L);
+
+    verify(talentRepository).findById(1L);
+    verify(talentRepository).save(any(Talent.class));
+    assertThat(actual.getId()).isEqualTo(1L);
+    assertThat(actual.getFullName()).isEqualTo("John Doe");
+    assertThat(actual.getEmail()).isEqualTo("john.doe_updated@gmail.com");
   }
 
   @Test
-  public void updateTalentTest() throws ResourceNotFoundException {
-    firstMockTalent.setEmail("new-mail@gmail.com");
-    LocationRequest locationRequest = LocationRequest.builder()
-        .id((short) 1L)
-        .country("UA")
-        .city("Kyiv")
-        .build();
-    TalentRequest talentRequest = TalentRequest.builder()
-        .id(1L)
-        .password("123456")
-        .email("new-mail@gmail.com")
-        .fullName("Ilon Mask")
-        .location(locationRequest)
-        .build();
-
-    Mockito.when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
-    Mockito.when(talentRepository.save(firstMockTalent)).thenReturn(firstMockTalent);
-
-    TalentResponse updatedTalent = talentService.updateTalent(talentRequest, 1L);
-
-    verify(talentRepository).save(firstMockTalent);
-    Assert.assertEquals("new-mail@gmail.com", updatedTalent.getEmail());
-  }
-
-  @Test
-  public void deleteTalentTest() throws ResourceNotFoundException {
-    when(talentRepository.findById(1L)).thenReturn(Optional.of(firstMockTalent));
+  void talentMustBeDeleted_throwExceptionIfFail() {
+    when(talentRepository.findById(1L)).thenReturn(Optional.of(talent1));
     talentService.deleteTalent(1L);
-    verify(talentRepository, times(1)).delete(firstMockTalent);
+    verify(talentRepository).findById(1L);
+    verify(talentRepository).delete(talent1);
   }
 }

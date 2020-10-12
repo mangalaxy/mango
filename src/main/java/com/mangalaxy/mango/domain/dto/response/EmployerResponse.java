@@ -1,22 +1,29 @@
 package com.mangalaxy.mango.domain.dto.response;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Data
-@NoArgsConstructor
+@Builder
+@Getter
+@AllArgsConstructor
+@EqualsAndHashCode(of = {"fullName", "email"})
+@ToString(doNotUseGetters = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmployerResponse {
-  private Long id;
-  private LocalDateTime createdDate;
-  private LocalDateTime lastModifiedDate;
-  private String fullName;
-  private String email;
-  private String phoneNumber;
-  private CompanyResponse company;
-  private String jobTitle;
-  private String photoUrl;
-  private Set<TalentResponse> talents;
+  private final Long id;
+  private final String fullName;
+  private final String email;
+  private final String phoneNumber;
+  private final String companyName;
+  private final String jobTitle;
+  private final String photoUrl;
+  private final LocationResponse location;
+  private final LocalDateTime createdDate;
+  private final LocalDateTime lastModifiedDate;
 }

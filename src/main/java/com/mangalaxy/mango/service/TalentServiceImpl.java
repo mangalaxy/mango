@@ -5,7 +5,6 @@ import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
-import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -13,20 +12,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.file.ReadOnlyFileSystemException;
-
 @RequiredArgsConstructor
 @Service
 @Transactional
 public class TalentServiceImpl implements TalentService{
-
   private final TalentRepository talentRepository;
   private final ModelMapper modelMapper;
 
   @Override
   public Talent getPrincipalTalent() {
-    Talent currentTalent = talentRepository.findAll().get(0);
-    return currentTalent;
+    return talentRepository.findAll().get(0);
   }
 
   @Override
@@ -35,8 +30,7 @@ public class TalentServiceImpl implements TalentService{
     if (talents.isEmpty()) {
       throw new ResourceNotFoundException();
     }
-    Page<TalentResponse> response = talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
-    return response;
+    return talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
   }
 
   @Override
@@ -69,8 +63,8 @@ public class TalentServiceImpl implements TalentService{
 
   @Override
   public TalentResponse getCurrentTalent() {
-    Talent curentTalent = getPrincipalTalent();
-    return modelMapper.map(curentTalent, TalentResponse.class);
+    Talent currentTalent = getPrincipalTalent();
+    return modelMapper.map(currentTalent, TalentResponse.class);
   }
 
 

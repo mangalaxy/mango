@@ -40,25 +40,24 @@ public class AuthController {
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 
-  @PostMapping("/auth/resetPassword")
-  public ResponseEntity<ApiResponse> resetPassword(HttpServletRequest request,
-                                                   @RequestParam("email") String userEmail) {
+  @PostMapping("/password/reset")
+  public ResponseEntity<ApiResponse> resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) {
     ApiResponse response = customUserDetailsService.resetPassword(request, userEmail);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/auth/changePassword")
-  public ResponseEntity<?> showChangePasswordPage(@RequestParam("id") long id, @RequestParam("token") String token) {
+  @GetMapping("/password/change")
+  public ResponseEntity<?> changePassword(@RequestParam("id") long id, @RequestParam("token") String token) {
     return ResponseEntity.ok(customUserDetailsService.changePassword(id, token));
   }
 
-  @PostMapping("savePassword")
+  @PostMapping("/password/save")
   public ResponseEntity<ApiResponse> savePassword(@RequestBody PasswordRequest password) {
     ApiResponse response = customUserDetailsService.savePassword(password);
     return ResponseEntity.ok(response);
   }
 
-  @GetMapping("/registrationConfirm")
+  @GetMapping("/registration/confirm")
   public ResponseEntity<?> confirmRegistration(WebRequest request, @RequestParam("token") String token) {
     return ResponseEntity.ok(customUserDetailsService.confirmRegistration(request, token));
   }

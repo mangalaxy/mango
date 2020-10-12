@@ -1,13 +1,31 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Singular;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents a post that published in the mangostart blog.
+ * The post entity that published in the blog.
  *
  * @see Topic
  */
@@ -46,6 +64,8 @@ public class Post extends AuditEntity {
   @Column(name = "count_likes")
   private Integer countLikes;
 
+  @ToString.Exclude
+  @EqualsAndHashCode.Exclude
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "topic_id", nullable = false)
   private Topic topic;

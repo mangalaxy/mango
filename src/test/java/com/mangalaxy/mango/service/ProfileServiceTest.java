@@ -1,63 +1,75 @@
 package com.mangalaxy.mango.service;
 
 import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
+import com.mangalaxy.mango.domain.entity.Language;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.domain.entity.Profile;
+import com.mangalaxy.mango.domain.entity.Salary;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.ProfileRepository;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import com.mangalaxy.mango.util.Samples;
+import org.assertj.core.util.Lists;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
-@Ignore
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class ProfileServiceTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-  @MockBean
+@ExtendWith(MockitoExtension.class)
+class ProfileServiceTest {
+  @Mock
   private ProfileRepository profileRepository;
+  @Mock
+  private TalentService talentService;
 
-  @Autowired
   private ProfileService profileService;
 
-  private final Talent firstMockTalent = new Talent();
-  private final Profile mockProfile = new Profile();
+  private Profile profile;
 
-  @Before
+  @BeforeEach
   public void setUp() {
-    Location location = new Location();
-    location.setId((short) 1);
-    location.setCity("Austin");
-    location.setCountry("USA");
+    ModelMapper modelMapper = new ModelMapper();
+    profileService = new ProfileServiceImpl(profileRepository, modelMapper, talentService);
 
-    firstMockTalent.setId(1L);
-    firstMockTalent.setEmail("test@gmai.com");
-    firstMockTalent.setPassword("123456");
-    firstMockTalent.setFullName("John Doe");
-    firstMockTalent.setLocation(location);
+    Location location = Samples.createLocation();
 
-    mockProfile.setId(1L);
-    mockProfile.setOwner(firstMockTalent);
+    Talent talent = Talent.builder()
+          .id(1L)
+          .fullName("John Doe")
+          .email("john.doe12@gmail.com")
+          .password("#12hdk$573hdGH")
+          .location(location)
+          .build();
+
+    profile = Profile.builder()
+          .id(talent.getId())
+          .owner(talent)
+          .preferredLocation(new Location("Boston", "USA"))
+          .preferredSalary(new Salary("USD", BigDecimal.valueOf(150000L)))
+          .preferredLanguages(Lists.newArrayList(new Language(Language.Level.FLUENT, "English")))
+          .build();
   }
 
   @Test
-  public void getProfileTest() {
+  public void shouldFindTalentProfile_thenSuccess() {
+    // given
     Long expectedId = 1L;
-
-    Mockito.when(profileRepository.findById(1L)).thenReturn(Optional.of(mockProfile));
-
-    ProfileResponse profile = profileService.getProfileByTalent(1L);
-
-    Assert.assertEquals(expectedId, profile.getId());
+    when(profileRepository.findById(anyLong())).thenReturn(Optional.of(profile));
+    // when
+    ProfileResponse profile = profileService.fetchTalentProfile(1L);
+    // then
+    verify(profileRepository).findById(anyLong());
+    assertEquals(expectedId, profile.getId());
+    assertEquals("John Doe", profile.getOwner().getFullName());
   }
 
 }
