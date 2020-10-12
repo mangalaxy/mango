@@ -11,7 +11,7 @@ const mockOptions = [
 ];
 
 function TalentSkills(props) {
-    const {user, edit, onSelect} = props;
+    const {user, edit} = props;
     const {skills} = user;
     const skillsList = skills.map((skill, index) => <TalentSkill skill={skill} key={index} />)
     return (
@@ -27,53 +27,46 @@ function TalentSkills(props) {
                         :
                         <div className='section-row'>
                             <DropDownSelect
-                                name='skills'
+                                name='languages'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Programming Languages (Sripting and Markup)'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Frameworks'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Frameworks'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Libraries'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Libraries'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Tools'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Tools'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Databases'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Databases'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Platforms'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Platforms'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                             <DropDownSelect
-                                name='skills'
+                                name='Environments'
                                 options={mockOptions}
                                 multi={true}
                                 placeholder='Development Environments'
-                                onChange={value => onSelect('skills', skills.concat(value))}
                             />
                         </div>
                 }

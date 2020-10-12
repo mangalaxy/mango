@@ -57,6 +57,6 @@ function UpcomingInterview(props) {
             </div>
         </Fragment>
     )
-};
+}
 
 export default UpcomingInterview;

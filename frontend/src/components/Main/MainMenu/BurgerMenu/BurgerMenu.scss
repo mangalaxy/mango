@@ -1,0 +1,26 @@
+@import '../../../../styles/_variables.scss';
+
+.burger-container {
+  display: none;
+  position: relative;
+  cursor: pointer;
+
+  .menu-button {
+    &__line {
+      width: 30px;
+      height: 3px;
+      background-color: $COLOR_SECONDARY_GREY;
+      border-right: 2px;
+
+      &:nth-child(2n) {
+        margin: 7px 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .burger-container {
+    display: block;
+  }
+}

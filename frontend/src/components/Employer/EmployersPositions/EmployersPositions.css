@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .employersPositions {
   width: 1190px;
@@ -19,7 +19,7 @@
     margin-bottom: 62px;
     font-family: "Montserrat", sans-serif;
     font-size: 48px;
-    color: #333333;
+    color: #212121;
     line-height: 60px; }
   .employersPositions-title::after {
     content: '';
@@ -60,7 +60,7 @@
     .employersPositions-item-description {
       width: 75%;
       padding-left: 18px;
-      color: #333333;
+      color: #212121;
       font-family: "Montserrat", sans-serif;
       font-size: 24px;
       line-height: 29px;

@@ -1,17 +1,27 @@
 import React from 'react';
 import {GreenDash} from '../../Home/Home';
-import './jobsRoleSelect.scss';
 import {Link} from 'react-router-dom';
-import {routes} from '../../../../constants/routes';
+import routes from '../../../../constants/routes.json';
 import jobRolesData from '../../../../constants/jobRolesData';
+
+import './jobsRoleSelect.scss';
+
+const JobRoleCard = ({role}) => (
+    <div className='roleItem'>
+      <div className="itemHeader">
+        <h4>{role.name}</h4>
+      </div>
+      <div className="itemImage">
+        <img src={role.image} alt="Job Role"/>
+      </div>
+    </div>
+);
 
 const JobsRolesSelect = () => {
   return (
       <div id='main-job-role-select'>
         <div className='contentContainer'>
-          <h3 className="descriptionHeader">
-            Find a job
-          </h3>
+          <h2 className="mainHeaderH2">Find a job</h2>
           <div className="description">
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Distinctio esse facilis libero minus molestiae qui suscipit!
@@ -27,17 +37,10 @@ const JobsRolesSelect = () => {
             </p>
           </div>
           <h2 className="mainHeaderH2">Job roles</h2>
-          <GreenDash/>
           <div className="rolesContainer">
             {jobRolesData.map((role, index) => (
-                <Link key={index} className='roleItem'
-                      to={`${routes.FIND_JOB}/${role.link}`}>
-                  <div className="itemHeader">
-                    <h4>{role.name}</h4>
-                  </div>
-                  <div className="itemImage">
-                    <img src={role.image} alt=""/>
-                  </div>
+                <Link key={index} to={`${routes.FIND_JOB}/${role.link}`}>
+                  <JobRoleCard role={role}/>
                 </Link>
             ))}
           </div>

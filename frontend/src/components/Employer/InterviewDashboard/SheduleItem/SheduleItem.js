@@ -26,6 +26,6 @@ function SheduleItem(props) {
             <InterviewBurgerMenu/>
         </div>
     )
-};
+}
 
 export default SheduleItem;

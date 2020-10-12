@@ -1,20 +1,18 @@
 import React from 'react';
+import './Modal.scss';
 import Button from '../Buttons/FormButton/FormButton';
 
-import './Modal.scss';
-
-const Modal = ({modalText, modalAction, cancelModal, okLabel='Yes', noLabel='No'}) => {
+function Modal(props) {
   return(
     <div className='modal-container'>
       <div className="modal">
         <p className="modal-title">
-          {modalText}
+          {props.modalText}
         </p>
-        <Button text={okLabel} onClick={modalAction} className={'modal-btn btn-red'} />
-        <Button text={noLabel} onClick={cancelModal} className={'modal-btn btn-gray'} />
+        <Button text={'Yes'} onClick={props.modalAction} className={'modal-btn btn-red'} />
+        <Button text={'Cancel'} onClick={props.canсelModal} className={'modal-btn btn-gray'}/>
       </div>
     </div>
   )
-};
-
+}
 export default Modal;

@@ -2,14 +2,12 @@
 
 .menuContainer {
   position: absolute;
-  top: 0;
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   height: $MAIN_MENU_HEIGHT;
   align-items: center;
-  padding: 10px 30px;
+  padding: 0 20px;
   box-sizing: border-box;
   z-index: 100;
 
@@ -28,6 +26,15 @@
     font-family: $FONT_LOGO;
     color: $COLOR_CORAL;
     text-decoration: none;
+    @media (max-width: 1280px) {
+      font-size: 36px;
+    }
+    @media (max-width: 1024px) {
+      font-size: 32px;
+    }
+    @media (max-width: 800px) {
+      font-size: 28px;
+    }
 
     &:active,
     &:focus {
@@ -36,10 +43,11 @@
   }
 
   .menuItemsContainer {
+    position: relative;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding-right: 10px;
   }
 
   .menuItem {
@@ -74,7 +82,6 @@
   .authBlock {
     padding: 5px 9px;
     margin: 0;
-    position: relative;
     cursor: pointer;
 
     &:hover,
@@ -98,12 +105,10 @@
     }
 
     &.gray {
-
       .down {
         path {
           fill: $COLOR_MENU_DARK;
         }
-
       }
     }
 
@@ -150,6 +155,14 @@
 
     &.left {
       border-right: solid 1px $COLOR_MENU_LIGHT;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .menuContainer {
+    .menuItemsContainer {
+      display: none;
     }
   }
 }

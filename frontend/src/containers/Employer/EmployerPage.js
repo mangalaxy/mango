@@ -1,69 +1,56 @@
-//@flow
-import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
-import {routes} from '../../constants/routes';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
+import routes from '../../constants/routes.json';
 import EmployerMenu from '../../components/Employer/EmployerMenu/EmployerMenu';
 import EmployerWelcome
   from '../../components/Employer/EmployerWelcome/EmployerWelcome';
 import EmployersPositions
   from '../../components/Employer/EmployersPositions/EmployersPositions';
-import MatchedTalents
-  from '../../components/Employer/MatchedTalents/MatchedTalents';
+import './EmployerPage.scss';
+import {connect} from 'react-redux';
+import CompanyEdit from '../../components/Employer/Company/CompanyEdit';
+import Company from '../../components/Employer/Company/Company';
+import {mockCompanyProfile} from '../../mocks/companyProfile';
 import BookmarkedTalents
   from '../../components/Employer/BookmarkedTalents/BookmarkedTalents';
-import TalentFullProfile
-  from '../../components/Employer/TalentFullProfile/TalentFullProfile';
 import InterviewDashboard
-    from '../../components/Employer/InterviewDashboard/InterviewDashboard';
-import './EmployerPage.scss';
-import EmployersCompany from './Company/CompanyPage';
-import {connect} from 'react-redux';
-import CreateInterview
-    from '../../components/Employer/CreateInterview/CreateInterview';
+  from '../../components/Employer/InterviewDashboard/InterviewDashboard';
+import MatchedTalents
+  from '../../components/Employer/MatchedTalents/MatchedTalents';
 
-type Props = {
-  user: {
-    fullName: string
-  }
-}
-
-class Employer extends Component<Props> {
-  getMenuTheme = () => {
-    const path = this.props.location.pathname;
-    if (path.startsWith(routes.EMPLOYERS_COMPANY)) return 'white';
-    if (path.startsWith('/employers/matched-talents')) return 'gray';
+const Employer = ({user, location, history}) => {
+  const getMenuTheme = () => {
+    const path = location.pathname;
+    if (path.startsWith(routes.EMPLOYERS.COMPANY)) return 'white';
     return null;
   };
 
-  render() {
-    const {user} = this.props;
-    return (
-        <div className="employer-bg">
-          <EmployerMenu
-              user={user}
-              theme={this.getMenuTheme()}
-              currentPage={this.props.history.location.pathname}
-          />
-          <Route exact path={routes.SHEDULE_INTERVIEW}
-                 component={CreateInterview}/>
-          <Route path={routes.EMPLOYERS_WELCOME} component={EmployerWelcome}/>
-          <Route path={routes.EMPLOYERS_OPEN_POSITIONS}
+  return (
+      <div className="employer-bg">
+        <EmployerMenu
+            user={user}
+            theme={getMenuTheme()}
+        />
+        <Switch>
+          <Route exact path={routes.EMPLOYERS.HOME}
+                 component={EmployerWelcome}/>
+          <Route exact path={routes.EMPLOYERS.OPEN_POSITIONS}
                  component={EmployersPositions}/>
-          <Route path={routes.MATCHED_TALENTS_ID} component={MatchedTalents}/>
-          <Route path={routes.BOOKMARKED_TALENTS}
+          <Route exact path={routes.EMPLOYERS.COMPANY}
+                 component={() => <Company profile={mockCompanyProfile}/>}/>
+          <Route exact path={routes.EMPLOYERS.COMPANY_EDIT}
+                 component={() => <CompanyEdit
+                     companyProfile={mockCompanyProfile} history={history}/>}/>
+          <Route exact path={routes.EMPLOYERS.FIND_TALENT}
+                 component={()=><div/>}/>
+          <Route exact path={routes.EMPLOYERS.BOOKMARKED}
                  component={BookmarkedTalents}/>
-          <Route path={routes.TALENT_FULL_PROFILE}
-                 component={TalentFullProfile}/>
-          <Route exact path={routes.EMPLOYERS_COMPANY}
-                 component={EmployersCompany}/>
-          <Route path={`${routes.EMPLOYERS_COMPANY}/:mode`}
-                 component={EmployersCompany}/>
-          <Route path={routes.INTERVIEW_DASHBOARD}
+          <Route exact path={routes.EMPLOYERS.INTERVIEWS}
                  component={InterviewDashboard}/>
-        </div>
-    );
-  }
-}
+        </Switch>
+      </div>
+  );
+};
 
 const mapStateToProps = state => ({
   user: state.user.user,

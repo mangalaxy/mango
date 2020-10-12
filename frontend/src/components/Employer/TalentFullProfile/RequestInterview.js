@@ -23,7 +23,7 @@ const RequestInterview = (props) => {
       return {textareaValue, selectValue: selectValues[0].place};
     } else {
       error.innerText = 'All fields are required!';
-      return;
+
     }      
   }
 

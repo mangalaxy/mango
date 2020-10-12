@@ -1,12 +1,12 @@
 import React from 'react';
-import './Login.scss';
+import '../Auth.scss';
 import rocket from '../../../assets/icons/rocket.svg';
 import LoginForm from '../../Forms/LoginForm';
 
 const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer}) => {
   return (
-      <div className="loginContainer">
-        <div className='infoContainer'>
+      <div className="authContainer">
+        <div className='infoContainer login'>
           <div className="content">
             <img src={rocket} alt=""/>
             <h2>Sign In</h2>
@@ -20,9 +20,7 @@ const Login = ({handleForgotPassword, handleSignUpTalent, handleSingUpEmployer})
         </div>
         <div className='formContainer'>
           <div className="content">
-            <LoginForm
-            handleForgotPassword={handleForgotPassword}
-            />
+            <LoginForm handleForgotPassword={handleForgotPassword}/>
             <p>Don’t have an account? Sign up <span onClick={handleSignUpTalent}>as talent</span> or <span onClick={handleSingUpEmployer}>as employer</span></p>
           </div>
         </div>

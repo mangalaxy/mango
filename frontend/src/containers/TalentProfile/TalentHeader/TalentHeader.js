@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import colors from "../../../constants/colors";
 import {location} from "../../../assets/icons";
 import Avatar from '../../../components/Avatar/Avatar';

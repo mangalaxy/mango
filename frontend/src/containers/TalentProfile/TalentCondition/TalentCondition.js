@@ -8,13 +8,11 @@ const mockOptions = [
     {label: 'Option1', value: 'Option1'},
     {label: 'Option2', value: 'Option2'},
     {label: 'Option3', value: 'Option3'},
-    {label: 'Full-time', value: 'Full-time'},
 ];
 
 
 function TalentCondition(props) {
-    const {user, edit, onSelect} = props;
-    const type = mockOptions.filter(option => user.employmentType === option.value);
+    const {user, edit} = props;
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
@@ -32,14 +30,12 @@ function TalentCondition(props) {
                 {
                     edit ?
                         <DropDownSelect
-                            name='employmentType'
+                            name='role'
                             options={mockOptions}
                             multi={false}
-                            values={type}
-                            onChange={value => onSelect('employmentType', value)}
                         />
                         :
-                        <div className='section-row__value'>{user.employmentType}</div>
+                        <div className='section-row__value'>{user.condition}</div>
                 }
 
             </div>

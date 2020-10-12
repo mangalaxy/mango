@@ -1,6 +1,6 @@
 import React from 'react';
 import SvgIcon from '../../../../SvgIcon/SvgIcon';
-import {marker, companyLocation, employer} from "../../../../../assets/icons";
+import {companyLocation, employer, marker} from "../../../../../assets/icons";
 
 function JobItem(props) {
     const {job} = props;

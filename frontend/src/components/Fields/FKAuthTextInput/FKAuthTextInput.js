@@ -31,10 +31,10 @@ const FKAuthTextInput = ({
           type={secure ? 'password' : 'text'}
       />
       <div className="errorContainer">
-        {errors[name] && touched[name] &&
-        <span className='errorLabel'>{errors[name]}</span>}
+        <span className='errorLabel'>{errors[name] && touched[name] ?
+            errors[name] :
+            ' '}</span>
       </div>
-
     </div>
 );
 

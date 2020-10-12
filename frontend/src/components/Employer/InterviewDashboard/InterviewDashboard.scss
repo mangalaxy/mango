@@ -73,13 +73,13 @@
     &__position {
       margin-top: 5px;
       font-size: 18px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
     }
   }
 
   .shedule-talent-status {
     font-size: 18px;
-    color: $COLOR_PRIMERY_GREY;
+    color: $COLOR_PRIMARY_GREY;
   }
 
   .jobs-pagination {
@@ -96,12 +96,12 @@
     }
 
     &__link {
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
 
       &--next {
         &::after {
           content: '\003E';
-          color: $COLOR_PRIMERY_GREY;
+          color: $COLOR_PRIMARY_GREY;
           display: block;
           font-size: 20px;
         }
@@ -110,7 +110,7 @@
       &--prev {
         &::after {
           content: '\003C';
-          color: $COLOR_PRIMERY_GREY;
+          color: $COLOR_PRIMARY_GREY;
           display: block;
           font-size: 20px;
         }
@@ -145,7 +145,7 @@
 
     &__position {
       font-size: 16px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       margin-top: 5px;
     }
 
@@ -171,7 +171,7 @@
 
     &__description {
       font-size: 16px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       margin-top: 10px;
     }
   }
@@ -208,14 +208,14 @@
 
     &__position {
       font-size: 16px;
-      color: $COLOR_PRIMERY_GREY;
+      color: $COLOR_PRIMARY_GREY;
       margin-top: 5px;
     }
   }
 
   .offer-talent-description {
     font-size: 16px;
-    color: $COLOR_PRIMERY_GREY;
+    color: $COLOR_PRIMARY_GREY;
     margin-top: 10px;
   }
 
@@ -268,7 +268,7 @@
         padding: 10px 26px;
         font-weight: 600;
         font-size: 16px;
-        color: $COLOR_PRIMERY_GREY;
+        color: $COLOR_PRIMARY_GREY;
         cursor: pointer;
 
         &:hover {

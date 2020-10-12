@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import EmployersPositionItem from './EmployersPositionItem';
 import './EmployersPositions.scss';
-   
+
 class EmployersPositions extends Component {
   render() {
     return (

@@ -6,15 +6,13 @@ import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 
 const mockOptions = [
     {label: 'Option1', value: 'Option1'},
-    {label: 'Start-up company', value: 'Start-up company'},
-    {label: 'Outsourcing company', value: 'Outsourcing company'},
-    {label: 'Outsourcing company', value: 'Product company'},
+    {label: 'Option2', value: 'Option2'},
+    {label: 'Option3', value: 'Option3'},
 ];
 
 
 function TalentExpectations(props) {
-    const {user, edit, onСhange, onSelect} = props;
-    const values = mockOptions.filter(option => user.expectations.includes(option.value));
+    const {user, edit} = props;
 
     return (
         <div className='talent-form__section'>
@@ -27,15 +25,12 @@ function TalentExpectations(props) {
                 {
                     edit ?
                         <SimpleSelect
-                            name='expectations'
                             options={mockOptions}
                             multi={true}
                             directionTable
-                            values={values}
-                            onChange={value => onSelect('expectations', value)}
                         />
                         :
-                        <div className='section-row__value'>{user.expectations.join(', ')}</div>
+                        <div className='section-row__value'>{user.expectations}</div>
                 }
 
             </div>

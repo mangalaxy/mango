@@ -1,96 +1,61 @@
 @import '../../../styles/variables';
 
-.support{
+.support {
   padding-top: $MAIN_MENU_HEIGHT;
-  .support-container {
-    width: 1200px;
-    min-height: calc(100vh - #{$FOOTER_HEIGHT});
-    margin: 0 auto;
-    padding: 0 30px;
 
-    &__header {
-      font-size: 32px;
-      font-weight: 600;
-      color: $COLOR_MENU_DARK;
-      text-transform: uppercase;
-      padding: 50px 0;
-    }
+  .container {
+    min-height: calc(100vh - #{$FOOTER_HEIGHT});
   }
 
-  .support-content {
+  .contact-header {
+    color: #181818;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 60px;
+  }
+
+  .contacts-form {
     font-size: 16px;
-    line-height: 21px;
 
-    .support-text {
-      width: 100%;
+    .contacts-email {
+      margin-bottom: 20px;
 
-      .sub-header {
-        font-size: 28px;
-        color: #333333;
-        margin-bottom: 10px;
+      &__input {
+        width: 100%;
+        box-sizing: border-box;
+        border-radius: 8px;
+        font-family: inherit;
+        padding: 16px 25px;
+        border: 1px solid #BDBDBD;
       }
     }
 
-    p {
-      margin-bottom: 30px;
+    .contacts-text {
+      &__input {
+        width: 100%;
+        min-height: 200px;
+        box-sizing: border-box;
+        padding: 16px 25px;
+        font-family: inherit;
+        border-radius: 8px;
+        border: 1px solid #BDBDBD;
+        resize: none;
+      }
     }
 
-    p:last-child {
-      margin-bottom: 40px;
-    }
+    .contacts-btn {
+      margin: 30px 0 70px;
+      text-align: right;
 
-    .contact-header {
-      color: #181818;
-      font-size: 28px;
-      font-weight: bold;
-      margin-bottom: 60px;
-    }
-
-    .contacts-form {
-      font-size: 16px;
-
-      .contacts-email {
-        margin-bottom: 20px;
-
-        &__input {
-          width: 100%;
-          box-sizing: border-box;
-          border-radius: 8px;
-          font-family: inherit;
-          padding: 16px 25px;
-          border: 1px solid #BDBDBD;
-        }
-
+      &__send {
+        width: 102px;
+        height: 36px;
+        background: #FF6F60;
+        border-radius: 8px;
+        color: #fff;
+        border: none;
+        text-transform: uppercase;
       }
-
-      .contacts-text {
-        &__input {
-          width: 100%;
-          min-height: 200px;
-          box-sizing: border-box;
-          padding: 16px 25px;
-          font-family: inherit;
-          border-radius: 8px;
-          border: 1px solid #BDBDBD;
-          resize: none;
-        }
-      }
-
-      .contacts-btn {
-        margin: 30px 0 70px;
-        text-align: right;
-
-        &__send {
-          width: 102px;
-          height: 36px;
-          background: #FF6F60;
-          border-radius: 8px;
-          color: #fff;
-          border: none;
-          text-transform: uppercase;
-        }
-      }
-
     }
   }
 }

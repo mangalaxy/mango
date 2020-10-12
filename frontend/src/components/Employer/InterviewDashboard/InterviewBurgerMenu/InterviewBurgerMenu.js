@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 
 function InterviewBurgerMenu(props) {
     const [menuIsOpen, menuToggleOpen] = useState(false);
@@ -30,6 +30,6 @@ function InterviewBurgerMenu(props) {
 
         </div>
     )
-};
+}
 
 export default InterviewBurgerMenu;

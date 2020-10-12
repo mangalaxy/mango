@@ -5,7 +5,7 @@ import TextInput from '../../../components/inputs/TextInput/TextInput';
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 
 function TalentLinks(props) {
-    const {user, edit, onСhange} = props;
+    const {user, edit} = props;
     return (
         <div className='talent-form__section'>
             <div className='section-title'>
@@ -17,14 +17,11 @@ function TalentLinks(props) {
                 {
                     edit ?
                         <TextInput
-                            name='links.portfolio'
                             type='text'
-                            defaultValue={user.links.portfolio}
-                            onChange={onСhange}
-                            value={user.links.portfolio}
+                            defaultValue={user.portfolio}
                         />
                         :
-                        <div className='section-row__value'>{user.links.portfolio}</div>
+                        <div className='section-row__value'>{user.portfolio}</div>
                 }
 
             </div>
@@ -33,14 +30,11 @@ function TalentLinks(props) {
                 {
                     edit ?
                         <TextInput
-                            name='links.blog'
                             type='text'
-                            defaultValue={user.links.blog}
-                            onChange={onСhange}
-                            value={user.links.blog}
+                            defaultValue={user.blog}
                         />
                         :
-                        <div className='section-row__value'>{user.links.blog}</div>
+                        <div className='section-row__value'>{user.blog}</div>
                 }
 
             </div>

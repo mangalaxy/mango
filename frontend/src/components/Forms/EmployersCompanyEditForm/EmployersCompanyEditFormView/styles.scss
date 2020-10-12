@@ -1,19 +1,31 @@
 @import '../../../../styles/_variables';
 
-.employersCompanyEditForm{
+.employersCompanyEditForm {
   margin: 0 auto;
   padding: 40px 50px;
   max-width: 1200px;
-  .headSection{
+  background-color: white;
+
+  .flex-container {
     display: flex;
-    .logoContainer{
+    align-content: space-between;
+    flex-flow: nowrap;
+  }
+
+  .headSection {
+    display: flex;
+
+    .logoContainer {
       min-width: 250px;
       height: 240px;
       margin-right: 40px;
-      img{
-        height: 100%;
+      cursor: pointer;
+
+      img {
+        width: 100%;
       }
-      .logoPlaceholder{
+
+      .logoPlaceholder {
         width: 100%;
         height: 100%;
         border: #E0E0E0 3px dashed;
@@ -21,7 +33,8 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        span{
+
+        span {
           margin-top: 10px;
           text-align: center;
           text-transform: uppercase;
@@ -30,25 +43,131 @@
         }
       }
     }
-    .fieldContainer{
+
+    .fieldContainer {
       width: 100%;
-      .flex{
-        display: flex;
-        :first-child{
+
+        .companySize {
+          flex: 1 1 auto;
           width: 40%;
           margin-right: 20px;
         }
-        :last-child{
+
+        .category {
           width: 60%;
         }
       }
-    }
+
   }
 
-  .fieldLabel{
+  .fieldLabel {
     display: block;
     margin-bottom: 7px;
     font-weight: 600;
     color: #4F4F4F;
+  }
+
+  .line {
+    width: 100%;
+    background-color: #BDBDBD;;
+    height: 2px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+
+  .companyDetail {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+
+    .leftCol {
+      width: 65%;
+
+      .mainImage {
+        width: 100%;
+        margin-bottom: 15px;
+      }
+
+      .imageGallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .mini {
+          width: 150px;
+          height: 90px;
+          margin-right: 25px;
+          margin-bottom: 20px;
+          box-shadow: rgba(0, 0, 0, .2) 2px 2px 10px;
+        }
+
+        .addContainer {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: solid 1px #BDBDBD;
+          width: 150px;
+          height: 90px;
+          margin-right: 25px;
+          cursor: pointer;
+
+          span {
+            color: #FFFFFF;
+            background-color: #BDBDBD;
+            font-size: 30px;
+            line-height: 17px;
+            border-radius: 50%;
+            padding: 10px;
+          }
+        }
+      }
+    }
+
+    .rightCol {
+      width: 35%;
+      padding-left: 40px;
+
+      .inputsBlock {
+        margin-bottom: 50px;
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 15px;
+
+        .stackName {
+          color: #828282;
+        }
+
+        .add {
+          color: #BDBDBD;
+          font-size: 25px;
+          cursor: pointer;
+        }
+
+        .remove {
+          cursor: pointer;
+          background-color: #FFFFFF;
+          border: #BDBDBD 1px solid;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 15px;
+          height: 15px;
+
+          span {
+            color: #BDBDBD;
+            font-size: 22px;
+            margin-left: 1px;
+            line-height: 12px;
+          }
+        }
+      }
+
+    }
   }
 }

@@ -33,6 +33,6 @@ function UpcomingItem(props) {
             </div>
         </div>
     )
-};
+}
 
 export default UpcomingItem;

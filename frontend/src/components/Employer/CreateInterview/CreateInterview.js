@@ -9,7 +9,7 @@ import CheckBox from '../../inputs/CheckBox/CheckBox';
 import FormButton from "../../Buttons/FormButton/FormButton";
 
 const mockTimeZones = [
-    {label: '(GMT+2:00) Helsinki, Istambul', value: '(GMT+2:00) Helsinki, Istambul'},
+    {label: '(GMT+2:00) Helsinki, Istanbul', value: '(GMT+2:00) Helsinki, Istanbul'},
     {label: '(GMT+2:00) Ukraine, Kyiv', value: '(GMT+2:00) Ukraine, Kyiv'},
     {label: '(GMT+2:00) England, London', value: '(GMT+2:00) England, London'},
 ];

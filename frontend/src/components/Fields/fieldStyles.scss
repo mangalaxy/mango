@@ -47,6 +47,12 @@
     border-top: none;
     border-bottom: rgba(0, 0, 0, .2) solid 2px;
     width: 100%;
+
+    @media (max-width: 800px) {
+      border: rgba(0, 0, 0, .2) solid 1px;
+      padding: 10px;
+      border-radius: 8px;
+    }
   }
 
   .input-label {
@@ -55,8 +61,16 @@
       color: rgba(0, 0, 0, .4) !important;
       font-weight: 300 !important;
       font-size: 16px !important;
+
+
     }
 
+    @media (max-width: 1200px) {
+      label {
+        font-size: 14px !important;
+      }
+      margin-bottom: 5px;
+    }
     display: block;
     margin-bottom: 20px;
   }
@@ -68,20 +82,61 @@
 }
 
 .fkDropdown {
-  .p-inputtext {
-    border: none !important;
-    &:active, &:focus{
-      border: none!important;
+
+  @media (max-width: 800px) {
+    .p-dropdown {
+      border: rgba(0, 0, 0, .2) solid 1px;
+      border-radius: 8px;
+    }
+    .p-inputtext, .p-dropdown-trigger{
+      background-color: transparent!important;
     }
   }
-.p-focus{
-  border-color: transparent!important;
-  box-shadow: none!important;
+
+
+  .p-inputtext {
+    border: none !important;
+
+    &:active, &:focus {
+      border: none !important;
+    }
+  }
+
+  .p-focus {
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
 }
+
+.fieldDropdown {
+  .p-dropdown {
+    width: 100%;
+  }
+
+  &:active, &:focus {
+    border: none !important;
+  }
+
+
+  .p-focus {
+    box-shadow: none !important;
+  }
+
+  .p-dropdown-items-wrapper {
+    width: 100% !important;
+    margin-right: 0 !important;
+
+    ul {
+      width: 100% !important;
+    }
+  }
 }
 
 .errorLabel {
   font-size: 12px;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
   font-family: $FONT_COMMON;
   color: $errorColor;
   text-align: center;
@@ -99,15 +154,17 @@
   }
 
 }
-.textInput{
-  .p-label{
-    label{
+
+.textInput {
+  .p-label {
+    label {
       display: block;
       margin-bottom: 7px;
       font-weight: 600;
       color: #4F4F4F;
     }
   }
+
   .p-inputtext {
     width: 100% !important;
     font-size: 16px;

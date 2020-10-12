@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import TextInput from '../../../components/inputs/TextInput/TextInput';
 import colors from "../../../constants/colors";
 import {email} from "../../../assets/icons";

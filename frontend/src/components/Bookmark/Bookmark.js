@@ -5,7 +5,7 @@ const Bookmark = ({click, title}) => {
   return(
     <>        
       <div onClick={click} className="" title={title}>
-        <img src={} />
+        <img src={} alt=""/>
       </div>
     </>
   )

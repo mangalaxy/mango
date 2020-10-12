@@ -5,7 +5,7 @@ import TextInput from '../../../components/inputs/TextInput/TextInput';
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';
 
 function TalentSalary(props) {
-    const {user, edit, onСhange} = props;
+    const {user, edit} = props;
 
     return (
         <div className='talent-form__section'>
@@ -18,11 +18,8 @@ function TalentSalary(props) {
                 {
                     edit ?
                         <TextInput
-                            name='salary'
-                            type='number'
+                            type='text'
                             defaultValue={user.salary}
-                            onChange={onСhange}
-                            value={user.salary}
                         />
                         :
                         <div className='section-row__value'>{user.salary}</div>

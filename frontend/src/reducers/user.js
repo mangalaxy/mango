@@ -1,8 +1,11 @@
 const initialState ={
-  user:{}
+  user: {
+    fullName: 'Mike Will'
+  }
 };
 
-export default function user(state = initialState, action) {
-
+const user = (state = initialState, action) => {
   return state;
 }
+
+export default user;

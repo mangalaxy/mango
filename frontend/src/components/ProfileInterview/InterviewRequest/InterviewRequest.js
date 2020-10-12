@@ -2,9 +2,7 @@ import React, {Fragment} from 'react';
 import SvgIcon from '../../SvgIcon/SvgIcon';
 import {employer} from "../../../assets/icons";
 
-function Interviewrequest(props) {
-    const {request} = props;
-
+const InterviewRequest = ({ request }) => {
     return (
         <Fragment>
             <div className='interviews-requests__item'>
@@ -34,10 +32,10 @@ function Interviewrequest(props) {
                         <div className='interview-left'></div>
                     </div>
                     <div className='interview-right'>
-                        <img className='company-logo' src={`${request.companyLogo}`}/>
+                        <img className='company-logo' src={`${request.companyLogo}`} alt=""/>
                     </div>
                 </div>
-                <div className='interviews-line'></div>
+                <hr className='interviews-line'/>
                 <div className='interview-footer'>
                     <div className='interview-text'>
                         {request.text}
@@ -52,4 +50,4 @@ function Interviewrequest(props) {
     )
 }
 
-export default Interviewrequest;
+export default InterviewRequest;

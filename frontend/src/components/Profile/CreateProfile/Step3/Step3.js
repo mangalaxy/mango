@@ -1,7 +1,7 @@
 import React from 'react';
 import FormButton from "../../../Buttons/FormButton/FormButton";
 import TextInput from "../../../inputs/TextInput/TextInput";
-import {name, email, phone, location, blog, website, portfolio, linkedIn} from "../../../../assets/icons";
+import {blog, email, linkedIn, location, name, phone, portfolio, website} from "../../../../assets/icons";
 
 function Step3(props) {
     const {hidden, prev, next, profile, inputChange, onSelect} = props;

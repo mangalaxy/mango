@@ -11,8 +11,8 @@ const mockOptions = [
 ];
 
 function TalentLocation(props) {
-    const {user, edit, onSelect} = props;
-    const {country, city} = user.prefferedLocation;
+    const {user, edit} = props;
+    const {country, city} = user.talent.location;
 
     return (
         <div className='talent-form__section'>
@@ -24,22 +24,11 @@ function TalentLocation(props) {
                 <div className='section-row__title'>Want to work in the area:</div>
                 {
                     edit ?
-                        <div>
-                            <DropDownSelect
-                                name='prefferedLocation.country'
-                                options={mockOptions}
-                                multi={false}
-                                onChange={value => onSelect('prefferedLocation.country', value)}
-                                placeholder='country'
-                            />
-                            <DropDownSelect
-                                name='prefferedLocation.city'
-                                options={mockOptions}
-                                multi={false}
-                                onChange={value => onSelect('prefferedLocation.city', value)}
-                                placeholder='city'
-                            />
-                        </div>
+                        <DropDownSelect
+                            name='role'
+                            options={mockOptions}
+                            multi={false}
+                        />
                         :
                         <div className='section-row__value'>{country}, {city}</div>
 

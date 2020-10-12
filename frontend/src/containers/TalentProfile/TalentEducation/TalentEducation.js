@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {education} from "../../../assets/icons";
 import colors from "../../../constants/colors";
 import SvgIcon from '../../../components/SvgIcon/SvgIcon';

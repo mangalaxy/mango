@@ -1,14 +1,13 @@
-import React, { memo } from 'react';
-import {name} from "../../assets/icons";
+import React, {memo} from 'react';
 
 function SvgIcon(props) {
-    const {type} = props
+  const {type} = props;
 
-    return (
-        <div className='svg-icon'>
-            {type}
-        </div>
-    )
+  return (
+      <div className='svg-icon'>
+        {type}
+      </div>
+  );
 }
 
 export default memo(SvgIcon);

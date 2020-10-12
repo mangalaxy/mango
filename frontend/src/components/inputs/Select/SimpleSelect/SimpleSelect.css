@@ -1,11 +1,11 @@
-@import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Carter+One&display=swap");
 .simple-select .control-label {
   display: block;
   margin: 0 0 10px 0;
   font-size: 12px;
   font-weight: bold;
-  color: #333333; }
+  color: #212121; }
 
 .simple-select .react-dropdown-select {
   width: 100%;
@@ -13,7 +13,7 @@
   margin: 10px 0;
   border: none;
   box-sizing: border-box;
-  color: #333333;
+  color: #212121;
   font-size: 12px;
   outline: none;
   z-index: 9000; }
@@ -22,7 +22,7 @@
   .simple-select .react-dropdown-select-option {
     margin: 0;
     background-color: #fff;
-    color: #333333; }
+    color: #212121; }
   .simple-select .react-dropdown-select-input::placeholder {
     color: #BDBDBD !important;
     font-size: 12px; }

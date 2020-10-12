@@ -1,16 +1,14 @@
-// @flow
-import type {Node} from 'react';
-import React, {Component, Fragment} from 'react';
-import MainMenu from '../../components/Main/MainMenu/MainMenu';
+import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import {routes} from '../../constants/routes';
+import routes from '../../constants/routes.json';
+import MainMenu from '../../components/Main/MainMenu/MainMenu';
 import ForTalents from '../../components/Main/ForTalents/ForTalents';
 import ForEmployers from '../../components/Main/ForEmployers/ForEmployers';
 import Home from '../../components/Main/Home/Home';
 import Footer from '../../components/Main/Footer/Footer';
-import './Main.scss';
 import About from '../../components/Main/About/About';
-import JobsRolesSelect from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
+import JobsRolesSelect
+  from '../../components/Main/Jobs/JobsRolesSelect/JobsRoleSelect';
 import JobsByRole from '../../components/Main/Jobs/JobsByRole/JobsByRole';
 import PrivacyPolicy from '../../components/Main/PrivacyPolicy/PrivacyPolicy';
 import TermsOfUse from '../../components/Main/TermsOfService/TermsOfUse';
@@ -19,62 +17,103 @@ import Blog from '../../components/Main/Blog/Blog';
 import {renderModal} from '../../services/renderModal';
 import Login from '../../components/Auth/Login/Login';
 import SignUpTalent from '../../components/Auth/SignUpTalent/SignUpTalent';
-import SignUpEmployer from '../../components/Auth/SignUpEmployer/SignUpEmployer';
-import Post from '../Post/Post';
+import SignUpEmployer
+  from '../../components/Auth/SignUpEmployer/SignUpEmployer';
+import Post from '../../components/Main/Post/Post';
+import './Main.scss';
 
-type Props = {
-  history: Object,
-  location: Object
-}
+const MainPage = ({location}) => {
 
-class MainPage extends Component<Props> {
-  render(): Node {
-    return (
-        <Fragment>
-          <MainMenu
-              path={this.props.location.pathname}
-              openLoginForm={this.openLoginForm}
-              openSignUpTalent={this.openSignUpTalent}
-              openSignUpEmployer={this.openSignUpEmployer}
-          />
-          <div id='dialog-container'/>
-          <div className="mainPageContent">
-            <Switch>
-              <Route exact path={routes.HOME} component={Home}/>
-              <Route path={routes.FOR_TALENTS} component={ForTalents}/>
-              <Route path={routes.FOR_EMPLOYERS} component={ForEmployers}/>
-              <Route exact path={routes.FIND_JOB} component={JobsRolesSelect}/>
-              <Route path={routes.FIND_JOB + '/:jobRole'}
-                     component={JobsByRole} url={routes.FIND_JOB}/>
-              <Route path={routes.ABOUT} component={About}/>
-              <Route path={routes.PRIVACY_POLICY} component={PrivacyPolicy}/>
-              <Route path={routes.TERMS_OF_USE} component={TermsOfUse}/>
-              <Route path={routes.SUPPORT_CENTER} component={Support}/>
-              <Route path={routes.BLOG} component={Blog}/>
-              <Route path={routes.POST} component={Post}/>
-              <Route path={'/*'} component={() => (<div>404</div>)}/>
-            </Switch>
-          </div>
-          <Footer/>
-        </Fragment>
-    );
-  }
+  const openLoginForm = () => {
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
 
-  openLoginForm = () => {
-    renderModal(
-        <Login handleSignUpTalent={this.openSignUpTalent} handleSingUpEmployer={this.openSignUpEmployer}
-        />,
-    );
+    if (width > 800 && height > 600) {
+      renderModal(
+          <Login handleSignUpTalent={openSignUpTalent}
+                 handleSingUpEmployer={openSignUpEmployer}
+          />,
+      );
+    } else document.location.href = routes.COMMON.LOGIN;
   };
 
-  openSignUpTalent = () => renderModal(
-      <SignUpTalent handleSignIn={this.openLoginForm}
-      />,
+  const openSignUpTalent = () => {
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+    if (width > 800 && height > 600) {
+      renderModal(
+          <SignUpTalent handleSignIn={openLoginForm}
+          />,
+      );
+    } else document.location.href = routes.COMMON.SIGNUP_TALENT;
+  };
+
+  const openSignUpEmployer = () => {
+    const width = window.innerWidth || document.documentElement.clientWidth ||
+        document.body.clientWidth;
+    const height = window.innerHeight ||
+        document.documentElement.clientHeight ||
+        document.body.clientHeight;
+    if (width > 800 && height > 600) {
+      renderModal(
+          <SignUpEmployer handleSignIn={openLoginForm}
+          />,
+      );
+    } else document.location.href = routes.COMMON.SIGNUP_EMPLOYER;
+  };
+
+  return (
+      <div className={`main`}>
+        <MainMenu
+            path={location.pathname}
+            openLoginForm={openLoginForm}
+            openSignUpTalent={openSignUpTalent}
+            openSignUpEmployer={openSignUpEmployer}
+        />
+
+        <div id='dialog-container'/>
+        <div className="mainPageContent">
+          <Switch>
+            <Route exact path={routes.COMMON.HOME} component={Home}/>
+            <Route exact path={routes.COMMON.FOR_TALENTS}
+                   component={ForTalents}/>
+            <Route exact path={routes.COMMON.FOR_EMPLOYERS}
+                   component={ForEmployers}/>
+            <Route exact path={routes.COMMON.FIND_JOB}
+                   component={JobsRolesSelect}/>
+            <Route exact path={routes.COMMON.FIND_JOB + '/:jobRole'}
+                   component={JobsByRole} url={routes.COMMON.FIND_JOB}/>
+            <Route exact path={routes.COMMON.ABOUT} component={About}/>
+            <Route exact path={routes.COMMON.PRIVACY_POLICY}
+                   component={PrivacyPolicy}/>
+            <Route exact path={routes.COMMON.TERMS_OF_USE}
+                   component={TermsOfUse}/>
+            <Route exact path={routes.COMMON.SUPPORT_CENTER}
+                   component={Support}/>
+            <Route exact path={routes.COMMON.BLOG} component={Blog}/>
+            <Route exact path={routes.COMMON.POST} component={Post}/>
+            <Route exact path={routes.COMMON.LOGIN} component={() => <Login
+                handleSignUpTalent={openSignUpTalent}
+                handleSingUpEmployer={openSignUpEmployer}
+            />}/>
+            <Route exact path={routes.COMMON.SIGNUP_EMPLOYER}
+                   component={() => <SignUpEmployer
+                       handleSignIn={openLoginForm}
+                   />}/>
+            <Route exact path={routes.COMMON.SIGNUP_TALENT}
+                   component={() => <SignUpTalent
+                       handleSignIn={openLoginForm}/>}/>
+          </Switch>
+        </div>
+        <Footer/>
+      </div>
   );
-  openSignUpEmployer = () => renderModal(
-      <SignUpEmployer handleSignIn={this.openLoginForm}
-      />,
-  );
-}
+};
 
 export default MainPage;

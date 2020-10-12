@@ -139,7 +139,7 @@ function InterviewDashboard(props) {
             </div>
         </div>
     )
-};
+}
 
 export default InterviewDashboard;
 
