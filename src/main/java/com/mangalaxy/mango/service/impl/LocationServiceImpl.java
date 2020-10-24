@@ -1,8 +1,9 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.LocationRepository;
+import com.mangalaxy.mango.service.LocationService;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

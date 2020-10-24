@@ -15,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletRequest;
 
 public interface CustomUserDetailsService extends UserDetailsService {
+
   UserDetails loadUserById(Long id);
 
   ApiResponse registerNewUser(LoginRequest loginRequest,

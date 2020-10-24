@@ -1,8 +1,10 @@
 package com.mangalaxy.mango.domain.entity;
 
 import com.mangalaxy.mango.domain.Role;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -25,30 +27,31 @@ import java.util.Set;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 @ToString(doNotUseGetters = true)
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "users")
 public class User extends AuditEntity {
-
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSequence")
-  @SequenceGenerator(name = "userSequence", sequenceName = "users_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+  @SequenceGenerator(
+        name = "user_sequence",
+        sequenceName = "users_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, updatable = false)
   private Long id;
-
   private String email;
-
   private String password;
   private boolean enabled;
 
   @ElementCollection
-  @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
+  @CollectionTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id")
+  )
   @Column(name = "role_name", nullable = false)
   @Enumerated(EnumType.STRING)
   private Set<Role> roles = new HashSet<>();
-
-  public User() {
-    super();
-    this.enabled=false;
-  }
 }
 

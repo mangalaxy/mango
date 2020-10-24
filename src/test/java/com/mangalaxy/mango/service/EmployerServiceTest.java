@@ -8,6 +8,7 @@ import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.EmployerRepository;
+import com.mangalaxy.mango.service.impl.EmployerServiceImpl;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

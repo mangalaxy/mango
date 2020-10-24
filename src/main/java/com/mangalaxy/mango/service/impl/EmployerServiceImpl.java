@@ -1,9 +1,10 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.repository.EmployerRepository;
+import com.mangalaxy.mango.service.EmployerService;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

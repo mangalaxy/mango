@@ -1,8 +1,9 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.entity.PasswordResetToken;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
+import com.mangalaxy.mango.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

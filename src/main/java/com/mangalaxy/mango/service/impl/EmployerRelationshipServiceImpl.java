@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
@@ -6,6 +6,7 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.util.EmployerNotFoundException;
 import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;

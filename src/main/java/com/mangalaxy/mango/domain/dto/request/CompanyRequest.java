@@ -1,16 +1,21 @@
 package com.mangalaxy.mango.domain.dto.request;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString(doNotUseGetters = true)
 public class CompanyRequest {
-  private Long id;
   private String name;
   private String headline;
   private String logo;
-  private String headquartersAddress;
+  private String headquarterAddress;
   private String size;
   private String industry;
   private String promo;

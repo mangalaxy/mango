@@ -29,7 +29,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true, doNotUseGetters = true, onlyExplicitlyIncluded = true)
+@EqualsAndHashCode(
+      callSuper = true,
+      doNotUseGetters = true,
+      onlyExplicitlyIncluded = true
+)
 @ToString(callSuper = true, doNotUseGetters = true)
 @Builder
 @NoArgsConstructor
@@ -40,8 +44,12 @@ import java.util.Set;
 public class Employer extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employerSeq")
-  @SequenceGenerator(name = "employerSeq", sequenceName = "employer_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employer_sequence")
+  @SequenceGenerator(
+        name = "employer_sequence",
+        sequenceName = "employer_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Long id;
 

@@ -1,8 +1,7 @@
-package com.mangalaxy.mango.domain.dto;
+package com.mangalaxy.mango.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.mangalaxy.mango.domain.dto.response.SkillResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import java.util.Set;
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString(doNotUseGetters = true)
-public class JobDto {
+public class JobResponse {
 
   @JsonProperty("id")
   private Long id;

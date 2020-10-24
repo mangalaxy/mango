@@ -41,28 +41,35 @@ import java.util.Set;
 public class Post extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "postSeq")
-  @SequenceGenerator(name = "postSeq", sequenceName = "post_id_seq", allocationSize = 10)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_sequence")
+  @SequenceGenerator(
+        name = "post_sequence",
+        sequenceName = "post_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Integer id;
 
   @Column(name = "title", nullable = false)
-  private String title;
+  private String headline;
 
-  @Column(name = "description", nullable = false)
-  private String description;
+  @Column(name = "opening", nullable = false)
+  private String opening;
 
-  @Column(name = "body", nullable = false)
-  private String body;
+  @Column(name = "author", nullable = false)
+  private String author;
 
   @Column(name = "image_url")
   private String imageUrl;
 
-  @Column(name = "count_views")
-  private Integer countViews;
+  @Column(name = "content", nullable = false)
+  private String content;
 
-  @Column(name = "count_likes")
-  private Integer countLikes;
+  @Column(name = "views_count")
+  private Integer viewsCount;
+
+  @Column(name = "likes_count")
+  private Integer likesCount;
 
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
@@ -70,13 +77,10 @@ public class Post extends AuditEntity {
   @JoinColumn(name = "topic_id", nullable = false)
   private Topic topic;
 
-  @Column(name = "author")
-  private String author;
-
   @Singular
   @ElementCollection
   @CollectionTable(name = "post_tags")
-  @Column(name = "tag")
+  @Column(name = "name")
   private Set<String> tags = new HashSet<>();
 
 }

@@ -4,10 +4,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mangalaxy.mango.domain.dto.JobDto;
 import com.mangalaxy.mango.domain.dto.request.JobRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.SkillRequest;
+import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.dto.response.SkillResponse;
 import com.mangalaxy.mango.service.JobService;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
@@ -76,14 +76,14 @@ class JobControllerTest {
   @MockBean
   private JobService jobService;
 
-  private JobDto job1;
-  private JobDto job2;
-  private JobDto job3;
-  private JobDto job4;
+  private JobResponse job1;
+  private JobResponse job2;
+  private JobResponse job3;
+  private JobResponse job4;
 
   @BeforeEach
   void setUp() {
-    job1 = new JobDto();
+    job1 = new JobResponse();
     job1.setId(1L);
     job1.setTitle("Senior Java Developer");
     job1.setLocationCity("Mexico City");
@@ -96,7 +96,7 @@ class JobControllerTest {
     job1.setRequiredExperience("6-10 years");
     job1.setCreatedDate(LocalDateTime.now());
 
-    job2 = new JobDto();
+    job2 = new JobResponse();
     job2.setId(2L);
     job2.setTitle("Business Analyst");
     job2.setLocationCity("Austin");
@@ -109,7 +109,7 @@ class JobControllerTest {
     job2.setRequiredExperience("2-4 years");
     job2.setCreatedDate(LocalDateTime.now());
 
-    job3 = new JobDto();
+    job3 = new JobResponse();
     job3.setId(3L);
     job3.setTitle("Frontend Consultant");
     job3.setLocationCity("Mexico City");
@@ -122,7 +122,7 @@ class JobControllerTest {
     job3.setRequiredExperience("4-6 years");
     job3.setCreatedDate(LocalDateTime.now());
 
-    job4 = new JobDto();
+    job4 = new JobResponse();
     job4.setId(4L);
     job4.setTitle("UI Designer");
     job4.setLocationCity("Chicago");
@@ -142,10 +142,10 @@ class JobControllerTest {
   @DisplayName("Find all jobs that match a given city")
   void shouldReturnJobsFilterByCityAndStatusOk() throws Exception {
     String searchingCity = "Mexico City";
-    List<JobDto> jobList = Lists.newArrayList(job1, job3);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
-    String expectedJobs = objectMapper.writeValueAsString(jobPage);
-    given(jobService.selectJobsByParams(isNull(), anyString(), any(Pageable.class))).willReturn(jobPage);
+    List<JobResponse> jobsList = Lists.newArrayList(job1, job3);
+    Page<JobResponse> jobsPage = new PageImpl<>(jobsList);
+    String expectedJobs = objectMapper.writeValueAsString(jobsPage);
+    given(jobService.selectJobsByParams(isNull(), anyString(), any(Pageable.class))).willReturn(jobsPage);
     mockMvc.perform(get("/api/v1/jobs?city={searchingCity}", searchingCity)
           .accept(MediaType.APPLICATION_JSON)
           .contentType(MediaType.APPLICATION_JSON)
@@ -162,10 +162,10 @@ class JobControllerTest {
   @DisplayName("Find all jobs that match a given job role")
   void shouldReturnJobsFilterByJobRoleAndStatusOk() throws Exception {
     String searchingRole = "Design";
-    List<JobDto> jobList = Lists.newArrayList(job4);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
-    String expectedJson = objectMapper.writeValueAsString(jobPage);
-    given(jobService.selectJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class))).willReturn(jobPage);
+    List<JobResponse> jobsList = Lists.newArrayList(job4);
+    Page<JobResponse> jobsPage = new PageImpl<>(jobsList);
+    String expectedJson = objectMapper.writeValueAsString(jobsPage);
+    given(jobService.selectJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class))).willReturn(jobsPage);
     mockMvc.perform(get("/api/v1/jobs?jobRole={searchingRole}", searchingRole)
           .accept(MediaType.APPLICATION_JSON)
           .contentType(MediaType.APPLICATION_JSON)
@@ -198,8 +198,8 @@ class JobControllerTest {
   @Test
   @DisplayName("Find all jobs by employer ID")
   void shouldReturnAllJobsForEmployerAndStatusOk() throws Exception {
-    List<JobDto> jobList = Lists.newArrayList(job2, job3, job4);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
+    List<JobResponse> jobList = Lists.newArrayList(job2, job3, job4);
+    Page<JobResponse> jobPage = new PageImpl<>(jobList);
     String expectedJson = objectMapper.writeValueAsString(jobPage);
     given(jobService.fetchEmployerAllJobs(anyLong(), any(Pageable.class))).willReturn(jobPage);
     mockMvc.perform(get("/api/v1/employers/1/jobs")
@@ -251,10 +251,9 @@ class JobControllerTest {
           .build();
 
     String newJobJson = objectMapper.writeValueAsString(jobRequest);
-    given(jobService.createEmployerJob(anyLong(), any(JobRequest.class)))
-          .willAnswer((Answer<JobDto>) invocation -> {
+    given(jobService.createEmployerJob(anyLong(), any(JobRequest.class))).willAnswer((Answer<JobResponse>) invocation -> {
       JobRequest request = invocation.getArgument(1);
-      JobDto jobResponse = new JobDto();
+      JobResponse jobResponse = new JobResponse();
       jobResponse.setId(1L);
       jobResponse.setTitle(request.getTitle());
       jobResponse.setJobRoleTitle(request.getJobRole());
@@ -308,7 +307,7 @@ class JobControllerTest {
           .skills(skillSet)
           .build();
     String jobJson = objectMapper.writeValueAsString(jobRequest);
-    JobDto jobResponse = new JobDto();
+    JobResponse jobResponse = new JobResponse();
     jobResponse.setId(1L);
     jobResponse.setTitle(jobRequest.getTitle());
     jobResponse.setJobRoleTitle(jobRequest.getJobRole());

@@ -17,13 +17,13 @@ public class LocationController {
 
   @GetMapping("/api/v1/locations")
   public ResponseEntity<List<LocationResponse>> getAllLocations() {
-    List<LocationResponse> locations = locationService.getAllLocations();
-    return ResponseEntity.ok(locations);
+    List<LocationResponse> locationList = locationService.getAllLocations();
+    return ResponseEntity.ok(locationList);
   }
 
-  @GetMapping("/api/v1/locations/{id}")
-  public ResponseEntity<LocationResponse> getLocationById(@PathVariable Short id) {
-    LocationResponse location = locationService.getLocationById(id);
+  @GetMapping("/api/v1/locations/{locationId}")
+  public ResponseEntity<LocationResponse> getLocationById(@PathVariable Short locationId) {
+    LocationResponse location = locationService.getLocationById(locationId);
     return ResponseEntity.ok(location);
   }
 }

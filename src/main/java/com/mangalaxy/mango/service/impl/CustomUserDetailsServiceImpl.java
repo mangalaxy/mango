@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.Role;
 import com.mangalaxy.mango.domain.dto.request.LoginRequest;
@@ -13,6 +13,9 @@ import com.mangalaxy.mango.repository.UserRepository;
 import com.mangalaxy.mango.repository.VerificationTokenRepository;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
+import com.mangalaxy.mango.service.MailSenderService;
+import com.mangalaxy.mango.service.SecurityService;
 import com.mangalaxy.mango.util.AppException;
 import com.mangalaxy.mango.util.EmailNotConfirmedException;
 import com.mangalaxy.mango.util.OnRegistrationCompleteEvent;
@@ -44,7 +47,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Transactional
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
-
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
   private final PasswordEncoder passwordEncoder;

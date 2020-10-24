@@ -1,10 +1,12 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.dto.request.ProfileRequest;
 import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
 import com.mangalaxy.mango.domain.entity.Profile;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.ProfileRepository;
+import com.mangalaxy.mango.service.ProfileService;
+import com.mangalaxy.mango.service.TalentService;
 import com.mangalaxy.mango.util.TalentNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;

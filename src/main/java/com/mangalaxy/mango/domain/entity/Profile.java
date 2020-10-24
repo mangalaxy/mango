@@ -1,18 +1,38 @@
 package com.mangalaxy.mango.domain.entity;
 
 import com.mangalaxy.mango.domain.CandidateStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Contains talent experience information.
- */
 @Getter
 @Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@ToString(doNotUseGetters = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,6 +41,7 @@ import java.util.Set;
 public class Profile {
 
   @Id
+  @EqualsAndHashCode.Include
   private Long id;
 
   @OneToOne(fetch = FetchType.LAZY)

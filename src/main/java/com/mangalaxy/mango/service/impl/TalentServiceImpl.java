@@ -1,9 +1,10 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.service.TalentService;
 import com.mangalaxy.mango.util.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 @Service
 @Transactional
-public class TalentServiceImpl implements TalentService{
+public class TalentServiceImpl implements TalentService {
   private final TalentRepository talentRepository;
   private final ModelMapper modelMapper;
 

@@ -1,8 +1,22 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Getter
 @Setter
@@ -15,8 +29,12 @@ import javax.persistence.*;
 public class Answer extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answerSequence")
-  @SequenceGenerator(name = "answerSequence", sequenceName = "answer_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "answer_sequence")
+  @SequenceGenerator(
+        name = "answer_sequence",
+        sequenceName = "answer_id_seq",
+        allocationSize = 1
+  )
   private Long id;
 
   @Column(name = "message", nullable = false)

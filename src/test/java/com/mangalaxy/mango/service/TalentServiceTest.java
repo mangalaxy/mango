@@ -7,6 +7,7 @@ import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.TalentRepository;
+import com.mangalaxy.mango.service.impl.TalentServiceImpl;
 import com.mangalaxy.mango.util.Samples;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
