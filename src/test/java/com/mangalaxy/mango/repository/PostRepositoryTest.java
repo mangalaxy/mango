@@ -47,28 +47,28 @@ class PostRepositoryTest {
     topic.setTitle("Interviewing");
 
     post1 = Post.builder()
-          .title("Ready to Shuffle Up Your Tired Interview Process?")
-          .description("When the top brass comes in to your HQ for a board meeting")
-          .body("When the top brass comes in to your HQ for a board meeting...")
+          .headline("Ready to Shuffle Up Your Tired Interview Process?")
+          .opening("When the top brass comes in to your HQ for a board meeting")
+          .content("When the top brass comes in to your HQ for a board meeting...")
           .topic(topic)
           .tag("interview")
           .author("Rob Stevenson")
-          .countViews(0)
-          .countLikes(0)
+          .viewsCount(0)
+          .likesCount(0)
           .build();
     post1.setCreatedDate(LocalDateTime.of(2019, Month.DECEMBER, 12, 12, 45));
 
     post2 = Post.builder()
-          .title("5 Interview Questions Hiring Managers Need to Ask Before Making An Offer")
-          .description("Job interviews can be time consuming fact-finding missions that don't" +
+          .headline("5 Interview Questions Hiring Managers Need to Ask Before Making An Offer")
+          .opening("Job interviews can be time consuming fact-finding missions that don't" +
                 " always yield the best results. Sometimes you find out six months…")
-          .body("Job interviews can be time consuming fact-finding missions that don’t always yield the best results.")
+          .content("Job interviews can be time consuming fact-finding missions that don’t always yield the best results.")
           .topic(topic)
           .tag("hiring")
           .tag("interview")
           .author("Melanie Warren")
-          .countViews(0)
-          .countLikes(0)
+          .viewsCount(0)
+          .likesCount(0)
           .build();
     post2.setCreatedDate(LocalDateTime.of(2020, Month.JANUARY, 8, 9, 12));
 
@@ -104,31 +104,31 @@ class PostRepositoryTest {
   @Test
   @DisplayName("Find posts by the topic name")
   void shouldFindPostsByTopicNameAndSortedDescByCreatedDate_thenSuccess() {
-    String topicName = "Interviewing";
+    String topicTitle = "Interviewing";
     Sort createdDateDesc = Sort.by(Sort.Direction.DESC, "createdDate");
     Pageable pageRequest = PageRequest.of(0, 20, createdDateDesc);
     // when
-    Page<Post> postPage = postRepository.findAllByTopic_Title(topicName, pageRequest);
+    Page<Post> postPage = postRepository.findAllByTopic_Title(topicTitle, pageRequest);
     // then
     List<Post> actual = postPage.getContent();
     assertThat(actual, hasSize(2));
     assertThat(actual, containsInRelativeOrder(equalTo(post2), equalTo(post1)));
-    assertEquals(topicName, actual.get(0).getTopic().getTitle());
+    assertEquals(topicTitle, actual.get(0).getTopic().getTitle());
   }
 
   @Test
   void whenPostNotFoundReturnEmptyOptional_thenSuccess() {
-    String postTitle = "Where to Begin When Opening a New Role";
-    Optional<Post> actualPost = postRepository.findByTitle(postTitle);
+    String postHeadline = "Where to Begin When Opening a New Role";
+    Optional<Post> actualPost = postRepository.findByHeadline(postHeadline);
     assertEquals(Optional.empty(), actualPost);
   }
 
   @Test
   void shouldFindPostByTitle_thenSuccess() {
-    String postTitle = "Ready to Shuffle Up Your Tired Interview Process?";
-    Optional<Post> actualPost = postRepository.findByTitle(postTitle);
+    String postHeadline = "Ready to Shuffle Up Your Tired Interview Process?";
+    Optional<Post> actualPost = postRepository.findByHeadline(postHeadline);
     assertNotEquals(Optional.empty(), actualPost);
-    assertEquals(postTitle, actualPost.get().getTitle());
+    assertEquals(postHeadline, actualPost.get().getHeadline());
     assertNotNull(actualPost.get().getId());
   }
 

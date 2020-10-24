@@ -13,6 +13,6 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
 
   Page<Post> findAllByTopic_Title(String topicTitle, Pageable pageable);
 
-  Optional<Post> findByTitle(String title);
+  Optional<Post> findByHeadline(String title);
 
 }
