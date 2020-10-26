@@ -6,11 +6,10 @@ import com.mangalaxy.mango.service.MailSenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-@Component
+//@Component
 @RequiredArgsConstructor
 public class RegistrationListener implements
     ApplicationListener<OnRegistrationCompleteEvent> {

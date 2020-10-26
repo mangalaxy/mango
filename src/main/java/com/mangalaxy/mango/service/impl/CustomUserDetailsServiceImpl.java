@@ -29,7 +29,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -43,7 +42,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 @Transactional
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
@@ -163,7 +162,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
   public PasswordResetToken createPasswordResetTokenForUser(User user, String token) {
     PasswordResetToken myToken = new PasswordResetToken(token, user);
-    return passwordResetTokenRepository.save(myToken);
+//    return passwordResetTokenRepository.save(myToken);
+    return null;
   }
 
   @Override
@@ -199,8 +199,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
   @Override
   public User getUser(String verificationToken) {
-    User user = tokenRepository.findByToken(verificationToken).getUser();
-    return user;
+    return tokenRepository.findByToken(verificationToken).getUser();
   }
 
   @Override
@@ -211,7 +210,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   @Override
   public void createVerificationToken(User user, String token) {
     VerificationToken myToken = new VerificationToken(token, user);
-    tokenRepository.save(myToken);
+//    tokenRepository.save(myToken);
   }
 
   @Override

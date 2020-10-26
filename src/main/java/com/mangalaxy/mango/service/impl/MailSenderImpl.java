@@ -4,10 +4,9 @@ import com.mangalaxy.mango.service.MailSenderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
-@Service
+//@Service
 public class MailSenderImpl implements MailSenderService {
 
   private final JavaMailSender javaMailSender;

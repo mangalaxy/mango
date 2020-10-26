@@ -50,7 +50,7 @@ public class Post extends AuditEntity {
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Integer id;
 
-  @Column(name = "title", nullable = false)
+  @Column(name = "headline", nullable = false)
   private String headline;
 
   @Column(name = "opening", nullable = false)

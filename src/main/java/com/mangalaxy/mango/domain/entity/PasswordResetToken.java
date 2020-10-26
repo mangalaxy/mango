@@ -6,21 +6,19 @@ import lombok.NoArgsConstructor;
 import org.dom4j.tree.AbstractEntity;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-@Entity
-@Table(name = "reset_password")
+//@Entity
+//@Table(name = "reset_password")
 @NoArgsConstructor
 public class PasswordResetToken extends AbstractEntity {
 

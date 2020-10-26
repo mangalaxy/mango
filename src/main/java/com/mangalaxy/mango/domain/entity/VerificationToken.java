@@ -4,21 +4,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import java.util.Calendar;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "varification_token")
+//@Table(name = "verification_token")
 public class VerificationToken {
   private static final int EXPIRATION = 60 * 24 * 3;
 
