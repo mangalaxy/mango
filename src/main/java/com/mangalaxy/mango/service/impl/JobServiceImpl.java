@@ -6,12 +6,12 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
 import com.mangalaxy.mango.repository.JobRoleRepository;
 import com.mangalaxy.mango.repository.LocationRepository;
 import com.mangalaxy.mango.service.JobService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Example;
@@ -27,7 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RequiredArgsConstructor
 @Service
-public class PersistentJobService implements JobService {
+public class JobServiceImpl implements JobService {
   private final JobRepository jobRepository;
   private final JobRoleRepository jobRoleRepository;
   private final EmployerRepository employerRepository;
@@ -36,14 +36,14 @@ public class PersistentJobService implements JobService {
 
   @Override
   @Transactional(readOnly = true)
-  public Page<JobResponse> selectJobsByParams(String jobRoleTitle, String city, Pageable pageable) {
+  public Page<JobResponse> findJobsByParams(String jobRoleTitle, String city, Pageable pageable) {
     JobRole foundJobRole = null;
     Location foundLocation = null;
     if (jobRoleTitle != null) {
       foundJobRole = jobRoleRepository.findByTitle(jobRoleTitle);
     }
     if (city != null) {
-      foundLocation = locationRepository.findByCity(city);
+      foundLocation = locationRepository.findFirstByCity(city);
     }
     Job probe = Job.builder().jobRole(foundJobRole).location(foundLocation).build();
     Page<Job> foundJobs = jobRepository.findAll(Example.of(probe), pageable);
@@ -52,7 +52,7 @@ public class PersistentJobService implements JobService {
 
   @Override
   @Transactional(readOnly = true)
-  public Page<JobResponse> fetchEmployerAllJobs(Long employerId, Pageable pagination) {
+  public Page<JobResponse> fetchAllEmployerJobs(Long employerId, Pageable pagination) {
     Page<Job> jobs = jobRepository.findAllByPublisher_Id(employerId, pagination);
     return jobs.map(this::mapToDto);
   }

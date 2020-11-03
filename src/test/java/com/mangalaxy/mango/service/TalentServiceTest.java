@@ -93,7 +93,7 @@ class TalentServiceTest {
     Long expectedId = 1L;
     when(talentRepository.findById(expectedId)).thenReturn(Optional.of(talent1));
     // when
-    TalentResponse talentResponse = talentService.getTalentById(expectedId);
+    TalentResponse talentResponse = talentService.fetchTalentById(expectedId);
     // then
     verify(talentRepository).findById(expectedId);
     assertNotNull(talentResponse);
@@ -109,7 +109,7 @@ class TalentServiceTest {
     Page<Talent> talentPage = new PageImpl<>(Lists.newArrayList(talent1, talent2));
     when(talentRepository.findAll(pageable)).thenReturn(talentPage);
     // when
-    Page<TalentResponse> foundTalents = talentService.findAll(pageable);
+    Page<TalentResponse> foundTalents = talentService.fetchTalentPage(pageable);
     // then
     verify(talentRepository).findAll(pageable);
     assertEquals(expectedSize, foundTalents.getSize());
@@ -161,7 +161,7 @@ class TalentServiceTest {
                 .location(location)
                 .build());
 
-    TalentResponse actual = talentService.updateTalent(talentRequest, 1L);
+    TalentResponse actual = talentService.updateTalentById(1L, talentRequest);
 
     verify(talentRepository).findById(1L);
     verify(talentRepository).save(any(Talent.class));
@@ -173,7 +173,7 @@ class TalentServiceTest {
   @Test
   void talentMustBeDeleted_throwExceptionIfFail() {
     when(talentRepository.findById(1L)).thenReturn(Optional.of(talent1));
-    talentService.deleteTalent(1L);
+    talentService.deleteTalentById(1L);
     verify(talentRepository).findById(1L);
     verify(talentRepository).delete(talent1);
   }

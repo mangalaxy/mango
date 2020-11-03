@@ -5,6 +5,7 @@ import com.mangalaxy.mango.domain.dto.response.CompanyResponse;
 import com.mangalaxy.mango.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,19 +29,19 @@ public class CompanyController {
   }
 
   @PostMapping("/api/v1/companies")
-  public ResponseEntity<CompanyResponse> createNewCompany(@RequestBody CompanyRequest companyRequest) {
+  public ResponseEntity<CompanyResponse> createNewCompany(@Validated @RequestBody CompanyRequest companyRequest) {
     CompanyResponse createdCompany = companyService.createNewCompany(companyRequest);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-          .path("/{id}")
+          .path("/{companyId}")
           .buildAndExpand(createdCompany.getId())
           .toUri();
     return ResponseEntity.created(location).body(createdCompany);
   }
 
   @PutMapping("/api/v1/companies/{companyId}")
-  public ResponseEntity<CompanyResponse> updateSpecifiedCompany(@PathVariable Long companyId,
-                                                                @RequestBody CompanyRequest companyRequest) {
-    CompanyResponse companyResponse = companyService.updateCompanyById(companyId, companyRequest);
+  public ResponseEntity<CompanyResponse> updateSpecifiedCompany(@PathVariable("companyId") Long id,
+                                                                @Validated @RequestBody CompanyRequest companyRequest) {
+    CompanyResponse companyResponse = companyService.updateCompanyById(id, companyRequest);
     return ResponseEntity.ok(companyResponse);
   }
 

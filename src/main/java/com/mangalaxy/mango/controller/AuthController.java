@@ -1,6 +1,6 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.request.Credentials;
 import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.service.CustomUserDetailsService;
@@ -26,16 +26,16 @@ public class AuthController {
   private final CustomUserDetailsService customUserDetailsService;
 
   @PostMapping("/auth/login")
-  public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
-    return ResponseEntity.ok(customUserDetailsService.signIn(loginRequest));
+  public ResponseEntity<?> authenticateUser(@RequestBody Credentials credentials) {
+    return ResponseEntity.ok(customUserDetailsService.signIn(credentials));
   }
 
   @PostMapping("/auth/signUp")
-  public ResponseEntity<?> registerUser(@RequestBody LoginRequest loginRequest,
+  public ResponseEntity<?> registerUser(@RequestBody Credentials credentials,
                                         BindingResult result,
                                         WebRequest request,
                                         Errors errors) {
-    ApiResponse response = customUserDetailsService.registerNewUser(loginRequest, result, request, errors);
+    ApiResponse response = customUserDetailsService.registerNewUser(credentials, result, request, errors);
     return new ResponseEntity<>(response, HttpStatus.CREATED);
   }
 

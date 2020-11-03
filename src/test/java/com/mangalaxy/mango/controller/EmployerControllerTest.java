@@ -6,9 +6,9 @@ import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -215,7 +215,7 @@ class EmployerControllerTest {
           .andReturn();
     verify(employerService).fetchEmployerById(employerId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("Resource with specified ID not found");
+    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
   }
 
   @Test

@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.util;
+package com.mangalaxy.mango.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class ResourceNotFoundException extends RuntimeException {
 
   public ResourceNotFoundException() {
-    super("Resource with specified ID not found");
+    super("The resource with the specified ID does not exist");
   }
 
   public ResourceNotFoundException(String message) {

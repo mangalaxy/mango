@@ -25,7 +25,7 @@ import java.util.Set;
       doNotUseGetters = true,
       onlyExplicitlyIncluded = true
 )
-@ToString(callSuper = true, doNotUseGetters = true)
+@ToString(doNotUseGetters = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -45,12 +45,15 @@ public class Skill extends AuditEntity {
   @Column(name = "name")
   private String name;
 
+  @ToString.Exclude
   @ManyToMany(mappedBy = "skills")
   private Set<Job> jobs = new HashSet<>();
 
+  @ToString.Exclude
   @ManyToMany(mappedBy = "skills")
   private Set<Company> companies = new HashSet<>();
 
+  @ToString.Exclude
   @ManyToMany(mappedBy = "skills")
   private Set<Profile> profiles = new HashSet<>();
 

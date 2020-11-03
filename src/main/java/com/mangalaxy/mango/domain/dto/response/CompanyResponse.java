@@ -1,25 +1,30 @@
 package com.mangalaxy.mango.domain.dto.response;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
+import lombok.Value;
 
-// TODO: Add company perks, benefits, links attributes
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString(doNotUseGetters = true)
+import java.time.LocalDateTime;
+import java.util.Set;
+
+@Builder
+@Value
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class CompanyResponse {
-  private Long id;
-  private String name;
-  private String headline;
-  private String logo;
-  private String headquarterAddress;
-  private String size;
-  private String industry;
-  private String promo;
-  private String about;
+  Long id;
+  String name;
+  String headline;
+  String logoUrl;
+  String headquarterAddress;
+  String size;
+  String industry;
+  String promoUrl;
+  String about;
+  Set<SkillResponse> skills;
+  Set<String> perks;
+  Set<String> benefits;
+  Set<String> links;
+  Set<String> photos;
+  LocalDateTime createdDate;
+  LocalDateTime modifiedDate;
 }

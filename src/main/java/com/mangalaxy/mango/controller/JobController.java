@@ -28,13 +28,13 @@ public class JobController {
   public ResponseEntity<Page<JobResponse>> getJobsByParams(@RequestParam(name = "jobRole", required = false) String jobRole,
                                                            @RequestParam(name = "city", required = false) String city,
                                                            Pageable pageable) {
-    Page<JobResponse> jobs = jobService.selectJobsByParams(jobRole, city, pageable);
+    Page<JobResponse> jobs = jobService.findJobsByParams(jobRole, city, pageable);
     return ResponseEntity.ok(jobs);
   }
 
   @GetMapping("/api/v1/employers/{employerId}/jobs")
-  public ResponseEntity<Page<JobResponse>> getEmployerJobs(@PathVariable Long employerId, Pageable pageable) {
-    Page<JobResponse> jobResponses = jobService.fetchEmployerAllJobs(employerId, pageable);
+  public ResponseEntity<Page<JobResponse>> getAllEmployerJobs(@PathVariable Long employerId, Pageable pageable) {
+    Page<JobResponse> jobResponses = jobService.fetchAllEmployerJobs(employerId, pageable);
     return ResponseEntity.ok(jobResponses);
   }
 
@@ -46,10 +46,10 @@ public class JobController {
 
   @PostMapping("/api/v1/employers/{employerId}/jobs")
   public ResponseEntity<JobResponse> createEmployerJob(@PathVariable Long employerId, @RequestBody JobRequest jobRequest) {
-    JobResponse savedJobResponse = jobService.createEmployerJob(employerId, jobRequest);
+    JobResponse createdJob = jobService.createEmployerJob(employerId, jobRequest);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
           .path("/{id}")
-          .buildAndExpand(savedJobResponse.getId())
+          .buildAndExpand(createdJob.getId())
           .toUri();
     return ResponseEntity.created(location).build();
   }

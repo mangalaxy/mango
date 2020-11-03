@@ -1,13 +1,15 @@
 package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.Role;
-import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.request.Credentials;
 import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
 import com.mangalaxy.mango.domain.entity.PasswordResetToken;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.domain.entity.VerificationToken;
+import com.mangalaxy.mango.exception.AppException;
+import com.mangalaxy.mango.exception.EmailNotConfirmedException;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
 import com.mangalaxy.mango.repository.UserRepository;
 import com.mangalaxy.mango.repository.VerificationTokenRepository;
@@ -16,8 +18,6 @@ import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
 import com.mangalaxy.mango.service.CustomUserDetailsService;
 import com.mangalaxy.mango.service.MailSenderService;
 import com.mangalaxy.mango.service.SecurityService;
-import com.mangalaxy.mango.util.AppException;
-import com.mangalaxy.mango.util.EmailNotConfirmedException;
 import com.mangalaxy.mango.util.OnRegistrationCompleteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -79,10 +79,10 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   }
 
   @Override
-  public ApiResponse registerNewUser(LoginRequest loginRequest, BindingResult result,
+  public ApiResponse registerNewUser(Credentials credentials, BindingResult result,
                                      WebRequest request,
                                      Errors errors) {
-    User userFromDB = userRepository.findByEmail(loginRequest.getEmail());
+    User userFromDB = userRepository.findByEmail(credentials.getEmail());
     if (userFromDB != null) {
       return new ApiResponse(false, "Username with this email is already taken!");
     }
@@ -91,8 +91,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     roles.add(Role.USER);
 
     User user = new User();
-    user.setEmail(loginRequest.getEmail());
-    user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
+    user.setEmail(credentials.getEmail());
+    user.setPassword(passwordEncoder.encode(credentials.getPassword()));
     user.setRoles(roles);
 
     User registeredUser = userRepository.save(user);
@@ -167,10 +167,10 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   }
 
   @Override
-  public JwtAuthenticationResponse signIn(LoginRequest loginRequest) {
+  public JwtAuthenticationResponse signIn(Credentials credentials) {
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-          loginRequest.getEmail(),
-          loginRequest.getPassword()
+          credentials.getEmail(),
+          credentials.getPassword()
     );
     Authentication authentication = authenticationManager.authenticate(token);
     SecurityContextHolder.getContext().setAuthentication(authentication);

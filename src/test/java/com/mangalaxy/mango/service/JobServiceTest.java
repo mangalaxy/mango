@@ -10,12 +10,12 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
 import com.mangalaxy.mango.repository.JobRoleRepository;
 import com.mangalaxy.mango.repository.LocationRepository;
-import com.mangalaxy.mango.service.impl.PersistentJobService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
+import com.mangalaxy.mango.service.impl.JobServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -64,7 +64,7 @@ class JobServiceTest {
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
-    jobService = new PersistentJobService(jobRepository, jobRoleRepository, employerRepository,
+    jobService = new JobServiceImpl(jobRepository, jobRoleRepository, employerRepository,
           locationRepository, modelMapper);
 
     Location location1 = new Location();
@@ -126,11 +126,11 @@ class JobServiceTest {
           .thenAnswer((Answer<JobRole>) invocation -> new JobRole((short) 1, invocation.getArgument(0), null));
     when(jobRepository.findAll(any(Example.class), eq(pageable))).thenReturn(jobPage);
     // when
-    Page<JobResponse> foundJobPage = jobService.selectJobsByParams("Software Engineering", null, pageable);
+    Page<JobResponse> foundJobPage = jobService.findJobsByParams("Software Engineering", null, pageable);
     // then
     verify(jobRoleRepository).findByTitle("Software Engineering");
     verify(jobRepository).findAll(any(Example.class), eq(pageable));
-    verify(locationRepository, never()).findByCity(anyString());
+    verify(locationRepository, never()).findFirstByCity(anyString());
     assertEquals(3, foundJobPage.getSize());
   }
 
@@ -139,12 +139,12 @@ class JobServiceTest {
     // given
     Pageable pageable = PageRequest.of(0, 20);
     Page<Job> jobPage = new PageImpl<>(Lists.newArrayList(job1));
-    when(locationRepository.findByCity("Berlin")).thenReturn(new Location("Berlin", "Germany"));
+    when(locationRepository.findFirstByCity("Berlin")).thenReturn(new Location("Berlin", "Germany"));
     when(jobRepository.findAll(any(Example.class), eq(pageable))).thenReturn(jobPage);
     // when
-    Page<JobResponse> foundJobPage = jobService.selectJobsByParams(null, "Berlin", pageable);
+    Page<JobResponse> foundJobPage = jobService.findJobsByParams(null, "Berlin", pageable);
     // then
-    verify(locationRepository).findByCity("Berlin");
+    verify(locationRepository).findFirstByCity("Berlin");
     verify(jobRepository).findAll(any(Example.class), eq(pageable));
     verify(jobRoleRepository, never()).findByTitle(anyString());
     assertEquals(1, foundJobPage.getSize());
@@ -157,7 +157,7 @@ class JobServiceTest {
     Page<Job> jobPage = new PageImpl<>(Lists.newArrayList(job1, job2, job3));
     when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(jobPage);
     // when
-    Page<JobResponse> jobList = jobService.fetchEmployerAllJobs(1L, pageable);
+    Page<JobResponse> jobList = jobService.fetchAllEmployerJobs(1L, pageable);
     //then
     verify(jobRepository).findAllByPublisher_Id(1L, pageable);
     assertEquals(jobPage.getSize(), jobList.getSize());
@@ -195,10 +195,10 @@ class JobServiceTest {
     JobRequest newJob = JobRequest.builder()
           .title("Middle Front-end Developer (Angular, Firebase)")
           .jobRole("Software Engineering")
-          .employmentType("Full-time")
-          .isRelocate(false)
-          .isRemote(false)
-          .isVisaSponsorship(false)
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(false)
+          .visaSponsorship(false)
           .location(location)
           .build();
     when(employerRepository.findById(1L)).thenReturn(Optional.of(employer1));
