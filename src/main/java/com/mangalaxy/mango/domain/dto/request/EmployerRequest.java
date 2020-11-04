@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
+import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -25,12 +26,20 @@ public class EmployerRequest {
   @Size(min = 8)
   String password;
 
+  @Size(max = 18)
   String phoneNumber;
 
   @NotBlank
+  @Size(min = 3, max = 45)
   String companyName;
+
+  @Size(max = 45)
   String jobTitle;
+
+  @URL
+  @Size(max = 255)
   String photoUrl;
+
   LocationRequest location;
 
   @JsonCreator

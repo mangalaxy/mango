@@ -62,6 +62,7 @@ public class Talent extends AuditEntity {
   private Location location;
 
   @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   @ManyToMany(mappedBy = "bookmarkedTalents")
   private Set<Employer> potentialEmployers = new HashSet<>();
 

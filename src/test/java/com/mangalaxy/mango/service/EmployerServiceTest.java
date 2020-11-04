@@ -8,6 +8,7 @@ import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.exception.EmployerNotFoundException;
+import com.mangalaxy.mango.repository.CompanyRepository;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.service.impl.EmployerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
@@ -40,6 +41,8 @@ class EmployerServiceTest {
 
   @Mock
   private EmployerRepository employerRepository;
+  @Mock
+  private CompanyRepository companyRepository;
   private EmployerService employerService;
 
   private Location location1;
@@ -54,7 +57,7 @@ class EmployerServiceTest {
     modelMapper.getConfiguration()
           .setSourceNamingConvention(NamingConventions.NONE)
           .setDestinationNamingConvention(NamingConventions.NONE);
-    employerService = new EmployerServiceImpl(employerRepository, modelMapper);
+    employerService =  new EmployerServiceImpl(employerRepository, companyRepository, modelMapper);
 
     location1 = new Location();
     location1.setId(Shorts.checkedCast(1L));
@@ -113,9 +116,12 @@ class EmployerServiceTest {
   void shouldFindEmployerById_thenSuccess() {
     // given
     Long id = 1L;
-    EmployerResponse expected = new EmployerResponse(1L, "Cortney Swiss", "cort.sw@yahoo.com",
-          null, null, "IT Acquisition recruiter", null, null,
-          null, null);
+    EmployerResponse expected = EmployerResponse.builder()
+          .id(1L)
+          .fullName("Cortney Swiss")
+          .email("cort.sw@yahoo.com")
+          .jobTitle("IT Acquisition recruiter")
+          .build();
     when(employerRepository.findById(id)).thenReturn(Optional.of(employer1));
     // when
     EmployerResponse actual = employerService.fetchEmployerById(id);
@@ -188,7 +194,7 @@ class EmployerServiceTest {
                 .jobTitle("Staff Executive Manager")
                 .location(location2)
                 .build());
-    EmployerResponse actual = employerService.updateEmployer(id, employerRequest);
+    EmployerResponse actual = employerService.updateEmployerById(id, employerRequest);
 
     assertThat(actual.getId()).isEqualTo(3L);
     assertThat(actual.getFullName()).isEqualTo("Delfina Olmos");

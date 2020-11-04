@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,19 +43,20 @@ public class EmployerController {
   }
 
   @PostMapping("/api/v1/employers")
-  public ResponseEntity<EmployerResponse> createNewEmployer(@RequestBody EmployerRequest employerRequest) {
+  public ResponseEntity<EmployerResponse> createNewEmployer(@Validated @RequestBody EmployerRequest employerRequest) {
     EmployerResponse createdEmployer = employerService.createNewEmployer(employerRequest);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
           .path("/{id}")
           .buildAndExpand(createdEmployer.getId())
           .toUri();
-    return ResponseEntity.created(location).build();
+    return ResponseEntity.created(location).body(createdEmployer);
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
   @PutMapping("/api/v1/employers/{id}")
-  public ResponseEntity<EmployerResponse> updateSpecifiedEmployer(@PathVariable Long id, @RequestBody EmployerRequest employerRequest) {
-    EmployerResponse response = employerService.updateEmployer(id, employerRequest);
+  public ResponseEntity<EmployerResponse> updateSpecifiedEmployer(@PathVariable Long id,
+                                                                  @Validated @RequestBody EmployerRequest employerRequest) {
+    EmployerResponse response = employerService.updateEmployerById(id, employerRequest);
     return ResponseEntity.ok(response);
   }
 
@@ -66,21 +68,18 @@ public class EmployerController {
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("/api/v1/employers/{employerId}/bookmarked/{talentId}")
-  public ResponseEntity<EmployerResponse> matchTalentToEmployer(@PathVariable Long employerId,
-                                                                @PathVariable Long talentId,
-                                                                @RequestParam(name = "set") boolean set) {
-    EmployerResponse response = employerRelationshipService.matchTalentToEmployer(employerId, talentId, set);
-    return ResponseEntity.ok(response);
+  @PutMapping("/api/v1/employers/{employerId}/talents/{talentId}/bookmark")
+  public ResponseEntity<Boolean> bookmarkTalentForEmployer(@PathVariable Long employerId,
+                                                           @PathVariable Long talentId,
+                                                           @RequestParam(name = "set") boolean set) {
+    boolean done = employerRelationshipService.toggleTalentBookmark(employerId, talentId, set);
+    return ResponseEntity.ok(done);
   }
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
-  @PutMapping("/api/v1/employers/{employerId}/jobs/{jobId}/matched")
-  public ResponseEntity<Page<TalentResponse>> getMatchedTalentsForJob(
-      @PathVariable Long employerId,
-      @PathVariable Long jobId,
-      Pageable pageable) {
-    Page<TalentResponse> response = employerRelationshipService.getMatchedTalentsForEmployerJob(employerId, jobId, pageable);
+  @GetMapping("/api/v1/employers/{employerId}/talents/bookmarked")
+  public ResponseEntity<Page<TalentResponse>> getAllBookmarkedTalents(@PathVariable Long employerId, Pageable pageable) {
+    Page<TalentResponse> response = employerRelationshipService.fetchBookmarkedTalents(employerId, pageable);
     return ResponseEntity.ok(response);
   }
 }

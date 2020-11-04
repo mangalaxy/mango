@@ -1,6 +1,5 @@
 package com.mangalaxy.mango.service.impl;
 
-import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Talent;
@@ -14,47 +13,42 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.Set;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class EmployerRelationshipServiceImpl implements EmployerRelationshipService {
-
   private final EmployerRepository employerRepository;
   private final TalentRepository talentRepository;
   private final ModelMapper modelMapper;
 
+  @Transactional
   @Override
-  public EmployerResponse matchTalentToEmployer(Long employerId, Long talentId, boolean set) {
-    Employer employer = findEmployer(employerId);
-    Talent talent = talentRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
-    Set<Talent> talents = employer.getBookmarkedTalents();
-    Set<Employer> employers = talent.getPotentialEmployers();
-
-    if (set) {
-      talents.add(talent);
+  public boolean toggleTalentBookmark(Long employerId, Long talentId, boolean bookmarked) {
+    boolean alreadyBookmarked = employerRepository.existsByIdAndBookmarkedTalents_Id(employerId, talentId);
+    if (alreadyBookmarked && bookmarked) {
+      return true;
+    } else if(!alreadyBookmarked && !bookmarked) {
+      return false;
     } else {
-      talents.remove(talent);
-      employers.remove(employer);
+      Employer employer = employerRepository.findById(employerId).orElseThrow(EmployerNotFoundException::new);
+      Talent talent = talentRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
+      if (bookmarked) {
+        employer.addTalentToBookmarkedTalents(talent);
+      } else {
+        employer.removeTalentFromBookmarkedTalents(talent);
+      }
+      Employer updatedEmployer = employerRepository.save(employer);
+      return updatedEmployer.getBookmarkedTalents().contains(talent);
     }
-
-    employer.setBookmarkedTalents(talents);
-    talent.setPotentialEmployers(employers);
-    talentRepository.save(talent);
-    Employer updatedEmployer = employerRepository.save(employer);
-    return modelMapper.map(updatedEmployer, EmployerResponse.class);
   }
 
+  @Transactional(readOnly = true)
   @Override
-  public Page<TalentResponse> getMatchedTalentsForEmployerJob(Long employerId, Long jobId, Pageable pageable) {
-    //Here will be method for get suitable talents for certain job
-    return null;
+  public Page<TalentResponse> fetchBookmarkedTalents(Long employerId, Pageable pageable) {
+    Page<Talent> talents = talentRepository.findAllByPotentialEmployers_Id(employerId, pageable);
+    return talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
   }
 
-  // Shortcut method to find employer
-  private Employer findEmployer(Long id) {
-    return employerRepository.findById(id).orElseThrow(EmployerNotFoundException::new);
-  }
 
 }

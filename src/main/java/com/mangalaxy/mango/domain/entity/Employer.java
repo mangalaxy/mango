@@ -50,12 +50,15 @@ public class Employer extends AuditEntity {
         sequenceName = "employer_id_seq",
         allocationSize = 1
   )
+  @EqualsAndHashCode.Include
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Long id;
 
+  @EqualsAndHashCode.Include
   @Column(name = "full_name", nullable = false)
   private String fullName;
 
+  @EqualsAndHashCode.Include
   @NaturalId
   @Column(name = "email", nullable = false, unique = true)
   private String email;
@@ -70,7 +73,7 @@ public class Employer extends AuditEntity {
   private String jobTitle;
 
   @Column(name = "photo_url")
-  private String photo;
+  private String photoUrl;
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
@@ -91,6 +94,7 @@ public class Employer extends AuditEntity {
   private Set<Job> jobs = new HashSet<>();
 
   @EqualsAndHashCode.Exclude
+  @ToString.Exclude
   @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   @JoinTable(name = "bookmarked_talents",
         joinColumns = @JoinColumn(name = "employer_id"),
@@ -101,7 +105,7 @@ public class Employer extends AuditEntity {
    * Add a new job to existing set of open jobs.
    * @param job a job to add.
    */
-  public void addJob(final Job job) {
+  public void addJob(Job job) {
     jobs.add(job);
     job.setPublisher(this);
   }
@@ -110,10 +114,19 @@ public class Employer extends AuditEntity {
    * Removes the job from set of open jobs.
    * @param job a job to remove.
    */
-  public void removeJob(final Job job) {
+  public void removeJob(Job job) {
     jobs.remove(job);
     job.setPublisher(null);
   }
 
+  public void addTalentToBookmarkedTalents(Talent talent) {
+    bookmarkedTalents.add(talent);
+    talent.getPotentialEmployers().add(this);
+  }
+
+  public void removeTalentFromBookmarkedTalents(Talent talent) {
+    bookmarkedTalents.remove(talent);
+    talent.getPotentialEmployers().remove(this);
+  }
 }
 

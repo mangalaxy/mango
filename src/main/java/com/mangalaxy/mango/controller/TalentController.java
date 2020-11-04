@@ -44,7 +44,7 @@ public class TalentController {
           .path("/{id}")
           .buildAndExpand(createdTalent.getId())
           .toUri();
-    return ResponseEntity.created(location).build();
+    return ResponseEntity.created(location).body(createdTalent);
   }
 
   @PreAuthorize("hasAuthority('TALENT')")

@@ -125,7 +125,7 @@ class EmployerControllerTest {
           .andExpect(content().json(expectedJson));
     verify(employerService).fetchAllEmployers(any(Pageable.class));
     verify(employerRelationshipService, never())
-          .getMatchedTalentsForEmployerJob(anyLong(), anyLong(), any(Pageable.class));
+          .fetchBookmarkedTalents(anyLong(), any(Pageable.class));
   }
 
   @Test
@@ -134,6 +134,7 @@ class EmployerControllerTest {
     EmployerRequest newEmployer = EmployerRequest.builder()
           .fullName("Erik Wish")
           .email("erik1000_wish@gmail.com")
+          .password("12$qty789")
           .jobTitle("IT Recruitment Generalist")
           .companyName("Okta c.l.")
           .location(new LocationRequest((short) 67, "San Diego", "USA"))
@@ -171,6 +172,7 @@ class EmployerControllerTest {
     EmployerRequest updatedEmployer = EmployerRequest.builder()
           .fullName("Erik Wish")
           .email("erik1000_wish@gmail.com")
+          .password("12$qty789")
           .jobTitle(updatedJobTitle)
           .companyName("Okta c.l.")
           .location(new LocationRequest((short) 67, "San Diego", "USA"))
@@ -183,10 +185,10 @@ class EmployerControllerTest {
           .companyName("Okta c.l.")
           .location(new LocationResponse((short) 67, "San Diego", "USA"))
           .createdDate(LocalDateTime.now().minusDays(17).truncatedTo(ChronoUnit.SECONDS))
-          .lastModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
+          .modifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
           .build();
     String expectedJson = objectMapper.writeValueAsString(mockEmployer);
-    given(employerService.updateEmployer(anyLong(), any(EmployerRequest.class))).willReturn(mockEmployer);
+    given(employerService.updateEmployerById(anyLong(), any(EmployerRequest.class))).willReturn(mockEmployer);
 
     mockMvc.perform(put("/api/v1/employers/1")
           .contentType(MediaType.APPLICATION_JSON)
@@ -198,7 +200,7 @@ class EmployerControllerTest {
           .andExpect(content().json(expectedJson));
 
     ArgumentCaptor<EmployerRequest> argumentCaptor = ArgumentCaptor.forClass(EmployerRequest.class);
-    verify(employerService).updateEmployer(anyLong(), argumentCaptor.capture());
+    verify(employerService).updateEmployerById(anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getFullName()).isEqualTo("Erik Wish");
     assertThat(argumentCaptor.getValue().getJobTitle()).isEqualTo(updatedJobTitle);
   }
