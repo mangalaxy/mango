@@ -196,12 +196,6 @@ CREATE TABLE IF NOT EXISTS post (
   CONSTRAINT post_topic_fk FOREIGN KEY (topic_id) REFERENCES topic (id)
 );
 
-CREATE TABLE IF NOT EXISTS post_tags (
-  post_id INT NOT NULL,
-  name VARCHAR (60) NOT NULL,
-  CONSTRAINT post_tag_fk FOREIGN KEY (post_id) REFERENCES post (id)
-);
-
 CREATE TABLE IF NOT EXISTS bookmarked_talents (
   employer_id BIGINT NOT NULL,
   talent_id BIGINT NOT NULL,

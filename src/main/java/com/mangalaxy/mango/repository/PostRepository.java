@@ -10,9 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
-
   Page<Post> findAllByTopic_Title(String topicTitle, Pageable pageable);
-
+  Page<Post> findAllByTopic_Id(Integer topicId, Pageable pageable);
   Optional<Post> findByHeadline(String title);
 
 }

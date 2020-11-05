@@ -39,9 +39,9 @@ public class CompanyController {
   }
 
   @PutMapping("/api/v1/companies/{companyId}")
-  public ResponseEntity<CompanyResponse> updateSpecifiedCompany(@PathVariable("companyId") Long id,
+  public ResponseEntity<CompanyResponse> updateSpecifiedCompany(@PathVariable Long companyId,
                                                                 @Validated @RequestBody CompanyRequest companyRequest) {
-    CompanyResponse companyResponse = companyService.updateCompanyById(id, companyRequest);
+    CompanyResponse companyResponse = companyService.updateCompanyById(companyId, companyRequest);
     return ResponseEntity.ok(companyResponse);
   }
 

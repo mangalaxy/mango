@@ -27,8 +27,7 @@ public class EmployerServiceImpl implements EmployerService {
   @Override
   public Page<EmployerResponse> fetchAllEmployers(Pageable pageable) {
     Page<Employer> employerPage = employerRepository.findAll(pageable);
-    return employerPage.map(employer ->
-          modelMapper.map(employer, EmployerResponse.EmployerResponseBuilder.class).build());
+    return employerPage.map(this::mapToDto);
   }
 
   @Transactional(readOnly = true)
