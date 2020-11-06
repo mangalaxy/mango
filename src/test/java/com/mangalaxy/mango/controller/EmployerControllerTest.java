@@ -167,7 +167,7 @@ class EmployerControllerTest {
 
   @Test
   @DisplayName("Update an existing employer with updated job title")
-  public void shouldUpdateEmployerWithJobTitleAndReturnsStatusOk() throws Exception {
+  void shouldUpdateEmployerWithJobTitleAndReturnsStatusOk() throws Exception {
     String updatedJobTitle = "HR Generalist";
     EmployerRequest updatedEmployer = EmployerRequest.builder()
           .fullName("Erik Wish")
