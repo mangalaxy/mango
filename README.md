@@ -17,32 +17,9 @@ Before running the project on the local machine, make sure that the necessary so
 * PostgreSQL 10.7
 
 ## Local Development
-### Running frontend locally
-In the ``frontend`` directory, you can run:
-```
-npm start
-```
-Runs the app in the development mode.
-Open http://localhost:3000 to view it in the browser.
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
-```
-npm test
-```
-Launches the test runner in the interactive watch mode.
-See the section about running tests for more information.
-```
-npm run build
-```
-Builds the app for production to the build folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.
-Your app is ready to be deployed!
-
-### Running backend locally
-To build and run Spring Boot locally
+### How to run web server on the local machine
+To build and run Spring Boot on the local machine perform this
 ```
 mvn spring-boot:run
 ```
@@ -51,13 +28,13 @@ You can now access the app on http://localhost:9000
 ### Build deployable package
 To build a deployable artifact
 ```
-mvn package
+mvn clean package
 ```
 The self contained jar will be created in ``${project.basedir}/target``
 
 To run the jar
 ```
-java -jar target/mango-1.0.0-SNAPSHOT.jar
+java -jar target/mango-1.x.x.jar
 ```
 You can now access the production-ready app on http://localhost:9000
 
@@ -71,6 +48,8 @@ We use [Git](https://git-scm.com/about) for versioning.
 
 ### Authors
 * **Yuri Podolsky** - Initial work - Fullstack Engineer
+* **Alex Kopin** - Frontend Developer
+* **Nick Blanchuk** - Fullstack Engineer
 
 ### License
 This project is licensed under the MIT License - see the ``LICENSE.md`` file for details
