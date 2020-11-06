@@ -7,6 +7,7 @@ import com.mangalaxy.mango.domain.entity.Profile;
 import com.mangalaxy.mango.domain.entity.Salary;
 import com.mangalaxy.mango.domain.entity.Talent;
 import com.mangalaxy.mango.repository.ProfileRepository;
+import com.mangalaxy.mango.service.impl.ProfileServiceImpl;
 import com.mangalaxy.mango.util.Samples;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;

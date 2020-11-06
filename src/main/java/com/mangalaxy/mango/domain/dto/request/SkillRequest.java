@@ -1,16 +1,18 @@
 package com.mangalaxy.mango.domain.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
+import lombok.Value;
 
-@Getter
+@Value
 @ToString(doNotUseGetters = true)
 public class SkillRequest {
-  private final String name;
+  String name;
 
   @JsonCreator
-  public SkillRequest(String name) {
+  public SkillRequest(
+        @JsonProperty("name") String name) {
     this.name = name;
   }
 }

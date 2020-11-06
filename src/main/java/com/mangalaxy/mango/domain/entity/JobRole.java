@@ -1,8 +1,19 @@
 package com.mangalaxy.mango.domain.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,8 +27,12 @@ import java.util.Set;
 public class JobRole {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "jobRoleSequence")
-  @SequenceGenerator(name = "jobRoleSequence", sequenceName = "job_role_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "job_role_sequence")
+  @SequenceGenerator(
+        name = "job_role_sequence",
+        sequenceName = "job_role_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, unique = true, updatable = false)
   private Short id;
 

@@ -28,17 +28,21 @@ import java.util.Set;
  */
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @EqualsAndHashCode(of = {"city","country"})
 @ToString(doNotUseGetters = true, of = {"id","city","country"})
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "location")
 public class Location {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "locationSeq")
-  @SequenceGenerator(name = "locationSeq", sequenceName = "location_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "location_sequence")
+  @SequenceGenerator(
+        name = "location_sequence",
+        sequenceName = "location_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, updatable = false)
   private Short id;
 

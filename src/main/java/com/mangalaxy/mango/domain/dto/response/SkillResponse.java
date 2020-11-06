@@ -1,11 +1,13 @@
 package com.mangalaxy.mango.domain.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.ToString;
+import lombok.Value;
 
-@Getter
+@Value
 @AllArgsConstructor
+@ToString(doNotUseGetters = true)
 public class SkillResponse {
-  private final Long id;
-  private final String name;
+  Long id;
+  String name;
 }

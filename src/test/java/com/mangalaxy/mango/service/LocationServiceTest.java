@@ -4,6 +4,7 @@ import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.repository.LocationRepository;
+import com.mangalaxy.mango.service.impl.LocationServiceImpl;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS company (
   headline VARCHAR(255),
   logo_url VARCHAR(255),
   industry VARCHAR(100),
-  employee_count VARCHAR(45),
+  size VARCHAR(45),
   headquarter_address VARCHAR(255),
   about TEXT,
   promo_url VARCHAR(255),
@@ -83,12 +83,13 @@ CREATE TABLE IF NOT EXISTS job (
   title VARCHAR(60) NOT NULL,
   job_role_id SMALLINT NOT NULL,
   employer_id BIGINT NOT NULL,
-  job_experience VARCHAR(45) NOT NULL,
-  employment_type VARCHAR(60),
   location_id SMALLINT,
-  is_remote BOOLEAN,
+  job_type VARCHAR(60),
+  remote BOOLEAN,
   relocation BOOLEAN,
   visa_sponsorship BOOLEAN,
+  experience_required VARCHAR(45) NOT NULL,
+  description TEXT,
   created_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   last_update TIMESTAMP WITHOUT TIME ZONE,
   CONSTRAINT location_job_fk FOREIGN KEY (location_id) REFERENCES location (id),
@@ -156,7 +157,7 @@ CREATE TABLE IF NOT EXISTS talent_experiences (
   company_name VARCHAR(60) NOT NULL,
   position VARCHAR(45) NOT NULL,
   description VARCHAR(255),
-  working_now BOOLEAN,
+  is_working BOOLEAN,
   start_date DATE,
   finish_date DATE,
   CONSTRAINT talent_experience_fk FOREIGN KEY (profile_id) REFERENCES profile (id)
@@ -182,23 +183,17 @@ CREATE TABLE IF NOT EXISTS topic (
 
 CREATE TABLE IF NOT EXISTS post (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(60) NOT NULL,
-  description VARCHAR(255) NOT NULL,
-  body TEXT NOT NULL,
-  image_url VARCHAR(255) NOT NULL,
-  count_views INT,
-  count_likes INT,
-  topic_id INT NOT NULL,
+  headline VARCHAR(60) NOT NULL,
+  opening VARCHAR(255) NOT NULL,
   author VARCHAR(60) NOT NULL,
+  image_url VARCHAR(255) NOT NULL,
+  content TEXT NOT NULL,
+  views_count INT,
+  likes_count INT,
+  topic_id INT NOT NULL,
   created_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   last_update TIMESTAMP WITHOUT TIME ZONE,
   CONSTRAINT post_topic_fk FOREIGN KEY (topic_id) REFERENCES topic (id)
-);
-
-CREATE TABLE IF NOT EXISTS post_tags (
-  post_id INT NOT NULL,
-  tag VARCHAR (45) NOT NULL,
-  CONSTRAINT post_tag_fk FOREIGN KEY (post_id) REFERENCES post (id)
 );
 
 CREATE TABLE IF NOT EXISTS bookmarked_talents (

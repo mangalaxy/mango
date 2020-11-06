@@ -12,7 +12,6 @@ import java.util.stream.Collectors;
 
 @Data
 public class UserPrincipal implements UserDetails {
-
   private Long id;
   private String email;
   private String password;

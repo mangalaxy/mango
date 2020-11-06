@@ -3,12 +3,12 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.service.TalentService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,39 +27,38 @@ public class TalentController {
 
   @GetMapping(value = "/api/v1/talents/{talentId}")
   public ResponseEntity<TalentResponse> getTalentById(@PathVariable Long talentId) {
-    TalentResponse talent = talentService.getTalentById(talentId);
+    TalentResponse talent = talentService.fetchTalentById(talentId);
     return ResponseEntity.ok(talent);
   }
 
   @GetMapping("/api/v1/talents")
-  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable)
-        throws ResourceNotFoundException {
-    Page<TalentResponse> talents = talentService.findAll(pageable);
+  public ResponseEntity<Page<TalentResponse>> getAllTalents(Pageable pageable) {
+    Page<TalentResponse> talents = talentService.fetchTalentPage(pageable);
     return ResponseEntity.ok(talents);
   }
 
   @PostMapping("/api/v1/talents")
-  public ResponseEntity<TalentResponse> createTalent(@RequestBody TalentRequest talentRequest) {
+  public ResponseEntity<TalentResponse> createNewTalent(@Validated @RequestBody TalentRequest talentRequest) {
     TalentResponse createdTalent = talentService.createNewTalent(talentRequest);
     URI location = ServletUriComponentsBuilder.fromCurrentRequest()
           .path("/{id}")
           .buildAndExpand(createdTalent.getId())
           .toUri();
-    return ResponseEntity.created(location).build();
+    return ResponseEntity.created(location).body(createdTalent);
   }
 
   @PreAuthorize("hasAuthority('TALENT')")
   @PutMapping("/api/v1/talents/{talentId}")
-  public ResponseEntity<TalentResponse> updateTalent(@PathVariable Long talentId,
-                                                     @RequestBody TalentRequest talentRequest) {
-    TalentResponse response = talentService.updateTalent(talentRequest, talentId);
+  public ResponseEntity<TalentResponse> updateSpecifiedTalent(@PathVariable("talentId") Long id,
+                                                              @Validated @RequestBody TalentRequest talentRequest) {
+    TalentResponse response = talentService.updateTalentById(id, talentRequest);
     return ResponseEntity.ok(response);
   }
 
-  @PreAuthorize("hasAuthority('TALENT')")
+  @PreAuthorize("hasRole('TALENT')")
   @DeleteMapping("/api/v1/talents/{talentId}")
-  public ResponseEntity<Void> deleteTalent(@PathVariable Long talentId) {
-    talentService.deleteTalent(talentId);
+  public ResponseEntity<Void> deleteSpecifiedTalent(@PathVariable("talentId") Long id) {
+    talentService.deleteTalentById(id);
     return ResponseEntity.noContent().build();
   }
 

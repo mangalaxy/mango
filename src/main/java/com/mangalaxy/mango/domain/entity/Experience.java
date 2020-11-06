@@ -17,7 +17,7 @@ import javax.persistence.Embedded;
 public class Experience {
 
   @Column(name = "company_name", nullable = false)
-  private String company;
+  private String companyName;
 
   @Column(name = "position", nullable = false)
   private String position;
@@ -28,7 +28,7 @@ public class Experience {
   @Embedded
   private ActivityPeriod period;
 
-  @Column(name = "working_now")
+  @Column(name = "is_working")
   private Boolean isWorking;
 
 }

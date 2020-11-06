@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.util;
+package com.mangalaxy.mango.exception;
 
 public class TalentNotFoundException extends RuntimeException {
 

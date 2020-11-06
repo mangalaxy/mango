@@ -5,10 +5,13 @@ import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
+import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.exception.EmployerNotFoundException;
+import com.mangalaxy.mango.repository.CompanyRepository;
 import com.mangalaxy.mango.repository.EmployerRepository;
-import com.mangalaxy.mango.util.EmployerNotFoundException;
+import com.mangalaxy.mango.service.impl.EmployerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,6 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -39,6 +43,8 @@ class EmployerServiceTest {
 
   @Mock
   private EmployerRepository employerRepository;
+  @Mock
+  private CompanyRepository companyRepository;
   private EmployerService employerService;
 
   private Location location1;
@@ -46,6 +52,7 @@ class EmployerServiceTest {
   private Employer employer1;
   private Employer employer2;
   private Employer employer3;
+  private Company company1;
 
   @BeforeEach
   void setUp() {
@@ -53,7 +60,7 @@ class EmployerServiceTest {
     modelMapper.getConfiguration()
           .setSourceNamingConvention(NamingConventions.NONE)
           .setDestinationNamingConvention(NamingConventions.NONE);
-    employerService = new EmployerServiceImpl(employerRepository, modelMapper);
+    employerService =  new EmployerServiceImpl(employerRepository, companyRepository, modelMapper);
 
     location1 = new Location();
     location1.setId(Shorts.checkedCast(1L));
@@ -87,6 +94,10 @@ class EmployerServiceTest {
     employer3.setPassword("skd*8391dhjj56");
     employer3.setJobTitle("Staff Executive Manager");
     employer3.setLocation(location2);
+
+    company1 = new Company();
+    company1.setId(1L);
+    company1.setName("Microsoft Inc.");
   }
 
   @Test
@@ -112,9 +123,12 @@ class EmployerServiceTest {
   void shouldFindEmployerById_thenSuccess() {
     // given
     Long id = 1L;
-    EmployerResponse expected = new EmployerResponse(1L, "Cortney Swiss", "cort.sw@yahoo.com",
-          null, null, "IT Acquisition recruiter", null, null,
-          null, null);
+    EmployerResponse expected = EmployerResponse.builder()
+          .id(1L)
+          .fullName("Cortney Swiss")
+          .email("cort.sw@yahoo.com")
+          .jobTitle("IT Acquisition recruiter")
+          .build();
     when(employerRepository.findById(id)).thenReturn(Optional.of(employer1));
     // when
     EmployerResponse actual = employerService.fetchEmployerById(id);
@@ -142,27 +156,30 @@ class EmployerServiceTest {
           Shorts.checkedCast(1L), "Toronto", "Canada");
 
     EmployerRequest newEmployer = EmployerRequest.builder()
-          .fullName("Mark Ostich")
-          .email("mark.ostich@gmail.com")
-          .jobTitle("HR generalist")
+          .fullName("Mark Finch")
+          .email("mark.finch@gmail.com")
+          .jobTitle("HR Generalist")
+          .companyName("Microsoft Inc.")
           .location(locationRequest)
           .build();
 
-    when(employerRepository.save(any(Employer.class)))
-          .thenReturn(Employer.builder()
-                .id(4L)
-                .fullName("Mark Ostich")
-                .password("Uedu$%12893hd")
-                .email("mark.ostich@gmail.com")
-                .jobTitle("HR generalist")
-                .location(location1)
-                .build());
+    Employer mockEmployer = Employer.builder()
+          .id(4L)
+          .fullName("Mark Finch")
+          .password("Uedu$%12893hd")
+          .email("mark.finch@gmail.com")
+          .jobTitle("HR Generalist")
+          .location(location1)
+          .company(company1)
+          .build();
+    when(employerRepository.save(any(Employer.class))).thenReturn(mockEmployer);
+    EmployerResponse employerResponse = employerService.createNewEmployer(newEmployer);
 
-    EmployerResponse response = employerService.createNewEmployer(newEmployer);
-
-    assertEquals(expectedId, response.getId());
-    assertEquals("mark.ostich@gmail.com", response.getEmail());
-    assertEquals("Mark Ostich", response.getFullName());
+    assertEquals(expectedId, employerResponse.getId());
+    assertEquals("mark.finch@gmail.com", employerResponse.getEmail());
+    assertEquals("Mark Finch", employerResponse.getFullName());
+    assertEquals("Microsoft Inc.", employerResponse.getCompanyName());
+    verify(companyRepository).findByNameIgnoreCase(anyString());
     verify(employerRepository).save(any(Employer.class));
   }
 
@@ -187,7 +204,7 @@ class EmployerServiceTest {
                 .jobTitle("Staff Executive Manager")
                 .location(location2)
                 .build());
-    EmployerResponse actual = employerService.updateEmployer(id, employerRequest);
+    EmployerResponse actual = employerService.updateEmployerById(id, employerRequest);
 
     assertThat(actual.getId()).isEqualTo(3L);
     assertThat(actual.getFullName()).isEqualTo("Delfina Olmos");

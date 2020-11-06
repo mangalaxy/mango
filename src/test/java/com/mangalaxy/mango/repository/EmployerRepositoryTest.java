@@ -3,7 +3,7 @@ package com.mangalaxy.mango.repository;
 import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.util.EmployerNotFoundException;
+import com.mangalaxy.mango.exception.EmployerNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

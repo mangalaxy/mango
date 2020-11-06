@@ -1,15 +1,29 @@
 package com.mangalaxy.mango.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Getter
 @Setter
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true, doNotUseGetters = true)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -17,24 +31,25 @@ import javax.validation.constraints.NotBlank;
 public class Question extends AuditEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "questionSequence")
-  @SequenceGenerator(name = "questionSequence", sequenceName = "question_id_seq")
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "question_sequence")
+  @SequenceGenerator(
+        name = "question_sequence",
+        sequenceName = "question_id_seq",
+        allocationSize = 1
+  )
   private Long id;
 
   @Column(name = "message")
   private String message;
 
-  @NotBlank
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "employer_id")
   private Employer employer;
 
-  @NotBlank
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "talent_id")
   private Talent talent;
 
-  @NotBlank
   @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
   private Answer answer;
 

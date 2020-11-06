@@ -6,8 +6,8 @@ import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentRequest;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.service.TalentService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -86,7 +86,7 @@ class TalentControllerTest {
   @DisplayName("Find the talent with ID: 1")
   void shouldReturnTalentResponseByIdAndStatusOk() throws Exception {
     // stubbing mock method
-    given(talentService.getTalentById(anyLong())).willReturn(talentResponse1);
+    given(talentService.fetchTalentById(anyLong())).willReturn(talentResponse1);
     String expectedJson = objectMapper.writeValueAsString(talentResponse1);
     mockMvc.perform(get("/api/v1/talents/1")
           .accept(MediaType.APPLICATION_JSON))
@@ -95,7 +95,7 @@ class TalentControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    verify(talentService).getTalentById(anyLong());
+    verify(talentService).fetchTalentById(anyLong());
   }
 
   @Test
@@ -103,7 +103,7 @@ class TalentControllerTest {
   void shouldReturnTwoTalentsAndStatusOk() throws Exception {
     Page<TalentResponse> talentPage = new PageImpl<>(talentResponseList);
     String expectedJson = objectMapper.writeValueAsString(talentPage);
-    given(talentService.findAll(any(Pageable.class))).willReturn(talentPage);
+    given(talentService.fetchTalentPage(any(Pageable.class))).willReturn(talentPage);
     mockMvc.perform(get("/api/v1/talents?page=0&limit=20")
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
@@ -111,7 +111,7 @@ class TalentControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    verify(talentService).findAll(any(Pageable.class));
+    verify(talentService).fetchTalentPage(any(Pageable.class));
   }
 
   @Test
@@ -160,7 +160,7 @@ class TalentControllerTest {
           updatedEmail,
           new LocationResponse((short) 1, "Berlin", "Germany"));
     String expectedJson = objectMapper.writeValueAsString(mockTalent);
-    given(talentService.updateTalent(any(TalentRequest.class), anyLong())).willReturn(mockTalent);
+    given(talentService.updateTalentById(anyLong(), any(TalentRequest.class))).willReturn(mockTalent);
     mockMvc.perform(put("/api/v1/talents/1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(objectMapper.writeValueAsString(updatedTalent))
@@ -171,7 +171,7 @@ class TalentControllerTest {
           .andExpect(content().json(expectedJson));
 
     ArgumentCaptor<TalentRequest> talentCaptor = ArgumentCaptor.forClass(TalentRequest.class);
-    verify(talentService).updateTalent(talentCaptor.capture(), anyLong());
+    verify(talentService).updateTalentById(anyLong(), talentCaptor.capture());
     assertThat(talentCaptor.getValue().getFullName()).isEqualTo("Anna Fisher");
     assertThat(talentCaptor.getValue().getEmail()).isEqualTo(updatedEmail);
   }
@@ -180,26 +180,26 @@ class TalentControllerTest {
   @DisplayName("Check status 404 when talent not found")
   void shouldReturnsStatus404WhenTalentDoesntExist() throws Exception {
     Long talentId = 1L;
-    willThrow(new ResourceNotFoundException()).given(talentService).getTalentById(talentId);
+    willThrow(new ResourceNotFoundException()).given(talentService).fetchTalentById(talentId);
     MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents/{talentId}", talentId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isNotFound())
           .andReturn();
-    verify(talentService).getTalentById(talentId);
+    verify(talentService).fetchTalentById(talentId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("Resource with specified ID not found");
+    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
   }
 
   @Test
   @DisplayName("Delete a talent by ID and check status 204")
   void shouldDeleteTalentByIdAndReturnsStatus204() throws Exception {
     Long talentId = 1L;
-    doNothing().when(talentService).deleteTalent(talentId);
+    doNothing().when(talentService).deleteTalentById(talentId);
     mockMvc.perform(delete("/api/v1/talents/{talentId}", talentId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isNoContent());
-    verify(talentService).deleteTalent(talentId);
+    verify(talentService).deleteTalentById(talentId);
   }
 }

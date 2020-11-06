@@ -3,18 +3,19 @@ package com.mangalaxy.mango.service;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Shorts;
-import com.mangalaxy.mango.domain.dto.JobDto;
 import com.mangalaxy.mango.domain.dto.request.JobRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
+import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
 import com.mangalaxy.mango.repository.JobRoleRepository;
 import com.mangalaxy.mango.repository.LocationRepository;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
+import com.mangalaxy.mango.service.impl.JobServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -63,7 +64,7 @@ class JobServiceTest {
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
-    jobService = new PersistentJobService(jobRepository, jobRoleRepository, employerRepository,
+    jobService = new JobServiceImpl(jobRepository, jobRoleRepository, employerRepository,
           locationRepository, modelMapper);
 
     Location location1 = new Location();
@@ -125,11 +126,11 @@ class JobServiceTest {
           .thenAnswer((Answer<JobRole>) invocation -> new JobRole((short) 1, invocation.getArgument(0), null));
     when(jobRepository.findAll(any(Example.class), eq(pageable))).thenReturn(jobPage);
     // when
-    Page<JobDto> foundJobPage = jobService.selectJobsByParams("Software Engineering", null, pageable);
+    Page<JobResponse> foundJobPage = jobService.findJobsByParams("Software Engineering", null, pageable);
     // then
     verify(jobRoleRepository).findByTitle("Software Engineering");
     verify(jobRepository).findAll(any(Example.class), eq(pageable));
-    verify(locationRepository, never()).findByCity(anyString());
+    verify(locationRepository, never()).findFirstByCity(anyString());
     assertEquals(3, foundJobPage.getSize());
   }
 
@@ -138,12 +139,12 @@ class JobServiceTest {
     // given
     Pageable pageable = PageRequest.of(0, 20);
     Page<Job> jobPage = new PageImpl<>(Lists.newArrayList(job1));
-    when(locationRepository.findByCity("Berlin")).thenReturn(new Location("Berlin", "Germany"));
+    when(locationRepository.findFirstByCity("Berlin")).thenReturn(new Location("Berlin", "Germany"));
     when(jobRepository.findAll(any(Example.class), eq(pageable))).thenReturn(jobPage);
     // when
-    Page<JobDto> foundJobPage = jobService.selectJobsByParams(null, "Berlin", pageable);
+    Page<JobResponse> foundJobPage = jobService.findJobsByParams(null, "Berlin", pageable);
     // then
-    verify(locationRepository).findByCity("Berlin");
+    verify(locationRepository).findFirstByCity("Berlin");
     verify(jobRepository).findAll(any(Example.class), eq(pageable));
     verify(jobRoleRepository, never()).findByTitle(anyString());
     assertEquals(1, foundJobPage.getSize());
@@ -156,7 +157,7 @@ class JobServiceTest {
     Page<Job> jobPage = new PageImpl<>(Lists.newArrayList(job1, job2, job3));
     when(jobRepository.findAllByPublisher_Id(1L, pageable)).thenReturn(jobPage);
     // when
-    Page<JobDto> jobList = jobService.fetchEmployerAllJobs(1L, pageable);
+    Page<JobResponse> jobList = jobService.fetchAllEmployerJobs(1L, pageable);
     //then
     verify(jobRepository).findAllByPublisher_Id(1L, pageable);
     assertEquals(jobPage.getSize(), jobList.getSize());
@@ -166,7 +167,7 @@ class JobServiceTest {
   @DisplayName("Find first job by the employer")
   void shouldFindEmployerFirstJob_thenSuccess() {
     when(jobRepository.findByIdAndPublisher_Id(1L, 1L)).thenReturn(Optional.of(job1));
-    JobDto job = jobService.fetchEmployerJob(1L, 1L);
+    JobResponse job = jobService.fetchEmployerJob(1L, 1L);
 
     verify(jobRepository).findByIdAndPublisher_Id(1L, 1L);
     assertAll(
@@ -194,10 +195,10 @@ class JobServiceTest {
     JobRequest newJob = JobRequest.builder()
           .title("Middle Front-end Developer (Angular, Firebase)")
           .jobRole("Software Engineering")
-          .employmentType("Full-time")
-          .isRelocate(false)
-          .isRemote(false)
-          .isVisaSponsorship(false)
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(false)
+          .visaSponsorship(false)
           .location(location)
           .build();
     when(employerRepository.findById(1L)).thenReturn(Optional.of(employer1));
@@ -206,20 +207,20 @@ class JobServiceTest {
                 .id(4L)
                 .title("Middle Front-end Developer (Angular, Firebase)")
                 .jobRole(new JobRole((short) 1, "Software Engineering", null))
-                .employmentType("Full-time")
+                .jobType("Full-time")
                 .relocation(false)
                 .remote(false)
                 .visaSponsorship(false)
                 .location(new Location("Toronto", "Canada"))
                 .build());
     // when
-    JobDto jobDto = jobService.createEmployerJob(1L, newJob);
+    JobResponse jobResponse = jobService.createEmployerJob(1L, newJob);
     //then
     verify(employerRepository).findById(1L);
     verify(jobRepository).save(any(Job.class));
-    assertEquals(expectedJobId, jobDto.getId());
-    assertEquals("Middle Front-end Developer (Angular, Firebase)", jobDto.getTitle());
-    assertEquals("Software Engineering", jobDto.getJobRoleTitle());
+    assertEquals(expectedJobId, jobResponse.getId());
+    assertEquals("Middle Front-end Developer (Angular, Firebase)", jobResponse.getTitle());
+    assertEquals("Software Engineering", jobResponse.getJobRoleTitle());
   }
 
   @Test
@@ -233,18 +234,18 @@ class JobServiceTest {
                 .id(1L)
                 .title("Java Consultant")
                 .jobRole(new JobRole((short) 1, "Software Engineering", null))
-                .employmentType("Full-time")
+                .jobType("Full-time")
                 .relocation(false)
                 .remote(false)
                 .visaSponsorship(false)
                 .location(new Location("Toronto", "Canada"))
                 .build());
     JobRequest jobRequest = JobRequest.builder().title(updatedTitle).build();
-    JobDto jobDto = jobService.updateEmployerJob(employerId, jobId,  jobRequest);
+    JobResponse jobResponse = jobService.updateEmployerJob(employerId, jobId,  jobRequest);
     verify(jobRepository).findByIdAndPublisher_Id(jobId, employerId);
     verify(jobRepository).save(any(Job.class));
-    assertEquals(jobId, jobDto.getId());
-    assertEquals(updatedTitle, jobDto.getTitle());
+    assertEquals(jobId, jobResponse.getId());
+    assertEquals(updatedTitle, jobResponse.getTitle());
   }
 
   @Test

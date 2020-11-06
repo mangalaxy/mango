@@ -1,20 +1,23 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.Role;
-import com.mangalaxy.mango.domain.dto.request.LoginRequest;
+import com.mangalaxy.mango.domain.dto.request.Credentials;
 import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.domain.dto.response.JwtAuthenticationResponse;
 import com.mangalaxy.mango.domain.entity.PasswordResetToken;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.domain.entity.VerificationToken;
+import com.mangalaxy.mango.exception.AppException;
+import com.mangalaxy.mango.exception.EmailNotConfirmedException;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
 import com.mangalaxy.mango.repository.UserRepository;
 import com.mangalaxy.mango.repository.VerificationTokenRepository;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.security.jwt.JwtTokenProvider;
-import com.mangalaxy.mango.util.AppException;
-import com.mangalaxy.mango.util.EmailNotConfirmedException;
+import com.mangalaxy.mango.service.CustomUserDetailsService;
+import com.mangalaxy.mango.service.MailSenderService;
+import com.mangalaxy.mango.service.SecurityService;
 import com.mangalaxy.mango.util.OnRegistrationCompleteEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
@@ -26,7 +29,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -40,11 +42,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 @Transactional
 public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
-
   private final UserRepository userRepository;
   private final AuthenticationManager authenticationManager;
   private final PasswordEncoder passwordEncoder;
@@ -78,10 +79,10 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   }
 
   @Override
-  public ApiResponse registerNewUser(LoginRequest loginRequest, BindingResult result,
+  public ApiResponse registerNewUser(Credentials credentials, BindingResult result,
                                      WebRequest request,
                                      Errors errors) {
-    User userFromDB = userRepository.findByEmail(loginRequest.getEmail());
+    User userFromDB = userRepository.findByEmail(credentials.getEmail());
     if (userFromDB != null) {
       return new ApiResponse(false, "Username with this email is already taken!");
     }
@@ -90,8 +91,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     roles.add(Role.USER);
 
     User user = new User();
-    user.setEmail(loginRequest.getEmail());
-    user.setPassword(passwordEncoder.encode(loginRequest.getPassword()));
+    user.setEmail(credentials.getEmail());
+    user.setPassword(passwordEncoder.encode(credentials.getPassword()));
     user.setRoles(roles);
 
     User registeredUser = userRepository.save(user);
@@ -161,14 +162,15 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
   public PasswordResetToken createPasswordResetTokenForUser(User user, String token) {
     PasswordResetToken myToken = new PasswordResetToken(token, user);
-    return passwordResetTokenRepository.save(myToken);
+//    return passwordResetTokenRepository.save(myToken);
+    return null;
   }
 
   @Override
-  public JwtAuthenticationResponse signIn(LoginRequest loginRequest) {
+  public JwtAuthenticationResponse signIn(Credentials credentials) {
     UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-          loginRequest.getEmail(),
-          loginRequest.getPassword()
+          credentials.getEmail(),
+          credentials.getPassword()
     );
     Authentication authentication = authenticationManager.authenticate(token);
     SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -197,8 +199,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
 
   @Override
   public User getUser(String verificationToken) {
-    User user = tokenRepository.findByToken(verificationToken).getUser();
-    return user;
+    return tokenRepository.findByToken(verificationToken).getUser();
   }
 
   @Override
@@ -209,7 +210,7 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
   @Override
   public void createVerificationToken(User user, String token) {
     VerificationToken myToken = new VerificationToken(token, user);
-    tokenRepository.save(myToken);
+//    tokenRepository.save(myToken);
   }
 
   @Override

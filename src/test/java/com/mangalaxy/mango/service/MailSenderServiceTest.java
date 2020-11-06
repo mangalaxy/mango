@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.service;
 
+import com.mangalaxy.mango.service.impl.MailSenderImpl;
 import com.mangalaxy.mango.util.SmtpServerRule;
 import org.junit.Rule;
 import org.junit.jupiter.api.Disabled;

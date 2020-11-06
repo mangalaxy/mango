@@ -4,13 +4,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.mangalaxy.mango.domain.dto.JobDto;
 import com.mangalaxy.mango.domain.dto.request.JobRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.request.SkillRequest;
+import com.mangalaxy.mango.domain.dto.response.JobResponse;
+import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.dto.response.SkillResponse;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.service.JobService;
-import com.mangalaxy.mango.util.ResourceNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -76,63 +77,63 @@ class JobControllerTest {
   @MockBean
   private JobService jobService;
 
-  private JobDto job1;
-  private JobDto job2;
-  private JobDto job3;
-  private JobDto job4;
+  private JobResponse job1;
+  private JobResponse job2;
+  private JobResponse job3;
+  private JobResponse job4;
 
   @BeforeEach
   void setUp() {
-    job1 = new JobDto();
+    LocationResponse location1 = new LocationResponse((short) 1, "Mexico City", "Mexico");
+    LocationResponse location2 = new LocationResponse((short) 2, "Austin", "USA");
+    LocationResponse location3 = new LocationResponse((short) 3, "Chicago", "USA");
+
+    job1 = new JobResponse();
     job1.setId(1L);
     job1.setTitle("Senior Java Developer");
-    job1.setLocationCity("Mexico City");
-    job1.setLocationCountry("Mexico");
+    job1.setLocation(location1);
     job1.setJobRoleTitle("Software Engineering");
-    job1.setEmploymentType("Full-time");
+    job1.setJobType("Full-time");
     job1.setRemote(false);
     job1.setRelocation(true);
     job1.setVisaSponsorship(true);
-    job1.setRequiredExperience("6-10 years");
+    job1.setExperienceRequired("6-10 years");
     job1.setCreatedDate(LocalDateTime.now());
 
-    job2 = new JobDto();
+    job2 = new JobResponse();
     job2.setId(2L);
     job2.setTitle("Business Analyst");
-    job2.setLocationCity("Austin");
-    job2.setLocationCountry("USA");
+    job2.setLocation(location2);
     job2.setJobRoleTitle("Data Analytics");
-    job2.setEmploymentType("Contract");
+    job2.setJobType("Contract");
     job2.setRemote(false);
     job2.setRelocation(false);
     job2.setVisaSponsorship(false);
-    job2.setRequiredExperience("2-4 years");
+    job2.setExperienceRequired("2-4 years");
     job2.setCreatedDate(LocalDateTime.now());
 
-    job3 = new JobDto();
+    job3 = new JobResponse();
     job3.setId(3L);
     job3.setTitle("Frontend Consultant");
-    job3.setLocationCity("Mexico City");
-    job3.setLocationCountry("Mexico");
+    job3.setLocation(location1);
     job3.setJobRoleTitle("Software Engineering");
-    job3.setEmploymentType("Full-time");
+    job3.setJobType("Full-time");
     job3.setRemote(false);
     job3.setRelocation(true);
     job3.setVisaSponsorship(true);
-    job3.setRequiredExperience("4-6 years");
+    job3.setExperienceRequired("4-6 years");
     job3.setCreatedDate(LocalDateTime.now());
 
-    job4 = new JobDto();
+    job4 = new JobResponse();
     job4.setId(4L);
     job4.setTitle("UI Designer");
-    job4.setLocationCity("Chicago");
-    job4.setLocationCountry("USA");
+    job4.setLocation(location3);
     job4.setJobRoleTitle("Design");
-    job4.setEmploymentType("Part-time");
+    job4.setJobType("Part-time");
     job4.setRemote(true);
     job4.setRelocation(false);
     job4.setVisaSponsorship(false);
-    job4.setRequiredExperience("4-6 years");
+    job4.setExperienceRequired("4-6 years");
     job4.setCreatedDate(LocalDateTime.now());
 
     objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
@@ -142,10 +143,10 @@ class JobControllerTest {
   @DisplayName("Find all jobs that match a given city")
   void shouldReturnJobsFilterByCityAndStatusOk() throws Exception {
     String searchingCity = "Mexico City";
-    List<JobDto> jobList = Lists.newArrayList(job1, job3);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
-    String expectedJobs = objectMapper.writeValueAsString(jobPage);
-    given(jobService.selectJobsByParams(isNull(), anyString(), any(Pageable.class))).willReturn(jobPage);
+    List<JobResponse> jobsList = Lists.newArrayList(job1, job3);
+    Page<JobResponse> jobsPage = new PageImpl<>(jobsList);
+    String expectedJobs = objectMapper.writeValueAsString(jobsPage);
+    given(jobService.findJobsByParams(isNull(), anyString(), any(Pageable.class))).willReturn(jobsPage);
     mockMvc.perform(get("/api/v1/jobs?city={searchingCity}", searchingCity)
           .accept(MediaType.APPLICATION_JSON)
           .contentType(MediaType.APPLICATION_JSON)
@@ -155,17 +156,17 @@ class JobControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJobs));
 
-    verify(jobService).selectJobsByParams(isNull(), anyString(), any(Pageable.class));
+    verify(jobService).findJobsByParams(isNull(), anyString(), any(Pageable.class));
   }
 
   @Test
   @DisplayName("Find all jobs that match a given job role")
   void shouldReturnJobsFilterByJobRoleAndStatusOk() throws Exception {
     String searchingRole = "Design";
-    List<JobDto> jobList = Lists.newArrayList(job4);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
-    String expectedJson = objectMapper.writeValueAsString(jobPage);
-    given(jobService.selectJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class))).willReturn(jobPage);
+    List<JobResponse> jobsList = Lists.newArrayList(job4);
+    Page<JobResponse> jobsPage = new PageImpl<>(jobsList);
+    String expectedJson = objectMapper.writeValueAsString(jobsPage);
+    given(jobService.findJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class))).willReturn(jobsPage);
     mockMvc.perform(get("/api/v1/jobs?jobRole={searchingRole}", searchingRole)
           .accept(MediaType.APPLICATION_JSON)
           .contentType(MediaType.APPLICATION_JSON)
@@ -175,7 +176,7 @@ class JobControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    verify(jobService).selectJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class));
+    verify(jobService).findJobsByParams(eq(searchingRole), nullable(String.class), any(Pageable.class));
   }
 
   @Test
@@ -198,10 +199,10 @@ class JobControllerTest {
   @Test
   @DisplayName("Find all jobs by employer ID")
   void shouldReturnAllJobsForEmployerAndStatusOk() throws Exception {
-    List<JobDto> jobList = Lists.newArrayList(job2, job3, job4);
-    Page<JobDto> jobPage = new PageImpl<>(jobList);
+    List<JobResponse> jobList = Lists.newArrayList(job2, job3, job4);
+    Page<JobResponse> jobPage = new PageImpl<>(jobList);
     String expectedJson = objectMapper.writeValueAsString(jobPage);
-    given(jobService.fetchEmployerAllJobs(anyLong(), any(Pageable.class))).willReturn(jobPage);
+    given(jobService.fetchAllEmployerJobs(anyLong(), any(Pageable.class))).willReturn(jobPage);
     mockMvc.perform(get("/api/v1/employers/1/jobs")
           .accept(MediaType.APPLICATION_JSON)
           .contentType(MediaType.APPLICATION_JSON)
@@ -211,7 +212,7 @@ class JobControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    verify(jobService).fetchEmployerAllJobs(anyLong(), any(Pageable.class));
+    verify(jobService).fetchAllEmployerJobs(anyLong(), any(Pageable.class));
   }
 
   @Test
@@ -228,7 +229,7 @@ class JobControllerTest {
           .andReturn();
     verify(jobService).fetchEmployerJob(employerId, jobId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("Resource with specified ID not found");
+    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
   }
 
   @Test
@@ -241,30 +242,33 @@ class JobControllerTest {
     JobRequest jobRequest = JobRequest.builder()
           .title("System Architect")
           .jobRole("Software Engineering")
-          .employmentType("Full-time")
-          .isRemote(false)
-          .isRelocate(false)
-          .isVisaSponsorship(false)
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(false)
+          .visaSponsorship(false)
           .location(locationRequest)
-          .requiredExperience("10+ years")
+          .experienceRequired("10+ years")
           .skills(skillSet)
           .build();
 
     String newJobJson = objectMapper.writeValueAsString(jobRequest);
-    given(jobService.createEmployerJob(anyLong(), any(JobRequest.class)))
-          .willAnswer((Answer<JobDto>) invocation -> {
+    given(jobService.createEmployerJob(anyLong(), any(JobRequest.class))).willAnswer((Answer<JobResponse>) invocation -> {
       JobRequest request = invocation.getArgument(1);
-      JobDto jobResponse = new JobDto();
+      JobResponse jobResponse = new JobResponse();
       jobResponse.setId(1L);
       jobResponse.setTitle(request.getTitle());
       jobResponse.setJobRoleTitle(request.getJobRole());
       jobResponse.setRemote(request.getRemote());
       jobResponse.setRelocation(request.getRelocation());
       jobResponse.setVisaSponsorship(request.getVisaSponsorship());
-      jobResponse.setRequiredExperience(request.getRequiredExperience());
-      jobResponse.setEmploymentType(request.getEmploymentType());
-      jobResponse.setLocationCity(request.getLocation().getCity());
-      jobResponse.setLocationCountry(request.getLocation().getCountry());
+      jobResponse.setExperienceRequired(request.getExperienceRequired());
+      jobResponse.setJobType(request.getJobType());
+      jobResponse.setLocation(
+            new LocationResponse(
+                  request.getLocation().getId(),
+                  request.getLocation().getCity(),
+                  request.getLocation().getCountry()
+            ));
       jobResponse.setCreatedDate(LocalDateTime.now());
       return jobResponse;
     });
@@ -299,26 +303,30 @@ class JobControllerTest {
     JobRequest jobRequest = JobRequest.builder()
           .title(updatedTitle)
           .jobRole("Software Engineering")
-          .employmentType("Full-time")
-          .isRemote(false)
-          .isRelocate(false)
-          .isVisaSponsorship(false)
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(false)
+          .visaSponsorship(false)
           .location(locationRequest)
-          .requiredExperience("10+ years")
+          .experienceRequired("10+ years")
           .skills(skillSet)
           .build();
     String jobJson = objectMapper.writeValueAsString(jobRequest);
-    JobDto jobResponse = new JobDto();
+    JobResponse jobResponse = new JobResponse();
     jobResponse.setId(1L);
     jobResponse.setTitle(jobRequest.getTitle());
     jobResponse.setJobRoleTitle(jobRequest.getJobRole());
     jobResponse.setRemote(jobRequest.getRemote());
     jobResponse.setRelocation(jobRequest.getRelocation());
     jobResponse.setVisaSponsorship(jobRequest.getVisaSponsorship());
-    jobResponse.setRequiredExperience(jobRequest.getRequiredExperience());
-    jobResponse.setEmploymentType(jobRequest.getEmploymentType());
-    jobResponse.setLocationCity(jobRequest.getLocation().getCity());
-    jobResponse.setLocationCountry(jobRequest.getLocation().getCountry());
+    jobResponse.setExperienceRequired(jobRequest.getExperienceRequired());
+    jobResponse.setJobType(jobRequest.getJobType());
+    jobResponse.setLocation(
+          new LocationResponse(
+                jobRequest.getLocation().getId(),
+                jobRequest.getLocation().getCity(),
+                jobRequest.getLocation().getCountry()
+          ));
     jobResponse.setSkills(skillResponses);
     jobResponse.setCreatedDate(LocalDateTime.parse("2019-12-18T16:35:48"));
     jobResponse.setModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));

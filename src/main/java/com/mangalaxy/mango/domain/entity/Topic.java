@@ -1,10 +1,9 @@
 package com.mangalaxy.mango.domain.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.CascadeType;
@@ -22,9 +21,7 @@ import java.util.Set;
 /**
  * The topic entity that represents a blog's topic.
  */
-@Getter
-@Setter
-@ToString
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -32,8 +29,12 @@ import java.util.Set;
 public class Topic {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "topicSeqGenerator")
-  @SequenceGenerator(name = "topicSeqGenerator", sequenceName = "topic_id_seq", allocationSize = 10)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "topic_sequence")
+  @SequenceGenerator(
+        name = "topic_sequence",
+        sequenceName = "topic_id_seq",
+        allocationSize = 1
+  )
   @Column(name = "id", nullable = false, updatable = false)
   private Integer id;
 
@@ -42,16 +43,18 @@ public class Topic {
 
   @ToString.Exclude
   @EqualsAndHashCode.Exclude
-  @OneToMany(mappedBy = "topic",
+  @OneToMany(
+        mappedBy = "topic",
         cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-        orphanRemoval = true)
+        orphanRemoval = true
+  )
   private Set<Post> posts = new HashSet<>();
 
   /**
    * Add a new post to the topic and synchronize bidirectional association.
    * @param post a post to add
    */
-  public void addPost(final Post post) {
+  public void addPost(Post post) {
     post.setTopic(this);
     posts.add(post);
   }
@@ -60,11 +63,10 @@ public class Topic {
    * Removes a specified post from the topic's set of posts.
    * @param post a post to delete
    */
-  public void removePost(final Post post) {
+  public void removePost(Post post) {
     posts.remove(post);
     post.setTopic(null);
   }
-
 
 }
 

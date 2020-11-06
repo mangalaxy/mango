@@ -9,7 +9,7 @@
    <version>1.0.0-SNAPSHOT</version>
    <packaging>jar</packaging>
 
-   <name>mango project</name>
+   <name>MGS project</name>
    <url>https://www.mangostart.com</url>
    <description>Recruitment platform for talents and employers.</description>
 
@@ -202,71 +202,6 @@
                   <version>${junit-jupiter.version}</version>
                </dependency>
             </dependencies>
-         </plugin>
-
-         <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>1.10.0</version>
-            <configuration>
-               <workingDirectory>frontend</workingDirectory>
-               <installDirectory>target</installDirectory>
-               <skip>true</skip>
-               <skipTests>true</skipTests>
-            </configuration>
-            <executions>
-               <execution>
-                  <id>install node and npm</id>
-                  <goals>
-                     <goal>install-node-and-npm</goal>
-                  </goals>
-                  <configuration>
-                     <nodeVersion>v10.15.1</nodeVersion>
-                     <npmVersion>6.4.1</npmVersion>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>npm install</id>
-                  <goals>
-                     <goal>npm</goal>
-                  </goals>
-                  <configuration>
-                     <arguments>install</arguments>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>npm run build</id>
-                  <goals>
-                     <goal>npm</goal>
-                  </goals>
-                  <configuration>
-                     <arguments>run build</arguments>
-                  </configuration>
-               </execution>
-            </executions>
-         </plugin>
-
-         <plugin>
-            <artifactId>maven-antrun-plugin</artifactId>
-            <version>3.0.0</version>
-            <configuration>
-               <skip>true</skip>
-            </configuration>
-            <executions>
-               <execution>
-                  <phase>generate-resources</phase>
-                  <configuration>
-                     <target>
-                        <copy todir="${project.build.directory}/classes/public">
-                           <fileset dir="${project.basedir}/frontend/build"/>
-                        </copy>
-                     </target>
-                  </configuration>
-                  <goals>
-                     <goal>run</goal>
-                  </goals>
-               </execution>
-            </executions>
          </plugin>
 
       </plugins>

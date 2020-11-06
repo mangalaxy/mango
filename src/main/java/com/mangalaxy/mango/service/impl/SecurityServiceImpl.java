@@ -1,20 +1,20 @@
-package com.mangalaxy.mango.service;
+package com.mangalaxy.mango.service.impl;
 
 import com.mangalaxy.mango.domain.entity.PasswordResetToken;
 import com.mangalaxy.mango.domain.entity.User;
 import com.mangalaxy.mango.repository.PasswordResetTokenRepository;
+import com.mangalaxy.mango.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.Calendar;
 
-@Service
+//@Service
 @Transactional
 @RequiredArgsConstructor
 public class SecurityServiceImpl implements SecurityService {
