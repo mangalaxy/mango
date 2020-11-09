@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build:
-    working_directory: ~/mango-build
+    working_directory: /$REPONAME/build
     docker:
       - image: circleci/openjdk:8-jdk-stretch
       # Specify service dependencies here if necessary
@@ -40,9 +40,6 @@ jobs:
           name: Running tests
           command: mvn package
       - run:
-          name: "What was my Codecov token?"
-          command: echo ${CODECOV_TOKEN}
-      - run:
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
@@ -54,7 +51,7 @@ jobs:
           path: ~/test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
-          file: ~/mango-build/target/jacoco-reports/jacoco.xml
+          file: /$REPONAME/build/target/jacoco-reports/jacoco.xml
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
-          destination: ~/mango-build/artifact-storage/mango-1.0.0-SNAPSHOT.jar
+          destination: /$REPONAME/build/artifact-storage/mango-1.0.0-SNAPSHOT.jar
