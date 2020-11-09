@@ -52,7 +52,7 @@ jobs:
       - run:
           name: Set CodeCov token
           command: |
-            export CODECOV_TOKEN="15ccfe22-c615-4632-b34e-fb92d3d40367" \;
+            export CODECOV_TOKEN="15ccfe22-c615-4632-b34e-fb92d3d40367" \
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
           file: ~/mango-build/target/jacoco-reports/jacoco.xml
