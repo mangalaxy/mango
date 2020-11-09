@@ -1,7 +1,7 @@
 # mango
 
 [![CircleCI](https://circleci.com/gh/mangalaxy/mango.svg?style=svg)](https://circleci.com/gh/mangalaxy/mango)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mangalaxy_mangostart&metric=alert_status)](https://sonarcloud.io/dashboard?id=mangalaxy_mangostart)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=mangalaxy_mango&metric=alert_status)](https://sonarcloud.io/dashboard?id=mangalaxy_mango)
 [![codecov](https://codecov.io/gh/mangalaxy/mango/branch/develop/graph/badge.svg)](https://codecov.io/gh/mangalaxy/mango)
 
 
