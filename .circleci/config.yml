@@ -48,13 +48,7 @@ jobs:
       - store_test_results:
           path: ~/test-results
       - store_artifacts:
-          path: ~/test-results/junit
-      - run:
-          name: Set CodeCov token
-          command: |
-            CODECOV_TOKEN="15ccfe22-c615-4632-b34e-fb92d3d40367"
-            echo $CODECOV_TOKEN
-         
+          path: ~/test-results/junit  
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
           file: ~/mango-build/target/jacoco-reports/jacoco.xml
