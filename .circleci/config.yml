@@ -6,7 +6,7 @@ orbs:
 
 jobs:
   build:
-    working_directory: /$REPONAME/build
+    working_directory: ~/mango-build
     docker:
       - image: circleci/openjdk:8-jdk-stretch
       # Specify service dependencies here if necessary
@@ -20,7 +20,7 @@ jobs:
 
     environment:
       # Customize the JVM maximum heap limit
-      MAVEN_OPTS: -Xmx3g
+      MAVEN_OPTS: -Xmx1G
 
     steps:
       - checkout
@@ -51,7 +51,7 @@ jobs:
           path: ~/test-results/junit
       # Upload code coverage to Codecov: https://codecov.io/
       - codecov/upload:
-          file: /$REPONAME/build/target/jacoco-reports/jacoco.xml
+          file: ~/mango-build/target/jacoco-reports/jacoco.xml
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
-          destination: /$REPONAME/build/artifact-storage/mango-1.0.0-SNAPSHOT.jar
+          destination: ~/mango-build/artifact-storage/mango-1.0.0-SNAPSHOT.jar
