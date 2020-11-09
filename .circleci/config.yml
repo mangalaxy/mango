@@ -3,6 +3,7 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@1.0.4
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
 jobs:
   build:
@@ -37,8 +38,9 @@ jobs:
             - ~/.m2
           key: circleci-mango-{{ checksum "pom.xml" }}
       - run:
-          name: Running tests and code analysis on SonarCloud
-          command: mvn clean package verify sonar:sonar
+          name: Running tests
+          command: mvn package
+      - sonarcloud/scan
       - run:
           name: Save test results
           command: |
