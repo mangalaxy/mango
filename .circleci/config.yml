@@ -3,12 +3,13 @@ version: 2.1
 
 orbs:
   codecov: codecov/codecov@1.0.4
+  sonarcloud: sonarsource/sonarcloud@1.0.1
 
 jobs:
   build:
     working_directory: ~/mango-build
     docker:
-      - image: circleci/openjdk:8-jdk-stretch
+      - image: circleci/openjdk:11-jdk-stretch
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
@@ -39,6 +40,7 @@ jobs:
       - run:
           name: Running tests
           command: mvn package
+      - sonarcloud/scan
       - run:
           name: Save test results
           command: |
@@ -55,3 +57,9 @@ jobs:
       - store_artifacts: # store the uber jar as an artifact
           path: target/mango-1.0.0-SNAPSHOT.jar
           destination: ~/mango-build/artifact-storage/mango-1.0.0-SNAPSHOT.jar
+
+workflows:
+  main:
+    jobs:
+      - build:
+          context: SonarCloud
