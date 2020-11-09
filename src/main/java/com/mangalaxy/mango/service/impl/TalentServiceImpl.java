@@ -29,7 +29,7 @@ public class TalentServiceImpl implements TalentService {
 
   @Transactional(readOnly = true)
   @Override
-  public Page<TalentResponse> fetchTalentPage(Pageable pageable) throws ResourceNotFoundException {
+  public Page<TalentResponse> fetchTalentPage(Pageable pageable) {
     Page<Talent> talents = talentRepository.findAll(pageable);
     return talents.map(talent -> modelMapper.map(talent, TalentResponse.class));
   }
