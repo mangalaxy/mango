@@ -40,6 +40,9 @@ jobs:
           name: Running tests
           command: mvn package
       - run:
+          name: "What was my Codecov token?"
+          command: echo ${CODECOV_TOKEN}
+      - run:
           name: Save test results
           command: |
             mkdir -p ~/test-results/junit/
