@@ -32,6 +32,9 @@
       <surefire.version>3.0.0-M5</surefire.version>
       <jacoco.exec.path>${project.build.directory}/jacoco-reports/jacoco.exec</jacoco.exec.path>
       <jacoco.report.dir>${project.build.directory}/jacoco-reports</jacoco.report.dir>
+      <sonar.projectKey>mangalaxy_mango</sonar.projectKey>
+      <sonar.organization>mangalaxy</sonar.organization>
+      <sonar.host.url>https://sonarcloud.io</sonar.host.url>
    </properties>
 
    <dependencies>
