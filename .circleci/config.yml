@@ -37,11 +37,8 @@ jobs:
             - ~/.m2
           key: circleci-mango-{{ checksum "pom.xml" }}
       - run:
-          name: Running tests
-          command: mvn package
-      - run:
-          name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar
+          name: Running tests and code analysis on SonarCloud
+          command: mvn clean package verify sonar:sonar
       - run:
           name: Save test results
           command: |
