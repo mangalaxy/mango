@@ -77,8 +77,11 @@ public class Employer extends AuditEntity {
 
   @EqualsAndHashCode.Exclude
   @ToString.Exclude
-  @ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE },
-        fetch = FetchType.LAZY, optional = false)
+  @ManyToOne(
+        fetch = FetchType.LAZY,
+        cascade = { CascadeType.PERSIST, CascadeType.MERGE },
+        optional = false
+  )
   @JoinColumn(name = "company_id", nullable = false)
   private Company company;
 
@@ -88,9 +91,11 @@ public class Employer extends AuditEntity {
   private Location location;
 
   @EqualsAndHashCode.Exclude
-  @OneToMany(mappedBy = "publisher",
+  @OneToMany(
+        mappedBy = "publisher",
         cascade = CascadeType.ALL,
-        orphanRemoval = true)
+        orphanRemoval = true
+  )
   private Set<Job> jobs = new HashSet<>();
 
   @EqualsAndHashCode.Exclude

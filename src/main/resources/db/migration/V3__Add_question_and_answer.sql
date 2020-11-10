@@ -10,9 +10,8 @@ CREATE TABLE IF NOT EXISTS question (
 );
 
 CREATE TABLE IF NOT EXISTS answer (
-  id BIGSERIAL PRIMARY KEY,
+  question_id BIGINT NOT NULL PRIMARY KEY,
   message VARCHAR(255) NOT NULL,
-  question_id BIGINT NOT NULL,
   created_date TIMESTAMP WITHOUT TIME ZONE NOT NULL,
   last_update TIMESTAMP WITHOUT TIME ZONE,
   CONSTRAINT answer_question_fk FOREIGN KEY (question_id) REFERENCES question (id)

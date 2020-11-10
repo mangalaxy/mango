@@ -10,5 +10,5 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS user_roles (
   user_id BIGINT NOT NULL,
   role_name VARCHAR(15) NOT NULL,
-  CONSTRAINT user_role_fk FOREIGN KEY (user_id) REFERENCES users(id)
+  CONSTRAINT user_role_fk FOREIGN KEY (user_id) REFERENCES users (id)
 );

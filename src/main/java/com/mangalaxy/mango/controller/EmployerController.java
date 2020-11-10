@@ -55,7 +55,8 @@ public class EmployerController {
   @PreAuthorize("hasAuthority('EMPLOYER')")
   @PutMapping("/api/v1/employers/{id}")
   public ResponseEntity<EmployerResponse> updateSpecifiedEmployer(@PathVariable Long id,
-                                                                  @Validated @RequestBody EmployerRequest employerRequest) {
+                                                                  @Validated
+                                                                  @RequestBody EmployerRequest employerRequest) {
     EmployerResponse response = employerService.updateEmployerById(id, employerRequest);
     return ResponseEntity.ok(response);
   }
@@ -78,7 +79,8 @@ public class EmployerController {
 
   @PreAuthorize("hasAuthority('EMPLOYER')")
   @GetMapping("/api/v1/employers/{employerId}/talents/bookmarked")
-  public ResponseEntity<Page<TalentResponse>> getAllBookmarkedTalents(@PathVariable Long employerId, Pageable pageable) {
+  public ResponseEntity<Page<TalentResponse>> getAllBookmarkedTalents(@PathVariable Long employerId,
+                                                                      Pageable pageable) {
     Page<TalentResponse> response = employerRelationshipService.fetchBookmarkedTalents(employerId, pageable);
     return ResponseEntity.ok(response);
   }
