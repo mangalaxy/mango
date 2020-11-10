@@ -22,7 +22,11 @@ import javax.persistence.Table;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(
+      callSuper = true,
+      doNotUseGetters = true,
+      onlyExplicitlyIncluded = true
+)
 @ToString(callSuper = true, doNotUseGetters = true)
 @NoArgsConstructor
 @AllArgsConstructor
@@ -39,6 +43,7 @@ public class Question extends AuditEntity {
   )
   private Long id;
 
+  @EqualsAndHashCode.Include
   @Column(name = "message")
   private String message;
 
@@ -50,7 +55,12 @@ public class Question extends AuditEntity {
   @JoinColumn(name = "talent_id")
   private Talent talent;
 
-  @OneToOne(mappedBy = "question", cascade = CascadeType.ALL)
+  @OneToOne(
+        mappedBy = "question",
+        fetch = FetchType.LAZY,
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+  )
   private Answer answer;
 
 }
