@@ -41,7 +41,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "job")
-public class Job extends AuditEntity {
+public class Job extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "job_sequence")

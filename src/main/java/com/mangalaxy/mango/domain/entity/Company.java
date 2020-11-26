@@ -38,7 +38,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "company")
-public class Company extends AuditEntity {
+public class Company extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_sequence")

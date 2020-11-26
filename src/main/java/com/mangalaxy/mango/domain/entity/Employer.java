@@ -44,7 +44,7 @@ import java.util.Set;
 @Entity
 @NaturalIdCache
 @Table(name = "employer")
-public class Employer extends AuditEntity {
+public class Employer extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "employer_sequence")

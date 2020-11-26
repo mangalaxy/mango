@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "answer")
-public class Answer extends AuditEntity {
+public class Answer extends DateAudit {
 
   @Id
   @JoinColumn(name = "question_id", nullable = false)

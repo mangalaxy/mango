@@ -37,7 +37,7 @@ import java.util.Set;
 @NaturalIdCache
 @Entity
 @Table(name = "talent")
-public class Talent extends AuditEntity {
+public class Talent extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "talent_sequence")
