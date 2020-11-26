@@ -7,15 +7,13 @@ import lombok.Value;
 import javax.validation.constraints.Email;
 
 @Value
-public class Credentials {
+public class LoginRequest {
   @Email
   String email;
   String password;
 
   @JsonCreator
-  public Credentials(
-        @JsonProperty("email") String email,
-        @JsonProperty("password") String password) {
+  public LoginRequest(@JsonProperty("email") String email, @JsonProperty("password") String password) {
     this.email = email;
     this.password = password;
   }

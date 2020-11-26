@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface TalentRepository extends JpaRepository<Talent, Long> {
   Optional<Talent> findByEmail(String email);
+  boolean existsByEmail(String email);
   Page<Talent> findAllByPotentialEmployers_Id(Long employerId, Pageable pageable);
 }

@@ -51,7 +51,8 @@ public class PostServiceImpl implements PostService {
   @Transactional
   @Override
   public PostResponse createNewPost(Integer topicId, PostRequest postRequest) {
-    Topic topic = topicRepository.findById(topicId).orElseThrow(ResourceNotFoundException::new);
+    Topic topic = topicRepository.findById(topicId)
+          .orElseThrow(() -> new ResourceNotFoundException("topic", "id", topicId));
     Post newPost = modelMapper.map(postRequest, Post.class);
     topic.addPost(newPost);
     newPost = postRepository.save(newPost);
@@ -71,7 +72,8 @@ public class PostServiceImpl implements PostService {
 
   // Helper private methods
   private Post findPost(Integer id) {
-    return postRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    return postRepository.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("post", "id", id));
   }
 
   private PostResponse mapToDto(Post post) {

@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface EmployerRepository extends JpaRepository<Employer, Long> {
   Optional<Employer> findByEmail(String email);
+  boolean existsByEmail(String email);
   boolean existsByIdAndBookmarkedTalents_Id(Long employerId, Long talentId);
 }

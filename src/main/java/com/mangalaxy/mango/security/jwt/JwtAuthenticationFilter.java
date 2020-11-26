@@ -1,11 +1,11 @@
 package com.mangalaxy.mango.security.jwt;
 
-import com.mangalaxy.mango.service.CustomUserDetailsService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -17,41 +17,48 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @Slf4j
-@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-  private final JwtTokenProvider tokenProvider;
-  private final CustomUserDetailsService userDetailsService;
+  // Constants
+  public static final String AUTHORIZATION_HEADER = "Authorization";
+  public static final String TOKEN_TYPE = "Bearer ";
+  // Dependencies
+  @Autowired
+  private JwtTokenProvider tokenProvider;
+  @Autowired
+  private UserDetailsService customUserDetailsService;
 
   @Override
-  protected void doFilterInternal(HttpServletRequest request,
-                                  HttpServletResponse response,
-                                  FilterChain filterChain) throws ServletException, IOException {
+  protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+        throws ServletException, IOException {
     try {
-      String jwt = extractJwtTokenFromRequest(request);
-
-      if (tokenProvider.validateToken(jwt)) {
-        Long userId = tokenProvider.getUserIdFromJWT(jwt);
-
-        UserDetails userDetails = userDetailsService.loadUserById(userId);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+      String jwtToken = extractTokenFromRequest(request);
+      if (tokenProvider.validateToken(jwtToken)) {
+        String username = tokenProvider.getUsername(jwtToken);
+        /*
+          Note that you could also encode the user's username and roles inside JWT claims
+          and create the UserDetails object by parsing those claims from the JWT.
+          That would avoid the following database hit. It's completely up to you.
+        */
+        UserDetails principal = customUserDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+              principal, principal.getPassword(), principal.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     } catch (Exception ex) {
-      log.error("Could not set user authentication in security context", ex);
+      log.error("Failed to change authentication token in security context", ex);
     }
-
     filterChain.doFilter(request, response);
 
   }
 
-  private String extractJwtTokenFromRequest(HttpServletRequest request) throws Exception {
-    String token = request.getHeader("Authorization");
-    if (StringUtils.hasText(token) && token.startsWith("Bearer ")) {
-      return token.substring(7);
+  private String extractTokenFromRequest(HttpServletRequest request) {
+    String token = request.getHeader(AUTHORIZATION_HEADER);
+    if (StringUtils.hasText(token) && token.startsWith(TOKEN_TYPE)) {
+      return token.substring(TOKEN_TYPE.length());
     } else {
-      throw new Exception();
+      return null;
     }
   }
 }

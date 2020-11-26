@@ -3,8 +3,7 @@ package com.mangalaxy.mango.service.impl;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Talent;
-import com.mangalaxy.mango.exception.EmployerNotFoundException;
-import com.mangalaxy.mango.exception.TalentNotFoundException;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.TalentRepository;
 import com.mangalaxy.mango.service.EmployerRelationshipService;
@@ -31,8 +30,10 @@ public class EmployerRelationshipServiceImpl implements EmployerRelationshipServ
     } else if(!alreadyBookmarked && !bookmarked) {
       return false;
     } else {
-      Employer employer = employerRepository.findById(employerId).orElseThrow(EmployerNotFoundException::new);
-      Talent talent = talentRepository.findById(talentId).orElseThrow(TalentNotFoundException::new);
+      Employer employer = employerRepository.findById(employerId)
+            .orElseThrow(() -> new ResourceNotFoundException("employer", "id", employerId));
+      Talent talent = talentRepository.findById(talentId)
+            .orElseThrow(() -> new ResourceNotFoundException("talent", "id", talentId));
       if (bookmarked) {
         employer.addTalentToBookmarkedTalents(talent);
       } else {

@@ -1,15 +1,11 @@
 package com.mangalaxy.mango.domain.dto.response;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Data
+@Getter
+@AllArgsConstructor
 public class ApiResponse {
-
-  private Boolean success;
-  private String message;
-
-  public ApiResponse(Boolean success, String message) {
-    this.success = success;
-    this.message = message;
-  }
+  private final Boolean success;
+  private final String message;
 }

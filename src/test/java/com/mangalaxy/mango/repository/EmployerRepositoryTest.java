@@ -3,7 +3,7 @@ package com.mangalaxy.mango.repository;
 import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.exception.EmployerNotFoundException;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -58,7 +58,8 @@ class EmployerRepositoryTest {
     // given
     String email = "anna.fisher2019@gmail.com";
     // when
-    Employer employer = employerRepository.findByEmail(email).orElseThrow(EmployerNotFoundException::new);
+    Employer employer = employerRepository.findByEmail(email)
+          .orElseThrow(() -> new ResourceNotFoundException("employer", "email", email));
     // then
    assertEquals(email, employer.getEmail());
   }

@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.domain.entity;
 
+import com.mangalaxy.mango.domain.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -13,6 +14,8 @@ import org.hibernate.annotations.NaturalIdCache;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -75,7 +78,11 @@ public class Employer extends AuditEntity {
   @Column(name = "photo_url")
   private String photoUrl;
 
-  @EqualsAndHashCode.Exclude
+  @Enumerated(EnumType.STRING)
+  @NaturalId
+  @Column(name = "role", nullable = false)
+  private Role role;
+
   @ToString.Exclude
   @ManyToOne(
         fetch = FetchType.LAZY,
@@ -85,12 +92,10 @@ public class Employer extends AuditEntity {
   @JoinColumn(name = "company_id", nullable = false)
   private Company company;
 
-  @EqualsAndHashCode.Exclude
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
-  @EqualsAndHashCode.Exclude
   @OneToMany(
         mappedBy = "publisher",
         cascade = CascadeType.ALL,

@@ -17,7 +17,7 @@ import java.util.Set;
 @Builder
 public class ProfileRequest {
   private final Long id;
-  private final TalentRequest owner;
+  private final TalentSignUpRequest owner;
   private final String photoUrl;
   private final String selectedJobRole;
   private final Set<SkillRequest> skills;
@@ -28,16 +28,22 @@ public class ProfileRequest {
   private final List<String> preferredCompanyType;
   private final List<Experience> experiences;
   private final List<Education> educations;
-  private final List<Language> preferredLang;
+  private final List<Language> preferredLanguages;
 
   @JsonCreator
-  public ProfileRequest(@JsonProperty("id") Long id, @JsonProperty("owner") TalentRequest owner,
-                        @JsonProperty("photoUrl") String photoUrl, @JsonProperty("selectedJobRole") String selectedJobRole,
-                        @JsonProperty("skills") Set<SkillRequest> skills, @JsonProperty("status") CandidateStatus status,
-                        @JsonProperty("preferredLocation") LocationRequest preferredLocation, @JsonProperty("preferredSalary")  Salary preferredSalary,
-                        @JsonProperty("expectations") Set<String> expectations, @JsonProperty("preferredCompanyType") List<String> preferredCompanyType,
-                        @JsonProperty("experiences") List<Experience> experiences, @JsonProperty("educations") List<Education> educations,
-                        @JsonProperty("preferredLang") List<Language> preferredLang) {
+  public ProfileRequest(@JsonProperty("id") Long id,
+                        @JsonProperty("owner") TalentSignUpRequest owner,
+                        @JsonProperty("photoUrl") String photoUrl,
+                        @JsonProperty("selectedJobRole") String selectedJobRole,
+                        @JsonProperty("skills") Set<SkillRequest> skills,
+                        @JsonProperty("status") CandidateStatus status,
+                        @JsonProperty("preferredLocation") LocationRequest preferredLocation,
+                        @JsonProperty("preferredSalary")  Salary preferredSalary,
+                        @JsonProperty("expectations") Set<String> expectations,
+                        @JsonProperty("preferredCompanyType") List<String> preferredCompanyType,
+                        @JsonProperty("experiences") List<Experience> experiences,
+                        @JsonProperty("educations") List<Education> educations,
+                        @JsonProperty("preferredLanguages") List<Language> preferredLanguages) {
     this.id = id;
     this.owner = owner;
     this.photoUrl = photoUrl;
@@ -50,6 +56,6 @@ public class ProfileRequest {
     this.preferredCompanyType = preferredCompanyType;
     this.experiences = experiences;
     this.educations = educations;
-    this.preferredLang = preferredLang;
+    this.preferredLanguages = preferredLanguages;
   }
 }
