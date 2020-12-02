@@ -18,6 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,8 +30,6 @@ import static org.mockito.Mockito.when;
 class ProfileServiceTest {
   @Mock
   private ProfileRepository profileRepository;
-  @Mock
-  private TalentService talentService;
 
   private ProfileService profileService;
 
@@ -39,7 +38,7 @@ class ProfileServiceTest {
   @BeforeEach
   public void setUp() {
     ModelMapper modelMapper = new ModelMapper();
-    profileService = new ProfileServiceImpl(profileRepository, modelMapper, talentService);
+    profileService = new ProfileServiceImpl(profileRepository, modelMapper);
 
     Location location = Samples.createLocation();
 
@@ -50,18 +49,18 @@ class ProfileServiceTest {
           .password("#12hdk$573hdGH")
           .location(location)
           .build();
-
+    List<Language> languageList = Lists.newArrayList(new Language(Language.Level.FLUENT, "English"));
     profile = Profile.builder()
           .id(talent.getId())
           .owner(talent)
           .preferredLocation(new Location("Boston", "USA"))
-          .preferredSalary(new Salary("USD", BigDecimal.valueOf(150000L)))
-          .preferredLanguages(Lists.newArrayList(new Language(Language.Level.FLUENT, "English")))
+          .preferredSalary(new Salary("USD", new BigDecimal(150000)))
+          .preferredLanguages(languageList)
           .build();
   }
 
   @Test
-  public void shouldFindTalentProfile_thenSuccess() {
+  void shouldFindTalentProfile_thenSuccess() {
     // given
     Long expectedId = 1L;
     when(profileRepository.findById(anyLong())).thenReturn(Optional.of(profile));

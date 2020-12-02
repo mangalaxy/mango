@@ -63,8 +63,8 @@ public class Company extends DateAudit {
   @Column(name = "size")
   private String size;
 
-  @Column(name = "headquarter_address")
-  private String headquarterAddress;
+  @Column(name = "headquarters_address")
+  private String hqAddress;
 
   @Column(name = "industry")
   private String industry;

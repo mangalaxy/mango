@@ -220,7 +220,7 @@ class JobControllerTest {
   void shouldReturnsStatus404WhenJobNotFound() throws Exception {
     Long employerId = 1L;
     Long jobId = 1L;
-    willThrow(new ResourceNotFoundException()).given(jobService).fetchEmployerJob(employerId, jobId);
+    willThrow(new ResourceNotFoundException("job", "id", jobId)).given(jobService).fetchEmployerJob(employerId, jobId);
     MvcResult mvcResult = mockMvc.perform(
           get("/api/v1/employers/{employerId}/jobs/{jobId}", employerId, jobId)
           .accept(MediaType.APPLICATION_JSON))
@@ -229,7 +229,7 @@ class JobControllerTest {
           .andReturn();
     verify(jobService).fetchEmployerJob(employerId, jobId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
+    assertThat(mvcResult.getResolvedException()).hasMessage("job not found with id : '1'");
   }
 
   @Test

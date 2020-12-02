@@ -2,7 +2,8 @@ package com.mangalaxy.mango.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
+import com.mangalaxy.mango.domain.dto.request.EmployerSignUpRequest;
+import com.mangalaxy.mango.domain.dto.request.EmployerUpdateRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
@@ -11,6 +12,7 @@ import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -117,6 +119,7 @@ class EmployerControllerTest {
     Page<EmployerResponse> employerPage = new PageImpl<>(employerResponseList);
     String expectedJson = objectMapper.writeValueAsString(employerPage);
     given(employerService.fetchAllEmployers(any(Pageable.class))).willReturn(employerPage);
+
     mockMvc.perform(get("/api/v1/employers?page=0&limit=20")
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
@@ -129,9 +132,10 @@ class EmployerControllerTest {
   }
 
   @Test
+  @Disabled("Employer creation has been moved to Register Controller")
   @DisplayName("Create a new employer and check status 201")
   void shouldCreateNewEmployerAndReturnsStatusCreated() throws Exception {
-    EmployerRequest newEmployer = EmployerRequest.builder()
+    EmployerSignUpRequest newEmployer = EmployerSignUpRequest.builder()
           .fullName("Erik Wish")
           .email("erik1000_wish@gmail.com")
           .password("12$qty789")
@@ -139,17 +143,17 @@ class EmployerControllerTest {
           .companyName("Okta c.l.")
           .location(new LocationRequest((short) 67, "San Diego", "USA"))
           .build();
-    EmployerResponse mockEmployer = EmployerResponse.builder()
-          .id(1L)
-          .fullName("Erik Wish")
-          .email("erik1000_wish@gmail.com")
-          .jobTitle("IT Recruitment Generalist")
-          .companyName("Okta c.l.")
-          .location(new LocationResponse((short) 67, "San Diego", "USA"))
-          .createdDate(LocalDateTime.now())
-          .build();
 
-    given(employerService.createNewEmployer(any(EmployerRequest.class))).willReturn(mockEmployer);
+    given(employerService.createNewEmployer(any(EmployerSignUpRequest.class)))
+          .willReturn(EmployerResponse.builder()
+                .id(1L)
+                .fullName("Erik Wish")
+                .email("erik1000_wish@gmail.com")
+                .jobTitle("IT Recruitment Generalist")
+                .companyName("Okta c.l.")
+                .location(new LocationResponse((short) 67, "San Diego", "USA"))
+                .createdDate(LocalDateTime.now())
+                .build());
     mockMvc.perform(post("/api/v1/employers")
           .contentType(MediaType.APPLICATION_JSON)
           .characterEncoding(StandardCharsets.UTF_8.displayName())
@@ -159,7 +163,7 @@ class EmployerControllerTest {
           .andExpect(header().string(HttpHeaders.LOCATION, "http://localhost/api/v1/employers/1"))
           .andReturn();
 
-    ArgumentCaptor<EmployerRequest> argumentCaptor = ArgumentCaptor.forClass(EmployerRequest.class);
+    ArgumentCaptor<EmployerSignUpRequest> argumentCaptor = ArgumentCaptor.forClass(EmployerSignUpRequest.class);
     verify(employerService).createNewEmployer(argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getFullName()).isEqualTo("Erik Wish");
     assertThat(argumentCaptor.getValue().getEmail()).isEqualTo("erik1000_wish@gmail.com");
@@ -169,12 +173,10 @@ class EmployerControllerTest {
   @DisplayName("Update an existing employer with updated job title")
   void shouldUpdateEmployerWithJobTitleAndReturnsStatusOk() throws Exception {
     String updatedJobTitle = "HR Generalist";
-    EmployerRequest updatedEmployer = EmployerRequest.builder()
+    EmployerUpdateRequest updatedEmployer = EmployerUpdateRequest.builder()
           .fullName("Erik Wish")
           .email("erik1000_wish@gmail.com")
-          .password("12$qty789")
           .jobTitle(updatedJobTitle)
-          .companyName("Okta c.l.")
           .location(new LocationRequest((short) 67, "San Diego", "USA"))
           .build();
     EmployerResponse mockEmployer = EmployerResponse.builder()
@@ -188,7 +190,7 @@ class EmployerControllerTest {
           .modifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
           .build();
     String expectedJson = objectMapper.writeValueAsString(mockEmployer);
-    given(employerService.updateEmployerById(anyLong(), any(EmployerRequest.class))).willReturn(mockEmployer);
+    given(employerService.updateEmployerById(anyLong(), any(EmployerUpdateRequest.class))).willReturn(mockEmployer);
 
     mockMvc.perform(put("/api/v1/employers/1")
           .contentType(MediaType.APPLICATION_JSON)
@@ -199,7 +201,7 @@ class EmployerControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    ArgumentCaptor<EmployerRequest> argumentCaptor = ArgumentCaptor.forClass(EmployerRequest.class);
+    ArgumentCaptor<EmployerUpdateRequest> argumentCaptor = ArgumentCaptor.forClass(EmployerUpdateRequest.class);
     verify(employerService).updateEmployerById(anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getFullName()).isEqualTo("Erik Wish");
     assertThat(argumentCaptor.getValue().getJobTitle()).isEqualTo(updatedJobTitle);
@@ -209,7 +211,8 @@ class EmployerControllerTest {
   @DisplayName("Return status 404 when employer not found")
   void shouldReturnsStatus404WhenEmployerDoesntExist() throws Exception {
     Long employerId = 1L;
-    willThrow(new ResourceNotFoundException()).given(employerService).fetchEmployerById(employerId);
+    willThrow(new ResourceNotFoundException("employer", "id", employerId))
+          .given(employerService).fetchEmployerById(employerId);
     MvcResult mvcResult = mockMvc.perform(get("/api/v1/employers/{employerId}", employerId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
@@ -217,7 +220,7 @@ class EmployerControllerTest {
           .andReturn();
     verify(employerService).fetchEmployerById(employerId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
+    assertThat(mvcResult.getResolvedException()).hasMessage("employer not found with id : '1'");
   }
 
   @Test

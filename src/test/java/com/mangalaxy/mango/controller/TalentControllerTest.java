@@ -11,6 +11,7 @@ import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.service.TalentService;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -35,6 +36,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.willThrow;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -115,6 +117,7 @@ class TalentControllerTest {
   }
 
   @Test
+  @Disabled("Talent creation has been moved to Register Controller")
   @DisplayName("Create a new talent and check status 201")
   void shouldCreateNewTalentAndReturnStatus201() throws Exception {
     TalentSignUpRequest newTalent = new TalentSignUpRequest(
@@ -145,7 +148,7 @@ class TalentControllerTest {
 
   @Test
   @DisplayName("Update an existing talent with updated email")
-  public void shouldUpdateTalentWithEmailAndReturnsStatusOk() throws Exception {
+  void shouldUpdateTalentWithEmailAndReturnsStatusOk() throws Exception {
     // prepare data
     String updatedEmail = "a.fisher1290@gmail.com";
     TalentSignUpRequest updatedTalent = new TalentSignUpRequest(
@@ -180,7 +183,7 @@ class TalentControllerTest {
   @DisplayName("Check status 404 when talent not found")
   void shouldReturnsStatus404WhenTalentDoesntExist() throws Exception {
     Long talentId = 1L;
-    willThrow(new ResourceNotFoundException()).given(talentService).fetchTalentById(talentId);
+    willThrow(new ResourceNotFoundException("talent", "id", talentId)).given(talentService).fetchTalentById(talentId);
     MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents/{talentId}", talentId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
@@ -188,7 +191,7 @@ class TalentControllerTest {
           .andReturn();
     verify(talentService).fetchTalentById(talentId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
+    assertThat(mvcResult.getResolvedException()).hasMessage("talent not found with id : '1'");
   }
 
   @Test

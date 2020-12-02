@@ -70,7 +70,7 @@ public class Employer extends DateAudit {
   private String password;
 
   @Column(name = "phone")
-  private String phoneNumber;
+  private String phone;
 
   @Column(name = "job_title")
   private String jobTitle;
