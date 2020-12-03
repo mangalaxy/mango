@@ -26,8 +26,8 @@ public class JobRequest {
                     @JsonProperty("jobRole") String jobRole,
                     @JsonProperty("jobType") String jobType,
                     @JsonProperty("remote") Boolean remote,
-                    @JsonProperty("relocation") Boolean isRelocate,
-                    @JsonProperty("visaSponsorship") Boolean isVisaSponsorship,
+                    @JsonProperty("relocation") Boolean relocation,
+                    @JsonProperty("visaSponsorship") Boolean visaSponsorship,
                     @JsonProperty("experienceRequired") String experienceRequired,
                     @JsonProperty("description") String description,
                     @JsonProperty("location") LocationRequest location,
@@ -35,8 +35,8 @@ public class JobRequest {
     this.title = title;
     this.jobType = jobType;
     this.remote = remote;
-    this.relocation = isRelocate;
-    this.visaSponsorship = isVisaSponsorship;
+    this.relocation = relocation;
+    this.visaSponsorship = visaSponsorship;
     this.experienceRequired = experienceRequired;
     this.description = description;
     this.location = location;

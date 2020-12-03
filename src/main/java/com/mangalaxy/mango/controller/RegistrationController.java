@@ -21,7 +21,7 @@ import java.net.URI;
 public class RegistrationController {
   private final RegistrationService registrationService;
 
-  @PostMapping("/api/v1/employer/register")
+  @PostMapping("/api/v1/auth/employer/register")
   public ResponseEntity<ApiResponse> registerEmployer(@RequestBody @Validated EmployerSignUpRequest employerRequest) {
     Long assignedId = registrationService.register(employerRequest);
     URI location = MvcUriComponentsBuilder
@@ -32,7 +32,7 @@ public class RegistrationController {
     return ResponseEntity.created(location).body(successResponse);
   }
 
-  @PostMapping("/api/v1/talent/register")
+  @PostMapping("/api/v1/auth/talent/register")
   public ResponseEntity<ApiResponse> registerTalent(@RequestBody @Validated TalentSignUpRequest talentRequest) {
     Long assignedId = registrationService.register(talentRequest);
     URI location = MvcUriComponentsBuilder
@@ -43,7 +43,7 @@ public class RegistrationController {
     return ResponseEntity.created(location).body(successResponse);
   }
 
-  @PutMapping("/api/v1/confirm-registration")
+  @PutMapping("/api/v1/auth/confirm-registration")
   public ResponseEntity<ApiResponse> confirmRegistration(@RequestParam("token") String activationToken) {
     ApiResponse confirmedResponse = registrationService.confirmRegistration(activationToken);
     return ResponseEntity.ok(confirmedResponse);

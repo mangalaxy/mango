@@ -1,35 +1,32 @@
 package com.mangalaxy.mango.domain.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
+import lombok.Value;
 
 import java.time.LocalDateTime;
 import java.util.Set;
 
 @Builder
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
+@Value
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 @ToString(doNotUseGetters = true)
 public class JobResponse {
-  private Long id;
-  private String title;
-  private String jobRoleTitle;
-  private String jobType;
-  private LocationResponse location;
-  private Boolean remote;
-  private Boolean relocation;
-  private Boolean visaSponsorship;
-  private String experienceRequired;
-  private String description;
-  private Set<SkillResponse> skills;
-  private LocalDateTime createdDate;
-  private LocalDateTime modifiedDate;
+  Long id;
+  String title;
+  String jobRoleTitle;
+  String jobType;
+  LocationResponse location;
+  Boolean remote;
+  Boolean relocation;
+  Boolean visaSponsorship;
+  String experienceRequired;
+  String description;
+  Set<SkillResponse> skills;
+  LocalDateTime createdDate;
+  LocalDateTime modifiedDate;
 }

@@ -1,4 +1,4 @@
-package com.mangalaxy.mango.config;
+package com.mangalaxy.mango.security;
 
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationEntryPoint;
 import com.mangalaxy.mango.security.jwt.JwtAuthenticationFilter;
@@ -55,15 +55,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   public void configure(WebSecurity web) {
-    web.ignoring().antMatchers("/",
-          "/favicon.ico",
-          "/**/*.png",
-          "/**/*.gif",
-          "/**/*.svg",
-          "/**/*.jpg",
-          "/**/*.html",
-          "/**/*.css",
-          "/**/*.js"
+    web.ignoring().antMatchers("/v2/api-docs",
+          "/configuration/ui",
+          "/swagger-resources/**",
+          "/configuration/security",
+          "/swagger-ui.html",
+          "/webjars/**"
     );
   }
 
@@ -85,7 +82,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
           .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
           .authorizeRequests()
             .antMatchers("/api/v1/auth/**").permitAll()
-          .antMatchers(HttpMethod.GET, "/api/v1/jobs/**", "/api/v1/posts/**")
+          .antMatchers(HttpMethod.GET, "/api/v1/jobs", "/api/v1/posts/**", "/api/v1/locations/**")
             .permitAll()
           .anyRequest()
             .authenticated();
