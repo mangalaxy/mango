@@ -5,6 +5,7 @@ import com.mangalaxy.mango.domain.dto.response.ProfileResponse;
 import com.mangalaxy.mango.security.CurrentUser;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.service.ProfileService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = "Talent Profile API", description = "Provides read and update operations on talent profile resource")
 @RequiredArgsConstructor
 @RestController
 public class ProfileController {

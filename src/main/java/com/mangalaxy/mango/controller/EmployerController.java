@@ -7,6 +7,7 @@ import com.mangalaxy.mango.security.CurrentUser;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
+@Api(tags = "Employers API")
 @RequiredArgsConstructor
 @RestController
 public class EmployerController {

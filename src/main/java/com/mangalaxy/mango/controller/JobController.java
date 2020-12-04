@@ -3,6 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.JobRequest;
 import com.mangalaxy.mango.domain.dto.response.JobResponse;
 import com.mangalaxy.mango.service.JobService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@Api(tags = "Jobs API")
 @RequiredArgsConstructor
 @RestController
 public class JobController {

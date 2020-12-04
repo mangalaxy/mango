@@ -6,6 +6,7 @@ import com.mangalaxy.mango.domain.dto.response.JwtAuthResponse;
 import com.mangalaxy.mango.security.CurrentUser;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.service.AuthenticationService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api(tags = "Authentication API", description = "Allows users to log in or log out using the provided credentials")
 @RestController
 @RequiredArgsConstructor
 public class AuthenticationController {

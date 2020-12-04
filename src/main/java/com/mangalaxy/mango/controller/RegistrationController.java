@@ -4,6 +4,7 @@ import com.mangalaxy.mango.domain.dto.request.EmployerSignUpRequest;
 import com.mangalaxy.mango.domain.dto.request.TalentSignUpRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.service.RegistrationService;
+import io.swagger.annotations.Api;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
+@Api(tags = "Register API", description = "Allows users to register in the system")
 @AllArgsConstructor
 @RestController
 public class RegistrationController {

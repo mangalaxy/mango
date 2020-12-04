@@ -88,53 +88,57 @@ class JobControllerTest {
     LocationResponse location2 = new LocationResponse((short) 2, "Austin", "USA");
     LocationResponse location3 = new LocationResponse((short) 3, "Chicago", "USA");
 
-    job1 = new JobResponse();
-    job1.setId(1L);
-    job1.setTitle("Senior Java Developer");
-    job1.setLocation(location1);
-    job1.setJobRoleTitle("Software Engineering");
-    job1.setJobType("Full-time");
-    job1.setRemote(false);
-    job1.setRelocation(true);
-    job1.setVisaSponsorship(true);
-    job1.setExperienceRequired("6-10 years");
-    job1.setCreatedDate(LocalDateTime.now());
+    job1 = JobResponse.builder()
+          .id(1L)
+          .title("Senior Java Developer")
+          .location(location1)
+          .jobRoleTitle("Software Engineering")
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(true)
+          .visaSponsorship(true)
+          .experienceRequired("6-10 years")
+          .createdDate(LocalDateTime.now())
+          .build();
 
-    job2 = new JobResponse();
-    job2.setId(2L);
-    job2.setTitle("Business Analyst");
-    job2.setLocation(location2);
-    job2.setJobRoleTitle("Data Analytics");
-    job2.setJobType("Contract");
-    job2.setRemote(false);
-    job2.setRelocation(false);
-    job2.setVisaSponsorship(false);
-    job2.setExperienceRequired("2-4 years");
-    job2.setCreatedDate(LocalDateTime.now());
+    job2 = JobResponse.builder()
+          .id(2L)
+          .title("Business Analyst")
+          .location(location2)
+          .jobRoleTitle("Data Analytics")
+          .jobType("Contract")
+          .remote(false)
+          .relocation(false)
+          .visaSponsorship(false)
+          .experienceRequired("2-4 years")
+          .createdDate(LocalDateTime.now())
+          .build();
 
-    job3 = new JobResponse();
-    job3.setId(3L);
-    job3.setTitle("Frontend Consultant");
-    job3.setLocation(location1);
-    job3.setJobRoleTitle("Software Engineering");
-    job3.setJobType("Full-time");
-    job3.setRemote(false);
-    job3.setRelocation(true);
-    job3.setVisaSponsorship(true);
-    job3.setExperienceRequired("4-6 years");
-    job3.setCreatedDate(LocalDateTime.now());
+    job3 = JobResponse.builder()
+          .id(3L)
+          .title("Frontend Consultant")
+          .location(location1)
+          .jobRoleTitle("Software Engineering")
+          .jobType("Full-time")
+          .remote(false)
+          .relocation(true)
+          .visaSponsorship(true)
+          .experienceRequired("4-6 years")
+          .createdDate(LocalDateTime.now())
+          .build();
 
-    job4 = new JobResponse();
-    job4.setId(4L);
-    job4.setTitle("UI Designer");
-    job4.setLocation(location3);
-    job4.setJobRoleTitle("Design");
-    job4.setJobType("Part-time");
-    job4.setRemote(true);
-    job4.setRelocation(false);
-    job4.setVisaSponsorship(false);
-    job4.setExperienceRequired("4-6 years");
-    job4.setCreatedDate(LocalDateTime.now());
+    job4 = JobResponse.builder()
+          .id(4L)
+          .title("UI Designer")
+          .location(location3)
+          .jobRoleTitle("Design")
+          .jobType("Part-time")
+          .remote(true)
+          .relocation(false)
+          .visaSponsorship(false)
+          .experienceRequired("4-6 years")
+          .createdDate(LocalDateTime.now())
+          .build();
 
     objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
   }
@@ -223,7 +227,7 @@ class JobControllerTest {
     willThrow(new ResourceNotFoundException("job", "id", jobId)).given(jobService).fetchEmployerJob(employerId, jobId);
     MvcResult mvcResult = mockMvc.perform(
           get("/api/v1/employers/{employerId}/jobs/{jobId}", employerId, jobId)
-          .accept(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
           .andExpect(status().isNotFound())
           .andReturn();
@@ -254,22 +258,22 @@ class JobControllerTest {
     String newJobJson = objectMapper.writeValueAsString(jobRequest);
     given(jobService.createEmployerJob(anyLong(), any(JobRequest.class))).willAnswer((Answer<JobResponse>) invocation -> {
       JobRequest request = invocation.getArgument(1);
-      JobResponse jobResponse = new JobResponse();
-      jobResponse.setId(1L);
-      jobResponse.setTitle(request.getTitle());
-      jobResponse.setJobRoleTitle(request.getJobRole());
-      jobResponse.setRemote(request.getRemote());
-      jobResponse.setRelocation(request.getRelocation());
-      jobResponse.setVisaSponsorship(request.getVisaSponsorship());
-      jobResponse.setExperienceRequired(request.getExperienceRequired());
-      jobResponse.setJobType(request.getJobType());
-      jobResponse.setLocation(
-            new LocationResponse(
+      JobResponse jobResponse = JobResponse.builder()
+            .id(1L)
+            .title(request.getTitle())
+            .jobRoleTitle(request.getJobRole())
+            .remote(request.getRemote())
+            .relocation(request.getRelocation())
+            .visaSponsorship(request.getVisaSponsorship())
+            .experienceRequired(request.getExperienceRequired())
+            .jobType(request.getJobType())
+            .location(new LocationResponse(
                   request.getLocation().getId(),
                   request.getLocation().getCity(),
                   request.getLocation().getCountry()
-            ));
-      jobResponse.setCreatedDate(LocalDateTime.now());
+            ))
+            .createdDate(LocalDateTime.now())
+            .build();
       return jobResponse;
     });
     mockMvc.perform(post("/api/v1/employers/1/jobs")
@@ -312,24 +316,24 @@ class JobControllerTest {
           .skills(skillSet)
           .build();
     String jobJson = objectMapper.writeValueAsString(jobRequest);
-    JobResponse jobResponse = new JobResponse();
-    jobResponse.setId(1L);
-    jobResponse.setTitle(jobRequest.getTitle());
-    jobResponse.setJobRoleTitle(jobRequest.getJobRole());
-    jobResponse.setRemote(jobRequest.getRemote());
-    jobResponse.setRelocation(jobRequest.getRelocation());
-    jobResponse.setVisaSponsorship(jobRequest.getVisaSponsorship());
-    jobResponse.setExperienceRequired(jobRequest.getExperienceRequired());
-    jobResponse.setJobType(jobRequest.getJobType());
-    jobResponse.setLocation(
-          new LocationResponse(
+    JobResponse jobResponse = JobResponse.builder()
+          .id(1L)
+          .title(jobRequest.getTitle())
+          .jobRoleTitle(jobRequest.getJobRole())
+          .remote(jobRequest.getRemote())
+          .relocation(jobRequest.getRelocation())
+          .visaSponsorship(jobRequest.getVisaSponsorship())
+          .experienceRequired(jobRequest.getExperienceRequired())
+          .jobType(jobRequest.getJobType())
+          .location(new LocationResponse(
                 jobRequest.getLocation().getId(),
                 jobRequest.getLocation().getCity(),
                 jobRequest.getLocation().getCountry()
-          ));
-    jobResponse.setSkills(skillResponses);
-    jobResponse.setCreatedDate(LocalDateTime.parse("2019-12-18T16:35:48"));
-    jobResponse.setModifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS));
+          ))
+          .skills(skillResponses)
+          .createdDate(LocalDateTime.parse("2019-12-18T16:35:48"))
+          .modifiedDate(LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS))
+          .build();
 
     String expectedJson = objectMapper.writeValueAsString(jobResponse);
     given(jobService.updateEmployerJob(anyLong(), anyLong(), any(JobRequest.class))).willReturn(jobResponse);
