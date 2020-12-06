@@ -70,21 +70,35 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
           .csrf()
             .disable()
-          .httpBasic().disable()
+          .httpBasic()
+            .disable()
           .exceptionHandling()
             .authenticationEntryPoint(unauthorizedHandler)
             .and()
           .sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
-          .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
           .authorizeRequests()
-            .antMatchers("/api/v1/auth/**").permitAll()
+            .antMatchers("/",
+                "/favicon.ico",
+                "/**/*.png",
+                "/**/*.gif",
+                "/**/*.svg",
+                "/**/*.jpg",
+                "/**/*.html",
+                "/**/*.css",
+                "/**/*.js")
+              .permitAll()
+            .antMatchers("/api/v1/auth/**")
+              .permitAll()
           .antMatchers(HttpMethod.GET, "/api/v1/jobs", "/api/v1/posts/**", "/api/v1/locations/**")
-            .permitAll()
+              .permitAll()
           .anyRequest()
             .authenticated();
     // @formatter:on
+
+    // Add our custom JWT security filter
+    http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 
   }
 

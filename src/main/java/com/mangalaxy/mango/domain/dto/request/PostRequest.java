@@ -29,7 +29,7 @@ public class PostRequest {
   String imageUrl;
 
   @NotBlank
-  @Size(max = 60)
+  @Size(min = 3, max = 60)
   String author;
 
   @NotBlank
@@ -37,12 +37,11 @@ public class PostRequest {
   String content;
 
   @JsonCreator
-  public PostRequest of(
-        @JsonProperty("headline") String headline,
-        @JsonProperty("opening") String opening,
-        @JsonProperty("imageUrl") String imageUrl,
-        @JsonProperty("author") String author,
-        @JsonProperty("content") String content) {
+  public PostRequest of(@JsonProperty("headline") String headline,
+                        @JsonProperty("opening") String opening,
+                        @JsonProperty("imageUrl") String imageUrl,
+                        @JsonProperty("author") String author,
+                        @JsonProperty("content") String content) {
     return new PostRequest(
           headline,
           opening,

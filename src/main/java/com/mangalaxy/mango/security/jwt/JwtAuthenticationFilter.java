@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
   // Constants
   public static final String AUTHORIZATION_HEADER = "Authorization";
-  public static final String TOKEN_TYPE = "Bearer ";
+  public static final String TOKEN_PREFIX = "Bearer";
   // Dependencies
   @Autowired
   private JwtTokenProvider tokenProvider;
@@ -31,9 +31,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {
     try {
-      String jwtToken = extractTokenFromRequest(request);
-      if (tokenProvider.validateToken(jwtToken)) {
-        String username = tokenProvider.getUsername(jwtToken);
+      String jwt = extractJwtFromRequest(request);
+      if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+        String username = tokenProvider.getUsername(jwt);
         /*
           Note that you could also encode the user's username and roles inside JWT claims
           and create the UserDetails object by parsing those claims from the JWT.
@@ -47,16 +47,16 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
     } catch (Exception ex) {
-      log.error("Failed to change authentication token in security context", ex);
+      log.error("Could not set user authentication in security context", ex);
     }
     filterChain.doFilter(request, response);
 
   }
 
-  private String extractTokenFromRequest(HttpServletRequest request) {
-    String token = request.getHeader(AUTHORIZATION_HEADER);
-    if (StringUtils.hasText(token) && token.startsWith(TOKEN_TYPE)) {
-      return token.substring(TOKEN_TYPE.length());
+  private String extractJwtFromRequest(HttpServletRequest request) {
+    String bearerToken = request.getHeader(AUTHORIZATION_HEADER);
+    if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(TOKEN_PREFIX)) {
+      return bearerToken.substring(TOKEN_PREFIX.length() + 1);
     } else {
       return null;
     }

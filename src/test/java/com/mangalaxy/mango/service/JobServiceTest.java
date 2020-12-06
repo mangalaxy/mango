@@ -194,7 +194,7 @@ class JobServiceTest {
 
     JobRequest newJob = JobRequest.builder()
           .title("Middle Front-end Developer (Angular, Firebase)")
-          .jobRole("Software Engineering")
+          .jobRoleTitle("Software Engineering")
           .jobType("Full-time")
           .remote(false)
           .relocation(false)

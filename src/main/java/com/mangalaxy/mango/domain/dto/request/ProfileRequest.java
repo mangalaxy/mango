@@ -19,7 +19,7 @@ public class ProfileRequest {
   private final Long id;
   private final TalentSignUpRequest owner;
   private final String photoUrl;
-  private final String selectedJobRole;
+  private final String jobRole;
   private final Set<SkillRequest> skills;
   private final CandidateStatus status;
   private final LocationRequest preferredLocation;
@@ -34,7 +34,7 @@ public class ProfileRequest {
   public ProfileRequest(@JsonProperty("id") Long id,
                         @JsonProperty("owner") TalentSignUpRequest owner,
                         @JsonProperty("photoUrl") String photoUrl,
-                        @JsonProperty("selectedJobRole") String selectedJobRole,
+                        @JsonProperty("jobRole") String jobRole,
                         @JsonProperty("skills") Set<SkillRequest> skills,
                         @JsonProperty("status") CandidateStatus status,
                         @JsonProperty("preferredLocation") LocationRequest preferredLocation,
@@ -47,7 +47,7 @@ public class ProfileRequest {
     this.id = id;
     this.owner = owner;
     this.photoUrl = photoUrl;
-    this.selectedJobRole = selectedJobRole;
+    this.jobRole = jobRole;
     this.skills = skills;
     this.status = status;
     this.preferredLocation = preferredLocation;

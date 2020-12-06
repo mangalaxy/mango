@@ -5,9 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.ToString;
 import lombok.Value;
 
+import javax.validation.constraints.NotBlank;
+
 @Value
 @ToString(doNotUseGetters = true)
 public class SkillRequest {
+
+  @NotBlank
   String name;
 
   @JsonCreator

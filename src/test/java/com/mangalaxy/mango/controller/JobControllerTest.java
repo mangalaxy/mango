@@ -245,7 +245,7 @@ class JobControllerTest {
           new SkillRequest("DDD"));
     JobRequest jobRequest = JobRequest.builder()
           .title("System Architect")
-          .jobRole("Software Engineering")
+          .jobRoleTitle("Software Engineering")
           .jobType("Full-time")
           .remote(false)
           .relocation(false)
@@ -261,7 +261,7 @@ class JobControllerTest {
       JobResponse jobResponse = JobResponse.builder()
             .id(1L)
             .title(request.getTitle())
-            .jobRoleTitle(request.getJobRole())
+            .jobRoleTitle(request.getJobRoleTitle())
             .remote(request.getRemote())
             .relocation(request.getRelocation())
             .visaSponsorship(request.getVisaSponsorship())
@@ -288,7 +288,7 @@ class JobControllerTest {
     ArgumentCaptor<JobRequest> argumentCaptor = ArgumentCaptor.forClass(JobRequest.class);
     verify(jobService).createEmployerJob(anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getTitle()).isEqualTo("System Architect");
-    assertThat(argumentCaptor.getValue().getJobRole()).isEqualTo("Software Engineering");
+    assertThat(argumentCaptor.getValue().getJobRoleTitle()).isEqualTo("Software Engineering");
   }
 
   @Test
@@ -306,7 +306,7 @@ class JobControllerTest {
           .collect(Collectors.toSet());
     JobRequest jobRequest = JobRequest.builder()
           .title(updatedTitle)
-          .jobRole("Software Engineering")
+          .jobRoleTitle("Software Engineering")
           .jobType("Full-time")
           .remote(false)
           .relocation(false)
@@ -319,7 +319,7 @@ class JobControllerTest {
     JobResponse jobResponse = JobResponse.builder()
           .id(1L)
           .title(jobRequest.getTitle())
-          .jobRoleTitle(jobRequest.getJobRole())
+          .jobRoleTitle(jobRequest.getJobRoleTitle())
           .remote(jobRequest.getRemote())
           .relocation(jobRequest.getRelocation())
           .visaSponsorship(jobRequest.getVisaSponsorship())
@@ -350,7 +350,7 @@ class JobControllerTest {
     ArgumentCaptor<JobRequest> argumentCaptor = ArgumentCaptor.forClass(JobRequest.class);
     verify(jobService).updateEmployerJob(anyLong(), anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getTitle()).isEqualTo(updatedTitle);
-    assertThat(argumentCaptor.getValue().getJobRole()).isEqualTo("Software Engineering");
+    assertThat(argumentCaptor.getValue().getJobRoleTitle()).isEqualTo("Software Engineering");
   }
 
   @Test

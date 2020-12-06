@@ -29,7 +29,7 @@ public class CompanyRequest {
   String logoUrl;
 
   @Size(max = 255)
-  String headquarterAddress;
+  String headquartersAddress;
 
   @Size(max = 45)
   String size;
@@ -53,7 +53,7 @@ public class CompanyRequest {
         @JsonProperty("name") String name,
         @JsonProperty("headline") String headline,
         @JsonProperty("logoUrl") String logoUrl,
-        @JsonProperty("headquarterAddress") String headquarterAddress,
+        @JsonProperty("headquartersAddress") String headquartersAddress,
         @JsonProperty("size") String size,
         @JsonProperty("industry") String industry,
         @JsonProperty("promoUrl") String promoUrl,
@@ -67,7 +67,7 @@ public class CompanyRequest {
           name,
           headline,
           logoUrl,
-          headquarterAddress,
+          headquartersAddress,
           size,
           industry,
           promoUrl,

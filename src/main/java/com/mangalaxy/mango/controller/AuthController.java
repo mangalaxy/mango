@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(tags = "Authentication API", description = "Allows users to log in or log out using the provided credentials")
 @RestController
 @RequiredArgsConstructor
-public class AuthenticationController {
+public class AuthController {
   private final AuthenticationService authenticationService;
 
   @PostMapping("/api/v1/auth/login")
-  public ResponseEntity<JwtAuthResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
-    JwtAuthResponse jwtResponse = authenticationService.authenticate(loginRequest.getEmail(), loginRequest.getPassword());
+  public ResponseEntity<JwtAuthResponse> login(@Validated @RequestBody LoginRequest loginRequest) {
+    JwtAuthResponse jwtResponse = authenticationService.authenticate(loginRequest);
     return ResponseEntity.ok(jwtResponse);
   }
 

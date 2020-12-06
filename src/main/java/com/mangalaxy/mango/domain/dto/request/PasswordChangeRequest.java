@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -15,5 +16,6 @@ public class PasswordChangeRequest {
   @NotBlank
   private String oldPassword;
   @NotBlank
+  @Size(min = 6, max = 100)
   private String newPassword;
 }

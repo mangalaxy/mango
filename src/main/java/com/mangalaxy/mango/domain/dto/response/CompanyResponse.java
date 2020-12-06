@@ -18,7 +18,7 @@ public class CompanyResponse {
   String name;
   String headline;
   String logoUrl;
-  String headquarterAddress;
+  String headquartersAddress;
   String size;
   String industry;
   String promoUrl;
