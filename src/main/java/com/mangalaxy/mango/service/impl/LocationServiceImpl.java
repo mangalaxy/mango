@@ -30,7 +30,8 @@ public class LocationServiceImpl implements LocationService {
 
   @Override
   public LocationResponse getLocationById(Short id) {
-    Location location = locationRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    Location location = locationRepository.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("location", "id", id));
     return modelMapper.map(location, LocationResponse.class);
   }
 }

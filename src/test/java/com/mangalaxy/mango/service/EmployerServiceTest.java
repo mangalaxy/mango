@@ -2,17 +2,19 @@ package com.mangalaxy.mango.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.primitives.Shorts;
-import com.mangalaxy.mango.domain.dto.request.EmployerRequest;
+import com.mangalaxy.mango.domain.dto.request.EmployerSignUpRequest;
+import com.mangalaxy.mango.domain.dto.request.EmployerUpdateRequest;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.entity.Company;
 import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Location;
-import com.mangalaxy.mango.exception.EmployerNotFoundException;
+import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.CompanyRepository;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.service.impl.EmployerServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -23,6 +25,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,10 +61,11 @@ class EmployerServiceTest {
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     modelMapper.getConfiguration()
           .setSourceNamingConvention(NamingConventions.NONE)
           .setDestinationNamingConvention(NamingConventions.NONE);
-    employerService =  new EmployerServiceImpl(employerRepository, companyRepository, modelMapper);
+    employerService =  new EmployerServiceImpl(employerRepository, companyRepository, passwordEncoder, modelMapper);
 
     location1 = new Location();
     location1.setId(Shorts.checkedCast(1L));
@@ -84,15 +89,15 @@ class EmployerServiceTest {
     employer2.setId(2L);
     employer2.setFullName("Mark Darton");
     employer2.setEmail("mark12@gmail.com");
-    employer2.setPassword("Jaj1138%4SNxsj");
+    employer2.setPassword("Jaj1138%4SNxj");
     employer2.setLocation(location1);
 
     employer3 = new Employer();
     employer3.setId(3L);
-    employer3.setFullName("Adelina Veliz");
+    employer3.setFullName("Adelina Volta");
     employer3.setEmail("velizAFA@gmail.com");
-    employer3.setPassword("skd*8391dhjj56");
-    employer3.setJobTitle("Staff Executive Manager");
+    employer3.setPassword("skd*8391dhj56");
+    employer3.setJobTitle("VP of Talent Acquisition");
     employer3.setLocation(location2);
 
     company1 = new Company();
@@ -101,6 +106,7 @@ class EmployerServiceTest {
   }
 
   @Test
+  @DisplayName("Find a page of first three employers")
   void shouldFindEmployerFirstPage_thenSuccess() {
     // given
     Pageable pageable = PageRequest.of(0, 20);
@@ -113,9 +119,9 @@ class EmployerServiceTest {
     assertEquals(1, page.getTotalPages());
     assertEquals(3L, page.getTotalElements());
     List<EmployerResponse> content = page.getContent();
-    assertEquals(Long.valueOf(1), content.get(0).getId());
-    assertEquals(Long.valueOf(2), content.get(1).getId());
-    assertEquals(Long.valueOf(3), content.get(2).getId());
+    assertEquals(1L, content.get(0).getId());
+    assertEquals(2L, content.get(1).getId());
+    assertEquals(3L, content.get(2).getId());
     verify(employerRepository).findAll(pageable);
   }
 
@@ -141,9 +147,8 @@ class EmployerServiceTest {
   @Test
   void whenEmployerNotFoundThrowException() {
     Long id = 1L;
-    assertThrows(EmployerNotFoundException.class,
-          () -> employerService.fetchEmployerById(id),
-          "An exception was not thrown");
+    assertThrows(ResourceNotFoundException.class,
+          () -> employerService.fetchEmployerById(id),"An exception was not thrown");
     verify(employerRepository).findById(anyLong());
   }
 
@@ -155,9 +160,10 @@ class EmployerServiceTest {
     LocationRequest locationRequest = new LocationRequest(
           Shorts.checkedCast(1L), "Toronto", "Canada");
 
-    EmployerRequest newEmployer = EmployerRequest.builder()
+    EmployerSignUpRequest newEmployer = EmployerSignUpRequest.builder()
           .fullName("Mark Finch")
           .email("mark.finch@gmail.com")
+          .password("jedBU27*90")
           .jobTitle("HR Generalist")
           .companyName("Microsoft Inc.")
           .location(locationRequest)
@@ -166,7 +172,7 @@ class EmployerServiceTest {
     Employer mockEmployer = Employer.builder()
           .id(4L)
           .fullName("Mark Finch")
-          .password("Uedu$%12893hd")
+          .password("Ue$%12893hd")
           .email("mark.finch@gmail.com")
           .jobTitle("HR Generalist")
           .location(location1)
@@ -187,28 +193,27 @@ class EmployerServiceTest {
   void shouldUpdateEmployerById_thenSuccess() {
     Long id = 3L;
 
-    EmployerRequest employerRequest = EmployerRequest.builder()
-          .fullName("Delfina Olmos")
-          .email("velizAFA@gmail.com")
+    EmployerUpdateRequest employerRequest = EmployerUpdateRequest.builder()
+          .fullName("Delfina Zara")
+          .email("zara@gmail.com")
           .jobTitle("Staff Executive Manager")
           .location(new LocationRequest((short) 2, "Barcelona", "Spain"))
           .build();
-
+    Employer mockEmployer = Employer.builder()
+          .id(id)
+          .fullName("Delfina Zara")
+          .email("zara@gmail.com")
+          .password("skd*8391dhj56")
+          .jobTitle("Staff Executive Manager")
+          .location(location2)
+          .build();
     when(employerRepository.findById(id)).thenReturn(Optional.of(employer3));
-    when(employerRepository.save(any(Employer.class)))
-          .thenReturn(Employer.builder()
-                .id(id)
-                .fullName("Delfina Olmos")
-                .email("velizAFA@gmail.com")
-                .password("skd*8391dhjj56")
-                .jobTitle("Staff Executive Manager")
-                .location(location2)
-                .build());
+    when(employerRepository.save(any(Employer.class))).thenReturn(mockEmployer);
     EmployerResponse actual = employerService.updateEmployerById(id, employerRequest);
 
     assertThat(actual.getId()).isEqualTo(3L);
-    assertThat(actual.getFullName()).isEqualTo("Delfina Olmos");
-    assertThat(actual.getEmail()).isEqualTo("velizAFA@gmail.com");
+    assertThat(actual.getFullName()).isEqualTo("Delfina Zara");
+    assertThat(actual.getEmail()).isEqualTo("zara@gmail.com");
     assertThat(actual.getJobTitle()).isEqualTo("Staff Executive Manager");
 
     verify(employerRepository).findById(id);

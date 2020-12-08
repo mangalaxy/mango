@@ -2,7 +2,7 @@ package com.mangalaxy.mango.exception;
 
 public class EmailNotConfirmedException extends RuntimeException {
   public EmailNotConfirmedException() {
-    super("User email did not confirmed");
+    super("Email address was not confirmed");
   }
 
   public EmailNotConfirmedException(String message) {

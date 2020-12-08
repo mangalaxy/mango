@@ -2,7 +2,8 @@ package com.mangalaxy.mango.service;
 
 import com.google.common.primitives.Shorts;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
-import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.request.TalentSignUpRequest;
+import com.mangalaxy.mango.domain.dto.request.TalentUpdateRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.domain.entity.Location;
 import com.mangalaxy.mango.domain.entity.Talent;
@@ -20,6 +21,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +52,8 @@ class TalentServiceTest {
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
-    talentService = new TalentServiceImpl(talentRepository, modelMapper);
+    PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    talentService = new TalentServiceImpl(talentRepository, passwordEncoder, modelMapper);
 
     location = Samples.createLocation();
 
@@ -124,7 +128,7 @@ class TalentServiceTest {
     Long expectedId = 3L;
     LocationRequest location = new LocationRequest(
           Shorts.checkedCast(1L), "Toronto", "Canada");
-    TalentRequest newTalent = TalentRequest.builder()
+    TalentSignUpRequest newTalent = TalentSignUpRequest.builder()
           .fullName("Jordan Enrich")
           .email("iam_rich@gmail.com")
           .password("83-def%24jdjK")
@@ -147,7 +151,7 @@ class TalentServiceTest {
 
   @Test
   void shouldUpdateTalentWithEmail_thenSuccess() {
-    TalentRequest talentRequest = TalentRequest.builder()
+    TalentUpdateRequest talentRequest = TalentUpdateRequest.builder()
           .email("john.doe_updated@gmail.com")
           .build();
 

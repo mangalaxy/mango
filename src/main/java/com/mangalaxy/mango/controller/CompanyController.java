@@ -3,6 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.CompanyRequest;
 import com.mangalaxy.mango.domain.dto.response.CompanyResponse;
 import com.mangalaxy.mango.service.CompanyService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
+@Api(tags = "Companies API", description = "Provides CRUD for company resource")
 @RequiredArgsConstructor
 @RestController
 public class CompanyController {

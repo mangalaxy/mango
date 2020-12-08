@@ -30,7 +30,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "skill")
-public class Skill extends AuditEntity {
+public class Skill extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skill_sequence")

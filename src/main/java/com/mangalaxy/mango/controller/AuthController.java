@@ -1,63 +1,37 @@
 package com.mangalaxy.mango.controller;
 
-import com.mangalaxy.mango.domain.dto.request.Credentials;
-import com.mangalaxy.mango.domain.dto.request.PasswordRequest;
+import com.mangalaxy.mango.domain.dto.request.LoginRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
-import com.mangalaxy.mango.service.CustomUserDetailsService;
+import com.mangalaxy.mango.domain.dto.response.JwtAuthResponse;
+import com.mangalaxy.mango.security.CurrentUser;
+import com.mangalaxy.mango.security.UserPrincipal;
+import com.mangalaxy.mango.service.AuthenticationService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
-
-//@RestController
-@RequestMapping("/api/v1")
+@Api(tags = "Authentication API", description = "Allows users to log in or log out using the provided credentials")
+@RestController
 @RequiredArgsConstructor
 public class AuthController {
+  private final AuthenticationService authenticationService;
 
-  private final CustomUserDetailsService customUserDetailsService;
-
-  @PostMapping("/auth/login")
-  public ResponseEntity<?> authenticateUser(@RequestBody Credentials credentials) {
-    return ResponseEntity.ok(customUserDetailsService.signIn(credentials));
+  @PostMapping("/api/v1/auth/login")
+  public ResponseEntity<JwtAuthResponse> login(@Validated @RequestBody LoginRequest loginRequest) {
+    JwtAuthResponse jwtResponse = authenticationService.authenticate(loginRequest);
+    return ResponseEntity.ok(jwtResponse);
   }
 
-  @PostMapping("/auth/signUp")
-  public ResponseEntity<?> registerUser(@RequestBody Credentials credentials,
-                                        BindingResult result,
-                                        WebRequest request,
-                                        Errors errors) {
-    ApiResponse response = customUserDetailsService.registerNewUser(credentials, result, request, errors);
-    return new ResponseEntity<>(response, HttpStatus.CREATED);
+  @GetMapping("/api/v1/auth/logout")
+  public ResponseEntity<ApiResponse> logout(@CurrentUser UserPrincipal principal) {
+    authenticationService.logout(principal.getUsername());
+    ApiResponse logoutResponse = new ApiResponse(true, "User logged out successfully");
+    return ResponseEntity.ok(logoutResponse);
   }
 
-  @PostMapping("/password/reset")
-  public ResponseEntity<ApiResponse> resetPassword(HttpServletRequest request, @RequestParam("email") String userEmail) {
-    ApiResponse response = customUserDetailsService.resetPassword(request, userEmail);
-    return ResponseEntity.ok(response);
-  }
-
-  @GetMapping("/password/change")
-  public ResponseEntity<?> changePassword(@RequestParam("id") long id, @RequestParam("token") String token) {
-    return ResponseEntity.ok(customUserDetailsService.changePassword(id, token));
-  }
-
-  @PostMapping("/password/save")
-  public ResponseEntity<ApiResponse> savePassword(@RequestBody PasswordRequest password) {
-    ApiResponse response = customUserDetailsService.savePassword(password);
-    return ResponseEntity.ok(response);
-  }
-
-  @GetMapping("/registration/confirm")
-  public ResponseEntity<?> confirmRegistration(WebRequest request, @RequestParam("token") String token) {
-    return ResponseEntity.ok(customUserDetailsService.confirmRegistration(request, token));
-  }
 }

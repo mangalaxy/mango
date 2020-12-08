@@ -32,7 +32,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "question")
-public class Question extends AuditEntity {
+public class Question extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "question_sequence")

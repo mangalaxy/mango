@@ -53,7 +53,7 @@ public class Profile {
   private String photoUrl;
 
   @Column(name = "job_role")
-  private String selectedJobRole;
+  private String jobRole;
 
   @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
   @JoinTable(name = "profile_skill",

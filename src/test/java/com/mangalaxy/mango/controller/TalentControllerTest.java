@@ -3,13 +3,15 @@ package com.mangalaxy.mango.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.mangalaxy.mango.domain.dto.request.LocationRequest;
-import com.mangalaxy.mango.domain.dto.request.TalentRequest;
+import com.mangalaxy.mango.domain.dto.request.TalentSignUpRequest;
+import com.mangalaxy.mango.domain.dto.request.TalentUpdateRequest;
 import com.mangalaxy.mango.domain.dto.response.LocationResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
 import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.service.TalentService;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -115,9 +117,10 @@ class TalentControllerTest {
   }
 
   @Test
+  @Disabled("Talent creation has been moved to Register Controller")
   @DisplayName("Create a new talent and check status 201")
   void shouldCreateNewTalentAndReturnStatus201() throws Exception {
-    TalentRequest newTalent = new TalentRequest(
+    TalentSignUpRequest newTalent = new TalentSignUpRequest(
           "Anna Fisher",
           "anna_fisher@gmail.com",
           "12g27gd2",
@@ -128,7 +131,7 @@ class TalentControllerTest {
           "Anna Fisher",
           "anna_fisher@gmail.com",
           new LocationResponse((short) 1, "Berlin", "Germany"));
-    given(talentService.createNewTalent(any(TalentRequest.class))).willReturn(mockTalent);
+    given(talentService.createNewTalent(any(TalentSignUpRequest.class))).willReturn(mockTalent);
     mockMvc.perform(post("/api/v1/talents")
           .content(objectMapper.writeValueAsString(newTalent))
           .contentType(MediaType.APPLICATION_JSON)
@@ -137,7 +140,7 @@ class TalentControllerTest {
           .andExpect(status().isCreated())
           .andExpect(header().string(HttpHeaders.LOCATION, "http://localhost/api/v1/talents/1"));
 
-    ArgumentCaptor<TalentRequest> talentCaptor = ArgumentCaptor.forClass(TalentRequest.class);
+    ArgumentCaptor<TalentSignUpRequest> talentCaptor = ArgumentCaptor.forClass(TalentSignUpRequest.class);
     verify(talentService).createNewTalent(talentCaptor.capture());
     assertThat(talentCaptor.getValue().getFullName()).isEqualTo("Anna Fisher");
     assertThat(talentCaptor.getValue().getEmail()).isEqualTo("anna_fisher@gmail.com");
@@ -145,10 +148,10 @@ class TalentControllerTest {
 
   @Test
   @DisplayName("Update an existing talent with updated email")
-  public void shouldUpdateTalentWithEmailAndReturnsStatusOk() throws Exception {
+  void shouldUpdateTalentWithEmailAndReturnsStatusOk() throws Exception {
     // prepare data
     String updatedEmail = "a.fisher1290@gmail.com";
-    TalentRequest updatedTalent = new TalentRequest(
+    TalentSignUpRequest updatedTalent = new TalentSignUpRequest(
           "Anna Fisher",
           updatedEmail,
           "12g27gd2",
@@ -160,7 +163,7 @@ class TalentControllerTest {
           updatedEmail,
           new LocationResponse((short) 1, "Berlin", "Germany"));
     String expectedJson = objectMapper.writeValueAsString(mockTalent);
-    given(talentService.updateTalentById(anyLong(), any(TalentRequest.class))).willReturn(mockTalent);
+    given(talentService.updateTalentById(anyLong(), any(TalentUpdateRequest.class))).willReturn(mockTalent);
     mockMvc.perform(put("/api/v1/talents/1")
           .contentType(MediaType.APPLICATION_JSON)
           .content(objectMapper.writeValueAsString(updatedTalent))
@@ -170,7 +173,7 @@ class TalentControllerTest {
           .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
           .andExpect(content().json(expectedJson));
 
-    ArgumentCaptor<TalentRequest> talentCaptor = ArgumentCaptor.forClass(TalentRequest.class);
+    ArgumentCaptor<TalentUpdateRequest> talentCaptor = ArgumentCaptor.forClass(TalentUpdateRequest.class);
     verify(talentService).updateTalentById(anyLong(), talentCaptor.capture());
     assertThat(talentCaptor.getValue().getFullName()).isEqualTo("Anna Fisher");
     assertThat(talentCaptor.getValue().getEmail()).isEqualTo(updatedEmail);
@@ -180,7 +183,7 @@ class TalentControllerTest {
   @DisplayName("Check status 404 when talent not found")
   void shouldReturnsStatus404WhenTalentDoesntExist() throws Exception {
     Long talentId = 1L;
-    willThrow(new ResourceNotFoundException()).given(talentService).fetchTalentById(talentId);
+    willThrow(new ResourceNotFoundException("talent", "id", talentId)).given(talentService).fetchTalentById(talentId);
     MvcResult mvcResult = mockMvc.perform(get("/api/v1/talents/{talentId}", talentId)
           .accept(MediaType.APPLICATION_JSON))
           .andDo(print())
@@ -188,7 +191,7 @@ class TalentControllerTest {
           .andReturn();
     verify(talentService).fetchTalentById(talentId);
     assertThat(mvcResult.getResolvedException()).isInstanceOf(ResourceNotFoundException.class);
-    assertThat(mvcResult.getResolvedException()).hasMessage("The resource with the specified ID does not exist");
+    assertThat(mvcResult.getResolvedException()).hasMessage("talent not found with id : '1'");
   }
 
   @Test

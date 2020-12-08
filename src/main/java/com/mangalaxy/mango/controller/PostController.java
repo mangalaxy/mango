@@ -3,6 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.PostRequest;
 import com.mangalaxy.mango.domain.dto.response.PostResponse;
 import com.mangalaxy.mango.service.PostService;
+import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
+@Api(tags = "Posts API", description = "Provides CRUD and others operations for post resource")
 @RequiredArgsConstructor
 @RestController
 public class PostController {

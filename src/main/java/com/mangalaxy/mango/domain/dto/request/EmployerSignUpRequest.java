@@ -8,26 +8,28 @@ import org.hibernate.validator.constraints.URL;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Builder
 @Value
-public class EmployerRequest {
+public class EmployerSignUpRequest {
 
   @NotBlank
-  @Size(min = 2, max = 60)
+  @Size(min = 3, max = 60)
   String fullName;
 
+  @NotBlank
   @Email
   @Size(max = 45)
   String email;
 
   @NotBlank
-  @Size(min = 8)
+  @Size(min = 6, max = 100)
   String password;
 
   @Size(max = 18)
-  String phoneNumber;
+  String phone;
 
   @NotBlank
   @Size(min = 3, max = 45)
@@ -40,14 +42,15 @@ public class EmployerRequest {
   @Size(max = 255)
   String photoUrl;
 
+  @NotNull
   LocationRequest location;
 
   @JsonCreator
-  public EmployerRequest(
+  public EmployerSignUpRequest(
         @JsonProperty("fullName") String fullName,
         @JsonProperty("email") String email,
         @JsonProperty("password") String password,
-        @JsonProperty("phoneNumber") String phoneNumber,
+        @JsonProperty("phone") String phone,
         @JsonProperty("companyName") String companyName,
         @JsonProperty("jobTitle") String jobTitle,
         @JsonProperty("photoUrl") String photoUrl,
@@ -55,7 +58,7 @@ public class EmployerRequest {
     this.fullName = fullName;
     this.email = email;
     this.password = password;
-    this.phoneNumber = phoneNumber;
+    this.phone = phone;
     this.companyName = companyName;
     this.jobTitle = jobTitle;
     this.photoUrl = photoUrl;

@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 
 @Builder
 @Value
+@EqualsAndHashCode(of = {"id", "fullName", "email"})
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@EqualsAndHashCode(of = {"fullName", "email"})
 @ToString(doNotUseGetters = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class EmployerResponse {

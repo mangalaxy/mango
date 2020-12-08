@@ -55,7 +55,8 @@ public class CompanyServiceImpl implements CompanyService {
   }
 
   private Company findCompany(Long id) {
-    return companyRepository.findById(id).orElseThrow(ResourceNotFoundException::new);
+    return companyRepository.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("company", "id", id));
   }
 
   private CompanyResponse mapToDto(Company company) {

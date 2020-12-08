@@ -38,7 +38,7 @@ import java.util.Set;
 @AllArgsConstructor
 @Entity
 @Table(name = "company")
-public class Company extends AuditEntity {
+public class Company extends DateAudit {
 
   @Id
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_sequence")
@@ -63,8 +63,8 @@ public class Company extends AuditEntity {
   @Column(name = "size")
   private String size;
 
-  @Column(name = "headquarter_address")
-  private String headquarterAddress;
+  @Column(name = "headquarters_address")
+  private String headquartersAddress;
 
   @Column(name = "industry")
   private String industry;

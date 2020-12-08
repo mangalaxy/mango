@@ -8,16 +8,17 @@ import lombok.Value;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 // TODO: Remove builder for the class, leverage static factory method for tests.
 @Builder
 @Value
 @ToString(doNotUseGetters = true)
-public class TalentRequest {
+public class TalentSignUpRequest {
 
   @NotBlank
-  @Size(min = 2, max = 60)
+  @Size(min = 3, max = 60)
   String fullName;
 
   @Email
@@ -25,17 +26,17 @@ public class TalentRequest {
   String email;
 
   @NotBlank
-  @Size(min = 8)
+  @Size(min = 6, max = 100)
   String password;
 
+  @NotNull
   LocationRequest location;
 
   @JsonCreator
-  public TalentRequest(
-        @JsonProperty("fullName") String fullName,
-        @JsonProperty("email") String email,
-        @JsonProperty("password") String password,
-        @JsonProperty("location") LocationRequest location) {
+  public TalentSignUpRequest(@JsonProperty("fullName") String fullName,
+                             @JsonProperty("email") String email,
+                             @JsonProperty("password") String password,
+                             @JsonProperty("location") LocationRequest location) {
     this.fullName = fullName;
     this.email = email;
     this.password = password;

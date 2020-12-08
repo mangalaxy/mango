@@ -62,13 +62,13 @@ public class JobServiceImpl implements JobService {
   public JobResponse fetchEmployerJob(Long employerId, Long jobId) {
     return jobRepository.findByIdAndPublisher_Id(jobId, employerId)
           .map(this::mapToDto)
-          .orElseThrow(ResourceNotFoundException::new);
+          .orElseThrow(() -> new ResourceNotFoundException("job", "id", jobId));
   }
 
   @Override
   @Transactional
   public JobResponse createEmployerJob(Long employerId, JobRequest jobRequest) {
-    Employer employer = employerRepository.findById(employerId).orElseThrow(ResourceNotFoundException::new);
+    Employer employer = findEmployer(employerId);
     Job job = modelMapper.map(jobRequest, Job.class);
     employer.addJob(job);
     Job savedJob = jobRepository.save(job);
@@ -78,7 +78,8 @@ public class JobServiceImpl implements JobService {
   @Override
   @Transactional
   public JobResponse updateEmployerJob(Long employerId, Long jobId, JobRequest jobRequest) {
-    Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId).orElseThrow(ResourceNotFoundException::new);
+    Job job = jobRepository.findByIdAndPublisher_Id(jobId, employerId)
+          .orElseThrow(() -> new ResourceNotFoundException("job", "id", jobId));
     modelMapper.map(jobRequest, job);
     Job updatedJob = jobRepository.save(job);
     return mapToDto(updatedJob);
@@ -94,6 +95,11 @@ public class JobServiceImpl implements JobService {
   }
 
   // Helper methods for internal use cases.
+  private Employer findEmployer(Long id) {
+    return employerRepository.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("employer", "id", id));
+  }
+
   private JobResponse mapToDto(final Job source) {
     return modelMapper.map(source, JobResponse.class);
   }
