@@ -76,6 +76,19 @@ public class UserPrincipal extends User {
   }
 
   @Override
+  public boolean equals(Object obj) {
+    if (obj instanceof User) {
+      return this.getUsername().equals(((UserPrincipal) obj).getUsername());
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return this.getUsername().hashCode();
+  }
+
+  @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(getClass().getName()).append(" [");

@@ -3,7 +3,6 @@ package com.mangalaxy.mango.controller;
 import com.mangalaxy.mango.domain.dto.request.EmployerUpdateRequest;
 import com.mangalaxy.mango.domain.dto.response.EmployerResponse;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
-import com.mangalaxy.mango.security.CurrentUser;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.service.EmployerRelationshipService;
 import com.mangalaxy.mango.service.EmployerService;
@@ -15,6 +14,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,14 +50,20 @@ public class EmployerController {
 
   @PreAuthorize("hasRole('EMPLOYER')")
   @GetMapping("/api/v1/employers/me")
-  public ResponseEntity<Void> getCurrentEmployer(@CurrentUser UserPrincipal principal) {
-    Long employerId = principal.getId();
-    URI redirectUri = MvcUriComponentsBuilder.fromMethodName(this.getClass(), "getSpecifiedEmployer", employerId)
-          .build()
-          .toUri();
-    HttpHeaders responseHeaders = new HttpHeaders();
-    responseHeaders.setLocation(redirectUri);
-    return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+  public ResponseEntity<Void> getCurrentEmployer(Authentication authentication) {
+    if (authentication != null) {
+      UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+      Long employerId = principal.getId();
+      URI redirectUri = MvcUriComponentsBuilder.fromMethodName(this.getClass(), "getSpecifiedEmployer", employerId)
+            .build()
+            .toUri();
+      HttpHeaders responseHeaders = new HttpHeaders();
+      responseHeaders.setLocation(redirectUri);
+      return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+    } else {
+      throw new IllegalStateException("UserDetails instance should not null");
+    }
+
   }
 
   @PreAuthorize("hasRole('EMPLOYER')")
