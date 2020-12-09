@@ -31,12 +31,6 @@ public class DefaultAuthenticationService implements AuthenticationService {
     SecurityContextHolder.getContext().setAuthentication(authentication);
     String jwt = jwtTokenProvider.generateToken(authentication);
     return new JwtAuthResponse(jwt);
-
-  }
-
-  @Override
-  public void logout(String username) {
-    // TODO: Implement business logic
   }
 
 }

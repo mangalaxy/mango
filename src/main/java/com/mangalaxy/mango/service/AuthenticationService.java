@@ -5,5 +5,4 @@ import com.mangalaxy.mango.domain.dto.response.JwtAuthResponse;
 
 public interface AuthenticationService {
   JwtAuthResponse authenticate(LoginRequest loginRequest);
-  void logout(String username);
 }
