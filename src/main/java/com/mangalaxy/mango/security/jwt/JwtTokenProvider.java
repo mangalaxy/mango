@@ -72,17 +72,9 @@ public class JwtTokenProvider {
           .compact();
   }
 
-  public Long getUserId(String token) {
-    return Long.parseLong(decodeJWT(token).getSubject());
-  }
-
   public String getUsername(String token) {
     Claims claims = decodeJWT(token);
     return claims.getSubject();
-  }
-
-  public String getUserRole(String token) {
-    return decodeJWT(token).getAudience();
   }
 
   public boolean validateToken(String jwtToken) {
