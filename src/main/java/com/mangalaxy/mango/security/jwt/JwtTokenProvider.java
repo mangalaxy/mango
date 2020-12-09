@@ -11,6 +11,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.spec.SecretKeySpec;
@@ -20,6 +21,7 @@ import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -60,7 +62,10 @@ public class JwtTokenProvider {
           .setId(String.valueOf(principal.getId()))
           .setIssuer(jwtIssuer)
           .setSubject(principal.getUsername())
-          .setAudience(principal.getRoleName())
+          .setAudience(principal.getAuthorities()
+                .stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(",")))
           .setIssuedAt(Date.from(now))
           .setExpiration(Date.from(expirationDate))
           .signWith(signatureAlgorithm, signingKey)

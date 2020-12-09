@@ -13,14 +13,12 @@ import java.util.List;
 public class UserPrincipal extends User {
   private final Long id;
   private final String fullName;
-  private final String roleName;
 
-  public UserPrincipal(Long id, String fullName, String roleName, String username, String password,
+  public UserPrincipal(Long id, String fullName, String username, String password,
                        Collection<? extends GrantedAuthority> authorities) {
     super(username, password, authorities);
     this.id = id;
     this.fullName = fullName;
-    this.roleName = roleName;
   }
 
   /**
@@ -36,7 +34,6 @@ public class UserPrincipal extends User {
     return new UserPrincipal(
           employer.getId(),
           employer.getFullName(),
-          employer.getRole().name(),
           employer.getEmail(),
           employer.getPassword(),
           grantedAuthorities
@@ -56,7 +53,6 @@ public class UserPrincipal extends User {
     return new UserPrincipal(
           talent.getId(),
           talent.getFullName(),
-          talent.getRole().name(),
           talent.getEmail(),
           talent.getPassword(),
           grantedAuthorities
@@ -71,28 +67,12 @@ public class UserPrincipal extends User {
     return fullName;
   }
 
-  public String getRoleName() {
-    return roleName;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (obj instanceof User) {
-      return this.getUsername().equals(((UserPrincipal) obj).getUsername());
-    }
-    return false;
-  }
-
-  @Override
-  public int hashCode() {
-    return this.getUsername().hashCode();
-  }
-
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append(getClass().getName()).append(" [");
     sb.append("Id=").append(this.id).append(", ");
+    sb.append("FullName=").append(this.fullName).append(", ");
     sb.append("Username=").append(getUsername()).append(", ");
     sb.append("Password=[PROTECTED], ");
     sb.append("Enabled=").append(isEnabled()).append(", ");
