@@ -2,7 +2,6 @@ package com.mangalaxy.mango.controller;
 
 import com.mangalaxy.mango.domain.dto.request.TalentUpdateRequest;
 import com.mangalaxy.mango.domain.dto.response.TalentResponse;
-import com.mangalaxy.mango.security.CurrentUser;
 import com.mangalaxy.mango.security.UserPrincipal;
 import com.mangalaxy.mango.service.TalentService;
 import io.swagger.annotations.Api;
@@ -13,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,14 +39,21 @@ public class TalentController {
 
   @PreAuthorize("hasRole('TALENT')")
   @GetMapping("/api/v1/talents/me")
-  public ResponseEntity<TalentResponse> getCurrentTalent(@CurrentUser UserPrincipal principal) {
-    Long employerId = principal.getId();
-    URI redirectUri = MvcUriComponentsBuilder.fromMethodName(this.getClass(), "getSpecifiedTalent", employerId)
-          .build()
-          .toUri();
-    HttpHeaders responseHeaders = new HttpHeaders();
-    responseHeaders.setLocation(redirectUri);
-    return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+  public ResponseEntity<TalentResponse> getCurrentTalent(Authentication authentication) {
+
+    if (authentication != null) {
+      UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
+      Long talentId = principal.getId();
+      URI redirectUri = MvcUriComponentsBuilder.fromMethodName(this.getClass(), "getSpecifiedTalent", talentId)
+            .build()
+            .toUri();
+      HttpHeaders responseHeaders = new HttpHeaders();
+      responseHeaders.setLocation(redirectUri);
+      return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+    } else {
+      throw new IllegalStateException("UserDetails instance should not null");
+    }
+
   }
 
   @PreAuthorize("hasRole('ADMIN')")
