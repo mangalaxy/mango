@@ -30,6 +30,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -75,11 +76,11 @@ class TalentControllerTest {
   @BeforeEach
   void setUp() {
     talentResponse1 = new TalentResponse(1L, "John Doe",
-          "john.doe12@gmail.com", null);
+          "john.doe12@gmail.com", null, LocalDateTime.now(), null);
     talentResponse2 = new TalentResponse(2L, "Thomas Miller",
-          "t.miller@band.de", null);
+          "t.miller@band.de", null, LocalDateTime.now(), null);
     talentResponse3 = new TalentResponse(3L, "Joanna Denver",
-          "jd_denver1983@mail.uk", null);
+          "jd_denver1983@mail.uk", null, LocalDateTime.now(), null);
     talentResponseList = Lists.newArrayList(talentResponse1, talentResponse2, talentResponse3);
     objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
   }
@@ -130,7 +131,8 @@ class TalentControllerTest {
           1L,
           "Anna Fisher",
           "anna_fisher@gmail.com",
-          new LocationResponse((short) 1, "Berlin", "Germany"));
+          new LocationResponse((short) 1, "Berlin", "Germany"),
+          LocalDateTime.now(), null);
     given(talentService.createNewTalent(any(TalentSignUpRequest.class))).willReturn(mockTalent);
     mockMvc.perform(post("/api/v1/talents")
           .content(objectMapper.writeValueAsString(newTalent))
@@ -161,7 +163,8 @@ class TalentControllerTest {
           1L,
           "Anna Fisher",
           updatedEmail,
-          new LocationResponse((short) 1, "Berlin", "Germany"));
+          new LocationResponse((short) 1, "Berlin", "Germany"),
+          LocalDateTime.now(), null);
     String expectedJson = objectMapper.writeValueAsString(mockTalent);
     given(talentService.updateTalentById(anyLong(), any(TalentUpdateRequest.class))).willReturn(mockTalent);
     mockMvc.perform(put("/api/v1/talents/1")

@@ -1,10 +1,12 @@
 package com.mangalaxy.mango.web;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
 import lombok.Data;
 import org.hibernate.validator.internal.engine.path.PathImpl;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -20,6 +22,8 @@ import java.util.Set;
 @JsonTypeIdResolver(LowerCaseClassNameResolver.class)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiError {
+  @JsonFormat(shape = JsonFormat.Shape.STRING)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private LocalDateTime timestamp;
   private HttpStatus status;
   private String message;

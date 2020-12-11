@@ -1,5 +1,6 @@
 package com.mangalaxy.mango.domain.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import lombok.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
@@ -25,6 +27,10 @@ public class EmployerResponse {
   String jobTitle;
   String photoUrl;
   LocationResponse location;
+  @JsonFormat(shape = JsonFormat.Shape.STRING)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   LocalDateTime createdDate;
+  @JsonFormat(shape = JsonFormat.Shape.STRING)
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   LocalDateTime modifiedDate;
 }
