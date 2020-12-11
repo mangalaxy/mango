@@ -3,7 +3,6 @@ package com.mangalaxy.mango.domain.dto.request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.ToString;
 import lombok.Value;
 import org.hibernate.validator.constraints.URL;
 
@@ -14,7 +13,6 @@ import javax.validation.constraints.Size;
 
 @Builder
 @Value
-@ToString(doNotUseGetters = true)
 public class EmployerUpdateRequest {
 
   @NotBlank

@@ -13,9 +13,13 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PasswordChangeRequest {
+
   @NotBlank
+  @Size(min = 8, max = 64)
   private String oldPassword;
+
   @NotBlank
-  @Size(min = 6, max = 100)
+  @Size(min = 8, max = 64)
   private String newPassword;
+
 }

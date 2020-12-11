@@ -25,7 +25,7 @@ public class EmployerSignUpRequest {
   String email;
 
   @NotBlank
-  @Size(min = 6, max = 100)
+  @Size(min = 8, max = 64)
   String password;
 
   @Size(max = 18)

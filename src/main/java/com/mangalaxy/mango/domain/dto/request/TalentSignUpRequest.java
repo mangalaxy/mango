@@ -3,7 +3,6 @@ package com.mangalaxy.mango.domain.dto.request;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
-import lombok.ToString;
 import lombok.Value;
 
 import javax.validation.constraints.Email;
@@ -11,10 +10,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-// TODO: Remove builder for the class, leverage static factory method for tests.
 @Builder
 @Value
-@ToString(doNotUseGetters = true)
 public class TalentSignUpRequest {
 
   @NotBlank
@@ -26,7 +23,7 @@ public class TalentSignUpRequest {
   String email;
 
   @NotBlank
-  @Size(min = 6, max = 100)
+  @Size(min = 8, max = 64)
   String password;
 
   @NotNull
