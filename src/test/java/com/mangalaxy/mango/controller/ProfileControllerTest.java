@@ -31,6 +31,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -74,7 +75,8 @@ class ProfileControllerTest {
           1L,
           "Anna Fisher",
           "anna_fisher@gmail.com",
-          new LocationResponse((short) 1, "Berlin", "Germany"));
+          new LocationResponse((short) 1, "Berlin", "Germany"),
+          LocalDateTime.now(), null);
     Education edu1 = new Education("TU Berlin", Degree.BACHELOR,
           "Tech analysis",
           new ActivityPeriod(
