@@ -161,7 +161,6 @@
             <configuration>
                <destFile>${jacoco.exec.path}</destFile>
                <dataFile>${jacoco.exec.path}</dataFile>
-               <skip>true</skip>
             </configuration>
             <executions>
                <execution>
@@ -194,7 +193,7 @@
                               <limit>
                                  <counter>LINE</counter>
                                  <value>COVEREDRATIO</value>
-                                 <minimum>0.2</minimum>
+                                 <minimum>0.3</minimum>
                               </limit>
                            </limits>
                         </rule>
