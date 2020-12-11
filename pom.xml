@@ -161,6 +161,7 @@
             <configuration>
                <destFile>${jacoco.exec.path}</destFile>
                <dataFile>${jacoco.exec.path}</dataFile>
+               <skip>true</skip>
             </configuration>
             <executions>
                <execution>

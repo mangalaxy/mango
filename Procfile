@@ -1,0 +1,1 @@
+web: java -Dserver.port=5000 -jar target/mango-1.0.0-SNAPSHOT.jar
