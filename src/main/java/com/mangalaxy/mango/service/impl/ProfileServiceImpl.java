@@ -28,6 +28,7 @@ public class ProfileServiceImpl implements ProfileService {
 
   @Override
   public ProfileResponse updateProfileByTalentId(Long talentId, ProfileRequest profileRequest) {
+    // TODO: Implement update function for talent profile
     return null;
   }
 
