@@ -1,5 +1,5 @@
 --- Add locations
-INSERT INTO public.location (id, city, country) VALUES ('New York', 'USA'),
+INSERT INTO public.location (city, country) VALUES ('New York', 'USA'),
 ('Boston', 'USA'),
 ('Washington D.C', 'USA'),
 ('Chicago', 'USA'),
