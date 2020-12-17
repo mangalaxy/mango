@@ -38,7 +38,7 @@ class TopicServiceTest {
 
   @Test
   @DisplayName("Get a list of two topics")
-  void shouldFindAllTopics_thenSucceed() {
+  void shouldFindAllTopics() {
     TopicResponse expectedTopic1 = new TopicResponse(1, "Interview process");
     TopicResponse expectedTopic2 = new TopicResponse(2, "Job Search");
     // given

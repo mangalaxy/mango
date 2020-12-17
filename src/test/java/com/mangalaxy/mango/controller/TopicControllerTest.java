@@ -3,6 +3,7 @@ package com.mangalaxy.mango.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mangalaxy.mango.domain.dto.response.TopicResponse;
 import com.mangalaxy.mango.service.TopicService;
+import lombok.SneakyThrows;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -52,9 +53,10 @@ class TopicControllerTest {
     topicList = Lists.newArrayList(topic1, topic2, topic3);
   }
 
+  @SneakyThrows
   @Test
   @DisplayName("Find a list with 3 topics")
-  void shouldReturnAllTopicsAndStatusOk() throws Exception {
+  void shouldReturnAllTopicsAndStatusOk() {
     String expectedBody = objectMapper.writeValueAsString(topicList);
     given(topicService.getAllTopics()).willReturn(topicList);
     mockMvc.perform(get("/api/v1/topics")
