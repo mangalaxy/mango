@@ -21,6 +21,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TopicServiceTest {
+
   @Mock
   private TopicRepository topicRepository;
   private TopicService topicService;
