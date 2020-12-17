@@ -193,7 +193,7 @@
                               <limit>
                                  <counter>LINE</counter>
                                  <value>COVEREDRATIO</value>
-                                 <minimum>0.2</minimum>
+                                 <minimum>0.3</minimum>
                               </limit>
                            </limits>
                         </rule>
@@ -219,15 +219,5 @@
          </plugin>
       </plugins>
    </build>
-
-   <reporting>
-      <plugins>
-         <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-report-plugin</artifactId>
-            <version>${surefire.version}</version>
-         </plugin>
-      </plugins>
-   </reporting>
 
 </project>

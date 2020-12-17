@@ -33,6 +33,7 @@ public class JobRequest {
 
   @NotBlank
   String experienceRequired;
+
   String description;
 
   @NotNull

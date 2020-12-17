@@ -8,27 +8,27 @@ import com.mangalaxy.mango.domain.entity.Experience;
 import com.mangalaxy.mango.domain.entity.Language;
 import com.mangalaxy.mango.domain.entity.Salary;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Value;
 
 import java.util.List;
 import java.util.Set;
 
-@Data
 @Builder
+@Value
 public class ProfileRequest {
-  private final Long id;
-  private final TalentSignUpRequest owner;
-  private final String photoUrl;
-  private final String jobRole;
-  private final Set<SkillRequest> skills;
-  private final CandidateStatus status;
-  private final LocationRequest preferredLocation;
-  private final Salary preferredSalary;
-  private final Set<String> expectations;
-  private final List<String> preferredCompanyType;
-  private final List<Experience> experiences;
-  private final List<Education> educations;
-  private final List<Language> preferredLanguages;
+  Long id;
+  TalentSignUpRequest owner;
+  String photoUrl;
+  String jobRole;
+  Set<SkillRequest> skills;
+  CandidateStatus status;
+  LocationRequest preferredLocation;
+  Salary preferredSalary;
+  Set<String> expectations;
+  List<String> preferredCompanyType;
+  List<Experience> experiences;
+  List<Education> educations;
+  List<Language> preferredLanguages;
 
   @JsonCreator
   public ProfileRequest(@JsonProperty("id") Long id,
