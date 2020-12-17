@@ -63,7 +63,7 @@ public class PostController {
     return ResponseEntity.ok(postResponse);
   }
 
-  @GetMapping("/api/v1/topic/{topicId}/posts/related")
+  @GetMapping("/api/v1/topics/{topicId}/posts/related")
   public ResponseEntity<List<PostResponse>> getRelatedPostsByTopic(@PathVariable Integer topicId) {
     Page<PostResponse> postPage = postService.fetchAllPostsByTopicId(topicId, PageRequest.of(0, 3));
     return ResponseEntity.ok(postPage.toList());
