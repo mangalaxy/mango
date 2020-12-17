@@ -49,6 +49,10 @@ class TopicServiceTest {
     verify(topicRepository).findAll();
     assertEquals(2, topicList.size());
     assertEquals(expectedTopic1, topicList.get(0));
+    assertEquals(expectedTopic1.getId(), topicList.get(0).getId());
+    assertEquals(expectedTopic1.getTitle(), topicList.get(0).getTitle());
     assertEquals(expectedTopic2, topicList.get(1));
+    assertEquals(expectedTopic2.getId(), topicList.get(1).getId());
+    assertEquals(expectedTopic2.getTitle(), topicList.get(1).getTitle());
   }
 }
