@@ -7,6 +7,7 @@ import com.mangalaxy.mango.repository.LocationRepository;
 import com.mangalaxy.mango.service.impl.LocationServiceImpl;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -46,6 +47,7 @@ class LocationServiceTest {
   }
 
   @Test
+  @DisplayName("Find a location with id 1")
   void shouldFindLocationById_thenSuccess() {
     // given
     Short expectedId = 1;
@@ -59,6 +61,7 @@ class LocationServiceTest {
   }
 
   @Test
+  @DisplayName("Find a list with 2 locations")
   void shouldFindAllLocations_thenSuccess() {
     // given
     when(locationRepository.findAll()).thenReturn(Lists.newArrayList(location1, location2));
@@ -67,6 +70,5 @@ class LocationServiceTest {
     // then
     verify(locationRepository).findAll();
     assertEquals(2, locationList.size());
-
   }
 }
