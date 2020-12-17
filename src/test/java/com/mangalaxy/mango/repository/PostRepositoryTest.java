@@ -12,7 +12,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 
 import java.time.LocalDateTime;
 import java.time.Month;
@@ -21,7 +20,6 @@ import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.containsInRelativeOrder;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -83,6 +81,7 @@ class PostRepositoryTest {
   }
 
   @Test
+  @DisplayName("Find posts by the topic name")
   void shouldFindPostsByTopicName_thenSuccess() {
     String expectedPostTitle1 = "Ready to Shuffle Up Your Tired Interview Process?";
     String expectedPostTitle2 = "5 Interview Questions Hiring Managers Need to Ask Before Making An Offer";
@@ -96,21 +95,6 @@ class PostRepositoryTest {
     assertThat(actual, containsInAnyOrder(equalTo(post1), equalTo(post2)));
     assertEquals(topicTitle, actual.get(0).getTopic().getTitle());
     assertEquals(topicTitle, actual.get(1).getTopic().getTitle());
-  }
-
-  @Test
-  @DisplayName("Find posts by the topic name")
-  void shouldFindPostsByTopicNameAndSortedDescByCreatedDate_thenSuccess() {
-    String topicTitle = "Interviewing";
-    Sort createdDateDesc = Sort.by(Sort.Direction.DESC, "createdDate");
-    Pageable pageRequest = PageRequest.of(0, 20, createdDateDesc);
-    // when
-    Page<Post> postPage = postRepository.findAllByTopic_Title(topicTitle, pageRequest);
-    // then
-    List<Post> actual = postPage.getContent();
-    assertThat(actual, hasSize(2));
-    assertThat(actual, containsInRelativeOrder(equalTo(post2), equalTo(post1)));
-    assertEquals(topicTitle, actual.get(0).getTopic().getTitle());
   }
 
   @Test
