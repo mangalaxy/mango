@@ -57,7 +57,7 @@ class LocationControllerTest {
   }
 
   @Test
-  @DisplayName("Find the location with ID: 1")
+  @DisplayName("Find the location with id 1")
   void shouldReturnLocationResponseAndStatusOk() throws Exception {
     Short locationId = 1;
     String expectedBody = objectMapper.writeValueAsString(locationResponse1);
@@ -72,7 +72,7 @@ class LocationControllerTest {
   }
 
   @Test
-  @DisplayName("Find a list of locations with two elements")
+  @DisplayName("Get a list with 2 locations")
   void shouldReturnAllLocationsAndStatusOk() throws Exception {
     String expectedBody = objectMapper.writeValueAsString(locationList);
     given(locationService.getAllLocations()).willReturn(locationList);

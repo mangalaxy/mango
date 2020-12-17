@@ -61,7 +61,7 @@ class LocationServiceTest {
   }
 
   @Test
-  @DisplayName("Find a list with two locations")
+  @DisplayName("Find a list with 2 locations")
   void shouldFindAllLocations_thenSuccess() {
     // given
     when(locationRepository.findAll()).thenReturn(Lists.newArrayList(location1, location2));

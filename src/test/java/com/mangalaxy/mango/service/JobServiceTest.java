@@ -118,6 +118,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Find all jobs by role - Software Engineering")
   void shouldFilterJobsByJobRole_thenSuccess() {
     // given
     Pageable pageable = PageRequest.of(0, 20);
@@ -135,6 +136,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Find all job by city - Berlin")
   void shouldFilterJobsByCity_thenSuccess() {
     // given
     Pageable pageable = PageRequest.of(0, 20);
@@ -151,6 +153,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Find job page of employer with id 1")
   void shouldFindAllEmployerJobs_thenSuccess() {
     // given
     Pageable pageable = PageRequest.of(0, 20);
@@ -177,6 +180,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Throw exception when job not found")
   void shouldThrowException_whenJobNotFound() {
     assertThrows(ResourceNotFoundException.class,
           () -> jobService.fetchEmployerJob(1L, 5L),
@@ -224,6 +228,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Update first job of the employer with id 1")
   void shouldUpdateEmployerFirstJob_thenSuccess() {
     Long employerId = 1L;
     Long jobId = 1L;
@@ -249,6 +254,7 @@ class JobServiceTest {
   }
 
   @Test
+  @DisplayName("Delete employer job with id 1")
   void shouldDeleteFirstJobByEmployer_thenSuccess() {
     // given
     when(jobRepository.existsByIdAndPublisher_Id(1L, 1L)).thenReturn(true);
