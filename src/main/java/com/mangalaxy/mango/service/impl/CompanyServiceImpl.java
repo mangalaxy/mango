@@ -27,6 +27,14 @@ public class CompanyServiceImpl implements CompanyService {
     return mapToDto(company);
   }
 
+  @Transactional(readOnly = true)
+  @Override
+  public CompanyResponse fetchCompanyByName(String name) {
+    Company company = getCompanyByName(name);
+    log.info("Fetched company instance with name {} and details: {}", name, company);
+    return mapToDto(company);
+  }
+
   @Transactional
   @Override
   public CompanyResponse createNewCompany(CompanyRequest companyRequest) {
@@ -57,6 +65,11 @@ public class CompanyServiceImpl implements CompanyService {
   private Company findCompany(Long id) {
     return companyRepository.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("company", "id", id));
+  }
+
+  private Company getCompanyByName(String name) {
+    return companyRepository.findByNameIgnoreCase(name)
+          .orElseThrow(() -> new ResourceNotFoundException("company", "name", name));
   }
 
   private CompanyResponse mapToDto(Company company) {
