@@ -6,11 +6,13 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Skill;
 import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
 import com.mangalaxy.mango.repository.JobRoleRepository;
 import com.mangalaxy.mango.repository.LocationRepository;
+import com.mangalaxy.mango.repository.SkillRepository;
 import com.mangalaxy.mango.service.JobService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -19,6 +21,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Default implementation of {@link JobService} interface.
@@ -31,16 +36,17 @@ public class JobServiceImpl implements JobService {
   private final JobRepository jobRepository;
   private final JobRoleRepository jobRoleRepository;
   private final EmployerRepository employerRepository;
+  private final SkillRepository skillRepository;
   private final LocationRepository locationRepository;
   private final ModelMapper modelMapper;
 
   @Override
   @Transactional(readOnly = true)
-  public Page<JobResponse> findJobsByParams(String jobRoleTitle, String city, Pageable pageable) {
+  public Page<JobResponse> findJobsByParams(String jobRole, String city, Pageable pageable) {
     JobRole foundJobRole = null;
     Location foundLocation = null;
-    if (jobRoleTitle != null) {
-      foundJobRole = jobRoleRepository.findByTitle(jobRoleTitle);
+    if (jobRole != null) {
+      foundJobRole = jobRoleRepository.findByTitle(jobRole);
     }
     if (city != null) {
       foundLocation = locationRepository.findFirstByCity(city);
@@ -70,9 +76,13 @@ public class JobServiceImpl implements JobService {
   public JobResponse createEmployerJob(Long employerId, JobRequest jobRequest) {
     Employer employer = findEmployer(employerId);
     Job job = modelMapper.map(jobRequest, Job.class);
+    JobRole jobRole = findJobRole(jobRequest.getJobRoleId());
+    job.setJobRole(jobRole);
+    List<Skill> skills = skillRepository.findAllById(jobRequest.getSkillIds());
+    job.setSkills(new HashSet<>(skills));
     employer.addJob(job);
-    Job savedJob = jobRepository.save(job);
-    return mapToDto(savedJob);
+    job = jobRepository.save(job);
+    return mapToDto(job);
   }
 
   @Override
@@ -98,6 +108,11 @@ public class JobServiceImpl implements JobService {
   private Employer findEmployer(Long id) {
     return employerRepository.findById(id)
           .orElseThrow(() -> new ResourceNotFoundException("employer", "id", id));
+  }
+
+  private JobRole findJobRole(Short id) {
+    return jobRoleRepository.findById(id)
+          .orElseThrow(() -> new ResourceNotFoundException("Job role", "id", id));
   }
 
   private JobResponse mapToDto(final Job source) {

@@ -39,7 +39,13 @@ public class JobRole {
   @Column(name = "title", nullable = false)
   private String title;
 
+  @ToString.Exclude
   @OneToMany(mappedBy = "jobRole")
   private Set<Job> jobs = new HashSet<>();
+
+  public void addJob(Job job) {
+    jobs.add(job);
+    job.setJobRole(this);
+  }
 
 }

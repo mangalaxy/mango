@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.SortNatural;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -87,7 +86,6 @@ public class Job extends DateAudit {
   @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
-  @SortNatural
   @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
   @JoinTable(
         name = "job_skill",

@@ -240,19 +240,17 @@ class JobControllerTest {
   @DisplayName("Create a new job by employer and return status 201")
   void shouldCreateNewJobByEmployerIdAndReturnStatus201() throws Exception {
     LocationRequest locationRequest = new LocationRequest((short) 1, "Boston", "USA");
-    Set<SkillRequest> skillSet = Sets.newHashSet(
-          new SkillRequest("Problem solving"),
-          new SkillRequest("DDD"));
+
     JobRequest jobRequest = JobRequest.builder()
           .title("System Architect")
-          .jobRoleTitle("Software Engineering")
+          .jobRoleId((short) 1)
           .jobType("Full-time")
           .remote(false)
           .relocation(false)
           .visaSponsorship(false)
           .location(locationRequest)
           .experienceRequired("10+ years")
-          .skills(skillSet)
+          .skillIds(Lists.newArrayList(1L, 2L))
           .build();
 
     String newJobJson = objectMapper.writeValueAsString(jobRequest);
@@ -261,7 +259,7 @@ class JobControllerTest {
       JobResponse jobResponse = JobResponse.builder()
             .id(1L)
             .title(request.getTitle())
-            .jobRoleTitle(request.getJobRoleTitle())
+            .jobRoleTitle("Software Engineering")
             .remote(request.getRemote())
             .relocation(request.getRelocation())
             .visaSponsorship(request.getVisaSponsorship())
@@ -288,7 +286,7 @@ class JobControllerTest {
     ArgumentCaptor<JobRequest> argumentCaptor = ArgumentCaptor.forClass(JobRequest.class);
     verify(jobService).createEmployerJob(anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getTitle()).isEqualTo("System Architect");
-    assertThat(argumentCaptor.getValue().getJobRoleTitle()).isEqualTo("Software Engineering");
+    assertThat(argumentCaptor.getValue().getJobRoleId()).isEqualTo(Short.parseShort("1"));
   }
 
   @Test
@@ -298,28 +296,28 @@ class JobControllerTest {
     String updatedTitle = "Senior Software Engineer";
     LocationRequest locationRequest = new LocationRequest((short) 1, "Boston", "USA");
     Set<SkillRequest> skillSet = Sets.newHashSet(
-          new SkillRequest("Problem solving"),
-          new SkillRequest("DDD"));
+          new SkillRequest(1L, "Problem solving"),
+          new SkillRequest(2L, "DDD"));
     SkillRequest[] skillArr = skillSet.toArray(new SkillRequest[0]);
     Set<SkillResponse> skillResponses = IntStream.range(0, skillArr.length)
           .mapToObj(index -> new SkillResponse((long) (index + 1), skillArr[index].getName()))
           .collect(Collectors.toSet());
     JobRequest jobRequest = JobRequest.builder()
           .title(updatedTitle)
-          .jobRoleTitle("Software Engineering")
+          .jobRoleId((short) 1)
           .jobType("Full-time")
           .remote(false)
           .relocation(false)
           .visaSponsorship(false)
           .location(locationRequest)
           .experienceRequired("10+ years")
-          .skills(skillSet)
+          .skillIds(Lists.newArrayList(1L, 2L))
           .build();
     String jobJson = objectMapper.writeValueAsString(jobRequest);
     JobResponse jobResponse = JobResponse.builder()
           .id(1L)
           .title(jobRequest.getTitle())
-          .jobRoleTitle(jobRequest.getJobRoleTitle())
+          .jobRoleTitle("Software Engineering")
           .remote(jobRequest.getRemote())
           .relocation(jobRequest.getRelocation())
           .visaSponsorship(jobRequest.getVisaSponsorship())
@@ -350,7 +348,7 @@ class JobControllerTest {
     ArgumentCaptor<JobRequest> argumentCaptor = ArgumentCaptor.forClass(JobRequest.class);
     verify(jobService).updateEmployerJob(anyLong(), anyLong(), argumentCaptor.capture());
     assertThat(argumentCaptor.getValue().getTitle()).isEqualTo(updatedTitle);
-    assertThat(argumentCaptor.getValue().getJobRoleTitle()).isEqualTo("Software Engineering");
+    assertThat(argumentCaptor.getValue().getJobRoleId()).isEqualTo(Short.parseShort("1"));
   }
 
   @Test

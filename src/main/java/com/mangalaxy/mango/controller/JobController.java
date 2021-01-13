@@ -6,6 +6,7 @@ import com.mangalaxy.mango.service.JobService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -30,16 +31,20 @@ public class JobController {
   @GetMapping("/api/v1/jobs")
   public ResponseEntity<Page<JobResponse>> getJobsByParams(@RequestParam(name = "jobRole", required = false) String jobRole,
                                                            @RequestParam(name = "city", required = false) String city,
-                                                           Pageable pageable) {
-    Page<JobResponse> jobs = jobService.findJobsByParams(jobRole, city, pageable);
+                                                           @RequestParam(name = "pageNumber", required = false,
+                                                                 defaultValue = "0") int pageNumber,
+                                                           @RequestParam(name = "pageSize", required = false,
+                                                                 defaultValue = "20") int pageSize) {
+    Pageable pageRequest = PageRequest.of(pageNumber, pageSize);
+    Page<JobResponse> jobs = jobService.findJobsByParams(jobRole, city, pageRequest);
     return ResponseEntity.ok(jobs);
   }
 
   @PreAuthorize("hasRole('EMPLOYER')")
   @GetMapping("/api/v1/employers/{employerId}/jobs")
   public ResponseEntity<Page<JobResponse>> getEmployerPaginatedJobs(@PathVariable Long employerId, Pageable pageable) {
-    Page<JobResponse> jobResponses = jobService.fetchAllEmployerJobs(employerId, pageable);
-    return ResponseEntity.ok(jobResponses);
+    Page<JobResponse> jobs = jobService.fetchAllEmployerJobs(employerId, pageable);
+    return ResponseEntity.ok(jobs);
   }
 
   @PreAuthorize("hasRole('EMPLOYER')")
