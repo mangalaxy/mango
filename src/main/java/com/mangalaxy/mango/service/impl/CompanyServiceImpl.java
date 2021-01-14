@@ -29,6 +29,15 @@ public class CompanyServiceImpl implements CompanyService {
 
   @Transactional(readOnly = true)
   @Override
+  public CompanyResponse fetchCompanyByEmployerId(Long employerId) {
+    Company company = companyRepository.findByEmployers_Id(employerId)
+          .orElseThrow(() -> new ResourceNotFoundException("company", "employerId", employerId));
+    log.debug("Fetched company instance with employerId={} and details: {}", employerId, company);
+    return mapToDto(company);
+  }
+
+  @Transactional(readOnly = true)
+  @Override
   public CompanyResponse fetchCompanyByName(String name) {
     Company company = getCompanyByName(name);
     log.info("Fetched company instance with name {} and details: {}", name, company);

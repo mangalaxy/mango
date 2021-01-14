@@ -59,4 +59,10 @@ public class CompanyController {
     companyService.deleteCompanyById(companyId);
     return ResponseEntity.noContent().build();
   }
+
+  @GetMapping("/api/v1/employers/{employerId}/companies")
+  public ResponseEntity<CompanyResponse> findCompanyByEmployerId(@PathVariable Long employerId) {
+    CompanyResponse company = companyService.fetchCompanyByEmployerId(employerId);
+    return ResponseEntity.ok(company);
+  }
 }
