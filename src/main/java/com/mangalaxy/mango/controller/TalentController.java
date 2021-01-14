@@ -40,7 +40,6 @@ public class TalentController {
   @PreAuthorize("hasRole('TALENT')")
   @GetMapping("/api/v1/talents/me")
   public ResponseEntity<TalentResponse> getCurrentTalent(Authentication authentication) {
-
     if (authentication != null) {
       UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
       Long talentId = principal.getId();

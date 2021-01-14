@@ -1,12 +1,12 @@
 package com.mangalaxy.mango.config;
 
 import com.google.common.collect.Sets;
-import com.mangalaxy.mango.security.CurrentUser;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
@@ -29,7 +29,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
   @Bean
   public Docket mangoApi() {
     return new Docket(DocumentationType.SWAGGER_2)
-          .ignoredParameterTypes(CurrentUser.class)
+          .ignoredParameterTypes(Authentication.class)
           .produces(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
           .select()
           .apis(basePackage("com.mangalaxy.mango.controller"))

@@ -27,7 +27,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
-@Api(tags = "Employers API", description = "Provides CRUD operations for employer resource")
+@Api(tags = "Employers API")
 @RequiredArgsConstructor
 @RestController
 public class EmployerController {
