@@ -19,7 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-@Api(tags = "Companies API", description = "Provides CRUD for company resource")
+@Api(tags = "Companies API")
 @RequiredArgsConstructor
 @RestController
 public class CompanyController {
