@@ -4,7 +4,7 @@ import com.mangalaxy.mango.domain.dto.request.PasswordChangeRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.service.PasswordManagementService;
 import io.swagger.annotations.Api;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "Users Password Management API", description = "Provides password management for client accounts")
-@AllArgsConstructor
+@Api(tags = "Users Password Management API", produces = "application/json", consumes = "application/json")
+@RequiredArgsConstructor
 @RestController
 public class PasswordController {
   private final PasswordManagementService passwordManagementService;

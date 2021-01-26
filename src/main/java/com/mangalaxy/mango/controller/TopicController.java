@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(value = "topic", tags = {"Topics API"})
+@Api(tags = "Topics API", produces = "application/json", consumes = "application/json")
 @RestController
 @RequiredArgsConstructor
 public class TopicController {

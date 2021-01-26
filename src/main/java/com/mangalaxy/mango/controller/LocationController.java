@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@Api(tags = "Locations API", description = "Provides read operations for location resource")
+@Api(tags = "Locations API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class LocationController {

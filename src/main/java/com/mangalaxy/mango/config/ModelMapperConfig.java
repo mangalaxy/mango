@@ -16,7 +16,7 @@ public class ModelMapperConfig implements ModelMapperConfigurer {
     modelMapper.getConfiguration()
           .setSourceNamingConvention(NamingConventions.NONE)
           .setDestinationNamingConvention(NamingConventions.NONE)
-          .setMatchingStrategy(MatchingStrategies.STANDARD)
+          .setMatchingStrategy(MatchingStrategies.STRICT)
           .setFieldMatchingEnabled(true)
           .setSkipNullEnabled(true)
           .setFieldAccessLevel(PRIVATE);

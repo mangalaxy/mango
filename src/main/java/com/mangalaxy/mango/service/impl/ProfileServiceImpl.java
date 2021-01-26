@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
-@Transactional
 public class ProfileServiceImpl implements ProfileService {
   private final ProfileRepository profileRepository;
   private final ModelMapper modelMapper;
@@ -27,6 +26,7 @@ public class ProfileServiceImpl implements ProfileService {
   }
 
   @Override
+  @Transactional
   public ProfileResponse updateProfileByTalentId(Long talentId, ProfileRequest profileRequest) {
     // TODO: Implement update function for talent profile
     return null;

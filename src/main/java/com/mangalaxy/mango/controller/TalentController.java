@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
-@Api(tags = "Talents API", description = "Provides CRUD operations for talent resource")
+@Api(tags = "Talents API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class TalentController {
@@ -40,7 +40,6 @@ public class TalentController {
   @PreAuthorize("hasRole('TALENT')")
   @GetMapping("/api/v1/talents/me")
   public ResponseEntity<TalentResponse> getCurrentTalent(Authentication authentication) {
-
     if (authentication != null) {
       UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
       Long talentId = principal.getId();

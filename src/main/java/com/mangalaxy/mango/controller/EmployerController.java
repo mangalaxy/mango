@@ -9,6 +9,7 @@ import com.mangalaxy.mango.service.EmployerService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
-@Api(tags = "Employers API", description = "Provides CRUD operations for employer resource")
+@Api(tags = "Employers API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class EmployerController {
@@ -36,8 +37,12 @@ public class EmployerController {
 
   @PreAuthorize("hasRole('ADMIN')")
   @GetMapping("/api/v1/employers")
-  public ResponseEntity<Page<EmployerResponse>> getPaginatedEmployers(Pageable pageable) {
-    Page<EmployerResponse> employersPage = employerService.fetchAllEmployers(pageable);
+  public ResponseEntity<Page<EmployerResponse>> getPaginatedEmployers(@RequestParam(name = "pageNumber", required = false,
+                                                                            defaultValue = "0") int pageNumber,
+                                                                      @RequestParam(name = "pageSize", required = false,
+                                                                            defaultValue = "20") int pageSize) {
+    Pageable pageRequest = PageRequest.of(pageNumber, pageSize);
+    Page<EmployerResponse> employersPage = employerService.fetchAllEmployers(pageRequest);
     return ResponseEntity.ok(employersPage);
   }
 
@@ -57,9 +62,9 @@ public class EmployerController {
       URI redirectUri = MvcUriComponentsBuilder.fromMethodName(this.getClass(), "getSpecifiedEmployer", employerId)
             .build()
             .toUri();
-      HttpHeaders responseHeaders = new HttpHeaders();
-      responseHeaders.setLocation(redirectUri);
-      return new ResponseEntity<>(responseHeaders, HttpStatus.FOUND);
+      HttpHeaders httpHeaders = new HttpHeaders();
+      httpHeaders.setLocation(redirectUri);
+      return new ResponseEntity<>(httpHeaders, HttpStatus.FOUND);
     } else {
       throw new IllegalStateException("UserDetails instance should not null");
     }
@@ -75,13 +80,6 @@ public class EmployerController {
   }
 
   @PreAuthorize("hasRole('EMPLOYER')")
-  @DeleteMapping("/api/v1/employers/{employerId}")
-  public ResponseEntity<Void> deleteSpecifiedEmployer(@PathVariable Long employerId) {
-    employerService.deleteEmployerById(employerId);
-    return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-  }
-
-  @PreAuthorize("hasRole('EMPLOYER')")
   @PutMapping("/api/v1/employers/{employerId}/talents/{talentId}/bookmark")
   public ResponseEntity<Boolean> toggleTalentBookmark(@PathVariable Long employerId,
                                                       @PathVariable Long talentId,
@@ -92,8 +90,20 @@ public class EmployerController {
 
   @PreAuthorize("hasRole('EMPLOYER')")
   @GetMapping("/api/v1/employers/{employerId}/talents/bookmarked")
-  public ResponseEntity<Page<TalentResponse>> getPaginatedTalentsBookmarkedBy(@PathVariable Long employerId, Pageable pageable) {
-    Page<TalentResponse> response = employerRelationshipService.fetchBookmarkedTalents(employerId, pageable);
+  public ResponseEntity<Page<TalentResponse>> getTalentsBookmarkedBy(@PathVariable Long employerId,
+                                                                     @RequestParam(name = "pageNumber", required = false,
+                                                                           defaultValue = "0") int pageNumber,
+                                                                     @RequestParam(name = "pageSize", required = false,
+                                                                           defaultValue = "20") int pageSize) {
+    Pageable pageRequest = PageRequest.of(pageNumber, pageSize);
+    Page<TalentResponse> response = employerRelationshipService.fetchBookmarkedTalents(employerId, pageRequest);
     return ResponseEntity.ok(response);
+  }
+
+  @PreAuthorize("hasRole('EMPLOYER')")
+  @DeleteMapping("/api/v1/employers/{employerId}")
+  public ResponseEntity<Void> deleteSpecifiedEmployer(@PathVariable Long employerId) {
+    employerService.deleteEmployerById(employerId);
+    return ResponseEntity.noContent().build();
   }
 }

@@ -10,11 +10,13 @@ import com.mangalaxy.mango.domain.entity.Employer;
 import com.mangalaxy.mango.domain.entity.Job;
 import com.mangalaxy.mango.domain.entity.JobRole;
 import com.mangalaxy.mango.domain.entity.Location;
+import com.mangalaxy.mango.domain.entity.Skill;
 import com.mangalaxy.mango.exception.ResourceNotFoundException;
 import com.mangalaxy.mango.repository.EmployerRepository;
 import com.mangalaxy.mango.repository.JobRepository;
 import com.mangalaxy.mango.repository.JobRoleRepository;
 import com.mangalaxy.mango.repository.LocationRepository;
+import com.mangalaxy.mango.repository.SkillRepository;
 import com.mangalaxy.mango.service.impl.JobServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -30,6 +32,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -53,6 +56,8 @@ class JobServiceTest {
   private EmployerRepository employerRepository;
   @Mock
   private LocationRepository locationRepository;
+  @Mock
+  private SkillRepository skillRepository;
   private JobService jobService;
 
   private Job job1;
@@ -60,12 +65,14 @@ class JobServiceTest {
   private Job job3;
 
   private Employer employer1;
+  private JobRole seRole;
+  private List<Skill> skills;
 
   @BeforeEach
   void setUp() {
     ModelMapper modelMapper = new ModelMapper();
     jobService = new JobServiceImpl(jobRepository, jobRoleRepository, employerRepository,
-          locationRepository, modelMapper);
+          skillRepository, locationRepository, modelMapper);
 
     Location location1 = new Location();
     location1.setId(Shorts.checkedCast(1L));
@@ -115,6 +122,24 @@ class JobServiceTest {
     job3.setPublisher(employer1);
 
     employer1.setJobs(Sets.newHashSet(job1, job2, job3));
+
+    seRole = new JobRole();
+    seRole.setId(Short.valueOf("1"));
+    seRole.setTitle("Software Engineering");
+
+    Skill skill1 = new Skill();
+    skill1.setId(1L);
+    skill1.setName("AngularJS");
+
+    Skill skill2 = new Skill();
+    skill2.setId(2L);
+    skill1.setName("Node.js");
+
+    Skill skill3 = new Skill();
+    skill3.setId(3L);
+    skill3.setName("Firebase");
+
+    skills = Lists.newArrayList(skill1, skill2, skill3);
   }
 
   @Test
@@ -198,16 +223,19 @@ class JobServiceTest {
 
     JobRequest newJob = JobRequest.builder()
           .title("Middle Front-end Developer (Angular, Firebase)")
-          .jobRoleTitle("Software Engineering")
+          .jobRoleId((short) 1)
           .jobType("Full-time")
           .remote(false)
           .relocation(false)
           .visaSponsorship(false)
           .location(location)
+          .skillIds(Lists.newArrayList(1L, 2L, 3L))
           .build();
     when(employerRepository.findById(1L)).thenReturn(Optional.of(employer1));
-    when(jobRepository.save(any(Job.class)))
-          .thenReturn(Job.builder()
+    when(jobRoleRepository.findById((short)1)).thenReturn(Optional.of(seRole));
+    when(skillRepository.findAllById(Lists.newArrayList(1L, 2L, 3L)))
+          .thenReturn(skills);
+    when(jobRepository.save(any(Job.class))).thenReturn(Job.builder()
                 .id(4L)
                 .title("Middle Front-end Developer (Angular, Firebase)")
                 .jobRole(new JobRole((short) 1, "Software Engineering", null))
@@ -221,6 +249,8 @@ class JobServiceTest {
     JobResponse jobResponse = jobService.createEmployerJob(1L, newJob);
     //then
     verify(employerRepository).findById(1L);
+    verify(jobRoleRepository).findById((short)1);
+    verify(skillRepository).findAllById(Lists.newArrayList(1L, 2L, 3L));
     verify(jobRepository).save(any(Job.class));
     assertEquals(expectedJobId, jobResponse.getId());
     assertEquals("Middle Front-end Developer (Angular, Firebase)", jobResponse.getTitle());

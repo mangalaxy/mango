@@ -15,27 +15,37 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
-@Api(tags = "Posts API", description = "Provides CRUD and others operations for post resource")
+@Api(tags = "Posts API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class PostController {
   private final PostService postService;
 
   @GetMapping("/api/v1/posts")
-  public ResponseEntity<Page<PostResponse>> getAllPosts(Pageable pageable) {
-    Page<PostResponse> posts = postService.fetchAllPosts(pageable);
+  public ResponseEntity<Page<PostResponse>> getAllPosts(@RequestParam(name = "pageNumber", required = false,
+                                                              defaultValue = "0") int pageNumber,
+                                                        @RequestParam(name = "pageSize", required = false,
+                                                              defaultValue = "20") int pageSize) {
+    Pageable pageRequest = PageRequest.of(pageNumber, pageSize);
+    Page<PostResponse> posts = postService.fetchAllPosts(pageRequest);
     return ResponseEntity.ok(posts);
   }
 
   @GetMapping("/api/v1/topics/{topicId}/posts")
-  public ResponseEntity<Page<PostResponse>> getAllPostsByTopic(@PathVariable Integer topicId, Pageable pageable) {
-    Page<PostResponse> posts = postService.fetchAllPostsByTopicId(topicId, pageable);
+  public ResponseEntity<Page<PostResponse>> getAllPostsByTopic(@PathVariable Integer topicId,
+                                                               @RequestParam(name = "pageNumber", required = false,
+                                                                     defaultValue = "0") int pageNumber,
+                                                               @RequestParam(name = "pageSize", required = false,
+                                                                     defaultValue = "20") int pageSize) {
+    Pageable pageRequest = PageRequest.of(pageNumber, pageSize);
+    Page<PostResponse> posts = postService.fetchAllPostsByTopicId(topicId, pageRequest);
     return ResponseEntity.ok(posts);
   }
 

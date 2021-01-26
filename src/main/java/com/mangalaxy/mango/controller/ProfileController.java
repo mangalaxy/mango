@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(tags = "Talent Profile API", description = "Provides read and update operations on talent profile resource")
+@Api(tags = "Talent Profile API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class ProfileController {

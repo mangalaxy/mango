@@ -6,8 +6,9 @@ import lombok.Builder;
 import lombok.Value;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
 @Builder
 @Value
@@ -16,8 +17,8 @@ public class JobRequest {
   @NotBlank
   String title;
 
-  @NotBlank
-  String jobRoleTitle;
+  @NotNull
+  Short jobRoleId;
 
   @NotBlank
   String jobType;
@@ -38,12 +39,14 @@ public class JobRequest {
 
   @NotNull
   LocationRequest location;
-  Set<SkillRequest> skills;
+
+  @NotEmpty
+  List<Long> skillIds;
 
   @JsonCreator
   public JobRequest(
         @JsonProperty("title") String title,
-        @JsonProperty("jobRole") String jobRoleTitle,
+        @JsonProperty("jobRoleId") Short jobRoleId,
         @JsonProperty("jobType") String jobType,
         @JsonProperty("remote") Boolean remote,
         @JsonProperty("relocation") Boolean relocation,
@@ -51,8 +54,9 @@ public class JobRequest {
         @JsonProperty("experienceRequired") String experienceRequired,
         @JsonProperty("description") String description,
         @JsonProperty("location") LocationRequest location,
-        @JsonProperty("skills") Set<SkillRequest> skills) {
+        @JsonProperty("skillIds") List<Long> skillIds) {
     this.title = title;
+    this.jobRoleId = jobRoleId;
     this.jobType = jobType;
     this.remote = remote;
     this.relocation = relocation;
@@ -60,8 +64,7 @@ public class JobRequest {
     this.experienceRequired = experienceRequired;
     this.description = description;
     this.location = location;
-    this.skills = skills;
-    this.jobRoleTitle = jobRoleTitle;
+    this.skillIds = skillIds;
   }
 
 }

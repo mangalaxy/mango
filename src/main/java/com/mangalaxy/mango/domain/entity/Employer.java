@@ -66,6 +66,7 @@ public class Employer extends DateAudit {
   @Column(name = "email", nullable = false, unique = true)
   private String email;
 
+  @ToString.Exclude
   @Column(name = "password", nullable = false)
   private String password;
 
@@ -96,6 +97,7 @@ public class Employer extends DateAudit {
   @JoinColumn(name = "location_id", nullable = false)
   private Location location;
 
+  @ToString.Exclude
   @OneToMany(
         mappedBy = "publisher",
         cascade = CascadeType.ALL,
