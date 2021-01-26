@@ -30,6 +30,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
   public Docket mangoApi() {
     return new Docket(DocumentationType.SWAGGER_2)
           .ignoredParameterTypes(Authentication.class)
+          .consumes(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
           .produces(Sets.newHashSet(MediaType.APPLICATION_JSON_VALUE))
           .select()
           .apis(basePackage("com.mangalaxy.mango.controller"))
@@ -41,7 +42,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
   private static ApiInfo metaData() {
     return new ApiInfoBuilder()
           .title("MANGOSTART REST API")
-          .description("REST API for ManGoStart recruiting platform")
+          .description("REST API for Mangostart recruiting platform")
           .version("1.0.0-SNAPSHOT")
           .license("MIT License")
           .licenseUrl("https://opensource.org/licenses/MIT")

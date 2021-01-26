@@ -17,7 +17,7 @@ public class DefaultRegistrationService implements RegistrationService {
   private final TalentService talentService;
 
   @Override
-  public Long register(EmployerSignUpRequest employerRequest) {
+  public Long enroll(final EmployerSignUpRequest employerRequest) {
     if (employerService.isEmailFree(employerRequest.getEmail())) {
       return employerService.createNewEmployer(employerRequest).getId();
     } else {
@@ -26,7 +26,7 @@ public class DefaultRegistrationService implements RegistrationService {
   }
 
   @Override
-  public Long register(TalentSignUpRequest talentRequest) {
+  public Long enroll(final TalentSignUpRequest talentRequest) {
     if (talentService.isEmailFree(talentRequest.getEmail())) {
       return talentService.createNewTalent(talentRequest).getId();
     } else {
@@ -35,7 +35,7 @@ public class DefaultRegistrationService implements RegistrationService {
   }
 
   @Override
-  public ApiResponse confirmRegistration(String validationToken) {
+  public ApiResponse confirmEmailToken(String emailToken) {
     // TODO: Implement application logic in different branch
     return new ApiResponse(true, "Email confirmed successfully");
   }

@@ -24,7 +24,7 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
-@Api(tags = "Talents API", description = "Provides CRUD operations for talent resource")
+@Api(tags = "Talents API", produces = "application/json", consumes = "application/json")
 @RequiredArgsConstructor
 @RestController
 public class TalentController {

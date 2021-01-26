@@ -24,6 +24,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   // Dependencies
   @Autowired
   private JwtTokenProvider tokenProvider;
+
   @Autowired
   private UserDetailsService customUserDetailsService;
 
@@ -43,14 +44,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
               principal, principal.getPassword(), principal.getAuthorities());
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
         SecurityContextHolder.getContext().setAuthentication(authentication);
       }
-    } catch (Exception ex) {
-      log.error("Could not set user authentication in security context", ex);
+    } catch (Exception e) {
+      log.error("Could not set user authentication in security context", e);
     }
     filterChain.doFilter(request, response);
-
   }
 
   private String extractJwtFromRequest(HttpServletRequest request) {

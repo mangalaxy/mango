@@ -8,5 +8,4 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @EnableJpaAuditing(modifyOnCreate = false)
 public class JpaManagementConfig {
-
 }

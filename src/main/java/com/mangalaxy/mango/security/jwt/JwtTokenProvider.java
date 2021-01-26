@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import javax.crypto.spec.SecretKeySpec;
 import javax.xml.bind.DatatypeConverter;
 import java.security.Key;
-import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Date;
@@ -52,7 +51,7 @@ public class JwtTokenProvider {
 
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
 
-    Instant now = Instant.now(Clock.systemDefaultZone());
+    Instant now = Instant.now();
     Instant expirationDate = now.plus(jwtTimeToLive);
 
     byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(jwtSecret);

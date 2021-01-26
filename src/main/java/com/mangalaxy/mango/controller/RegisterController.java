@@ -5,7 +5,7 @@ import com.mangalaxy.mango.domain.dto.request.TalentSignUpRequest;
 import com.mangalaxy.mango.domain.dto.response.ApiResponse;
 import com.mangalaxy.mango.service.RegistrationService;
 import io.swagger.annotations.Api;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +17,15 @@ import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBui
 
 import java.net.URI;
 
-@Api(tags = "Register API", description = "Allows users to register in the system")
-@AllArgsConstructor
+@Api(tags = "Sign Up API", produces = "application/json", consumes = "application/json")
+@RequiredArgsConstructor
 @RestController
-public class RegistrationController {
+public class RegisterController {
   private final RegistrationService registrationService;
 
   @PostMapping("/api/v1/auth/employer/register")
   public ResponseEntity<ApiResponse> registerEmployer(@RequestBody @Validated EmployerSignUpRequest employerRequest) {
-    Long assignedId = registrationService.register(employerRequest);
+    Long assignedId = registrationService.enroll(employerRequest);
     URI location = MvcUriComponentsBuilder
           .fromMethodName(EmployerController.class, "getSpecifiedEmployer", assignedId)
           .build()
@@ -36,7 +36,7 @@ public class RegistrationController {
 
   @PostMapping("/api/v1/auth/talent/register")
   public ResponseEntity<ApiResponse> registerTalent(@RequestBody @Validated TalentSignUpRequest talentRequest) {
-    Long assignedId = registrationService.register(talentRequest);
+    Long assignedId = registrationService.enroll(talentRequest);
     URI location = MvcUriComponentsBuilder
           .fromMethodName(TalentController.class, "getSpecifiedTalent", assignedId)
           .build()
@@ -45,9 +45,9 @@ public class RegistrationController {
     return ResponseEntity.created(location).body(successResponse);
   }
 
-  @PutMapping("/api/v1/auth/confirm-registration")
-  public ResponseEntity<ApiResponse> confirmRegistration(@RequestParam("token") String activationToken) {
-    ApiResponse confirmedResponse = registrationService.confirmRegistration(activationToken);
+  @PutMapping("/api/v1/auth/confirm/email")
+  public ResponseEntity<ApiResponse> confirmEmailByToken(@RequestParam("token") String activationToken) {
+    ApiResponse confirmedResponse = registrationService.confirmEmailToken(activationToken);
     return ResponseEntity.ok(confirmedResponse);
   }
 }
