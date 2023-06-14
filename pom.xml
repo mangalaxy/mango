@@ -26,7 +26,7 @@
       <modelmapper.version>2.3.2</modelmapper.version>
       <jjwt.version>0.9.1</jjwt.version>
       <greenmail.version>1.5.5</greenmail.version>
-      <guava.version>29.0-jre</guava.version>
+      <guava.version>32.0.0-jre</guava.version>
       <modelmapper.starter.version>1.1.0</modelmapper.starter.version>
       <jacoco.version>0.8.5</jacoco.version>
       <surefire.version>3.0.0-M5</surefire.version>
